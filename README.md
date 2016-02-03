@@ -4,10 +4,12 @@
 - For JS we use [JavaScript Standard Style](http://standardjs.com/).
 - For file naming we use CamelCase.
 - Always use functional components
-- Always use arrow functions
 - Make your components no longer than 20 lines
+- Try not to write reducers more than 20 lines
+- Always use arrow functions
+- Try to write functions no more than 10 lines
 - Always end your file with new line
-
+- Try to make your files no more than 50 lines
 - Structure your component as follows: 
 
 ```js
