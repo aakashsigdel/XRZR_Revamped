@@ -13,7 +13,7 @@ const GhostButton = props => {
     <View
       style={[
         styles.container,
-        props.with && { width: props.width },
+        props.width && { width: props.width },
         props.height && { height: props.height },
         props.backgroundColor && { backgroundColor: props.backgroundColor }
       ]}>
@@ -43,8 +43,8 @@ GhostButton.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    width: 0.8 * VIEWPORT.width,
-    height: 40,
+    width: 0.9 * VIEWPORT.width,
+    height: 55,
     backgroundColor: 'rgba(35, 35, 35, 0.5)',
     justifyContent: 'center',
     alignItems: 'center'
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 16,
+    fontFamily: 'SFUIDisplay-Semibold'
   }
 })
 

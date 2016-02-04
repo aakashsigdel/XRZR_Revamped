@@ -10,6 +10,7 @@ import React, {
   Text,
   View
 } from 'react-native';
+import Login from './src/components/Login/Login'
 
 class XRZR extends Component {
   render() {
@@ -49,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('XRZR', () => XRZR);
+AppRegistry.registerComponent('XRZR', () => Login);

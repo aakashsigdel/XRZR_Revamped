@@ -4,7 +4,7 @@ import React, {
   Image,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native'
 
 import GhostButton from '../GhostButton'
@@ -13,7 +13,7 @@ const Login = props => {
   return (
     <Image
       source={{
-        uri: 'https://lh3.googleusercontent.com/' + 
+        uri: 'https://lh3.googleusercontent.com/' +
         'qmFzxL9Zx_xxlFwmDNENfy6xn9B3Fy6NjJYzHVAuGJE=w376-h667-no'
       }}
       style={styles.container}
@@ -26,7 +26,7 @@ const Login = props => {
       </Text>
       <View style={styles.buttonContainer}>
         <GhostButton
-          text="LOGIN WITH FACEBOOK"
+          text={"LOGIN WITH FACEBOOK"}
         />
       </View>
     </Image>
@@ -41,11 +41,13 @@ const styles = StyleSheet.create({
   },
   text: {
     backgroundColor: 'transparent',
-    color: 'white'
+    color: 'white',
+    fontSize: 24,
+    fontFamily: 'SFUIDisplay-Regular'
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 18,
     left: 0,
     right: 0,
     alignItems: 'center'
