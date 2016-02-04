@@ -27,6 +27,7 @@ const Login = props => {
       <View style={styles.buttonContainer}>
         <GhostButton
           text={"LOGIN WITH FACEBOOK"}
+          onButtonPress={_=> console.log('Pressed Login with facebook')}
         />
       </View>
     </Image>

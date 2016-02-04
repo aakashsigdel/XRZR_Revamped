@@ -4,13 +4,15 @@ import React, {
   PropTypes,
   StyleSheet,
   Text,
-  View
+  TouchableOpacity
 } from 'react-native'
 import { VIEWPORT } from '../constants/appConstants'
 
 const GhostButton = props => {
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={props.onButtonPress}
       style={[
         styles.container,
         props.width && { width: props.width },
@@ -23,7 +25,7 @@ const GhostButton = props => {
         props.fontSize && { fontSize: props.fontSize },
         props.fontFamily && { fontFamily: props.fontFamily }
       ]}>{props.text}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -34,7 +36,8 @@ GhostButton.propTypes = {
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
   fontSize: PropTypes.number,
-  fontFamily: PropTypes.string
+  fontFamily: PropTypes.string,
+  onButtonPress: PropTypes.func.isRequired
 }
 
 GhostButton.defaultProps = {
