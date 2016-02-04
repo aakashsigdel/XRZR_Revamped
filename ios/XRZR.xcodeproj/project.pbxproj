@@ -24,6 +24,10 @@
 		3034AA331C633BAD0017B176 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3034AA281C633B9D0017B176 /* libBVLinearGradient.a */; };
 		3034AA3A1C633C610017B176 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3034AA391C633C590017B176 /* libReactNativeIcons.a */; };
 		3034AA3C1C633CAC0017B176 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA3B1C633CAC0017B176 /* FontAwesome.otf */; };
+		3034AA4D1C635B0D0017B176 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA491C635B0D0017B176 /* SF-UI-Display-Light.otf */; };
+		3034AA4E1C635B0D0017B176 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4A1C635B0D0017B176 /* SF-UI-Display-Regular.otf */; };
+		3034AA4F1C635B0D0017B176 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4B1C635B0D0017B176 /* SF-UI-Text-Regular.otf */; };
+		3034AA501C635B0D0017B176 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4C1C635B0D0017B176 /* SF-UI-Text-Semibold.otf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +148,10 @@
 		3034AA231C633B9D0017B176 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		3034AA341C633C590017B176 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "../node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
 		3034AA3B1C633CAC0017B176 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		3034AA491C635B0D0017B176 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
+		3034AA4A1C635B0D0017B176 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
+		3034AA4B1C635B0D0017B176 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		3034AA4C1C635B0D0017B176 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -327,6 +335,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3034AA491C635B0D0017B176 /* SF-UI-Display-Light.otf */,
+				3034AA4A1C635B0D0017B176 /* SF-UI-Display-Regular.otf */,
+				3034AA4B1C635B0D0017B176 /* SF-UI-Text-Regular.otf */,
+				3034AA4C1C635B0D0017B176 /* SF-UI-Text-Semibold.otf */,
 				3034AA3B1C633CAC0017B176 /* FontAwesome.otf */,
 				13B07FAE1A68108700A75B9A /* XRZR */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -568,8 +580,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3034AA501C635B0D0017B176 /* SF-UI-Text-Semibold.otf in Resources */,
 				3034AA3C1C633CAC0017B176 /* FontAwesome.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				3034AA4F1C635B0D0017B176 /* SF-UI-Text-Regular.otf in Resources */,
+				3034AA4E1C635B0D0017B176 /* SF-UI-Display-Regular.otf in Resources */,
+				3034AA4D1C635B0D0017B176 /* SF-UI-Display-Light.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
