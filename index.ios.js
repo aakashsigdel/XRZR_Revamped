@@ -6,10 +6,14 @@
 import React, {
   AppRegistry,
   Component,
+  StatusBarIOS,
   StyleSheet,
   Text,
   View
 } from 'react-native';
+import BrowseScreen from './src/components/browse/BrowseScreen'
+
+StatusBarIOS.setHidden(true)
 
 class XRZR extends Component {
   render() {
