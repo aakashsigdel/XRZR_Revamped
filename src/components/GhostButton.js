@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'SFUIDisplay-Semibold'
+    fontFamily: 'SFUIDisplay-Regular'
   }
 })
 

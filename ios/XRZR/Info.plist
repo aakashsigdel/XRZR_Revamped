@@ -8,7 +8,10 @@
 		<string>SF-UI-Display-Regular.otf</string>
 		<string>SF-UI-Text-Regular.otf</string>
 		<string>SF-UI-Text-Semibold.otf</string>
-		<string>SF-UI-Display-Semibold.otf</string>
+		<string>SF-Compact-Text-Regular.otf</string>
+		<string>SF-Compact-Display-Regular.otf</string>
+		<string>SF-Compact-Display-Light.otf</string>
+		<string>SF-Compact-Text-Semibold.otf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
