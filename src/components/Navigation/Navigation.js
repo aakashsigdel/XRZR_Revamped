@@ -44,8 +44,7 @@ const Navigation = props => {
               />
             )
           })
-        })
-      ()}
+        })()}
   </View>
   )
 }
@@ -69,7 +68,9 @@ Navigation.propTypes = {
     custom: PropTypes.element,
     style: PropTypes.object,
     onButtonClick: PropTypes.func
-  })
+  }),
+  backgroundColor: PropTypes.string,
+  height: PropTypes.number
 }
 
 const styles = StyleSheet.create({

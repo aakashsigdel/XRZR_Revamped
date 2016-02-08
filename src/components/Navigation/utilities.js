@@ -1,7 +1,4 @@
-import React, {
-  StyleSheet,
-  Text
-} from 'react-native'
+import React, { Text } from 'react-native'
 
 // create a text node or a custom node based on text and custom props
 export const getElement = (text, custom, componentStyle) => {

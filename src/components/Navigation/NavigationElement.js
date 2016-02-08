@@ -1,12 +1,9 @@
 'use strict'
 
 import React, {
-  Image,
   PropTypes,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from 'react-native'
 import {
   getActiveOpacity,
@@ -21,7 +18,7 @@ const NavigationElement = props => {
       onPress={props.onButtonClick}
       style={styles.touch}
     >
-      { getElement(props.text, props.custom, props.style) } 
+      { getElement(props.text, props.custom, props.style) }
     </TouchableOpacity>
   )
 }
@@ -29,7 +26,8 @@ const NavigationElement = props => {
 NavigationElement.propTypes = {
   text: PropTypes.string,
   custom: PropTypes.element,
-  style: PropTypes.object
+  style: PropTypes.object,
+  onButtonClick: PropTypes.func
 }
 
 NavigationElement.defaultProps = {
