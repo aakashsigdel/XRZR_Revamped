@@ -1,13 +1,13 @@
-import { combineReducer } from 'redux'
+import { combineReducers } from 'redux'
 
 import category from './catagory'
 import exercise from './exercise'
 import workout from './workout'
 
-const xrzrReducer = combineReducer({
+const XRZRReducer = combineReducers({
   category,
   exercise,
   workout
 })
 
-export default xrzrReducer
+export default XRZRReducer
