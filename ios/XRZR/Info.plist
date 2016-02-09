@@ -12,6 +12,14 @@
 		<string>SF-Compact-Display-Regular.otf</string>
 		<string>SF-Compact-Display-Light.otf</string>
 		<string>SF-Compact-Text-Semibold.otf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
