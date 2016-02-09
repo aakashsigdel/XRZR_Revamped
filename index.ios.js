@@ -1,6 +1,6 @@
 'use strict'
 
 import { AppRegistry } from 'react-native'
-import App from './src/containers/App'
+import App from './src/App'
 
 AppRegistry.registerComponent('XRZR', () => App)
