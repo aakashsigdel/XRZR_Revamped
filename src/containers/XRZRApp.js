@@ -10,7 +10,7 @@ import * as categoryActionCreators from '../redux_x/actions/categoryActionCreato
 
 import Login from '../components/Login/Login'
 
-const XRZRApp = props => {
+const XRZRApp = ({ state, actions }) => {
   return (
     <Navigator
       initialRoute={{name: 'login'}}
@@ -38,10 +38,10 @@ const _mapDispatchToProps = (dispatch) => {
   actions.exerciseActions = bindActionCreators(exerciseActionCreators, dispatch)
   actions.categoryActions = bindActionCreators(categoryActionCreators, dispatch)
 
-  return actions
+  return { actions }
 }
 
 export default connect(
-  state => { state },
+  state => ({ state }),
   _mapDispatchToProps
 )(XRZRApp)
