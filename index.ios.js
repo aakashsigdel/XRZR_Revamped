@@ -4,7 +4,7 @@ import React, {
   AppRegistry,
   StatusBarIOS,
 } from 'react-native';
-import App from './src/containers/App'
+import App from './src/App'
 
 StatusBarIOS.setHidden(true)
 
