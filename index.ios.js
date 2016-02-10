@@ -9,4 +9,4 @@ import Player from './src/containers/Player'
 
 StatusBarIOS.setHidden(true)
 
-AppRegistry.registerComponent('XRZR', () => Player)
+AppRegistry.registerComponent('XRZR', () => App)

@@ -19,31 +19,23 @@ class ExerciseList extends Component {
     return this.state.dataSource.cloneWithRows(itemList)
   }
 
-  _populateList(item){
-    return <ExerciseItem item={item}/>
+  _populateList(item, index){
+    //console.log(index)
+    return <ExerciseItem item={item}
+                         onVideoSelect={this.props.onVideoSelect}
+                         nowPlaying={this.props.nowPlaying}
+    />
   }
 
   render(){
     return (
       <ListView style={[styles.container, {flex: this.props.flex}]}
-                dataSource={this._getDataSource(data)}
+                dataSource={this._getDataSource(this.props.data)}
                 renderRow={this._populateList.bind(this)}
       />
     )
   }
 }
-
-const data = [
-  {id: 1, title: 'Sun salutation A', time:'90 sec'},
-  {id: 2, title: 'Sun salutation B', time:'20 sec'},
-  {id: 3, title: 'How gutless.', time:'50 sec'},
-  {id: 4, title: 'Horror, life, and faith.', time:'50 sec'},
-  {id: 5, title: 'Never break a seashell.', time:'50 sec'},
-  {id: 5, title: 'Never break a seashell.', time:'50 sec'},
-  {id: 5, title: 'Never break a seashell.', time:'50 sec'},
-  {id: 5, title: 'Never break a seashell.', time:'50 sec'},
-  {id: 5, title: 'Never break a seashell.', time:'50 sec'},
-]
 
 const styles = StyleSheet.create({
   container: {

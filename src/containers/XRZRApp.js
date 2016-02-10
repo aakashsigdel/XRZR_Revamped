@@ -9,11 +9,12 @@ import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreato
 import * as categoryActionCreators from '../redux_x/actions/categoryActionCreators'
 
 import Login from '../components/Login/Login'
+import Player from './Player'
 
-const XRZRApp = ({ state, actions }) => {
+const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'login'}}
+      initialRoute={{name: 'player'}}
       renderScene={_renderScene}
     />
   )
@@ -25,6 +26,8 @@ const _renderScene = (route, navigator) => {
       return <Login
         navigator={navigator}
       />
+    case 'player':
+      return <Player />
     default:
       return <Login
         navigator={ navigator }
