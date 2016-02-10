@@ -7,15 +7,63 @@ Text,
   StyleSheet,
 } from 'react-native'
 import Video from 'react-native-video'
+import Orientation from 'react-native-orientation'
 
-import { VIEWPORT } from '../../constants/appConstants'
+import {
+  VIEWPORT,
+  ORIENTATION
+} from '../../constants/appConstants'
 
 import Player from './Player'
 import ExerciseList from './ExerciseList'
 import PlayerController from './PlayerController'
 
 class VideoScreen extends Component {
+  constructor () {
+    super();
+    this.state = {
+      orientationStatus: ORIENTATION.PORTRAIT
+    }
+  }
+
+  componentDidMount () {
+    console.log('mounted')
+    Orientation.addOrientationListener(this._orientationDidChange.bind(this))
+  }
+
+  _orientationDidChange ( orientation ) {
+    console.log('changed')
+    if (orientation === ORIENTATION.LANDSCAPE) {
+      this.setState({
+        orientationStatus: ORIENTATION.LANDSCAPE
+      })
+    } else if (orientation === ORIENTATION.PORTRAIT) {
+      this.setState({
+        orientationStatus: ORIENTATION.PORTRAIT
+      })
+    }
+  }
+
   render() {
+    if (this.state.orientationStatus === ORIENTATION.LANDSCAPE) {
+      return (
+        <View style={{flex: 1}}>
+          <Player flex={1} {...playerData(this.props.state)}
+            onVideoTouch={this.props.pauseVideo}
+            onVideoLoaded={this.props.videoLoaded}
+            onVideoProgress={this.props.videoProgress}
+          />
+          <View style={{position: 'absolute', bottom: 0, left: 0, right: 0}}>
+            <PlayerController 
+              backgroundColor='transparent'
+              onPreviousPressed={this.props.previousVideo}
+              onNextPressed={this.props.nextVideo}
+              {...playerControllerData(this.props.state)}
+            />
+          </View>
+        </View>
+      )
+    }
     return (
       <Image source={require("../../../assets/images/background.png")}
              style={styles.container}>
@@ -103,7 +151,7 @@ function playerControllerData(state){
 const styles = StyleSheet.create({
   container:{
     width: VIEWPORT.width,
-    height: VIEWPORT.height,
+    height: VIEWPORT.height
   },
   videoContainer: {
     flex: 2.22222,

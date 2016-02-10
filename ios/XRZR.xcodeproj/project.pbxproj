@@ -27,6 +27,7 @@
 		3034AA4E1C635B0D0017B176 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4A1C635B0D0017B176 /* SF-UI-Display-Regular.otf */; };
 		3034AA4F1C635B0D0017B176 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4B1C635B0D0017B176 /* SF-UI-Text-Regular.otf */; };
 		3034AA501C635B0D0017B176 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3034AA4C1C635B0D0017B176 /* SF-UI-Text-Semibold.otf */; };
+		307E61001C6B4AAA00BC6E11 /* Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 307E60FF1C6B4AAA00BC6E11 /* Orientation.m */; };
 		308CADEA1C643ECF00DDFA66 /* SF-Compact-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308CADE91C643ECF00DDFA66 /* SF-Compact-Text-Regular.otf */; };
 		308CADF81C643EFF00DDFA66 /* SF-Compact-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308CADF71C643EFF00DDFA66 /* SF-Compact-Display-Regular.otf */; };
 		308CADFA1C643F2200DDFA66 /* SF-Compact-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308CADF91C643F2200DDFA66 /* SF-Compact-Display-Light.otf */; };
@@ -170,6 +171,8 @@
 		3034AA4A1C635B0D0017B176 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		3034AA4B1C635B0D0017B176 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		3034AA4C1C635B0D0017B176 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
+		307E60FE1C6B4AAA00BC6E11 /* Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orientation.h; sourceTree = "<group>"; };
+		307E60FF1C6B4AAA00BC6E11 /* Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Orientation.m; sourceTree = "<group>"; };
 		308CADE91C643ECF00DDFA66 /* SF-Compact-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Text-Regular.otf"; sourceTree = "<group>"; };
 		308CADF71C643EFF00DDFA66 /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
 		308CADF91C643F2200DDFA66 /* SF-Compact-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Light.otf"; sourceTree = "<group>"; };
@@ -329,6 +332,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		307E60FD1C6B4AAA00BC6E11 /* RCTOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				307E60FE1C6B4AAA00BC6E11 /* Orientation.h */,
+				307E60FF1C6B4AAA00BC6E11 /* Orientation.m */,
+			);
+			name = RCTOrientation;
+			path = "../node_modules/react-native-orientation/RCTOrientation";
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +381,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				307E60FD1C6B4AAA00BC6E11 /* RCTOrientation */,
 				CD528F101C69E29E00F5FBB1 /* Entypo.ttf */,
 				CD528F111C69E29E00F5FBB1 /* EvilIcons.ttf */,
 				CD528F121C69E29E00F5FBB1 /* FontAwesome.ttf */,
@@ -698,6 +712,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				307E61001C6B4AAA00BC6E11 /* Orientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
