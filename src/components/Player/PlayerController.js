@@ -3,22 +3,53 @@ import React, {
   StyleSheet,
   Text,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const PlayerController = (props) => {
+  let playerPosition = props.progress * 100
+  let remainingVideo = (1-props.progress) * 100
+  let remainingTime = remainingVideo / 100 * props.duration
+
+  if (! props.showTime){
+    playerPosition = 0
+    remainingVideo = 100
+    remainingTime = 0
+  }
+
+  if (remainingTime <= 0 && props.showTime){
+    console.log("next please")
+    props.onNextPressed()
+  }
+
+  let remainingMinutes = Math.floor( remainingTime / 60 )
+  let remainingSeconds = remainingTime - (remainingMinutes * 60)
+  remainingSeconds = Math.floor(remainingSeconds)
+
+  remainingTime = ('00'+remainingMinutes).slice(-2)
+  remainingTime += ":" + ('00'+remainingSeconds).slice(-2)
+
   return (
     <View style={[{flex: props.flex}, styles.container]}>
       <View style={styles.controllers}>
-        <Icon name='ios-rewind' size={30} style={styles.controllerIcon} />
-        <View>
-          <Text style={[styles.text, styles.counter]}>00:10</Text>
-          <Text style={[styles.text]}>Sun Salutation A</Text>
+        <Icon.Button name='backward' size={25} color="white"
+                     backgroundColor="transparent"
+                     onPress={props.onPreviousPressed}
+        />
+
+        <View style={styles.details}>
+          <Text style={[styles.text, styles.counter]}>{remainingTime}</Text>
+          <Text style={[styles.text]}>{ props.title }</Text>
         </View>
-        <Icon name='ios-fastforward' size={30} style={styles.controllerIcon} />
+
+        <Icon.Button name='forward' size={25} color="white"
+                     backgroundColor="transparent"
+                     onPress={props.onNextPressed}
+        />
+
       </View>
       <View style={styles.seeker}>
-        <View style={styles.seenVideoLength}></View>
-        <View style={styles.remainingVideoLength}></View>
+        <View style={[styles.seenVideoLength, {flex: playerPosition}, ]} />
+        <View style={[styles.remainingVideoLength, {flex: remainingVideo}, ]} />
       </View>
     </View>
   )
@@ -50,13 +81,16 @@ const styles = StyleSheet.create({
   },
   seenVideoLength: {
     height: 5,
-    flex: 3,
+    flex: 0,
     backgroundColor: 'white'
   },
   remainingVideoLength: {
     height: 5,
-    flex: 2,
+    flex: 100,
     backgroundColor: 'black'
+  },
+  details:{
+    alignItems: 'center'
   }
 })
 
