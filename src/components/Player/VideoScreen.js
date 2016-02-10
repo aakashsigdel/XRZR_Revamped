@@ -17,7 +17,7 @@ import PlayerController from './PlayerController'
 class VideoScreen extends Component {
   render() {
     return (
-      <View source={require("../../../assets/images/background.png")}
+      <Image source={require("../../../assets/images/background.png")}
              style={styles.container}>
 
         <Player flex={2.2222} {...playerData(this.props.state)}
@@ -36,7 +36,7 @@ class VideoScreen extends Component {
                           onNextPressed={this.props.nextVideo}
                           {...playerControllerData(this.props.state)}
         />
-      </View>
+      </Image>
     )
   }
 }
@@ -89,8 +89,6 @@ function playerControllerData(state){
     progress = 0
   }
 
-  console.log(progress)
-
   let showTime = exercise.mode==='time'
 
   return {
@@ -104,9 +102,8 @@ function playerControllerData(state){
 
 const styles = StyleSheet.create({
   container:{
-    //width: VIEWPORT.width,
-    //height: VIEWPORT.height
-    flex: 1,
+    width: VIEWPORT.width,
+    height: VIEWPORT.height,
   },
   videoContainer: {
     flex: 2.22222,
