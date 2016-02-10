@@ -22,6 +22,10 @@ const player = (state = defaultState, action) => {
         paused: ! state.paused,
       }
     case CHANGE_VIDEO:
+      if ( !action.videoId ){
+        return state
+      }
+
       return {
         ...state,
         nowPlaying: action.videoId
@@ -32,10 +36,13 @@ const player = (state = defaultState, action) => {
         duration: action.duration
       }
     case VIDEO_PROGRESS:
+      let deltaTime = action.currentTime - state.lastKnownTime
+      if (deltaTime<0)
+        deltaTime = 0
       return {
         ...state,
-        currentTime: state.currentTime + (action.currentTime - state.lastKnownTime),
-        lastKnownTime: state.currentTime + (action.currentTime - state.lastKnownTime),
+        currentTime: state.currentTime + (deltaTime),
+        lastKnownTime: action.currentTime,
       }
   }
   return state
