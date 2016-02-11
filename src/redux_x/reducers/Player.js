@@ -28,7 +28,10 @@ const player = (state = defaultState, action) => {
 
       return {
         ...state,
-        nowPlaying: action.videoId
+        nowPlaying: action.videoId,
+        lastKnownTime: 0,
+        currentTime: 0,
+        paused: false
       }
     case VIDEO_LOADED:
       return {

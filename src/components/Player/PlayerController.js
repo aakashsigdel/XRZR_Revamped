@@ -29,7 +29,7 @@ const PlayerController = (props) => {
   remainingTime += ":" + ('00'+remainingSeconds).slice(-2)
 
   return (
-    <View style={[{flex: props.flex}, styles.container]}>
+    <View style={[{flex: props.flex}, styles.container, {backgroundColor: props.backgroundColor}]}>
       <View style={styles.controllers}>
         <Icon.Button name='backward' size={25} color="white"
                      backgroundColor="transparent"
@@ -55,9 +55,13 @@ const PlayerController = (props) => {
   )
 }
 
+PlayerController.defaultProps = {
+  backgroundColor: '#3c404e'
+}
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#3c404e'
+    // backgroundColor: '#3c404e'
   },
   controllers: {
     flexDirection: 'row',
