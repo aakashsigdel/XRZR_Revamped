@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     marginTop: 18,
     marginLeft: 14,
     marginBottom: 5.5,
+    color: 'white',
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 12
   },
   catImage:{
     height: 84,

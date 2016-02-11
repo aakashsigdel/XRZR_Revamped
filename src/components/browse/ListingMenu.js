@@ -3,6 +3,7 @@ import React, {
   Text,
   StyleSheet,
 } from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 export const ListingMenu = (props) => {
   const Hr = (props) => <View style={styles.hr} />
@@ -11,9 +12,9 @@ export const ListingMenu = (props) => {
     (item, index) => (
       <View key={index}>
         <View style={styles.itemContainer}>
-          <Text style={[styles.icon, styles.textContainer]}>
-            {item.icon}
-          </Text>
+          <View style={[styles.icon, styles.textContainer]}>
+            <Icon name={item.icon} size={20} color="rgba(255,255,255,0.6)" />
+          </View>
           <Text style={[styles.titleText, styles.textContainer]}>
             {item.title.toUpperCase()}
           </Text>
@@ -44,14 +45,15 @@ const styles= StyleSheet.create({
   },
   icon: {
     marginLeft: 18,
-    fontSize: 12,
   },
   titleText: {
     marginLeft: 14,
-    fontSize: 12,
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: 'SFCompactText-Regular'
   },
   hr: {
     height: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(255,255,255,0.1)',
   }
 })

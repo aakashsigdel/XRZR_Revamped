@@ -54,16 +54,20 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     borderColor: 'white',
-    borderWidth: 3,
+    borderWidth: 2,
   },
   textDesc: {
     marginLeft: 12.5,
     backgroundColor: 'transparent',
   },
   titleText: {
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 14,
     color: 'rgba(255, 255, 255, 0.8)'
   },
   descText: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 13,
   }
 })

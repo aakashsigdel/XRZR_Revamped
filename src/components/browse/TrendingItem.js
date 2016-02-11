@@ -32,5 +32,8 @@ let styles = StyleSheet.create({
   textElement: {
     marginTop: 5,
     marginLeft: 5,
+    fontFamily: 'SFUIDisplay-Regular',
+    fontSize: 10,
+    color: 'white',
   }
 })

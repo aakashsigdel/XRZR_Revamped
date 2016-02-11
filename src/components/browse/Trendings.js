@@ -34,8 +34,9 @@ const styles = StyleSheet.create({
     marginTop: 19,
     marginLeft: 14,
     //textTransform: 'capitalize',
-    opacity: 0.6,
-    color: 'black',
+    color: 'white',
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 12
   },
   trendings: {
     flexDirection: 'row',
