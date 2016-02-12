@@ -17,6 +17,7 @@ const _mapMostPopularWorkout = (mostPopularWorkout, workout, instructor) => {
 const MostPopular = props => {
   return (
     <MostPopularIndex
+      navigator={props.navigator}
       mostPopularWorkout={
         _mapMostPopularWorkout(
           props.state.mostPopularWorkout,
