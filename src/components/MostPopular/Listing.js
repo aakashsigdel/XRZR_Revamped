@@ -5,6 +5,7 @@ import React, {
   Image,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -16,33 +17,37 @@ const _renderRow = rowData => {
     ? rowData.title.slice(0, 40) + '...'
     : rowData.title
   return (
-    <Image
-      source={{ uri: rowData.image_16x9 }}
-      style={ styles.rowContainer }
+    <TouchableOpacity
+      activeOpacity={0.6}
     >
-      <View style={styles.overlay}>
-        <View style={styles.imageAndDescWrapper}>
-          <Image
-            source={{ uri: rowData.instructor.image }}
-            style={ styles.titleImage }
-          />
-          <View style={ styles.description }>
-            <Text style={styles.headerText}>
-              {titleText.toUpperCase()}
-            </Text>
-            <Text style={ styles.text }>
-              {rowData.duration + ' . ' + rowData.instructor.name}
-            </Text>
+      <Image
+        source={{ uri: rowData.image_16x9 }}
+        style={ styles.rowContainer }
+      >
+        <View style={ styles.overlay }>
+          <View style={ styles.imageAndDescWrapper }>
+            <Image
+              source={{ uri: rowData.instructor.image }}
+              style={ styles.titleImage }
+            />
+            <View style={ styles.description }>
+              <Text style={ styles.headerText }>
+                { titleText.toUpperCase() }
+              </Text>
+              <Text style={ styles.text }>
+                { rowData.duration + ' . ' + rowData.instructor.name }
+              </Text>
+            </View>
           </View>
+          <Icon
+            name='ios-arrow-right'
+            size={ 20 }
+            color='rgba(255, 255, 255, 0.6)'
+            style={ styles.icon }
+          />
         </View>
-        <Icon
-          name='ios-arrow-right'
-          size={20}
-          color='rgba(255, 255, 255, 0.6)'
-          style={styles.icon}
-        />
-      </View>
-    </Image>
+      </Image>
+    </TouchableOpacity>
   )
 }
 
@@ -53,8 +58,8 @@ const Listing = props => {
   let dataSource = ds.cloneWithRows( props.mostPopularWorkout )
   return (
     <ListView
-      dataSource={dataSource}
-      renderRow={_renderRow}
+      dataSource={ dataSource }
+      renderRow={ _renderRow }
     />
   )
 }
