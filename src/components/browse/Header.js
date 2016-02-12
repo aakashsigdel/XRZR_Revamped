@@ -7,7 +7,7 @@ import HeaderElement from './HeaderElement'
 const Header = (props) => {
 
   let featuredElements = props.featured.map(
-    (item, index) => <HeaderElement workout={item} key={index}/>
+    (item, index) => <HeaderElement workout={item} key={index} onWorkoutSelect={props.onWorkoutSelect} />
   )
 
   return (
