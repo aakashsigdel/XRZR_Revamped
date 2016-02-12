@@ -56,13 +56,26 @@ const defaultWorkout = {
     id: 6,
     exercises: [2, 5, 3, 6, 1, 7, 4],
     title: 'So to Make the Bitter Butter Better',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg'
+    image_16x9: 'http://i.imgur.com/I0Y8R1W.jpg'
   },
   7: {
     id: 7,
     exercises: [2, 5, 3, 6, 1, 7, 4],
     title: 'She Put a Bit of Better Butter',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg'
+    image_16x9: 'http://i.imgur.com/I0Y8R1W.jpg'
+  },
+  8: {
+    id: 8,
+    exercises: [5, 3, 2, 1, 7, 4],
+    title: 'The proud moon swiftly crushes the reef. ',
+    image_16x9: 'http://i.imgur.com/4XCU59a.jpg'
+  },
+  9: {
+    id: 9,
+    exercises: [5, 3, 2, 1, 7, 4],
+    title: 'The sunny yardarm fiery desires the hornpipe.',
+    image_16x9: 'http://i.imgur.com/I0Y8R1W.jpg'
   }
 }
+
 export default workout

@@ -10,10 +10,10 @@ const BrowserScreen = (props) => {
     <Image source={require("../../../assets/images/background.png")} style={ {flex:1} }>
       <BrowserNavigationBar />
       <ScrollView>
-        <Header />
-        <TrendingWorkouts trends={trends} />
+        <Header featured={props.featured}/>
+        <TrendingWorkouts trends={props.trendings} />
         <ListingMenu items={items} />
-        <Categories categories={categories} />
+        <Categories categories={props.categories} />
       </ScrollView>
     </Image>
   )

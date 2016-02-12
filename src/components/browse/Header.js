@@ -5,11 +5,15 @@ import { VIEWPORT } from '../../constants/appConstants'
 import HeaderElement from './HeaderElement'
 
 const Header = (props) => {
+  console.log(props.featured)
+
+  let featuredElements = props.featured.map(
+    (item, index) => <HeaderElement workout={item} key={index}/>
+  )
+
   return (
     <Carousel delay={ 3000 } style={styles.container}>
-      <HeaderElement headerImage="http://i.imgur.com/ilAQEm3.gif"/>
-      <HeaderElement headerImage="http://i.imgur.com/2EBJ4ar.jpg" />
-      <HeaderElement headerImage="http://i.imgur.com/CrkgD5B.jpg" />
+      { featuredElements }
     </Carousel>
   )
 }

@@ -7,17 +7,18 @@ import React, {
 } from 'react-native'
 
 const HeaderElement = (props)=>{
+  console.log(props.workout.image_16x9)
   return (
     <View style={styles.container}>
       <Image style={styles.parentImage}
-             source={{ uri: props.headerImage }} >
+             source={{ uri: props.workout.image_16x9 }} >
 
         <View style={styles.profileDesc}>
           <Image style={styles.roundImage}
-                 source={{ uri: props.headerImage }} />
+                 source={{ uri: props.workout.image_16x9 }} />
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
-              Gibbets are the jolly rogers of the misty riddle.
+              {props.workout.title}
             </Text>
             <Text style={styles.descText}>
               How misty. You taste like a reef.
@@ -32,9 +33,9 @@ const HeaderElement = (props)=>{
   )
 }
 
-HeaderElement.propTypes = {
-  headerImage: PropTypes.string.isRequired,
-}
+//HeaderElement.propTypes = {
+//  workout: PropTypes.string.isRequired,
+//}
 
 
 const styles = StyleSheet.create({
