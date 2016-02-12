@@ -5,19 +5,24 @@ import { connect } from 'react-redux'
 
 import MostPopularIndex from '../components/MostPopular/MostPopularIndex'
 
-const _mapMostPopularWorkout = (mostPopularWorkout, workout) => {
+const _mapMostPopularWorkout = (mostPopularWorkout, workout, instructor) => {
   return mostPopularWorkout.map( mPworkout => {
-    return workout[mPworkout]
+    return {
+      ...workout[mPworkout],
+      'instructor': instructor[workout[mPworkout].instructor]
+    }
   })
 }
 
 const MostPopular = props => {
-  console.log(props)
-  console.log(_mapMostPopularWorkout(props.state.mostPopularWorkout, props.state.workout))
   return (
     <MostPopularIndex
       mostPopularWorkout={
-        _mapMostPopularWorkout(props.state.mostPopularWorkout, props.state.workout)
+        _mapMostPopularWorkout(
+          props.state.mostPopularWorkout,
+          props.state.workout,
+          props.state.instructor
+        )
       }
     />
   )
