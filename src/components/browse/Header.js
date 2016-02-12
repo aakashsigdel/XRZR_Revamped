@@ -5,7 +5,6 @@ import { VIEWPORT } from '../../constants/appConstants'
 import HeaderElement from './HeaderElement'
 
 const Header = (props) => {
-  console.log(props.featured)
 
   let featuredElements = props.featured.map(
     (item, index) => <HeaderElement workout={item} key={index}/>

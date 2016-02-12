@@ -2,6 +2,7 @@ import React, {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -10,7 +11,7 @@ export const ListingMenu = (props) => {
 
   let menuItems = props.items.map(
     (item, index) => (
-      <View key={index}>
+      <TouchableOpacity key={index} onPress={item.onPress}>
         <View style={styles.itemContainer}>
           <View style={[styles.icon, styles.textContainer]}>
             <Icon name={item.icon} size={20} color="rgba(255,255,255,0.6)" />
@@ -20,7 +21,7 @@ export const ListingMenu = (props) => {
           </Text>
         </View>
         <Hr />
-      </View>
+      </TouchableOpacity>
     )
   )
 

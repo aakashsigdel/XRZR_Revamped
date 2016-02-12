@@ -7,7 +7,7 @@ import React, {
 } from 'react-native'
 
 const HeaderElement = (props)=>{
-  console.log(props.workout.image_16x9)
+
   return (
     <View style={styles.container}>
       <Image style={styles.parentImage}
@@ -15,13 +15,13 @@ const HeaderElement = (props)=>{
 
         <View style={styles.profileDesc}>
           <Image style={styles.roundImage}
-                 source={{ uri: props.workout.image_16x9 }} />
+                 source={{ uri: props.workout.instructor.image }} />
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
               {props.workout.title}
             </Text>
             <Text style={styles.descText}>
-              How misty. You taste like a reef.
+              {props.workout.instructor.name}
             </Text>
           </View>
 

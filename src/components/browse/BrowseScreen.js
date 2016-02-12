@@ -12,7 +12,7 @@ const BrowserScreen = (props) => {
       <ScrollView>
         <Header featured={props.featured}/>
         <TrendingWorkouts trends={props.trendings} />
-        <ListingMenu items={items} />
+        <ListingMenu items={props.listingItems} />
         <Categories categories={props.categories} />
       </ScrollView>
     </Image>
@@ -56,13 +56,6 @@ let trends = [{
 }
 ]
 
-let items = [{
-  icon: 'whatshot',
-  title: 'Most Popular Workouts'
-},{
-  icon: 'star',
-  title: 'XRZR selected'
-}
-]
+
 
 export default BrowserScreen;

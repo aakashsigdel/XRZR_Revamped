@@ -6,6 +6,7 @@ import React, {
 } from 'react-native'
 
 export const TrendingItem = (props)=>{
+  let titleText = props.title.length > 30? props.title.slice(0,30)+'...':props.title
   return (
     <View style={styles.container} >
       <Image
@@ -13,7 +14,7 @@ export const TrendingItem = (props)=>{
         source={{uri:props.image_16x9}}
       />
       <Text style={styles.textElement}>
-        {props.title}
+        {titleText}
       </Text>
     </View>)
 }

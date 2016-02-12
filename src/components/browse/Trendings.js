@@ -18,7 +18,9 @@ export const TrendingWorkouts = (props)=>{
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.trendings}>
+        style={styles.trendings}
+        contentContainerStyle={styles.contentContainer}
+      >
 
         {trendingItems}
       </ScrollView>
@@ -39,7 +41,9 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   trendings: {
-    flexDirection: 'row',
     marginBottom: 14.5,
+  },
+  contentContainer: {
+    paddingRight: 50
   }
 })
