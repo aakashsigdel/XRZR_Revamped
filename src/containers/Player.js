@@ -11,11 +11,13 @@ import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 const Player = (props) => {
   const previousVideoDispatcher = ()=>props.playerActions.changeVideo(getPreviousVideoId(props.state))
   const nextVideoDispatcher = ()=>props.playerActions.changeVideo(getNextVideoId(props.state))
+  const closeButtonPressed = ()=>props.navigator.pop()
 
   return (
     <VideoScreen state={props.state}
                  previousVideo={ previousVideoDispatcher }
                  nextVideo={ nextVideoDispatcher }
+                 closePressed={ closeButtonPressed }
       {...props.playerActions} />
   )
 }

@@ -12,9 +12,11 @@ export const Categories = (props) => {
         <Image
           style={styles.catImage}
           source={{ uri: category.coverImage }}>
-          <Text style={styles.catTitle}>
-            { category.tag }
-          </Text>
+          <View style={styles.overlay}>
+            <Text style={styles.catTitle}>
+              { category.tag }
+            </Text>
+          </View>
         </Image>
       </View>
     )
@@ -34,15 +36,23 @@ const styles = StyleSheet.create({
   container:{
 
   },
+  overlay: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)'
+  },
   heading: {
     marginTop: 18,
     marginLeft: 14,
     marginBottom: 5.5,
+    color: 'white',
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 12
   },
   catImage:{
     height: 84,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   catTitle: {
     backgroundColor: 'transparent',

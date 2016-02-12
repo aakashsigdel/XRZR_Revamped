@@ -34,14 +34,13 @@ NavigationElement.defaultProps = {
   style: {
     color: 'black',
     fontSize: 16,
-    fontFamily: 'SFCompactDisplay-Light'
+    fontFamily: 'SFCompactDisplay-Light',
+    marginBottom: 10
   }
 }
 
 const styles = StyleSheet.create({
   touch: {
-    height: HEADERBAR_HEIGHT,
-    width: 100,
     justifyContent: 'center',
     alignItems: 'center'
   }

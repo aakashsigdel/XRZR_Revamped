@@ -6,35 +6,36 @@ import React, {
   StyleSheet,
 } from 'react-native'
 
-export const HeaderElement = (props)=>{
-  return (
-  <View style={styles.container}>
-    <Image style={styles.parentImage}
-           source={{ uri: props.headerImage }} >
+const HeaderElement = (props)=>{
 
-      <View style={styles.profileDesc}>
-        <Image style={styles.roundImage}
-               source={{ uri: props.headerImage }} />
-        <View style={styles.textDesc} >
-          <Text style={styles.titleText}>
-            Gibbets are the jolly rogers of the misty riddle.
-          </Text>
-          <Text style={styles.descText}>
-            How misty. You taste like a reef.
-          </Text>
+  return (
+    <View style={styles.container}>
+      <Image style={styles.parentImage}
+             source={{ uri: props.workout.image_16x9 }} >
+
+        <View style={styles.profileDesc}>
+          <Image style={styles.roundImage}
+                 source={{ uri: props.workout.instructor.image }} />
+          <View style={styles.textDesc} >
+            <Text style={styles.titleText}>
+              {props.workout.title}
+            </Text>
+            <Text style={styles.descText}>
+              {props.workout.instructor.name}
+            </Text>
+          </View>
+
         </View>
 
-      </View>
 
-
-    </Image>
-  </View>
+      </Image>
+    </View>
   )
 }
 
-HeaderElement.propTypes = {
-  headerImage: PropTypes.string.isRequired,
-}
+//HeaderElement.propTypes = {
+//  workout: PropTypes.string.isRequired,
+//}
 
 
 const styles = StyleSheet.create({
@@ -54,16 +55,22 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     borderColor: 'white',
-    borderWidth: 3,
+    borderWidth: 2,
   },
   textDesc: {
     marginLeft: 12.5,
     backgroundColor: 'transparent',
   },
   titleText: {
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 14,
     color: 'rgba(255, 255, 255, 0.8)'
   },
   descText: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 13,
   }
 })
+
+export default HeaderElement

@@ -10,11 +10,13 @@ import * as categoryActionCreators from '../redux_x/actions/categoryActionCreato
 
 import Login from '../components/Login/Login'
 import Player from './Player'
+import Browse from './Browse'
+import MostPopular from './MostPopular'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'player'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )
@@ -27,7 +29,13 @@ const _renderScene = (route, navigator) => {
         navigator={navigator}
       />
     case 'player':
-      return <Player />
+      return <Player navigator={navigator} />
+    case 'browse':
+      return <Browse navigator={navigator} />
+    case 'mostPopular':
+      return <MostPopular
+        navigator={navigator}
+      />
     default:
       return <Login
         navigator={ navigator }

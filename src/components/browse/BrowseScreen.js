@@ -1,22 +1,21 @@
 import React, { Image, ScrollView, StyleSheet, View, Text } from 'react-native';
-import {HeaderElement} from './HeaderElement'
+import Header from './Header'
 import {TrendingWorkouts} from './Trendings'
 import {ListingMenu} from './ListingMenu'
 import {Categories} from './Categories'
+import BrowserNavigationBar from './BrowseNavigationBar'
 
 const BrowserScreen = (props) => {
   return (
-    <ScrollView style={ {flex:1} }>
-      <View style={{ height: 64, backgroundColor: 'blue' }}>
-        <Text style={{ textAlign: 'center', color: 'white', marginTop:20 }}>
-          Navigation Bar goes here.
-        </Text>
-      </View>
-      <HeaderElement headerImage="http://i.imgur.com/ilAQEm3.gif" />
-      <TrendingWorkouts trends={trends} />
-      <ListingMenu items={items} />
-      <Categories categories={categories} />
-    </ScrollView>
+    <Image source={require("../../../assets/images/background.png")} style={ {flex:1} }>
+      <BrowserNavigationBar />
+      <ScrollView>
+        <Header featured={props.featured}/>
+        <TrendingWorkouts trends={props.trendings} onWorkoutSelect={props.onWorkoutSelect} />
+        <ListingMenu items={props.listingItems} />
+        <Categories categories={props.categories} />
+      </ScrollView>
+    </Image>
   )
 }
 
@@ -57,13 +56,6 @@ let trends = [{
 }
 ]
 
-let items = [{
-  icon: 'i',
-  title: 'Most Popular Workouts'
-},{
-  icon: 'j',
-  title: 'My Workouts'
-}
-]
+
 
 export default BrowserScreen;

@@ -8,7 +8,7 @@ import {TrendingItem} from './TrendingItem'
 
 export const TrendingWorkouts = (props)=>{
   let trendingItems = props.trends.map(
-    (trend, index)=><TrendingItem {...trend} key={index} />
+    (trend, index)=><TrendingItem {...trend} key={index} onWorkoutSelect={props.onWorkoutSelect} />
   )
   return (
     <View>
@@ -18,7 +18,9 @@ export const TrendingWorkouts = (props)=>{
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.trendings}>
+        style={styles.trendings}
+        contentContainerStyle={styles.contentContainer}
+      >
 
         {trendingItems}
       </ScrollView>
@@ -34,11 +36,14 @@ const styles = StyleSheet.create({
     marginTop: 19,
     marginLeft: 14,
     //textTransform: 'capitalize',
-    opacity: 0.6,
-    color: 'black',
+    color: 'white',
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 12
   },
   trendings: {
-    flexDirection: 'row',
     marginBottom: 14.5,
+  },
+  contentContainer: {
+    paddingRight: 50
   }
 })
