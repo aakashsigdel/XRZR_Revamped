@@ -47,7 +47,9 @@ const MostPopularIndex = props => {
         mid={navMid}
         right={navRight}
       />
-      <Listing />
+      <Listing
+        mostPopularWorkout={props.mostPopularWorkout}
+      />
     </Image>
   )
 }
