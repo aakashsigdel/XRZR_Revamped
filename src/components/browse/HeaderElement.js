@@ -4,12 +4,13 @@ import React, {
   Text,
   PropTypes,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native'
 
 const HeaderElement = (props)=>{
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>props.onWorkoutSelect(props.workout.id)}>
       <Image style={styles.parentImage}
              source={{ uri: props.workout.image_16x9 }} >
 
@@ -29,7 +30,7 @@ const HeaderElement = (props)=>{
 
 
       </Image>
-    </View>
+    </TouchableOpacity>
   )
 }
 

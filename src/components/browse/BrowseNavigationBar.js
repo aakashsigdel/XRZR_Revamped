@@ -5,18 +5,24 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const BrowseNavigationBar = (props) => {
   let leftIcon = (
     <View style={styles.roundIcon}>
-      <Icon name="person" size={20} color="white" />
+      <Icon name="person" size={25}
+            color="white"
+      />
     </View>
   )
   let rightIcon = (
     <View >
-      <Icon name="ios-search" size={25} color="white" />
+      <Icon name="ios-search-strong"
+            size={25} color="white"
+            backgroundColor="transparent"
+            style={{marginBottom: 5}}
+      />
     </View>
   )
   return (
     <Navigation
       left={{custom: leftIcon}}
-      mid={{text: "BROWSE", style:{color: 'white'}}}
+      mid={{text: "BROWSE", style:{color: 'white', marginBottom: 15}}}
       right={{custom: rightIcon}}
       backgroundColor="transparent"
     />
@@ -34,7 +40,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 1,
-    overflow: 'hidden'
+    overflow: 'hidden',
+
+    marginBottom: 5,
+    marginLeft: 5
   }
 })
 
