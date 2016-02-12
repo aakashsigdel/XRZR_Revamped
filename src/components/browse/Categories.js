@@ -5,10 +5,14 @@ import React, {
   StyleSheet,
 } from 'react-native'
 
+import { VIEWPORT } from '../../constants/appConstants'
+
 export const Categories = (props) => {
   const categories = props.categories.map(
     (category, index) => (
-      <View key={index}>
+      <View
+        key={index}
+      >
         <Image
           style={styles.catImage}
           source={{ uri: category.coverImage }}>
@@ -33,9 +37,6 @@ export const Categories = (props) => {
 }
 
 const styles = StyleSheet.create({
-  container:{
-
-  },
   overlay: {
     flex: 1,
     flexDirection: 'row',
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   catImage:{
+    width: VIEWPORT.width,
     height: 84,
   },
   catTitle: {
