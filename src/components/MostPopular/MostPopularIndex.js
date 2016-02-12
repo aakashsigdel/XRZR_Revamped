@@ -25,7 +25,10 @@ const MostPopularIndex = props => {
   }
   const navMid = {
     text: 'MOST POPULAR',
-    style: {color: 'white'}
+    style: {
+      color: 'white',
+      marginBottom: 15
+    }
   }
   const navRight = {
     custom: (
