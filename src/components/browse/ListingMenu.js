@@ -3,7 +3,7 @@ import React, {
   Text,
   StyleSheet,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export const ListingMenu = (props) => {
   const Hr = (props) => <View style={styles.hr} />

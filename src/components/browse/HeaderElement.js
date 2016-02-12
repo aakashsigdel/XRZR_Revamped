@@ -6,29 +6,29 @@ import React, {
   StyleSheet,
 } from 'react-native'
 
-export const HeaderElement = (props)=>{
+const HeaderElement = (props)=>{
   return (
-  <View style={styles.container}>
-    <Image style={styles.parentImage}
-           source={{ uri: props.headerImage }} >
+    <View style={styles.container}>
+      <Image style={styles.parentImage}
+             source={{ uri: props.headerImage }} >
 
-      <View style={styles.profileDesc}>
-        <Image style={styles.roundImage}
-               source={{ uri: props.headerImage }} />
-        <View style={styles.textDesc} >
-          <Text style={styles.titleText}>
-            Gibbets are the jolly rogers of the misty riddle.
-          </Text>
-          <Text style={styles.descText}>
-            How misty. You taste like a reef.
-          </Text>
+        <View style={styles.profileDesc}>
+          <Image style={styles.roundImage}
+                 source={{ uri: props.headerImage }} />
+          <View style={styles.textDesc} >
+            <Text style={styles.titleText}>
+              Gibbets are the jolly rogers of the misty riddle.
+            </Text>
+            <Text style={styles.descText}>
+              How misty. You taste like a reef.
+            </Text>
+          </View>
+
         </View>
 
-      </View>
 
-
-    </Image>
-  </View>
+      </Image>
+    </View>
   )
 }
 
@@ -71,3 +71,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
   }
 })
+
+export default HeaderElement

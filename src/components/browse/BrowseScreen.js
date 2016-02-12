@@ -1,5 +1,5 @@
 import React, { Image, ScrollView, StyleSheet, View, Text } from 'react-native';
-import {HeaderElement} from './HeaderElement'
+import Header from './Header'
 import {TrendingWorkouts} from './Trendings'
 import {ListingMenu} from './ListingMenu'
 import {Categories} from './Categories'
@@ -10,7 +10,7 @@ const BrowserScreen = (props) => {
     <Image source={require("../../../assets/images/background.png")} style={ {flex:1} }>
       <BrowserNavigationBar />
       <ScrollView>
-        <HeaderElement headerImage="http://i.imgur.com/ilAQEm3.gif" />
+        <Header />
         <TrendingWorkouts trends={trends} />
         <ListingMenu items={items} />
         <Categories categories={categories} />
@@ -57,10 +57,10 @@ let trends = [{
 ]
 
 let items = [{
-  icon: 'fireball',
+  icon: 'whatshot',
   title: 'Most Popular Workouts'
 },{
-  icon: 'ios-star',
+  icon: 'star',
   title: 'XRZR selected'
 }
 ]

@@ -1,4 +1,5 @@
 import React, { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import BrowseScreen from '../components/browse/BrowseScreen'
 
 const Browse = (props) => {
@@ -11,4 +12,11 @@ const styles = StyleSheet.create({
   container: {}
 })
 
-export default Browse
+export default connect(
+  (state) => {
+    return {
+      workouts: state.workout,
+      trendings: state.trending,
+    }
+  }
+)(Browse)
