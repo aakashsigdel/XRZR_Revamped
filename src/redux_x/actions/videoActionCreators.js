@@ -3,6 +3,7 @@ import {
   CHANGE_VIDEO,
   VIDEO_LOADED,
   VIDEO_PROGRESS,
+  LOAD_WORKOUT
 } from './actionTypes'
 
 export const pauseVideo = () => {
@@ -30,4 +31,12 @@ export const videoProgress = (data) => {
     type: VIDEO_PROGRESS,
     currentTime: data.currentTime
   }
+}
+
+export const loadWorkout = (workoutId) => {
+  return {
+    type: LOAD_WORKOUT,
+    workoutId: workoutId
+  }
+
 }

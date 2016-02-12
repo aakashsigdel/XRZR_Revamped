@@ -3,12 +3,15 @@ import React, {
   View,
   StyleSheet,
   Text,
+  TouchableOpacity
 } from 'react-native'
 
 export const TrendingItem = (props)=>{
   let titleText = props.title.length > 30? props.title.slice(0,30)+'...':props.title
   return (
-    <View style={styles.container} >
+    <TouchableOpacity style={styles.container}
+                      onPress={()=>props.onWorkoutSelect(props.id)}
+    >
       <Image
         style={styles.imageElement}
         source={{uri:props.image_16x9}}
@@ -16,7 +19,7 @@ export const TrendingItem = (props)=>{
       <Text style={styles.textElement}>
         {titleText}
       </Text>
-    </View>)
+    </TouchableOpacity>)
 }
 
 let styles = StyleSheet.create({

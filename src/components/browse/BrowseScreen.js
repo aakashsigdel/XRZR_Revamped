@@ -11,7 +11,7 @@ const BrowserScreen = (props) => {
       <BrowserNavigationBar />
       <ScrollView>
         <Header featured={props.featured}/>
-        <TrendingWorkouts trends={props.trendings} />
+        <TrendingWorkouts trends={props.trendings} onWorkoutSelect={props.onWorkoutSelect} />
         <ListingMenu items={props.listingItems} />
         <Categories categories={props.categories} />
       </ScrollView>

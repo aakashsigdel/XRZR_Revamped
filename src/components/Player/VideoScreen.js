@@ -2,8 +2,8 @@ import React, {
   Component,
   Image,
   View,
-TouchableOpacity,
-Text,
+  TouchableOpacity,
+  Text,
   StyleSheet,
 } from 'react-native'
 import Video from 'react-native-video'
@@ -72,12 +72,13 @@ class VideoScreen extends Component {
                 onVideoTouch={this.props.pauseVideo}
                 onVideoLoaded={this.props.videoLoaded}
                 onVideoProgress={this.props.videoProgress}
+                onClosePressed={this.props.closePressed}
         />
 
         <ExerciseList flex={3.836}
                       data={exerciseListData(this.props.state)}
                       onVideoSelect={this.props.changeVideo}
-                      nowPlaying={this.props.state.player.nowPlaying}
+                      nowPlaying={getNowPlaying(this.props.state)}
         />
         <PlayerController flex={1}
                           onPreviousPressed={this.props.previousVideo}
@@ -90,7 +91,16 @@ class VideoScreen extends Component {
 }
 
 function playerData(state){
+  let workoutId = state.player.workoutId
+  let workout = state.workout[workoutId]
+  if (! workout){
+    return {}
+  }
+
   let exerciseId = state.player.nowPlaying
+  if (exerciseId === undefined){
+    exerciseId = workout.exercises[0]
+  }
   let exercise = state.exercise[exerciseId]
   if (! exercise)
     return {}
@@ -146,6 +156,20 @@ function playerControllerData(state){
     showTime: showTime,
   }
 
+}
+
+function getNowPlaying(state){
+  let workoutId = state.player.workoutId
+  let workout = state.workout[workoutId]
+  if (! workout){
+    return {}
+  }
+
+  let exerciseId = state.player.nowPlaying
+  if (exerciseId === undefined){
+    return workout.exercises[0]
+  }
+  return exerciseId
 }
 
 const styles = StyleSheet.create({

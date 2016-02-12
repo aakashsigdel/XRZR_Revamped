@@ -1,6 +1,9 @@
 import React, { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import BrowseScreen from '../components/browse/BrowseScreen'
+import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+
 
 const Browse = (props) => {
 
@@ -9,13 +12,19 @@ const Browse = (props) => {
   let listingItems = listingsManager(props.navigator)
   let categories = categoriesManager(props.categories)
 
+  let onWorkoutSelect = (workoutId) => {
+    props.playerDispatchers.loadWorkout(workoutId)
+    props.navigator.push({name: 'player'})
+  }
+
   return (
     <BrowseScreen
       featured={featured}
       trendings={trendings}
       listingItems={listingItems}
       categories={categories}
-
+      onWorkoutSelect={onWorkoutSelect}
+      { ...props.playerDispatchers }
     />
   )
 }
@@ -55,7 +64,6 @@ function categoriesManager(categories){
   )
 }
 
-
 export default connect(
   (state) => {
     return {
@@ -64,6 +72,11 @@ export default connect(
       trendings: state.trending,
       categories: state.category,
       featuredWorkouts: state.featuredWorkout,
+    }
+  },
+  (dispatch) => {
+    return {
+      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch)
     }
   }
 )(Browse)

@@ -8,7 +8,7 @@ import {TrendingItem} from './TrendingItem'
 
 export const TrendingWorkouts = (props)=>{
   let trendingItems = props.trends.map(
-    (trend, index)=><TrendingItem {...trend} key={index} />
+    (trend, index)=><TrendingItem {...trend} key={index} onWorkoutSelect={props.onWorkoutSelect} />
   )
   return (
     <View>

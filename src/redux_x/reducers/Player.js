@@ -3,11 +3,12 @@ import {
   CHANGE_VIDEO,
   VIDEO_LOADED,
   VIDEO_PROGRESS,
+  LOAD_WORKOUT,
 } from '../actions/actionTypes'
 
 const defaultState = {
   workoutId: 1,
-  nowPlaying: 1,
+  nowPlaying: undefined,
   paused: false,
   lastKnownTime: 0,
   currentTime: 0,
@@ -46,6 +47,16 @@ const player = (state = defaultState, action) => {
         ...state,
         currentTime: state.currentTime + (deltaTime),
         lastKnownTime: action.currentTime,
+      }
+
+    case LOAD_WORKOUT:
+      return {
+        ...state,
+        workoutId: action.workoutId,
+        nowPlaying: undefined,
+        lastKnownTime: 0,
+        currentTime: 0,
+        duration: 0.0
       }
   }
   return state
