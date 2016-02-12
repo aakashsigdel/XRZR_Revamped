@@ -7,27 +7,40 @@ import React, {
   Text,
   View
 } from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+
+import { VIEWPORT } from '../../constants/appConstants'
 
 const _renderRow = rowData => {
+  const titleText = rowData.title.length > 40
+    ? rowData.title.slice(0, 40) + '...'
+    : rowData.title
   return (
     <Image
       source={{ uri: rowData.image_16x9 }}
       style={ styles.rowContainer }
     >
       <View style={styles.overlay}>
-        <Image
-          source={{ uri: rowData.instructor.image }}
-          style={ styles.titleImage }
-        />
-        <View style={ styles.description }>
-          <Text style={[ styles.text, styles.headerText ]}>
-            {rowData.title}
-            hello
-          </Text>
-          <Text style={ styles.text }>
-            {rowData.duration + ' . ' + rowData.instructor.name}
-          </Text>
+        <View style={styles.imageAndDescWrapper}>
+          <Image
+            source={{ uri: rowData.instructor.image }}
+            style={ styles.titleImage }
+          />
+          <View style={ styles.description }>
+            <Text style={styles.headerText}>
+              {titleText.toUpperCase()}
+            </Text>
+            <Text style={ styles.text }>
+              {rowData.duration + ' . ' + rowData.instructor.name}
+            </Text>
+          </View>
         </View>
+        <Icon
+          name='ios-arrow-right'
+          size={20}
+          color='rgba(255, 255, 255, 0.6)'
+          style={styles.icon}
+        />
       </View>
     </Image>
   )
@@ -49,12 +62,19 @@ const Listing = props => {
 const styles = StyleSheet.create({
   rowContainer: {
     height: 85,
+    width: VIEWPORT.width
   },
   overlay: {
     flexDirection: 'row',
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)'
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
+  imageAndDescWrapper: {
+    flex: 15,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   titleImage: {
     width: 35,
@@ -67,12 +87,23 @@ const styles = StyleSheet.create({
   description: {
     marginLeft: 10
   },
-  text: {
-    fontFamily: 'SFCompactText-Semibold',
-    fontSize: 12,
-    color: 'white'
-  },
   headerText: {
+    fontFamily: 'SFCompactText-Semibold',
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: 'white',
+    letterSpacing: 1
+  },
+  text: {
+    opacity: 0.8,
+    fontFamily: 'Avenir-Book',
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: 'white',
+    letterSpacing: 1
+  },
+  icon: {
+    flex: 1,
   }
 })
 

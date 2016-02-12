@@ -15,12 +15,16 @@ import Listing from './Listing'
 const MostPopularIndex = props => {
   const navLeft = {
     custom: (
-      <Icon
-        name='android-arrow-back'
-        size={40}
-        color='white'
-        backgroundColor='transparent'
-      />
+      <TouchableOpacity
+        onPress={_=>{ props.navigator.pop() }}
+      >
+        <Icon
+          name='android-arrow-back'
+          size={35}
+          color='white'
+          backgroundColor='transparent'
+        />
+      </TouchableOpacity>
     )
   }
   const navMid = {
@@ -34,9 +38,10 @@ const MostPopularIndex = props => {
     custom: (
       <Icon
         name='ios-search-strong'
-        size={40}
+        size={25}
         color='white'
         backgroundColor='transparent'
+        style={{ marginBottom: 5 }}
       />
     )
   }
