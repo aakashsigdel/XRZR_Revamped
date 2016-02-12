@@ -31,6 +31,10 @@ const _renderScene = (route, navigator) => {
       return <Player />
     case 'browse':
       return <Browse />
+    case 'mostPopular':
+      return <MostPopular
+        navigator={navigator}
+      />
     default:
       return <Login
         navigator={ navigator }

@@ -40,8 +40,7 @@ NavigationElement.defaultProps = {
 
 const styles = StyleSheet.create({
   touch: {
-    height: HEADERBAR_HEIGHT,
-    width: 100,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   }
