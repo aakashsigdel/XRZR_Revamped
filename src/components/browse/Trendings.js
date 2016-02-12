@@ -5,13 +5,14 @@ import React, {
   StyleSheet,
 } from 'react-native'
 import {TrendingItem} from './TrendingItem'
+import { VIEWPORT } from '../../constants/appConstants'
 
 export const TrendingWorkouts = (props)=>{
   let trendingItems = props.trends.map(
     (trend, index)=><TrendingItem {...trend} key={index} onWorkoutSelect={props.onWorkoutSelect} />
   )
   return (
-    <View>
+    <View style={{width: VIEWPORT.width}}>
       <Text style={styles.header}>
         TRENDING WORKOUTS
       </Text>
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
     marginBottom: 14.5,
   },
   contentContainer: {
-    paddingRight: 50
+    paddingRight: 5,
   }
 })
