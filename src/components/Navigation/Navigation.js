@@ -21,7 +21,10 @@ import React, {
 } from 'react-native'
 
 import NavigationElement from './NavigationElement'
-import { HEADERBAR_HEIGHT } from '../../constants/appConstants'
+import {
+  HEADERBAR_HEIGHT,
+  VIEWPORT
+} from '../../constants/appConstants'
 
 const Navigation = props => {
   const navComponents = [props.left, props.mid, props.right]
@@ -77,10 +80,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: HEADERBAR_HEIGHT,
+    width: VIEWPORT.width,
     left: 0,
     right: 0,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 3,
     backgroundColor: 'transparent',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'flex-end'
   }
 })
 
