@@ -5,13 +5,15 @@ import exercise from './exercise'
 import workout from './workout'
 import player from './Player'
 import mostPopularWorkout from './mostPopularWorkout'
+import instructor from './instructor'
 
 const XRZRReducer = combineReducers({
   category,
   exercise,
   workout,
   player,
-  mostPopularWorkout
+  mostPopularWorkout,
+  instructor
 })
 
 export default XRZRReducer

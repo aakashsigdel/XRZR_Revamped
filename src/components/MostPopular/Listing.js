@@ -11,20 +11,21 @@ import React, {
 const _renderRow = rowData => {
   return (
     <Image
-      source={{ uri: rowData.workoutImage }}
+      source={{ uri: rowData.image_16x9 }}
       style={ styles.rowContainer }
     >
       <View style={styles.overlay}>
         <Image
-          source={{ uri: rowData.image }}
+          source={{ uri: rowData.instructor.image }}
           style={ styles.titleImage }
         />
         <View style={ styles.description }>
           <Text style={[ styles.text, styles.headerText ]}>
-            {rowData.name}
+            {rowData.title}
+            hello
           </Text>
           <Text style={ styles.text }>
-            {rowData.duration + ' . ' + rowData.instructor}
+            {rowData.duration + ' . ' + rowData.instructor.name}
           </Text>
         </View>
       </View>
@@ -33,33 +34,10 @@ const _renderRow = rowData => {
 }
 
 const Listing = props => {
-  let data = [
-    {
-      instructor: 'Rachel Grey',
-      name: 'Youga of your leg and hands',
-      duration: '60 mins',
-      workoutImage: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
-      image: 'http://rs42.pbsrc.com/albums/e325/MemorieCBrown/Week%206%20Lighting%20and%20Portraiture/TIGERIMAGE_zpsd0ac996f.jpg~c200'
-    },
-    {
-      instructor: 'Rachel Grey',
-      name: 'Yin youga for heart opeaning',
-      duration: '10 mins',
-      workoutImage: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
-      image: 'http://rs42.pbsrc.com/albums/e325/MemorieCBrown/Week%206%20Lighting%20and%20Portraiture/TIGERIMAGE_zpsd0ac996f.jpg~c200'
-    },
-    {
-      instructor: 'Rachel Grey',
-      name: 'Walla thereapy sequence',
-      duration: '60 mins',
-      workoutImage: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
-      image: 'http://rs42.pbsrc.com/albums/e325/MemorieCBrown/Week%206%20Lighting%20and%20Portraiture/TIGERIMAGE_zpsd0ac996f.jpg~c200'
-    }
-  ]
   let ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 != r2
   })
-  let dataSource = ds.cloneWithRows(data)
+  let dataSource = ds.cloneWithRows( props.mostPopularWorkout )
   return (
     <ListView
       dataSource={dataSource}
@@ -93,6 +71,8 @@ const styles = StyleSheet.create({
     fontFamily: 'SFCompactText-Semibold',
     fontSize: 12,
     color: 'white'
+  },
+  headerText: {
   }
 })
 
