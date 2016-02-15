@@ -1,7 +1,8 @@
 import {
   ADD_CATEGORY,
   UPDATE_CATEGORY,
-  DELETE_CATEGORY
+  DELETE_CATEGORY,
+  SWITCH_CATEGORY,
 } from './actionTypes'
 
 export const addCategory = category => {

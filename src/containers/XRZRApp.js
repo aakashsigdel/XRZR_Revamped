@@ -12,6 +12,7 @@ import Login from '../components/Login/Login'
 import Player from './Player'
 import Browse from './Browse'
 import MostPopular from './MostPopular'
+import Category from './Category'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -35,6 +36,10 @@ const _renderScene = (route, navigator) => {
     case 'mostPopular':
       return <MostPopular
         navigator={navigator}
+      />
+    case 'category':
+      return <Category
+        navigator={ navigator }
       />
     default:
       return <Login

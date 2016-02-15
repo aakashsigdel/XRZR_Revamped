@@ -3,6 +3,7 @@ import React, {
   Text,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native'
 
 import { VIEWPORT } from '../../constants/appConstants'
@@ -10,8 +11,9 @@ import { VIEWPORT } from '../../constants/appConstants'
 export const Categories = (props) => {
   const categories = props.categories.map(
     (category, index) => (
-      <View
+      <TouchableOpacity
         key={index}
+        onPress={()=>props.onCategorySelect(category.tag)}
       >
         <Image
           style={styles.catImage}
@@ -22,7 +24,7 @@ export const Categories = (props) => {
             </Text>
           </View>
         </Image>
-      </View>
+      </TouchableOpacity>
     )
   )
 

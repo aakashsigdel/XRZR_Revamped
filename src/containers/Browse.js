@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import BrowseScreen from '../components/browse/BrowseScreen'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
-
+import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
 const Browse = (props) => {
 
@@ -17,6 +17,11 @@ const Browse = (props) => {
     props.navigator.push({name: 'player'})
   }
 
+  let onCategorySelect = (categoryId) => {
+    props.uiDispatchers.switchCategory(categoryId)
+    props.navigator.push({name: 'category'})
+  }
+
   return (
     <BrowseScreen
       featured={featured}
@@ -24,6 +29,7 @@ const Browse = (props) => {
       listingItems={listingItems}
       categories={categories}
       onWorkoutSelect={onWorkoutSelect}
+      onCategorySelect={onCategorySelect}
       { ...props.playerDispatchers }
     />
   )
@@ -72,11 +78,13 @@ export default connect(
       trendings: state.trending,
       categories: state.category,
       featuredWorkouts: state.featuredWorkout,
+      uiStates: state.uiStates,
     }
   },
   (dispatch) => {
     return {
-      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch)
+      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
+      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
     }
   }
 )(Browse)

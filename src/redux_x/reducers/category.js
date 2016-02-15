@@ -22,21 +22,26 @@ const category = (state = defaultState, action) => {
 }
 
 const defaultState = {
-  Swabbies: {
-    coverImage: 'http://i.imgur.com/38nCBJi.jpg',
-      tag: 'Swabbies'
+  Yoga: {
+    coverImage: 'http://www.mybs.com/wp-content/uploads/2013/04/surprised-cat-eric-hacke.jpg',
+    tag: 'Yoga',
+    workouts: [2,6,1,4]
   },
-  Grace: {
+  Zoga: {
     coverImage: 'http://i.imgur.com/jZGJdfx.jpg',
-    tag: 'Grace',
+    tag: 'Zoga',
+    workouts: [5,2,7,9]
   },
-  'Golly gosh': {
+  'Golly': {
     coverImage: 'http://i.imgur.com/eHDuAOE.jpg',
-    tag: 'Golly gosh'
+    tag: 'Golly',
+    workouts: [2,5,1,7]
   },
   Gutless: {
-  coverImage: 'http://i.imgur.com/Y9oEEPO.jpg',
-  tag: 'Gutless'
+    coverImage: 'http://i.imgur.com/Y9oEEPO.jpg',
+    tag: 'Gutless',
+    workouts: [6,2,8,3]
+
 }}
 
 
