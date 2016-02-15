@@ -41,6 +41,7 @@
 		CD528F1E1C69E29E00F5FBB1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F161C69E29E00F5FBB1 /* Octicons.ttf */; };
 		CD528F1F1C69E29E00F5FBB1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F171C69E29E00F5FBB1 /* Zocial.ttf */; };
 		CD54A1BA1C69B3E7008C26AB /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD54A1B61C69B3BA008C26AB /* libRCTVideo.a */; };
+		CDB40A1E1C71A099002B625C /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 		CD528F161C69E29E00F5FBB1 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		CD528F171C69E29E00F5FBB1 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		CD54A1A81C69B3BA008C26AB /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */,
 				307E60FD1C6B4AAA00BC6E11 /* RCTOrientation */,
 				CD528F101C69E29E00F5FBB1 /* Entypo.ttf */,
 				CD528F111C69E29E00F5FBB1 /* EvilIcons.ttf */,
@@ -645,6 +648,7 @@
 				3034AA4D1C635B0D0017B176 /* SF-UI-Display-Light.otf in Resources */,
 				308CADFA1C643F2200DDFA66 /* SF-Compact-Display-Light.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				CDB40A1E1C71A099002B625C /* SF-UI-Text-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
