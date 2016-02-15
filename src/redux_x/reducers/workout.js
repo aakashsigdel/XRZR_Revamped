@@ -34,7 +34,7 @@ const defaultWorkout = {
     id: 2,
     exercises: [2, 5, 3, 6, 1, 7, 4],
     title: 'The cloud pulls with faith, command the freighter.',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
+    image_16x9: 'http://imageresizer.static9.net.au/952JfvKuvR5gUew8t_i_lzrChXM=/512x0/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2Fnetwork%2F2016%2F02%2F09%2F17%2F20%2Fkayla-workout-series-16029.jpg',
     duration: '10 mins',
     instructor: 1
   },
@@ -42,7 +42,7 @@ const defaultWorkout = {
     id: 3,
     exercises: [8, 3, 4, 6, 2, 1, 5],
     title: 'Sally Sells Sea Shells by the Sea Shore',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
+    image_16x9: 'http://nutrientjournal.com/wp-content/uploads/2013/07/Fit_Girl_Friday_5.jpg',
     duration: '40 mins',
     instructor: 2
   },
@@ -50,7 +50,7 @@ const defaultWorkout = {
     id: 4,
     exercises: [2, 5, 3, 6, 1, 7, 4],
     title: 'Betty Bought a Bit of Butter',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
+    image_16x9: 'http://media.mnn.com/assets/images/2015/06/manifesta.jpg.653x0_q80_crop-smart.jpg',
     duration: '60 mins',
     instructor: 0
   },
@@ -58,7 +58,7 @@ const defaultWorkout = {
     id: 5,
     exercises: [8, 3, 4, 6, 2, 1, 5],
     title: 'But the Butter was Bitter',
-    image_16x9: 'http://cdn.collider.com/wp-content/uploads/2015/12/doctor-strange-benedict-cumberbatch-slice1-600x200.jpg',
+    image_16x9: 'http://nutrientjournal.com/wp-content/uploads/2013/07/Fit_Girl_Friday_5.jpg',
     duration: '60 mins',
     instructor: 1
   },

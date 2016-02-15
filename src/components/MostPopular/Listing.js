@@ -12,13 +12,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 import { VIEWPORT } from '../../constants/appConstants'
 
-const _renderRow = rowData => {
+const _renderRow = (rowData, props) => {
   const titleText = rowData.title.length > 40
     ? rowData.title.slice(0, 40) + '...'
     : rowData.title
   return (
     <TouchableOpacity
       activeOpacity={0.6}
+      onPress={_ => { props.loadWorkout(rowData.id) }}
     >
       <Image
         source={{ uri: rowData.image_16x9 }}
@@ -59,7 +60,9 @@ const Listing = props => {
   return (
     <ListView
       dataSource={ dataSource }
-      renderRow={ _renderRow }
+      renderRow={ rowData => {
+        return _renderRow(rowData, props)
+      } }
     />
   )
 }

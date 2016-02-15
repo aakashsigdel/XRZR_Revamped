@@ -15,7 +15,7 @@ const BrowseNavigationBar = (props) => {
       <Icon name="ios-search-strong"
             size={25} color="white"
             backgroundColor="transparent"
-            style={{marginBottom: 5}}
+            style={{marginBottom: 10}}
       />
     </View>
   )
@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 1,
     overflow: 'hidden',
-
-    marginBottom: 5,
+    marginBottom: 10,
     marginLeft: 5
   }
 })

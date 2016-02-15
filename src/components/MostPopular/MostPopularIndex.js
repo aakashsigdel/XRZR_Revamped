@@ -57,6 +57,7 @@ const MostPopularIndex = props => {
       />
       <Listing
         mostPopularWorkout={props.mostPopularWorkout}
+        loadWorkout={props.loadWorkout}
       />
     </Image>
   )
