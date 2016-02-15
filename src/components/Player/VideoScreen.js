@@ -131,7 +131,7 @@ function exerciseListData(state){
 }
 
 function playerControllerData(state){
-  let exerciseId = state.player.nowPlaying
+  let exerciseId = getNowPlaying(state)
   let exercise = state.exercise[exerciseId]
   if (! exercise)
     return {}
