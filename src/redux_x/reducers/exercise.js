@@ -27,13 +27,16 @@ const defaultExercise = {
     title: 'Where is the sunny freebooter?',
     mode: 'loop',
     duration: 5,
-    videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
+    instructor: 0,
+    videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4',
+
   },
   2: {
     id: 2,
     title: 'Wow, scurvy strength!',
     mode: 'loop',
     duration: 8,
+    instructor: 2,
     videoUri: 'http://techslides.com/demos/sample-videos/small.mp4'
   },
   3: {
@@ -41,6 +44,7 @@ const defaultExercise = {
     title: 'Amnesty ho! raid to be traded.',
     mode: 'time',
     duration: 60,
+    instructor: 1,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_5mb.mp4'
   },
   4: {
@@ -48,6 +52,7 @@ const defaultExercise = {
     title: 'Daggers are the shipmates of the shiny fortune.',
     mode: 'time',
     duration: 60*1.5,
+    instructor: 0,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
   },
   5: {
@@ -55,6 +60,7 @@ const defaultExercise = {
     title: 'Fight is a weird mate.',
     mode: 'time',
     duration: 45,
+    instructor: 1,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_5mb.mp4'
   },
   6: {
@@ -62,6 +68,7 @@ const defaultExercise = {
     title: 'Girls wave from halitosis like dead parrots.',
     mode: 'loop',
     duration: 3,
+    instructor: 2,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
   },
   7: {
@@ -69,6 +76,7 @@ const defaultExercise = {
     title: 'Adventure is a weird lad.',
     mode: 'time',
     duration: 30,
+    instructor: 0,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
   },
   8: {
@@ -76,6 +84,7 @@ const defaultExercise = {
     title: 'Never fight a woodchuck.',
     mode: 'time',
     duration: 50,
+    instructor: 1,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
   }
 }

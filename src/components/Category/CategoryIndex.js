@@ -14,15 +14,24 @@ const CategoryIndex = (props) => {
       style={styles.container}
     >
       <CategoryNavigationBar />
+
       <View style={ styles.container }>
         <View style={ styles.header }>
+
           <Image style={ styles.coverImage }
-                 source={ {uri: "http://i.imgur.com/nScazCd.jpg"} } >
-            <Text style={ styles.categoryTitle }>Yoga</Text>
+                 source={ {uri: props.catItem.coverImage} } >
+            <Text style={ styles.categoryTitle }>
+              {props.catItem.tag}
+            </Text>
           </Image>
+
         </View>
         <View style={ styles.listings } >
-          <ExerciseListing data={items} />
+
+          <ExerciseListing data={props.catData}
+                           onWorkoutSelect={props.onWorkoutSelect}
+          />
+
         </View>
       </View>
     </Image>

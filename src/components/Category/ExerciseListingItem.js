@@ -2,26 +2,31 @@ import React, { Image,
   View,
   StyleSheet,
   Text,
+  TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { VIEWPORT } from '../../constants/appConstants'
 
 const ExerciseListingItem = (props) => {
+  let onWorkoutPressed = () => props.onWorkoutSelect(props.item.id)
+
   return (
     <Image style={ styles.container }
-           source={{uri:props.item.image}}
+           source={{uri:props.item.image_16x9}}
     >
-      <View style={styles.overlay}>
+      <TouchableOpacity style={styles.overlay}
+                        onPress={onWorkoutPressed}
+      >
         <View style={ styles.profileImage }>
           <Image style={ styles.circle}
-                 source={ { uri: props.item.image } } />
+                 source={ { uri: props.item.instructor.image } } />
         </View>
         <View style={styles.textContent}>
           <Text style={styles.exerciseTitle}>{ props.item.title.toUpperCase() }</Text>
-          <Text style={styles.exerciseDetails}>{ props.item.duration} . {props.item.instructor}</Text>
+          <Text style={styles.exerciseDetails}>{ props.item.duration} . {props.item.instructor.name}</Text>
         </View>
         <Icon name="ios-arrow-right" size={20} color="white" style={styles.icon}/>
-      </View>
+      </TouchableOpacity>
     </Image>
   )
 }
