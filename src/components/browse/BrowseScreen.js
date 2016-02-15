@@ -13,7 +13,7 @@ const BrowserScreen = (props) => {
         <Header featured={props.featured} onWorkoutSelect={props.onWorkoutSelect} />
         <TrendingWorkouts trends={props.trendings} onWorkoutSelect={props.onWorkoutSelect} />
         <ListingMenu items={props.listingItems} />
-        <Categories categories={props.categories} />
+        <Categories categories={props.categories} onCategorySelect={props.onCategorySelect} />
       </ScrollView>
     </Image>
   )

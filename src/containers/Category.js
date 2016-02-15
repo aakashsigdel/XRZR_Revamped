@@ -6,7 +6,7 @@ import CategoryIndex from '../components/Category/CategoryIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 
 const Category = (props) => {
-  let category = 'Yoga'
+  let category = props.uiStates.selectedCategory
   denormalizedData = denormalizeExerciseItems(
     category,
     props.categories,
@@ -20,10 +20,13 @@ const Category = (props) => {
     props.navigator.push({name: 'player'})
   }
 
+  let onBackButton = props.navigator.pop
+
   return (
     <CategoryIndex catItem={catItem}
                    catData={ denormalizedData }
                    onWorkoutSelect={ onWorkoutSelect }
+                   onBackButton={onBackButton}
     />
   )
 }
@@ -54,6 +57,7 @@ export default connect(
       exercises: state.exercise,
       categories: state.category,
       instructors: state.instructor,
+      uiStates: state.uiStates,
     }
   },
   (dispatch) => {

@@ -13,7 +13,7 @@ const CategoryIndex = (props) => {
       source={require("../../../assets/images/background.png")}
       style={styles.container}
     >
-      <CategoryNavigationBar />
+      <CategoryNavigationBar onBackButton={props.onBackButton} />
 
       <View style={ styles.container }>
         <View style={ styles.header }>

@@ -10,7 +10,7 @@ const CategoryNavigationBar = (props) =>{
   const navLeft = {
     custom: (
       <TouchableOpacity
-        onPress={_=>{ props.navigator.pop() }}
+        onPress={ props.onBackButton }
       >
         <Icon
           name='android-arrow-back'

@@ -17,7 +17,7 @@ import Category from './Category'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'category'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )
@@ -38,7 +38,9 @@ const _renderScene = (route, navigator) => {
         navigator={navigator}
       />
     case 'category':
-      return <Category navigator={ navigator } />
+      return <Category
+        navigator={ navigator }
+      />
     default:
       return <Login
         navigator={ navigator }
