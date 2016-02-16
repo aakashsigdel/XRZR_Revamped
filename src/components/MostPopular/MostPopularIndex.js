@@ -50,14 +50,24 @@ const MostPopularIndex = props => {
       source={require("../../../assets/images/background.png")}
       style={styles.container}
     >
+      <Image
+        source={{uri: props.mostPopularWorkout[0].image_16x9}}
+        style={styles.coverImage}
+      >
+        <Text style={styles.text}>Most</Text>
+        <Text style={styles.text}>popular</Text>
+      </Image>
+      <View style={styles.listingContainer}>
+        <Listing
+          mostPopularWorkout={props.mostPopularWorkout}
+          loadWorkout={props.loadWorkout}
+        />
+      </View>
       <Navigation
         left={navLeft}
-        mid={navMid}
+        mid={{}}
         right={navRight}
-      />
-      <Listing
-        mostPopularWorkout={props.mostPopularWorkout}
-        loadWorkout={props.loadWorkout}
+        position='absolute'
       />
     </Image>
   )
@@ -73,6 +83,19 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     paddingTop: 5,
     paddingLeft: 15
+  },
+  listingContainer: {
+    flex: 13 
+  },
+  coverImage: {
+    flex: 6,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    color: 'white',
+    fontFamily: 'SFUIText-Light',
+    fontSize: 31,
   }
 })
 
