@@ -32,7 +32,8 @@ const Navigation = props => {
     <View style={[
       styles.container,
       props.backgroundColor && { backgroundColor: props.backgroundColor },
-      props.height && { height: props.height }
+      props.height && { height: props.height },
+      props.position && {position: props.position}
     ]}>
       {(
         () => {
@@ -73,7 +74,8 @@ Navigation.propTypes = {
     onButtonClick: PropTypes.func
   }),
   backgroundColor: PropTypes.string,
-  height: PropTypes.number
+  height: PropTypes.number,
+  position: PropTypes.string,
 }
 
 const styles = StyleSheet.create({
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
     width: VIEWPORT.width,
     left: 0,
     right: 0,
+    top: 0,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 3,

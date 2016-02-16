@@ -15,6 +15,7 @@ const BrowserScreen = (props) => {
         <ListingMenu items={props.listingItems} />
         <Categories categories={props.categories} onCategorySelect={props.onCategorySelect} />
       </ScrollView>
+
     </Image>
   )
 }

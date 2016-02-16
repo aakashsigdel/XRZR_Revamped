@@ -38,6 +38,7 @@ const CategoryNavigationBar = (props) =>{
     <Navigation left={ navLeft }
                 mid={ navMid }
                 right={ navRight }
+                position="absolute"
     />
   )
 }
