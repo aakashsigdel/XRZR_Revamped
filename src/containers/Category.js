@@ -22,11 +22,16 @@ const Category = (props) => {
 
   let onBackButton = props.navigator.pop
 
+  const onSearch = _ => {
+    props.navigator.push({ name: "search" })
+  }
+
   return (
     <CategoryIndex catItem={catItem}
                    catData={ denormalizedData }
                    onWorkoutSelect={ onWorkoutSelect }
                    onBackButton={onBackButton}
+                   onSearch={onSearch}
     />
   )
 }

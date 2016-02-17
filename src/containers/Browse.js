@@ -22,6 +22,10 @@ const Browse = (props) => {
     props.navigator.push({name: 'category'})
   }
 
+  let onSearch = () =>{
+    props.navigator.push({name: "search"})
+  }
+
   return (
     <BrowseScreen
       featured={featured}
@@ -30,6 +34,7 @@ const Browse = (props) => {
       categories={categories}
       onWorkoutSelect={onWorkoutSelect}
       onCategorySelect={onCategorySelect}
+      onSearch={onSearch}
       { ...props.playerDispatchers }
     />
   )
