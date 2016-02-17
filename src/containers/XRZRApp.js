@@ -14,11 +14,12 @@ import Browse from './Browse'
 import MostPopular from './MostPopular'
 import Category from './Category'
 import WorkoutIntro from './WorkoutIntro'
+import Search from './Search'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'browse'}}
+      initialRoute={{name: 'search'}}
       renderScene={_renderScene}
     />
   )
@@ -44,6 +45,8 @@ const _renderScene = (route, navigator) => {
       />
     case 'workoutIntro':
       return <WorkoutIntro navigator={navigator} />
+    case 'search':
+      return <Search navigator={navigator} />
     default:
       return <Login
         navigator={ navigator }

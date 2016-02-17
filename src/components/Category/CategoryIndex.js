@@ -65,31 +65,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const items = [
-  {
-    title: "Ransack me jack, ye real mast!",
-    duration: '60 mins',
-    instructor: "How black.",
-    image: 'http://api.ning.com/files/ZlBJL*XyKT3HGWbcJNh7rcsh8pI9oSanE8HQLsDKzgoUHgUME1OEVPVC6n9Tw2Cy*-zJTEjvAUMlQLR17oqOJvb1D33Io7xn/banye1.jpeg'
-  },
-  {
-    title: "Rainy halitosis lead to the hunger!",
-    duration: '60 mins',
-    instructor: "How black.",
-    image: 'http://i.imgur.com/THideJY.jpg'
-  },
-  {
-    title: "All shores hail golden, fine peglegs!",
-    duration: '60 mins',
-    instructor: "How black.",
-    image: 'http://www.mybs.com/wp-content/uploads/2013/04/surprised-cat-eric-hacke.jpg'
-  },
-  {
-    title: "Damn yer grog, feed the furner!",
-    duration: '60 mins',
-    instructor: "How black.",
-    image: 'http://greatreiki.net/wp-content/uploads/2014/07/happy-cat-300x206.jpg'
-  }
-]
-
 export default CategoryIndex
