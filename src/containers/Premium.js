@@ -3,7 +3,7 @@ import PremiumIndex from '../components/Premium/PremiumIndex'
 
 const Premium = (props) => {
 
-  const onClosePressed = navigator.pop
+  const onClosePressed = props.navigator.pop
 
   return (
     <PremiumIndex

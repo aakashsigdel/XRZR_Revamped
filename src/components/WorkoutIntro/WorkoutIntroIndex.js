@@ -12,7 +12,10 @@ const WorkoutIntroIndex = (props) => {
     <Image style={ styles.container }
            source={require('../../../assets/images/background.png')}
     >
-      <WorkoutIntroNavigation onBackButton={props.onBackButton} />
+      <WorkoutIntroNavigation
+        onBackButton={props.onBackButton}
+        onDownloadButton={props.onDownloadButton}
+      />
       <View style={{flex:1}}>
         <WorkoutDescription workout={props.workout} instructor={props.instructor} />
       </View>

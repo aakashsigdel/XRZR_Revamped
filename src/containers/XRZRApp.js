@@ -20,7 +20,7 @@ import Premium from './Premium'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'premium'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )

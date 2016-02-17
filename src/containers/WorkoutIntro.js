@@ -21,6 +21,8 @@ const WorkoutIntro = (props) => {
   }
   let onBackButton = () => props.navigator.pop()
 
+  let onDownloadButton = () => props.navigator.push({name: 'premium'})
+
   return (
     <WorkoutIntroIndex workout={workout}
                        exercises={exercises}
@@ -28,6 +30,7 @@ const WorkoutIntro = (props) => {
                        onStartWorkout={onStartWorkout}
                        onExerciseSelect={onExerciseSelect}
                        onBackButton={onBackButton}
+                       onDownloadButton={onDownloadButton}
     />
   )
 }

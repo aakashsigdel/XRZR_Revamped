@@ -20,7 +20,9 @@ const WorkoutIntroNavigation = (props) => {
   let rightIcon = {
     custom: <View>
       <View style={styles.rightIcons}>
-        <Icon name="ios-download-outline" size={30} color="white" style={styles.icons} />
+        <TouchableOpacity onPress={props.onDownloadButton}>
+          <Icon name="ios-download-outline" size={30} color="white" style={styles.icons} />
+        </TouchableOpacity>
         <FIcon name="heart-o" size={25} color="white" style={styles.icons} />
         <Icon name="android-more-vertical" size={25} color="white" style={styles.icons} />
       </View>
