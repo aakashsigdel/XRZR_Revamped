@@ -1,0 +1,82 @@
+// vim: foldlevel=1
+{
+  container: {
+    backgroundColor: 'transparent',
+    flex: 1,
+  },
+
+  tabBar: {
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    height: 35,
+    flex: 1,
+    paddingTop: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+
+  list:{
+    flex: 14,
+  },
+
+  font: {
+    color: 'rgba(255,255,255,0.5)',
+    fontSize: 13,
+    marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+
+  active: {
+    color: 'white',
+  },
+
+  selected: {
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+  },
+
+  searchIcon : {
+    width: 12,
+    height: 12,
+    marginTop: 7.5,
+    marginLeft: 10.8,
+  },
+
+  inputBox: {
+    backgroundColor: 'transparent',
+    color: 'white',
+    flex: 1,
+    fontSize: 14,
+    marginBottom: 4.5,
+    marginLeft: 8.8,
+    marginRight: 4.5,
+    marginTop: 4.5,
+    padding: 0,
+  },
+
+  listView: {
+    flex: 1,
+    backgroundColor: 'transparent',
+  },
+
+  listItem: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+
+  listText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+
+  listImage: {
+    marginLeft: 15,
+    marginRight: 15,
+    height: 45,
+    width: 45,
+  },
+}

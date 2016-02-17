@@ -14,12 +14,16 @@ const Browse = (props) => {
 
   let onWorkoutSelect = (workoutId) => {
     props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'player'})
+    props.navigator.push({name: 'workoutIntro'})
   }
 
   let onCategorySelect = (categoryId) => {
     props.uiDispatchers.switchCategory(categoryId)
     props.navigator.push({name: 'category'})
+  }
+
+  let onSearch = () =>{
+    props.navigator.push({name: "search"})
   }
 
   return (
@@ -30,6 +34,7 @@ const Browse = (props) => {
       categories={categories}
       onWorkoutSelect={onWorkoutSelect}
       onCategorySelect={onCategorySelect}
+      onSearch={onSearch}
       { ...props.playerDispatchers }
     />
   )

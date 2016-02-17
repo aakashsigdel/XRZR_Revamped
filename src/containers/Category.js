@@ -17,16 +17,21 @@ const Category = (props) => {
 
   let onWorkoutSelect = (workoutId) => {
     props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'player'})
+    props.navigator.push({name: 'workoutIntro'})
   }
 
   let onBackButton = props.navigator.pop
+
+  const onSearch = _ => {
+    props.navigator.push({ name: "search" })
+  }
 
   return (
     <CategoryIndex catItem={catItem}
                    catData={ denormalizedData }
                    onWorkoutSelect={ onWorkoutSelect }
                    onBackButton={onBackButton}
+                   onSearch={onSearch}
     />
   )
 }

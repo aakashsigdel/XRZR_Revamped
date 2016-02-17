@@ -8,7 +8,7 @@ import BrowserNavigationBar from './BrowseNavigationBar'
 const BrowserScreen = (props) => {
   return (
     <Image source={require("../../../assets/images/background.png")} style={ {flex:1} }>
-      <BrowserNavigationBar />
+      <BrowserNavigationBar onSearch={props.onSearch} />
       <ScrollView>
         <Header featured={props.featured} onWorkoutSelect={props.onWorkoutSelect} />
         <TrendingWorkouts trends={props.trendings} onWorkoutSelect={props.onWorkoutSelect} />

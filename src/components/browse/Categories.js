@@ -63,3 +63,5 @@ const styles = StyleSheet.create({
     color: 'white',
   }
 })
+
+export default Categories
