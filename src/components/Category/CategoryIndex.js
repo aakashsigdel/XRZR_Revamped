@@ -6,6 +6,7 @@ import React, {
 } from 'react-native'
 import CategoryNavigationBar from './CategoryNavigationBar'
 import ExerciseListing from './ExerciseListing'
+import { VIEWPORT } from '../../constants/appConstants'
 
 const CategoryIndex = (props) => {
   return (
@@ -52,7 +53,9 @@ const styles = StyleSheet.create({
   coverImage: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+
+    width: VIEWPORT.width,
   },
   categoryTitle: {
     color: 'white',
