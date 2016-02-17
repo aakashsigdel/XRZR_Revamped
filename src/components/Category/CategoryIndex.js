@@ -35,7 +35,10 @@ const CategoryIndex = (props) => {
 
         </View>
       </View>
-      <CategoryNavigationBar onBackButton={props.onBackButton} />
+      <CategoryNavigationBar
+        onSearch={props.onSearch}
+        onBackButton={props.onBackButton}
+      />
     </Image>
   )
 }

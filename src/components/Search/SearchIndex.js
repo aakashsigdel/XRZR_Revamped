@@ -9,7 +9,7 @@ const SearchIndex = (props) => {
       source={require("../../../assets/images/background.png")}
       style={ styles.container }
     >
-      <SearchNavigationBar />
+      <SearchNavigationBar onClosePressed={props.onClosePressed} />
       <TabView
         workouts={props.workouts}
         categories={props.categories}

@@ -1,4 +1,4 @@
-import React, { View, StyleSheet, TextInput } from 'react-native'
+import React, { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Navigation from '../Navigation/Navigation'
@@ -6,14 +6,14 @@ import Navigation from '../Navigation/Navigation'
 
 const SearchNavigationBar = (props) => {
   let left = {
-    custom: <View>
+    custom: <TouchableOpacity onPress={props.onClosePressed}>
       <Icon
         name="close"
         size={35}
         color="rgba(255,255,255, 0.5)"
       />
 
-    </View>
+    </TouchableOpacity>
   }
   let right = {
     custom: (

@@ -19,7 +19,7 @@ import Search from './Search'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'search'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )

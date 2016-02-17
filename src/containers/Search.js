@@ -11,10 +11,15 @@ const Search = (props) => {
     props.navigator.push({name: 'category'})
   }
 
+  let onClosePressed = () => {
+    props.navigator.pop()
+  }
+
   return (
     <SearchIndex workouts={denormalizeInstructor(props.workouts, props.instructors)}
                  categories={denormalizeCategories(props.categories)}
                  onCategorySelect={onCategorySelect}
+                 onClosePressed={onClosePressed}
     />
   )
 }

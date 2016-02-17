@@ -24,13 +24,15 @@ const CategoryNavigationBar = (props) =>{
   const navMid = {}
   const navRight = {
     custom: (
-      <Icon
-        name='ios-search-strong'
-        size={25}
-        color='white'
-        backgroundColor='transparent'
-        style={{ marginBottom: 5 }}
-      />
+      <TouchableOpacity onPress={props.onSearch}>
+        <Icon
+          name='ios-search-strong'
+          size={25}
+          color='white'
+          backgroundColor='transparent'
+          style={{ marginBottom: 5 }}
+        />
+      </TouchableOpacity>
     )
   }
 
