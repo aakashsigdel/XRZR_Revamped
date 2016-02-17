@@ -21,7 +21,7 @@ const MostPopular = props => {
   const _loadWorkout  = (id) => {
     props.loadWorkout(id)
     props.navigator.push({
-      name: 'player'
+      name: 'workoutIntro'
     })
   }
 

@@ -19,6 +19,7 @@ const WorkoutIntro = (props) => {
     props.playerActions.changeVideo(videoId)
     props.navigator.push({name: 'player'})
   }
+  let onBackButton = () => props.navigator.pop()
 
   return (
     <WorkoutIntroIndex workout={workout}
@@ -26,6 +27,7 @@ const WorkoutIntro = (props) => {
                        instructor={instructor}
                        onStartWorkout={onStartWorkout}
                        onExerciseSelect={onExerciseSelect}
+                       onBackButton={onBackButton}
     />
   )
 }

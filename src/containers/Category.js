@@ -17,7 +17,7 @@ const Category = (props) => {
 
   let onWorkoutSelect = (workoutId) => {
     props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'player'})
+    props.navigator.push({name: 'workoutIntro'})
   }
 
   let onBackButton = props.navigator.pop

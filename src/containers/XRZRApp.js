@@ -18,7 +18,7 @@ import WorkoutIntro from './WorkoutIntro'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'workoutIntro'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )

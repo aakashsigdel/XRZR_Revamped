@@ -7,7 +7,7 @@ import Navigator from '../Navigation/Navigation'
 const WorkoutIntroNavigation = (props) => {
   let leftIcon = {
     custom: <TouchableOpacity
-      //onPress={ props.onBackButton }
+      onPress={ props.onBackButton }
     >
       <Icon
         name='android-arrow-back'

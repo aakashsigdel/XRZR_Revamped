@@ -14,7 +14,7 @@ const Browse = (props) => {
 
   let onWorkoutSelect = (workoutId) => {
     props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'player'})
+    props.navigator.push({name: 'workoutIntro'})
   }
 
   let onCategorySelect = (categoryId) => {
