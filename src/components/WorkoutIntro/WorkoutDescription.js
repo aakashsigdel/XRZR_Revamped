@@ -3,18 +3,18 @@ import React, { Image, View, ScrollView, StyleSheet, Text } from 'react-native'
 const WorkoutDescription = (props) => {
   return (
     <View style={ styles.container }>
-      <Image source={{uri:'http://i.imgur.com/iTs8Rgm.jpg'}}
+      <Image source={{uri:props.workout.image_16x9}}
              style={styles.headerImage}
       >
         <View style={styles.profileDesc}>
           <Image style={styles.roundImage}
-                 source={{uri:'http://i.imgur.com/iTs8Rgm.jpg'}} />
+                 source={{uri:props.instructor.image}} />
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
-              Greed, malaria, and adventure.
+              {props.workout.title}
             </Text>
             <Text style={styles.descText}>
-              Arg, mark me plunder, ye lively lass!
+              With {props.instructor.name} . {props.workout.duration}
             </Text>
           </View>
 
@@ -22,7 +22,7 @@ const WorkoutDescription = (props) => {
       </Image>
       <ScrollView>
         <Text style={styles.workoutDesc}>
-          Aw, ye cloudy rum- set sails for pestilence!Jacks fall with fight at the cloudy fort charles!The grog vandalizes with treasure, fire the reef until it grows.The wench commands with desolation, vandalize the bikini atoll.Never ransack a lagoon.All skulls command clear, black bucaneers.Sing quirky like a warm skiff.Ah, ye misty whale- set sails for love!Where is the misty pin?
+          {props.workout.description}
         </Text>
       </ScrollView>
     </View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontFamily: 'SFCompactText-Semibold',
     fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.8)'
+    color: 'rgb(255, 255, 255)'
   },
   descText: {
     color: 'white',

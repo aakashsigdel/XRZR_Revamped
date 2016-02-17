@@ -1,4 +1,4 @@
-import React, { ListView, View, StyleSheet, Text } from 'react-native'
+import React, { ListView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ExerciseListItem from './ExerciseListItem'
 
@@ -6,18 +6,21 @@ const ExerciseList = (props) => {
   function _populateList(item, index) {
     return <ExerciseListItem item={item}
                              index={index}
+                             onItemSelect={props.onExerciseSelect}
                                 //onWorkoutSelect={props.onWorkoutSelect}
     />
   }
   return (
     <View style={styles.container}>
-      <ListView dataSource={_getDataSource(data)}
+      <ListView dataSource={_getDataSource(props.exercises)}
                 renderRow={_populateList}
       />
-      <View style={styles.startButton}>
+      <TouchableOpacity style={styles.startButton}
+                        onPress={props.onStartWorkout}
+      >
         <Icon name="play" style={[styles.buttonText, styles.playIcon]} size={20} />
         <Text style={ [styles.buttonText, styles.workoutTitle] }>START WORKOUT</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }

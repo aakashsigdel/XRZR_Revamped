@@ -14,10 +14,13 @@ const WorkoutIntroIndex = (props) => {
     >
       <WorkoutIntroNavigation />
       <View style={{flex:1}}>
-        <WorkoutDescription />
+        <WorkoutDescription workout={props.workout} instructor={props.instructor} />
       </View>
       <View style={{flex:1}}>
-        <ExerciseList />
+        <ExerciseList exercises={props.exercises}
+                      onStartWorkout={props.onStartWorkout}
+                      onExerciseSelect={props.onExerciseSelect}
+        />
       </View>
     </Image>
   )
