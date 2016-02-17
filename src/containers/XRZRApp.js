@@ -13,6 +13,8 @@ import Player from './Player'
 import Browse from './Browse'
 import MostPopular from './MostPopular'
 import Category from './Category'
+import ActionScreen from '../components/ActionScreen/ActionScreenIndex.js'
+import AddExerciseToWorkout from '../containers/AddExerciseToWorkout'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -40,6 +42,17 @@ const _renderScene = (route, navigator) => {
     case 'category':
       return <Category
         navigator={ navigator }
+      />
+    case 'action':
+      return <ActionScreen
+        actionElements={route.actionElements}
+        actionTitle={route.actionTitle}
+        navigator={navigator}
+      />
+    case 'addExerciseToWorkout':
+      return <AddExerciseToWorkout
+        navigator={navigator}
+        exerciseId={route.exerciseId}
       />
     default:
       return <Login

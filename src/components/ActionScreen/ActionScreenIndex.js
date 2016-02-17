@@ -12,7 +12,6 @@ import React, {
 export default class ActionScreen extends Component {
   constructor(){
     super()
-    this.rows = []
   }
 
   _renderHr () {
@@ -20,9 +19,9 @@ export default class ActionScreen extends Component {
   }
 
   _populateRows() {
-    this.props.actionElements
+    return this.props.actionElements
     .map((child, index) => {
-      this.rows.push(
+      return (
         <View
           key={index}
         >
@@ -31,7 +30,7 @@ export default class ActionScreen extends Component {
             style={styles.row}
             onPress={() => { 
               try{
-                this.props.links[index].action()
+                this.props.actionElements[index].action()
               } catch (e){
                 this.props.navigator.pop()}
             }
@@ -47,32 +46,33 @@ export default class ActionScreen extends Component {
   }
 
   renderTitle () {
-    <View style={styles.titleContainer}>
-      <Image
-        source={{uri: this.props.actionTitle.image}}
-        style={styles.titleImage}
-      />
-      <View style={styles.titleDescriptionContainer}>
-        <Text style={[styles.text, styles.headerText]}>
-          {this.props.actionTitle.title}
-        </Text>
-        <Text style={styles.text, styles.subText}>
-          {this.props.actionTitle.subText}
-        </Text>
+    return (
+      <View style={styles.titleContainer}>
+        <Image
+          source={{uri: this.props.actionTitle.image}}
+          style={styles.titleImage}
+        />
+        <View style={styles.titleDescriptionContainer}>
+          <Text style={styles.headerText}>
+            {this.props.actionTitle.title}
+          </Text>
+          <Text style={styles.subText}>
+            {this.props.actionTitle.subText}
+          </Text>
+        </View>
       </View>
-    </View>
+    )
   }
 
   render() {
-    this._populateRows();
     return(
       <Image
         source={require('../../../assets/images/background.png')}
         style={styles.superContainer}
       >
         <View style={styles.container}>
-          {this.props.actionTitle ? this.renderTitle.bind(this) : null}
-          {this.rows.map((row) => row)}
+          {this.props.actionTitle ? this.renderTitle.call(this) : null}
+          {this._populateRows()}
         </View>
         <TouchableOpacity
           activeOpacity={0.6}
@@ -138,5 +138,29 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     color: 'white'
+  },
+  titleImage: {
+    width: 125,
+    height: 70,
+    opacity: 0.8,
+    marginRight: 15
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 20
+  },
+  headerText: {
+    fontFamily: 'Avenir-Book',
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  subText: {
+    fontFamily: 'SFCompactText-Semibold',
+    fontSize: 10,
+    color: 'white',
+    fontWeight: 'bold'
   }
 })

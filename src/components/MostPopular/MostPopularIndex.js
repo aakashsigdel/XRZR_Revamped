@@ -8,9 +8,20 @@ import React, {
   View
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import FIcon from 'react-native-vector-icons/FontAwesome'
 
 import Navigation from '../Navigation/Navigation'
 import Listing from './Listing'
+
+const onPressSearch = (navigator) => {
+  navigator.push({
+    name: 'action',
+    actionElements: [
+      {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='white' size={11} />, border: true},
+      {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />}
+    ]
+  })
+}
 
 const MostPopularIndex = props => {
   const navLeft = {
@@ -27,6 +38,7 @@ const MostPopularIndex = props => {
       </TouchableOpacity>
     )
   }
+
   const navMid = {
     text: 'MOST POPULAR',
     style: {
@@ -34,17 +46,25 @@ const MostPopularIndex = props => {
       marginBottom: 15
     }
   }
+
   const navRight = {
     custom: (
-      <Icon
-        name='ios-search-strong'
-        size={25}
-        color='white'
-        backgroundColor='transparent'
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={onPressSearch.bind(this, props.navigator)}
         style={{ marginBottom: 5 }}
-      />
-    )
+      >
+        <Icon
+          name='ios-search-strong'
+          size={25}
+          color='white'
+          backgroundColor='transparent'
+        />
+      </TouchableOpacity>
+    ),
   }
+
+
   return (
     <Image
       source={require("../../../assets/images/background.png")}

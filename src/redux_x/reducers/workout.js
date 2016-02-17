@@ -9,10 +9,17 @@ import {
 const workout = (state = defaultWorkout, action) => {
   switch (action.type) {
     case ADD_WORKOUT:
+      return {
+        ...state,
+        [action.id]: action.workout
+      }
     case UPDATE_WORKOUT:
       return {
         ...state,
-        ...action.workout
+        [action.id]: {
+          ...state[action.id],
+          ...action.workout
+        }
       }
     case DELETE_WORKOUT:
       return state.filter(workout => workout.id !== action.workoutId)
@@ -65,7 +72,7 @@ const defaultWorkout = {
   6: {
     id: 6,
     exercises: [2, 5, 3, 6, 1, 7, 4],
-    title: 'So to Make the Bitter Butter Better',
+    title: 'So to Make the Better Butter',
     image_16x9: 'http://i.imgur.com/I0Y8R1W.jpg',
     duration: '60 mins',
     instructor: 2,
