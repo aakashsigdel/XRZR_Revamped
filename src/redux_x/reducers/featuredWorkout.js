@@ -1,5 +1,5 @@
 
-const featuredWorkout = (state=defaultState, action) => {
+const featuredWorkout = (state = defaultState, action) => {
   return state
 }
 

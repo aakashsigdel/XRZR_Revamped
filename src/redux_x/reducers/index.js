@@ -19,7 +19,7 @@ const XRZRReducer = combineReducers({
   trending,
   featuredWorkout,
   instructor,
-  uiStates,
+  uiStates
 })
 
 export default XRZRReducer

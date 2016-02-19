@@ -8,7 +8,7 @@ import React, {
 } from 'react-native'
 import { VIEWPORT } from '../constants/appConstants'
 
-const GhostButton = props => {
+const GhostButton = (props) => {
   return (
     <TouchableOpacity
       activeOpacity={0.6}

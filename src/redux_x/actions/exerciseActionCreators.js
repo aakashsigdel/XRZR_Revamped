@@ -4,21 +4,21 @@ import {
   DELETE_EXERCISE
 } from './actionTypes'
 
-export const addExercise = exercise => {
+export const addExercise = (exercise) => {
   return {
     type: ADD_EXERCISE,
     exercise
   }
 }
 
-export const updateExercise = exercise => {
+export const updateExercise = (exercise) => {
   return {
     type: UPDATE_EXERCISE,
     exercise
   }
 }
 
-export const deleteExercise = exerciseId => {
+export const deleteExercise = (exerciseId) => {
   return {
     type: DELETE_EXERCISE,
     exerciseId
