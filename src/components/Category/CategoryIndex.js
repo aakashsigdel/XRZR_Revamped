@@ -1,6 +1,7 @@
 import React, {
   Image,
   View,
+  PropTypes,
   StyleSheet,
   Text
 } from 'react-native'
@@ -45,28 +46,36 @@ const CategoryIndex = (props) => {
   )
 }
 
+CategoryIndex.propTypes = {
+  catData: PropTypes.array,
+  catItem: PropTypes.object,
+  onBackButton: PropTypes.func,
+  onSearch: PropTypes.func,
+  onWorkoutSelect: PropTypes.func
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   header: {
-    flex: 1,
+    flex: 1
   },
   listings: {
-    flex: 2.16,
+    flex: 2.16
   },
   coverImage: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
 
-    width: VIEWPORT.width,
+    width: VIEWPORT.width
   },
   categoryTitle: {
     color: 'white',
 
     fontFamily: 'SFUIText-Light',
-    fontSize: 31,
+    fontSize: 31
   }
 })
 

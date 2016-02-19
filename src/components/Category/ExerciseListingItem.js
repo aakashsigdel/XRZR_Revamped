@@ -1,40 +1,55 @@
-import React, { Image,
+import React, {
+  Image,
   View,
+  PropTypes,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { VIEWPORT } from '../../constants/appConstants'
+import {VIEWPORT} from '../../constants/appConstants'
 
 const ExerciseListingItem = (props) => {
   let onWorkoutPressed = () => props.onWorkoutSelect(props.item.id)
 
   return (
-    <Image style={ styles.container }
-           source={{uri:props.item.image_16x9}}
+    <Image
+      source={{uri: props.item.image_16x9}}
+      style={styles.container}
     >
-      <TouchableOpacity style={styles.overlay}
-                        onPress={onWorkoutPressed}
+      <TouchableOpacity
+        onPress={onWorkoutPressed}
+        style={styles.overlay}
       >
-        <View style={ styles.profileImage }>
-          <Image style={ styles.circle}
-                 source={ { uri: props.item.instructor.image } } />
+        <View style={styles.profileImage}>
+          <Image
+            source={{uri: props.item.instructor.image}}
+            style={styles.circle}
+          />
         </View>
         <View style={styles.textContent}>
-          <Text style={styles.exerciseTitle}>{ props.item.title.toUpperCase() }</Text>
-          <Text style={styles.exerciseDetails}>{ props.item.duration} . {props.item.instructor.name}</Text>
+          <Text style={styles.exerciseTitle}>{props.item.title.toUpperCase()}</Text>
+          <Text style={styles.exerciseDetails}>{props.item.duration} . {props.item.instructor.name}</Text>
         </View>
-        <Icon name="ios-arrow-right" size={20} color="white" style={styles.icon}/>
+        <Icon
+          color='white'
+          name='ios-arrow-right'
+          size={20}
+          style={styles.icon}
+        />
       </TouchableOpacity>
     </Image>
   )
 }
 
+ExerciseListingItem.propTypes = {
+  item: PropTypes.object
+}
+
 const styles = StyleSheet.create({
   container: {
     height: 84,
-    width: VIEWPORT.width,
+    width: VIEWPORT.width
 
   },
   overlay: {
@@ -46,23 +61,23 @@ const styles = StyleSheet.create({
   },
   profileImage: {
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 10
   },
   circle: {
     height: 35,
     width: 35,
     borderRadius: 17,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: 'white'
   },
   textContent: {
-    width: 0.8*VIEWPORT.width,
+    width: 0.8 * VIEWPORT.width
   },
   exerciseTitle: {
     color: 'white',
     fontFamily: 'SFCompactText-Semibold',
     fontSize: 12,
-    paddingBottom: 5,
+    paddingBottom: 5
   },
   exerciseDetails: {
     fontFamily: 'Avenir-Book',
@@ -70,7 +85,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.5)'
   },
   icon: {
-    right: 1,
+    right: 1
   }
 })
 
