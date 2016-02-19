@@ -41,8 +41,6 @@ const defaultState = {
     coverImage: 'http://i.imgur.com/Y9oEEPO.jpg',
     tag: 'Gutless',
     workouts: [6, 2, 8, 3]
-
-}}
-
+  }}
 
 export default category

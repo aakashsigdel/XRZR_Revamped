@@ -9,7 +9,7 @@ import React, {
 
 import GhostButton from '../GhostButton'
 
-const Login = props => {
+const Login = (props) => {
   return (
     <Image
       source={{
@@ -27,7 +27,7 @@ const Login = props => {
       <View style={styles.buttonContainer}>
         <GhostButton
           text={"LOGIN WITH FACEBOOK"}
-          onButtonPress={ _ => console.log('Pressed Login with facebook') }
+          onButtonPress={() => console.log('Pressed Login with facebook')}
         />
       </View>
     </Image>

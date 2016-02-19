@@ -1,6 +1,6 @@
 'use strict'
 
-import React from 'react-native'
+import React, { PropTypes } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadWorkout } from '../redux_x/actions/videoActionCreators'
@@ -8,7 +8,7 @@ import { loadWorkout } from '../redux_x/actions/videoActionCreators'
 import MostPopularIndex from '../components/MostPopular/MostPopularIndex'
 
 const _mapMostPopularWorkout = (mostPopularWorkout, workout, instructor) => {
-  return mostPopularWorkout.map( mPworkout => {
+  return mostPopularWorkout.map((mPworkout) => {
     return {
       ...workout[mPworkout],
       'instructor': instructor[workout[mPworkout].instructor]
@@ -16,22 +16,21 @@ const _mapMostPopularWorkout = (mostPopularWorkout, workout, instructor) => {
   })
 }
 
-
-const MostPopular = props => {
-  const _loadWorkout  = (id) => {
+const MostPopular = (props) => {
+  const _loadWorkout = (id) => {
     props.loadWorkout(id)
     props.navigator.push({
       name: 'workoutIntro'
     })
   }
 
-  const _onSearch = _ =>{
-    props.navigator.push({name: "search"})
+  const _onSearch = () => {
+    props.navigator.push({name: 'search'})
   }
 
   return (
     <MostPopularIndex
-      navigator={ props.navigator }
+      navigator={props.navigator}
       mostPopularWorkout={
         _mapMostPopularWorkout(
           props.state.mostPopularWorkout,
@@ -39,12 +38,25 @@ const MostPopular = props => {
           props.state.instructor
         )
       }
-      loadWorkout={ _loadWorkout }
+      loadWorkout={_loadWorkout}
       onSearch={_onSearch}
     />
   )
 }
+
+// -----
+// PropTypes
+// -----
+MostPopular.propTypes = {
+  state: PropTypes.object,
+  loadWorkout: PropTypes.func,
+  navigator: PropTypes.object
+}
+
+// -----
+// connect
+// -----
 export default connect(
-  state => ({ state }),
-  dispatch => bindActionCreators({ loadWorkout }, dispatch)
+  (state) => ({ state }),
+  (dispatch) => bindActionCreators({ loadWorkout }, dispatch)
 )(MostPopular)

@@ -1,6 +1,9 @@
 'use strict'
 
-import React, { Navigator } from 'react-native'
+import React, {
+  Navigator,
+  PropTypes
+} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -44,7 +47,7 @@ const _renderScene = (route, navigator) => {
       />
     case 'category':
       return <Category
-        navigator={ navigator }
+        navigator={navigator}
       />
     case 'action':
       return <ActionScreen
@@ -70,6 +73,17 @@ const _renderScene = (route, navigator) => {
   }
 }
 
+// ----
+// PropTypes
+// ----
+XRZRApp.propTypes = {
+  state: PropTypes.object,
+  actions: PropTypes.object
+}
+
+// ----
+// connect
+// ----
 const _mapDispatchToProps = (dispatch) => {
   const actions = {}
   actions.workoutActions = bindActionCreators(workoutActionCreators, dispatch)

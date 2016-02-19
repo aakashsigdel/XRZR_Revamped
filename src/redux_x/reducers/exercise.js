@@ -15,7 +15,7 @@ const exercise = (state = defaultExercise, action) => {
         ...action.exercise
       }
     case DELETE_EXERCISE:
-      return state.filter(exercise => exercise.id !== action.exerciseId)
+      return state.filter((exercise) => exercise.id !== action.exerciseId)
     default:
       return state
   }
@@ -28,7 +28,7 @@ const defaultExercise = {
     mode: 'loop',
     duration: 5,
     instructor: 0,
-    videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4',
+    videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
 
   },
   2: {
@@ -51,7 +51,7 @@ const defaultExercise = {
     id: 4,
     title: 'Daggers are the shipmates of the shiny fortune.',
     mode: 'time',
-    duration: 60*1.5,
+    duration: 60 * 1.5,
     instructor: 0,
     videoUri: 'http://www.sample-videos.com/video/mp4/360/big_buck_bunny_360p_1mb.mp4'
   },

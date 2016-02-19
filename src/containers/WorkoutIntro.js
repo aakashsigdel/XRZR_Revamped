@@ -1,16 +1,17 @@
-import React, { View, StyleSheet } from 'react-native'
+import React, { PropTypes } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
+import { updateWorkout } from '../redux_x/actions/workoutActionCreators'
 
 const WorkoutIntro = (props) => {
   let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
   let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
   let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
 
-  let onStartWorkout = ()=>{
+  let onStartWorkout = () => {
     props.playerActions.loadWorkout(props.player.workoutId)
     props.navigator.push({name: 'player'})
   }
@@ -22,51 +23,71 @@ const WorkoutIntro = (props) => {
   let onBackButton = () => props.navigator.pop()
 
   let onDownloadButton = () => props.navigator.push({name: 'premium'})
+  let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
 
   return (
-    <WorkoutIntroIndex workout={workout}
-                       exercises={exercises}
-                       instructor={instructor}
-                       onStartWorkout={onStartWorkout}
-                       onExerciseSelect={onExerciseSelect}
-                       onBackButton={onBackButton}
-                       onDownloadButton={onDownloadButton}
+    <WorkoutIntroIndex
+      workout={workout}
+      exercises={exercises}
+      instructor={instructor}
+      onStartWorkout={onStartWorkout}
+      onExerciseSelect={onExerciseSelect}
+      onBackButton={onBackButton}
+      onDownloadButton={onDownloadButton}
+      onLikePress={onLikePress}
     />
   )
 }
 
-function _getWorkoutInfo(workoutId, workouts){
+function _getWorkoutInfo (workoutId, workouts) {
   let workout = workouts[workoutId]
   return workout || {}
 }
-function _getExercises(workoutId, workouts, exercises){
+
+function _getExercises (workoutId, workouts, exercises) {
   let workout = _getWorkoutInfo(workoutId, workouts)
   let exercisesList = workout.exercises || []
-  return exercisesList.map((exerciseId, index)=>{
-    return {...exercises[exerciseId], index:index}
+  return exercisesList.map((exerciseId, index) => {
+    return {...exercises[exerciseId], index: index}
   })
 }
-function _getInstructor(workoutId, workouts, instructors){
+
+function _getInstructor (workoutId, workouts, instructors) {
   let workout = _getWorkoutInfo(workoutId, workouts)
   let instructorId = workout.instructor
   return instructors[instructorId] || {}
 }
-const styles = StyleSheet.create({
-  container: {}
-})
 
+// ----
+// PropTypes
+// -----
+WorkoutIntro.propTypes = {
+  state: PropTypes.object,
+  playerActions: PropTypes.object,
+  updateWorkout: PropTypes.func,
+  workouts: PropTypes.object,
+  exerciese: PropTypes.object,
+  instructors: PropTypes.object,
+  player: PropTypes.object,
+  navigator: PropTypes.object
+}
+
+// ----
+// connect
+// ----
 export default connect(
   (state) => {
     return {
       workouts: state.workout,
       exercises: state.exercise,
       instructors: state.instructor,
-      player: state.player,
+      player: state.player
     }
   },
-  (dispatch)=>{
+  (dispatch) => {
     return {
-      playerActions: bindActionCreators(PlayerActionCreators, dispatch)
+      playerActions: bindActionCreators(PlayerActionCreators, dispatch),
+      updateWorkout: bindActionCreators(updateWorkout, dispatch)
     }
   }
 )(WorkoutIntro)

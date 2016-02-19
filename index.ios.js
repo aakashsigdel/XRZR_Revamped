@@ -1,11 +1,10 @@
 'use strict'
 
-import React, {
+import {
   AppRegistry,
-  StatusBarIOS,
-} from 'react-native';
+  StatusBarIOS
+} from 'react-native'
 import App from './src/App'
-import Player from './src/containers/Player'
 
 StatusBarIOS.setHidden(true)
 

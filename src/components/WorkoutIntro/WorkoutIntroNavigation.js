@@ -7,7 +7,7 @@ import Navigator from '../Navigation/Navigation'
 const WorkoutIntroNavigation = (props) => {
   let leftIcon = {
     custom: <TouchableOpacity
-      onPress={ props.onBackButton }
+      onPress={props.onBackButton}
     >
       <Icon
         name='android-arrow-back'
@@ -17,21 +17,28 @@ const WorkoutIntroNavigation = (props) => {
       />
     </TouchableOpacity>
   }
+
   let rightIcon = {
     custom: <View>
       <View style={styles.rightIcons}>
         <TouchableOpacity onPress={props.onDownloadButton}>
-          <Icon name="ios-download-outline" size={30} color="white" style={styles.icons} />
+          <Icon name='ios-download-outline' size={30} color='white' style={styles.icons} />
         </TouchableOpacity>
-        <FIcon name="heart-o" size={25} color="white" style={styles.icons} />
-        <Icon name="android-more-vertical" size={25} color="white" style={styles.icons} />
+        <TouchableOpacity onPress={() => props.onLikePress(!props.workout.like)}>
+          {
+            props.workout.like
+              ? <FIcon name='heart' size={25} color='white' style={styles.icons} />
+              : <FIcon name='heart-o' size={25} color='white' style={styles.icons} />
+          }
+        </TouchableOpacity>
+        <Icon name='android-more-vertical' size={25} color='white' style={styles.icons} />
       </View>
     </View>
   }
   return (
-    <Navigator left={ leftIcon }
-               right={ rightIcon }
-               mid={{}}
+    <Navigator left={leftIcon}
+      right={rightIcon}
+      mid={{}}
     />
   )
 }
