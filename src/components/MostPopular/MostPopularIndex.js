@@ -8,15 +8,26 @@ import React, {
   View
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import FIcon from 'react-native-vector-icons/FontAwesome'
 
 import Navigation from '../Navigation/Navigation'
 import Listing from './Listing'
 
-const MostPopularIndex = props => {
+const onPressSearch = (navigator) => {
+  navigator.push({
+    name: 'action',
+    actionElements: [
+      {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='white' size={11} />, border: true},
+      {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />}
+    ]
+  })
+}
+
+const MostPopularIndex = (props) => {
   const navLeft = {
     custom: (
       <TouchableOpacity
-        onPress={_=>{ props.navigator.pop() }}
+        onPress={() => props.navigator.pop()}
       >
         <Icon
           name='android-arrow-back'
@@ -27,29 +38,27 @@ const MostPopularIndex = props => {
       </TouchableOpacity>
     )
   }
-  const navMid = {
-    text: 'MOST POPULAR',
-    style: {
-      color: 'white',
-      marginBottom: 15
-    }
-  }
+
   const navRight = {
     custom: (
-      <TouchableOpacity onPress={props.onSearch} >
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={onPressSearch.bind(this, props.navigator)}
+        style={{ marginBottom: 5 }}
+      >
         <Icon
           name='ios-search-strong'
           size={25}
           color='white'
           backgroundColor='transparent'
-          style={{ marginBottom: 5 }}
         />
       </TouchableOpacity>
     )
   }
+
   return (
     <Image
-      source={require("../../../assets/images/background.png")}
+      source={require('../../../assets/images/background.png')}
       style={styles.container}
     >
       <Image
@@ -87,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   listingContainer: {
-    flex: 13 
+    flex: 13
   },
   coverImage: {
     flex: 6,
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontFamily: 'SFUIText-Light',
-    fontSize: 31,
+    fontSize: 31
   }
 })
 

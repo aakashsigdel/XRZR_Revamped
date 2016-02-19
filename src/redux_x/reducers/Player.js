@@ -3,7 +3,7 @@ import {
   CHANGE_VIDEO,
   VIDEO_LOADED,
   VIDEO_PROGRESS,
-  LOAD_WORKOUT,
+  LOAD_WORKOUT
 } from '../actions/actionTypes'
 
 const defaultState = {
@@ -12,18 +12,18 @@ const defaultState = {
   paused: false,
   lastKnownTime: 0,
   currentTime: 0,
-  duration: 0.0,
+  duration: 0.0
 }
 
 const player = (state = defaultState, action) => {
-  switch (action.type){
+  switch (action.type) {
     case PAUSE_VIDEO:
       return {
         ...state,
-        paused: ! state.paused,
+        paused: !state.paused
       }
     case CHANGE_VIDEO:
-      if ( !action.videoId ){
+      if (!action.videoId) {
         return state
       }
 
@@ -41,12 +41,11 @@ const player = (state = defaultState, action) => {
       }
     case VIDEO_PROGRESS:
       let deltaTime = action.currentTime - state.lastKnownTime
-      if (deltaTime<0)
-        deltaTime = 0
+      if (deltaTime < 0) deltaTime = 0
       return {
         ...state,
         currentTime: state.currentTime + (deltaTime),
-        lastKnownTime: action.currentTime,
+        lastKnownTime: action.currentTime
       }
 
     case LOAD_WORKOUT:

@@ -9,16 +9,15 @@ import {
   getActiveOpacity,
   getElement
 } from './utilities'
-import { HEADERBAR_HEIGHT } from '../../constants/appConstants'
 
-const NavigationElement = props => {
+const NavigationElement = (props) => {
   return (
     <TouchableOpacity
       activeOpacity={getActiveOpacity(props.onButtonClick)}
       onPress={props.onButtonClick}
       style={styles.touch}
     >
-      { getElement(props.text, props.custom, props.style) }
+      {getElement(props.text, props.custom, props.style)}
     </TouchableOpacity>
   )
 }

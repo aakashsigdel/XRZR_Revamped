@@ -4,7 +4,7 @@ import React, { Text } from 'react-native'
 export const getElement = (text, custom, componentStyle) => {
   if (text) {
     return (
-      <Text style={ componentStyle }>
+      <Text style={componentStyle}>
         {text}
       </Text>
     )
@@ -18,7 +18,7 @@ export const getElement = (text, custom, componentStyle) => {
 }
 
 // return 0.6 if there is a function to make touchableopacity clickable
-export const getActiveOpacity = func => {
+export const getActiveOpacity = (func) => {
   if (func) {
     return 0.6
   }

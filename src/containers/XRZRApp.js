@@ -1,6 +1,9 @@
 'use strict'
 
-import React, { Navigator } from 'react-native'
+import React, {
+  Navigator,
+  PropTypes
+} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -13,6 +16,8 @@ import Player from './Player'
 import Browse from './Browse'
 import MostPopular from './MostPopular'
 import Category from './Category'
+import ActionScreen from '../components/ActionScreen/ActionScreenIndex.js'
+import AddExerciseToWorkout from '../containers/AddExerciseToWorkout'
 import WorkoutIntro from './WorkoutIntro'
 import Search from './Search'
 import Premium from './Premium'
@@ -41,9 +46,20 @@ const _renderScene = (route, navigator) => {
         navigator={navigator}
       />
     case 'category':
-      return (<Category
+      return <Category
         navigator={navigator}
-      />)
+      />
+    case 'action':
+      return <ActionScreen
+        actionElements={route.actionElements}
+        actionTitle={route.actionTitle}
+        navigator={navigator}
+      />
+    case 'addExerciseToWorkout':
+      return <AddExerciseToWorkout
+        navigator={navigator}
+        exerciseId={route.exerciseId}
+      />
     case 'workoutIntro':
       return <WorkoutIntro navigator={navigator} />
     case 'search':
@@ -57,6 +73,17 @@ const _renderScene = (route, navigator) => {
   }
 }
 
+// ----
+// PropTypes
+// ----
+XRZRApp.propTypes = {
+  state: PropTypes.object,
+  actions: PropTypes.object
+}
+
+// ----
+// connect
+// ----
 const _mapDispatchToProps = (dispatch) => {
   const actions = {}
   actions.workoutActions = bindActionCreators(workoutActionCreators, dispatch)

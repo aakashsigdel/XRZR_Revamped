@@ -15,7 +15,7 @@ const initialState = {
     id: 2,
     name: 'Theo Walcott',
     image: 'http://www.ulasbola.com/wp-content/uploads/2013/01/Theo-Walcott1.jpg'
-  },
+  }
 }
 
 const instructor = (state = initialState, action) => {
