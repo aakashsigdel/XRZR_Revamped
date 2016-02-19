@@ -43,7 +43,7 @@ const MostPopularIndex = (props) => {
     custom: (
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={onPressSearch.bind(this, props.navigator)}
+        onPress={props.handlePressOnSearch}
         style={{ marginBottom: 5 }}
       >
         <Icon

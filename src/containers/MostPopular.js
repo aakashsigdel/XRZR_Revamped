@@ -24,9 +24,10 @@ const MostPopular = (props) => {
     })
   }
 
-  const _onSearch = () => {
+  const handlePressOnSearch = () => {
     props.navigator.push({name: 'search'})
   }
+
 
   return (
     <MostPopularIndex
@@ -39,7 +40,7 @@ const MostPopular = (props) => {
         )
       }
       loadWorkout={_loadWorkout}
-      onSearch={_onSearch}
+      handlePressOnSearch={handlePressOnSearch}
     />
   )
 }

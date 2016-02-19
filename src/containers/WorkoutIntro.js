@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux'
 import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
 import { updateWorkout } from '../redux_x/actions/workoutActionCreators'
+import Icon from 'react-native-vector-icons/Ionicons'
+import FIcon from 'react-native-vector-icons/FontAwesome'
 
 const WorkoutIntro = (props) => {
   let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
@@ -15,15 +17,27 @@ const WorkoutIntro = (props) => {
     props.playerActions.loadWorkout(props.player.workoutId)
     props.navigator.push({name: 'player'})
   }
+
   let onExerciseSelect = (videoId) => {
     props.playerActions.loadWorkout(props.player.workoutId)
     props.playerActions.changeVideo(videoId)
     props.navigator.push({name: 'player'})
   }
+
   let onBackButton = () => props.navigator.pop()
 
   let onDownloadButton = () => props.navigator.push({name: 'premium'})
   let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
+
+  const handlePressOptions = () => {
+    props.navigator.push({
+      name: 'action',
+      actionElements: [
+        {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='white' size={11} />, border: true},
+          {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />}
+      ]
+    })
+  }
 
   return (
     <WorkoutIntroIndex
@@ -35,6 +49,7 @@ const WorkoutIntro = (props) => {
       onBackButton={onBackButton}
       onDownloadButton={onDownloadButton}
       onLikePress={onLikePress}
+      handlePressOptions={handlePressOptions}
     />
   )
 }

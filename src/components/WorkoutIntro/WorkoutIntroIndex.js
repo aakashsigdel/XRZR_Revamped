@@ -15,6 +15,7 @@ const WorkoutIntroIndex = (props) => {
         onDownloadButton={props.onDownloadButton}
         onLikePress={props.onLikePress}
         workout={props.workout}
+        handlePressOptions={props.handlePressOptions}
       />
       <View style={{flex: 1}}>
         <WorkoutDescription workout={props.workout} instructor={props.instructor} />

@@ -36,7 +36,9 @@ const WorkoutIntroNavigation = (props) => {
               : <FIcon name='heart-o' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
           }
         </TouchableOpacity>
-        <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} />
+        <TouchableOpacity onPress={() => props.handlePressOptions()}>
+          <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} />
+        </TouchableOpacity>
       </View>
     </View>
   }
