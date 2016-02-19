@@ -23,34 +23,34 @@ const category = (state = defaultState, action) => {
 
 const defaultState = {
   Bodyweight: {
-    coverImage: 'https://www.dropbox.com/s/khpwy3yh3iitsk2/bodyweight.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/bodyweight.png',
     tag: 'Bodyweight',
     workouts: [2, 6, 1, 4]
   },
   Kettlebells: {
-    coverImage: 'https://www.dropbox.com/s/7fuwl20qobzvmrp/kettlebells.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/kettlebells.png',
     tag: 'Kettlebells',
-    workouts: [5, 2, 7, 9]
+    workouts: [5, 2, 7]
   },
   Pilates: {
-    coverImage: 'https://www.dropbox.com/s/5ip9sjkqg6c0xt3/pilates.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/pilates.png',
     tag: 'Pilates',
     workouts: [2, 5, 1, 7]
   },
   'The Gym': {
-    coverImage: 'https://www.dropbox.com/s/nrbke4rmd8vpsny/the%20gym.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/the%20gym.png',
     tag: 'The Gym',
-    workouts: [6, 2, 8, 3]
+    workouts: [6, 2, 3]
   },
   'TRX': {
-    coverImage: 'https://www.dropbox.com/s/4lxzjt3dyuwefvy/trx.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/trx.png',
     tag: 'TRX',
-    workouts: [6, 2, 8, 3]
+    workouts: [6, 2, 3]
   },
   'Yoga': {
-    coverImage: 'https://www.dropbox.com/s/oo2ys88vx2s2gwp/yoga.png?dl=1',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/yoga.png',
     tag: 'Yoga',
-    workouts: [6, 2, 8, 3]
+    workouts: [6, 2, 3]
   }
 }
 

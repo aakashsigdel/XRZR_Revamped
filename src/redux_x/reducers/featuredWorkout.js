@@ -3,6 +3,6 @@ const featuredWorkout = (state = defaultState, action) => {
   return state
 }
 
-const defaultState = [1, 8, 9, 5]
+const defaultState = [1, 5, 3, 7]
 
 export default featuredWorkout

@@ -400,7 +400,7 @@ const defaultExercise = {
   },
   47: {
     'id': 47,
-    'title': 'jump + arm walk',
+    'title': 'Jump arm walk',
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
