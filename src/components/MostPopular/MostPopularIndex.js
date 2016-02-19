@@ -23,11 +23,11 @@ const onPressSearch = (navigator) => {
   })
 }
 
-const MostPopularIndex = props => {
+const MostPopularIndex = (props) => {
   const navLeft = {
     custom: (
       <TouchableOpacity
-        onPress={_=>{ props.navigator.pop() }}
+        onPress={() => props.navigator.pop()}
       >
         <Icon
           name='android-arrow-back'
@@ -37,14 +37,6 @@ const MostPopularIndex = props => {
         />
       </TouchableOpacity>
     )
-  }
-
-  const navMid = {
-    text: 'MOST POPULAR',
-    style: {
-      color: 'white',
-      marginBottom: 15
-    }
   }
 
   const navRight = {
@@ -61,13 +53,12 @@ const MostPopularIndex = props => {
           backgroundColor='transparent'
         />
       </TouchableOpacity>
-    ),
+    )
   }
-
 
   return (
     <Image
-      source={require("../../../assets/images/background.png")}
+      source={require('../../../assets/images/background.png')}
       style={styles.container}
     >
       <Image
@@ -105,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   listingContainer: {
-    flex: 13 
+    flex: 13
   },
   coverImage: {
     flex: 6,
@@ -115,7 +106,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontFamily: 'SFUIText-Light',
-    fontSize: 31,
+    fontSize: 31
   }
 })
 

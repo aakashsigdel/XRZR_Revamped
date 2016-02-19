@@ -4,13 +4,12 @@ import React, {
   ListView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from 'react-native'
 
 const updateWorkout = (exerciseId, workout, props) => {
   let exercises = workout.exercises
-  workout.exercises.indexOf(exerciseId) === -1 ? exercises.push(exerciseId): null
+  workout.exercises.indexOf(exerciseId) === -1 ? exercises.push(exerciseId) : null
   const updateObject = {
     id: workout.id,
     exercises
@@ -23,7 +22,7 @@ const _renderRow = (rowData, props) => {
   return (
     <TouchableOpacity
       style={styles.rowContainer}
-      onPress={_ => updateWorkout(props.exercise.id, rowData, props)}
+      onPress={() => updateWorkout(props.exercise.id, rowData, props)}
     >
       <Text style={styles.text}>
         {rowData.title.toUpperCase()}
@@ -32,7 +31,7 @@ const _renderRow = (rowData, props) => {
   )
 }
 
-const Listing = props => {
+const Listing = (props) => {
   let ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
   })
@@ -40,9 +39,9 @@ const Listing = props => {
 
   return (
     <ListView
-      dataSource={ dataSource }
+      dataSource={dataSource}
       renderRow={
-        rowData => {
+        (rowData) => {
           return _renderRow(rowData, props)
         }
       }

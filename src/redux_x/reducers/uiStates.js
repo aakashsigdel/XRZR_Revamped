@@ -1,10 +1,8 @@
 'use strict'
 
-import {
-  SWITCH_CATEGORY,
-} from '../actions/actionTypes'
+import { SWITCH_CATEGORY } from '../actions/actionTypes'
 
-const uiStates = (state=defaultState, action) => {
+const uiStates = (state = defaultState, action) => {
   switch (action.type) {
     case SWITCH_CATEGORY:
       return {

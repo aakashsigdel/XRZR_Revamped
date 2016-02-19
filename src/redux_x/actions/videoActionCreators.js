@@ -8,7 +8,7 @@ import {
 
 export const pauseVideo = () => {
   return {
-    type: PAUSE_VIDEO,
+    type: PAUSE_VIDEO
   }
 }
 
@@ -38,5 +38,4 @@ export const loadWorkout = (workoutId) => {
     type: LOAD_WORKOUT,
     workoutId: workoutId
   }
-
 }

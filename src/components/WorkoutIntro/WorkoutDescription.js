@@ -2,13 +2,15 @@ import React, { Image, View, ScrollView, StyleSheet, Text } from 'react-native'
 
 const WorkoutDescription = (props) => {
   return (
-    <View style={ styles.container }>
-      <Image source={{uri:props.workout.image_16x9}}
-             style={styles.headerImage}
+    <View style={styles.container}>
+      <Image
+        source={{uri: props.workout.image_16x9}}
+        style={styles.headerImage}
       >
         <View style={styles.profileDesc}>
-          <Image style={styles.roundImage}
-                 source={{uri:props.instructor.image}} />
+          <Image
+            style={styles.roundImage}
+            source={{uri: props.instructor.image}} />
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
               {props.workout.title}
@@ -46,11 +48,11 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     borderColor: 'white',
-    borderWidth: 2,
+    borderWidth: 2
   },
   textDesc: {
     marginLeft: 12.5,
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   titleText: {
     fontFamily: 'SFCompactText-Semibold',
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   descText: {
     color: 'white',
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 13,
+    fontSize: 13
   },
   workoutDesc: {
     padding: 13,

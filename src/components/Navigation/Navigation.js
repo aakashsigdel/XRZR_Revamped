@@ -26,7 +26,7 @@ import {
   VIEWPORT
 } from '../../constants/appConstants'
 
-const Navigation = props => {
+const Navigation = (props) => {
   const navComponents = [props.left, props.mid, props.right]
   return (
     <View style={[
@@ -35,21 +35,21 @@ const Navigation = props => {
       props.height && { height: props.height },
       props.position && {position: props.position}
     ]}>
-      {(
-        () => {
-          return navComponents.map((navComponent, index) => {
-            return (
-              <NavigationElement
-                key={index}
-                text={navComponent.text}
-                custom={navComponent.custom}
-                style={navComponent.style}
-                onButtonClick={navComponent.onButtonClick}
-              />
+    {(
+      () => {
+        return navComponents.map((navComponent, index) => {
+          return (
+            <NavigationElement
+              key={index}
+              text={navComponent.text}
+              custom={navComponent.custom}
+              style={navComponent.style}
+              onButtonClick={navComponent.onButtonClick}
+            />
             )
-          })
-        })()}
-  </View>
+        })
+      })()}
+    </View>
   )
 }
 
@@ -75,7 +75,7 @@ Navigation.propTypes = {
   }),
   backgroundColor: PropTypes.string,
   height: PropTypes.number,
-  position: PropTypes.string,
+  position: PropTypes.string
 }
 
 const styles = StyleSheet.create({

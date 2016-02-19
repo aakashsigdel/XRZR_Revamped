@@ -1,38 +1,34 @@
 'use strict'
 
 import React, {
-  Component,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
-} from 'react-native';
+} from 'react-native'
 
-export default class ActionScreen extends Component {
-  constructor(){
-    super()
+const ActionScreen = (props) => {
+  const _renderHr = () => {
+    return <View style={styles.hr} />
   }
 
-  _renderHr () {
-    return <View style={styles.hr}></View>
-  }
-
-  _populateRows() {
-    return this.props.actionElements
+  const _populateRows = () => {
+    return props.actionElements
     .map((child, index) => {
       return (
         <View
           key={index}
         >
-          {this._renderHr()}
+          {_renderHr()}
           <TouchableOpacity
             style={styles.row}
-            onPress={() => { 
-              try{
-                this.props.actionElements[index].action()
-              } catch (e){
-                this.props.navigator.pop()}
+            onPress={() => {
+              try {
+                props.actionElements[index].action()
+              } catch (e) {
+                props.navigator.pop()
+              }
             }
             }>
             <View style={[styles.iconContainer, child.border && styles.iconBorder]}>
@@ -45,53 +41,51 @@ export default class ActionScreen extends Component {
     })
   }
 
-  renderTitle () {
+  const _renderTitle = () => {
     return (
       <View style={styles.titleContainer}>
         <Image
-          source={{uri: this.props.actionTitle.image}}
+          source={{uri: props.actionTitle.image}}
           style={styles.titleImage}
         />
         <View style={styles.titleDescriptionContainer}>
           <Text style={styles.headerText}>
-            {this.props.actionTitle.title}
+            {props.actionTitle.title}
           </Text>
           <Text style={styles.subText}>
-            {this.props.actionTitle.subText}
+            {props.actionTitle.subText}
           </Text>
         </View>
       </View>
     )
   }
 
-  render() {
-    return(
-      <Image
-        source={require('../../../assets/images/background.png')}
-        style={styles.superContainer}
+  return (
+    <Image
+      source={require('../../../assets/images/background.png')}
+      style={styles.superContainer}
+    >
+      <View style={styles.container}>
+        {props.actionTitle ? _renderTitle() : null}
+        {_populateRows()}
+      </View>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={props.navigator.pop}
+        style={styles.cancel}
       >
-        <View style={styles.container}>
-          {this.props.actionTitle ? this.renderTitle.call(this) : null}
-          {this._populateRows()}
-        </View>
-        <TouchableOpacity
-          activeOpacity={0.6}
-          onPress={this.props.navigator.pop}
-          style={styles.cancel}
-        >
-          <Text style={styles.cancelText}>
-            CANCEL
-          </Text>
-        </TouchableOpacity>
-      </Image>
-    )
-  }
+        <Text style={styles.cancelText}>
+          CANCEL
+        </Text>
+      </TouchableOpacity>
+    </Image>
+  )
 }
 
 const styles = StyleSheet.create({
   superContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   container: {
     flex: 1,
@@ -125,7 +119,7 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     borderColor: 'white',
-    borderWidth: 1,
+    borderWidth: 1
   },
   hr: {
     height: 1,
@@ -164,3 +158,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 })
+
+export default ActionScreen
