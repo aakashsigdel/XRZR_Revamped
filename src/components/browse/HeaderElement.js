@@ -4,19 +4,27 @@ import React, {
   Text,
   PropTypes,
   StyleSheet,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 
-const HeaderElement = (props)=>{
-
+const HeaderElement = (props) => {
+  const handleWorkoutSelect = () => props.onWorkoutSelect(props.workout.id)
   return (
-    <TouchableOpacity style={styles.container} onPress={()=>props.onWorkoutSelect(props.workout.id)}>
-      <Image style={styles.parentImage}
-             source={{ uri: props.workout.image_16x9 }} >
+    <TouchableOpacity
+      onPress={handleWorkoutSelect}
+      style={styles.container}
+    >
+      <Image
+        source={{uri: props.workout.image_16x9}}
+        style={styles.parentImage}
+      >
 
         <View style={styles.profileDesc}>
-          <Image style={styles.roundImage}
-                 source={{ uri: props.workout.instructor.image }} />
+          <Image
+            source={{ uri: props.workout.instructor.image }}
+            style={styles.roundImage}
+          />
+
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
               {props.workout.title}
@@ -27,17 +35,15 @@ const HeaderElement = (props)=>{
           </View>
 
         </View>
-
-
       </Image>
     </TouchableOpacity>
   )
 }
 
-//HeaderElement.propTypes = {
-//  workout: PropTypes.string.isRequired,
-//}
-
+HeaderElement.propTypes = {
+  onWorkoutSelect: PropTypes.func,
+  workout: PropTypes.object
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,11 +62,11 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     borderColor: 'white',
-    borderWidth: 2,
+    borderWidth: 2
   },
   textDesc: {
     marginLeft: 12.5,
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   titleText: {
     fontFamily: 'SFCompactText-Semibold',
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
   descText: {
     color: 'white',
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 13,
+    fontSize: 13
   }
 })
 

@@ -41,9 +41,9 @@ const _renderScene = (route, navigator) => {
         navigator={navigator}
       />
     case 'category':
-      return <Category
-        navigator={ navigator }
-      />
+      return (<Category
+        navigator={navigator}
+      />)
     case 'workoutIntro':
       return <WorkoutIntro navigator={navigator} />
     case 'search':
@@ -52,7 +52,7 @@ const _renderScene = (route, navigator) => {
       return <Premium navigator={navigator} />
     default:
       return <Login
-        navigator={ navigator }
+        navigator={navigator}
       />
   }
 }
@@ -67,6 +67,6 @@ const _mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  state => ({ state }),
+  (state) => ({ state }),
   _mapDispatchToProps
 )(XRZRApp)
