@@ -11,10 +11,11 @@ export const addWorkout = workout => {
   }
 }
 
-export const updateWorkout = workout => {
+export const updateWorkout = (workout) => {
   return {
     type: UPDATE_WORKOUT,
-    workout
+    id: workout.id,
+    workout: workout.workout
   }
 }
 

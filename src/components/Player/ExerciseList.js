@@ -24,6 +24,7 @@ class ExerciseList extends Component {
     return <ExerciseItem item={item}
                          onVideoSelect={this.props.onVideoSelect}
                          nowPlaying={this.props.nowPlaying}
+                         onNavigate={this.props.onNavigate}
     />
   }
 

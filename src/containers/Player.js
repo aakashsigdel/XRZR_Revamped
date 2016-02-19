@@ -7,17 +7,39 @@ import { bindActionCreators } from 'redux'
 
 import VideoScreen from "../components/Player/VideoScreen"
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+import Icon from 'react-native-vector-icons/Ionicons'
+import FIcon from 'react-native-vector-icons/FontAwesome'
 
 const Player = (props) => {
   const previousVideoDispatcher = ()=>props.playerActions.changeVideo(getPreviousVideoId(props.state))
   const nextVideoDispatcher = ()=>props.playerActions.changeVideo(getNextVideoId(props.state))
   const closeButtonPressed = ()=>props.navigator.pop()
 
+  const onNavigate = ( route, exercise ) => {
+    const actionElements = [
+      {name: 'ADD EXERCISE TO A WORKOUT',
+        icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
+          action: _ => props.navigator.push({name: 'addExerciseToWorkout', exerciseId: exercise.id})
+      },
+      {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />},
+      {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />}
+    ]
+    const actionTitle = {
+      title: 'SUN SALUTATION A',
+      subText: 'RACHEL GREY',
+      image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg'
+    }
+
+    props.navigator.push({name: route, actionElements: actionElements, actionTitle})
+    // props.navigator.push({name: route, exerciseId: exerciseId})
+  }
+
   return (
     <VideoScreen state={props.state}
                  previousVideo={ previousVideoDispatcher }
                  nextVideo={ nextVideoDispatcher }
                  closePressed={ closeButtonPressed }
+                 onNavigate={onNavigate}
       {...props.playerActions} />
   )
 }

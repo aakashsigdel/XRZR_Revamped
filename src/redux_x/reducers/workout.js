@@ -9,10 +9,17 @@ import {
 const workout = (state = defaultWorkout, action) => {
   switch (action.type) {
     case ADD_WORKOUT:
+      return {
+        ...state,
+        [action.id]: action.workout
+      }
     case UPDATE_WORKOUT:
       return {
         ...state,
-        ...action.workout
+        [action.id]: {
+          ...state[action.id],
+          ...action.workout
+        }
       }
     case DELETE_WORKOUT:
       return state.filter(workout => workout.id !== action.workoutId)
