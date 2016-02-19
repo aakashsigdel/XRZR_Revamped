@@ -10,10 +10,10 @@ const WorkoutIntroNavigation = (props) => {
       onPress={props.onBackButton}
     >
       <Icon
+        backgroundColor='transparent'
+        color='rgba(255,255,255,0.5)'
         name='android-arrow-back'
         size={35}
-        color='white'
-        backgroundColor='transparent'
       />
     </TouchableOpacity>
   }
@@ -22,23 +22,28 @@ const WorkoutIntroNavigation = (props) => {
     custom: <View>
       <View style={styles.rightIcons}>
         <TouchableOpacity onPress={props.onDownloadButton}>
-          <Icon name='ios-download-outline' size={30} color='white' style={styles.icons} />
+          <Icon
+            color='rgba(255,255,255,0.5)'
+            name='ios-download-outline'
+            size={30}
+            style={[styles.icon, styles.download]}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.onLikePress(!props.workout.like)}>
           {
             props.workout.like
-              ? <FIcon name='heart' size={25} color='white' style={styles.icons} />
-              : <FIcon name='heart-o' size={25} color='white' style={styles.icons} />
+              ? <FIcon name='heart' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
+              : <FIcon name='heart-o' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
           }
         </TouchableOpacity>
-        <Icon name='android-more-vertical' size={25} color='white' style={styles.icons} />
+        <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} />
       </View>
     </View>
   }
   return (
     <Navigator left={leftIcon}
-      right={rightIcon}
       mid={{}}
+      right={rightIcon}
     />
   )
 }
@@ -49,7 +54,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   icons: {
-    padding: 7
+    paddingLeft: 15
+  },
+  download: {
+    paddingBottom: 5
+  },
+  heart: {
+    paddingTop: 3
+  },
+  more: {
+    paddingTop: 2,
+    paddingRight: 5
   }
 })
 
