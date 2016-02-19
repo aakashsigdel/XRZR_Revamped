@@ -4,28 +4,33 @@ import React, {
   Image,
   StyleSheet,
   TouchableOpacity,
+  PropTypes
 } from 'react-native'
 
 import { VIEWPORT } from '../../constants/appConstants'
 
 export const Categories = (props) => {
   const categories = props.categories.map(
-    (category, index) => (
-      <TouchableOpacity
-        key={index}
-        onPress={()=>props.onCategorySelect(category.tag)}
-      >
-        <Image
-          style={styles.catImage}
-          source={{ uri: category.coverImage }}>
-          <View style={styles.overlay}>
-            <Text style={styles.catTitle}>
-              { category.tag }
-            </Text>
-          </View>
-        </Image>
-      </TouchableOpacity>
-    )
+    (category, index) => {
+      const handleCategoryPressed = () => props.onCategorySelect(category.tag)
+      return (
+        <TouchableOpacity
+          key={index}
+          onPress={handleCategoryPressed}
+        >
+          <Image
+            source={{uri: category.coverImage}}
+            style={styles.catImage}
+          >
+            <View style={styles.overlay}>
+              <Text style={styles.catTitle}>
+                {category.tag}
+              </Text>
+            </View>
+          </Image>
+        </TouchableOpacity>
+      )
+    }
   )
 
   return (
@@ -33,9 +38,14 @@ export const Categories = (props) => {
       <Text style={styles.heading}>
         CATEGORIES
       </Text>
-      { categories }
+      {categories}
     </View>
   )
+}
+
+Categories.propTypes = {
+  categories: PropTypes.array.isRequired,
+  onCategorySelect: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -54,13 +64,13 @@ const styles = StyleSheet.create({
     fontFamily: 'SFCompactText-Semibold',
     fontSize: 12
   },
-  catImage:{
+  catImage: {
     width: VIEWPORT.width,
-    height: 84,
+    height: 84
   },
   catTitle: {
     backgroundColor: 'transparent',
-    color: 'white',
+    color: 'white'
   }
 })
 

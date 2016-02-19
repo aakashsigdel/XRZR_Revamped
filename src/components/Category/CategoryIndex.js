@@ -11,33 +11,35 @@ import { VIEWPORT } from '../../constants/appConstants'
 const CategoryIndex = (props) => {
   return (
     <Image
-      source={require("../../../assets/images/background.png")}
+      source={require('../../../assets/images/background.png')}
       style={styles.container}
     >
 
+      <View style={styles.container}>
+        <View style={styles.header}>
 
-      <View style={ styles.container }>
-        <View style={ styles.header }>
-
-          <Image style={ styles.coverImage }
-                 source={ {uri: props.catItem.coverImage} } >
-            <Text style={ styles.categoryTitle }>
+          <Image
+            source={{uri: props.catItem.coverImage}}
+            style={styles.coverImage}
+          >
+            <Text style={styles.categoryTitle}>
               {props.catItem.tag}
             </Text>
           </Image>
 
         </View>
-        <View style={ styles.listings } >
+        <View style={styles.listings} >
 
-          <ExerciseListing data={props.catData}
-                           onWorkoutSelect={props.onWorkoutSelect}
+          <ExerciseListing
+            data={props.catData}
+            onWorkoutSelect={props.onWorkoutSelect}
           />
 
         </View>
       </View>
       <CategoryNavigationBar
-        onSearch={props.onSearch}
         onBackButton={props.onBackButton}
+        onSearch={props.onSearch}
       />
     </Image>
   )

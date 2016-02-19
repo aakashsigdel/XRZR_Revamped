@@ -2,7 +2,8 @@ import React, {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  PropTypes,
+  TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -11,10 +12,17 @@ export const ListingMenu = (props) => {
 
   let menuItems = props.items.map(
     (item, index) => (
-      <TouchableOpacity key={index} onPress={item.onPress}>
+      <TouchableOpacity
+        key={index}
+        onPress={item.onPress}
+      >
         <View style={styles.itemContainer}>
           <View style={[styles.icon, styles.textContainer]}>
-            <Icon name={item.icon} size={20} color="rgba(255,255,255,0.6)" />
+            <Icon
+              color='rgba(255,255,255,0.6)'
+              name={item.icon}
+              size={20}
+            />
           </View>
           <Text style={[styles.titleText, styles.textContainer]}>
             {item.title.toUpperCase()}
@@ -33,19 +41,23 @@ export const ListingMenu = (props) => {
   )
 }
 
-const styles= StyleSheet.create({
-  container:{
+ListingMenu.propTypes = {
+  items: PropTypes.array,
+  onPress: PropTypes.func
+}
 
+const styles = StyleSheet.create({
+  container: {
   },
   itemContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
-  textContainer:{
+  textContainer: {
     marginTop: 20,
-    marginBottom: 24,
+    marginBottom: 24
   },
   icon: {
-    marginLeft: 18,
+    marginLeft: 18
   },
   titleText: {
     marginLeft: 14,
@@ -55,6 +67,6 @@ const styles= StyleSheet.create({
   },
   hr: {
     height: 1,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'rgba(255,255,255,0.1)'
   }
 })

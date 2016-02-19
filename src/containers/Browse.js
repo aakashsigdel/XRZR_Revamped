@@ -1,4 +1,4 @@
-import React, { View, StyleSheet } from 'react-native'
+import React, {PropTypes} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import BrowseScreen from '../components/browse/BrowseScreen'
@@ -6,7 +6,6 @@ import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
 const Browse = (props) => {
-
   let featured = featuredWorkoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
   let trendings = trendingsManager(props.trendings, props.workouts)
   let listingItems = listingsManager(props.navigator)
@@ -22,25 +21,25 @@ const Browse = (props) => {
     props.navigator.push({name: 'category'})
   }
 
-  let onSearch = () =>{
-    props.navigator.push({name: "search"})
+  let onSearch = () => {
+    props.navigator.push({name: 'search'})
   }
 
   return (
     <BrowseScreen
-      featured={featured}
-      trendings={trendings}
-      listingItems={listingItems}
       categories={categories}
-      onWorkoutSelect={onWorkoutSelect}
+      featured={featured}
+      listingItems={listingItems}
       onCategorySelect={onCategorySelect}
       onSearch={onSearch}
+      onWorkoutSelect={onWorkoutSelect}
+      trendings={trendings}
       { ...props.playerDispatchers }
     />
   )
 }
 
-function featuredWorkoutsManager(featuredWorkouts, workouts, instructors){
+function featuredWorkoutsManager (featuredWorkouts, workouts, instructors) {
   return featuredWorkouts.map(
     (featuredId) => {
       let instructorId = workouts[featuredId].instructor
@@ -51,28 +50,42 @@ function featuredWorkoutsManager(featuredWorkouts, workouts, instructors){
     }
   )
 }
-function trendingsManager(trendIds, workouts){
+function trendingsManager (trendIds, workouts) {
   return trendIds.map(
     (trendId) => workouts[trendId]
   )
 }
-function listingsManager(navigator){
+function listingsManager (navigator) {
   let items = [{
-      icon: 'whatshot',
-      title: 'Most Popular Workouts',
-      onPress: ()=>navigator.push({name: 'mostPopular'}),
-    },{
-      icon: 'star',
-      title: 'XRZR selected',
-      onPress: ()=>undefined,
+    icon: 'whatshot',
+    title: 'Most Popular Workouts',
+    onPress: () => navigator.push({name: 'mostPopular'})
+  }, {
+    icon: 'star',
+    title: 'XRZR selected',
+    onPress: () => undefined
   }
   ]
   return items
 }
-function categoriesManager(categories){
+function categoriesManager (categories) {
   return Object.keys(categories).map(
     (key) => categories[key]
   )
+}
+
+Browse.propTypes = {
+  instructor: PropTypes.object,
+  workouts: PropTypes.object,
+  trendings: PropTypes.array,
+  categories: PropTypes.object,
+  featuredWorkouts: PropTypes.array,
+  uiStates: PropTypes.object,
+
+  playerDispatchers: PropTypes.object,
+  uiDispatchers: PropTypes.object,
+
+  navigator: PropTypes.object
 }
 
 export default connect(
@@ -83,13 +96,13 @@ export default connect(
       trendings: state.trending,
       categories: state.category,
       featuredWorkouts: state.featuredWorkout,
-      uiStates: state.uiStates,
+      uiStates: state.uiStates
     }
   },
   (dispatch) => {
     return {
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
-      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
+      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch)
     }
   }
 )(Browse)

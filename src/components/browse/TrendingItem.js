@@ -1,20 +1,22 @@
 import React, {
   Image,
-  View,
+  PropTypes,
   StyleSheet,
   Text,
   TouchableOpacity
 } from 'react-native'
 
-export const TrendingItem = (props)=>{
-  let titleText = props.title.length > 30? props.title.slice(0,30)+'...':props.title
+export const TrendingItem = (props) => {
+  let titleText = props.title.length > 30 ? props.title.slice(0, 30) + '...' : props.title
+  const onWorkoutSelect = () => props.onWorkoutSelect(props.id)
   return (
-    <TouchableOpacity style={styles.container}
-                      onPress={()=>props.onWorkoutSelect(props.id)}
+    <TouchableOpacity
+      onPress={onWorkoutSelect}
+      style={styles.container}
     >
       <Image
+        source={{uri: props.image_16x9}}
         style={styles.imageElement}
-        source={{uri:props.image_16x9}}
       />
       <Text style={styles.textElement}>
         {titleText}
@@ -22,9 +24,15 @@ export const TrendingItem = (props)=>{
     </TouchableOpacity>)
 }
 
+TrendingItem.propTypes = {
+  image_16x9: PropTypes.substringData,
+  onWorkoutSelect: PropTypes.func,
+  title: PropTypes.string
+}
+
 let styles = StyleSheet.create({
   container: {
-    marginLeft: 7,
+    marginLeft: 7
   },
   imageElement: {
     width: 150,
@@ -32,7 +40,7 @@ let styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 5,
+    marginTop: 5
   },
   textElement: {
     marginTop: 5,
@@ -41,6 +49,6 @@ let styles = StyleSheet.create({
     overflow: 'hidden',
     fontFamily: 'SFUIDisplay-Regular',
     fontSize: 10,
-    color: 'white',
+    color: 'white'
   }
 })
