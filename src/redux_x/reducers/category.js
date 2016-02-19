@@ -23,24 +23,35 @@ const category = (state = defaultState, action) => {
 
 const defaultState = {
   Bodyweight: {
-    coverImage: 'http://www.mybs.com/wp-content/uploads/2013/04/surprised-cat-eric-hacke.jpg',
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/bodyweight.png',
     tag: 'Bodyweight',
     workouts: [2, 6, 1, 4]
   },
-  Zoga: {
-    coverImage: 'http://i.imgur.com/jZGJdfx.jpg',
-    tag: 'Zoga',
-    workouts: [5, 2, 7, 9]
+  Kettlebells: {
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/kettlebells.png',
+    tag: 'Kettlebells',
+    workouts: [5, 2, 7]
   },
-  'Golly': {
-    coverImage: 'http://i.imgur.com/eHDuAOE.jpg',
-    tag: 'Golly',
+  Pilates: {
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/pilates.png',
+    tag: 'Pilates',
     workouts: [2, 5, 1, 7]
   },
-  Gutless: {
-    coverImage: 'http://i.imgur.com/Y9oEEPO.jpg',
-    tag: 'Gutless',
-    workouts: [6, 2, 8, 3]
-  }}
+  'The Gym': {
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/the%20gym.png',
+    tag: 'The Gym',
+    workouts: [6, 2, 3]
+  },
+  'TRX': {
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/trx.png',
+    tag: 'TRX',
+    workouts: [6, 2, 3]
+  },
+  'Yoga': {
+    coverImage: 'http://aakashsigdel.github.io/XRZR_Files/Categories/yoga.png',
+    tag: 'Yoga',
+    workouts: [6, 2, 3]
+  }
+}
 
 export default category

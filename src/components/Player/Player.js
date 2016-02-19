@@ -7,37 +7,33 @@ import Video from 'react-native-video'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const Player = (props) => {
-  //var videoStyle = this.state.skin == 'embed' ? styles.nativeVideoControls : styles.fullScreen;
-  var videoStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  }
   return (
     <View style={{flex: props.flex}}>
-      <TouchableOpacity style={{flex: 1}}
-                        onPress={props.onVideoTouch}>
+      <TouchableOpacity
+        onPress={props.onVideoTouch}
+        style={{flex: 1}}
+      >
 
-        <Video style={{flex:1}}
-               source={{uri: props.videoUri}}
-               resizeMode="contain"
-               muted={props.muted}
-               paused={props.paused}
-               repeat={true}
-               onLoad={props.onVideoLoaded}
-               onProgress={props.onVideoProgress}
+        <Video
+          muted={props.muted}
+          onLoad={props.onVideoLoaded}
+          onProgress={props.onVideoProgress}
+          paused={props.paused}
+          repeat
+          resizeMode='contain'
+          style={{flex:1}}
+          source={{uri: props.videoUri}}
         />
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.closeButton}
         onPress={props.onClosePressed}
+        style={styles.closeButton}
       >
-        <Icon name="close"
-              size={30}
-              backgroundColor="transparent"
-              color="rgba(255,255,255,0.6)"
+        <Icon
+          backgroundColor='transparent'
+          color='rgba(255,255,255,0.6)'
+          name='close'
+          size={35}
         />
       </TouchableOpacity>
     </View>
@@ -48,8 +44,8 @@ const Player = (props) => {
 const styles ={
   closeButton: {
     position: 'absolute',
-    left: 20,
-    top: 20
+    left: 12.5,
+    top: 29
   }
 }
 

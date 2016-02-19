@@ -25,7 +25,7 @@ export const TrendingItem = (props) => {
 }
 
 TrendingItem.propTypes = {
-  image_16x9: PropTypes.substringData,
+  image_16x9: PropTypes.string,
   onWorkoutSelect: PropTypes.func,
   title: PropTypes.string
 }
