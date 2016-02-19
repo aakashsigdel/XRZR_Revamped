@@ -7,6 +7,7 @@ import React, {
   TouchableOpacity,
   View
 } from 'react-native'
+import { VIEWPORT } from '../../constants/appConstants'
 
 const ActionScreen = (props) => {
   const _renderHr = () => {
@@ -85,7 +86,9 @@ const ActionScreen = (props) => {
 const styles = StyleSheet.create({
   superContainer: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    width: VIEWPORT.width,
+    height: VIEWPORT.height
   },
   container: {
     flex: 1,
