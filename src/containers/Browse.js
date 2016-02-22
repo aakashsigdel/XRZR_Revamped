@@ -6,7 +6,8 @@ import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
 const Browse = (props) => {
-  let featured = featuredWorkoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
+  let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
+  let recent = workoutsManager(props.recentWorkouts, props.workouts, props.instructor)
   let trendings = trendingsManager(props.trendings, props.workouts)
   let browseListingItems = browseListingsManager(props.navigator)
   let favouriteListingItems = favouriteListingManager(props.navigator)
@@ -32,6 +33,7 @@ const Browse = (props) => {
       categories={categories}
       favouriteListingItems={favouriteListingItems}
       featured={featured}
+      recentWorkouts={recent}
       onCategorySelect={onCategorySelect}
       onSearch={onSearch}
       onWorkoutSelect={onWorkoutSelect}
@@ -41,7 +43,7 @@ const Browse = (props) => {
   )
 }
 
-function featuredWorkoutsManager (featuredWorkouts, workouts, instructors) {
+function workoutsManager (featuredWorkouts, workouts, instructors) {
   return featuredWorkouts.map(
     (featuredId) => {
       let instructorId = workouts[featuredId].instructor
@@ -95,6 +97,7 @@ Browse.propTypes = {
   trendings: PropTypes.array,
   categories: PropTypes.object,
   featuredWorkouts: PropTypes.array,
+  recentWorkouts: PropTypes.array,
   uiStates: PropTypes.object,
 
   playerDispatchers: PropTypes.object,
@@ -111,6 +114,7 @@ export default connect(
       trendings: state.trending,
       categories: state.category,
       featuredWorkouts: state.featuredWorkout,
+      recentWorkouts: state.recentWorkout,
       uiStates: state.uiStates
     }
   },

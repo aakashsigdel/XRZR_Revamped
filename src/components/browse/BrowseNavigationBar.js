@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   midText: {
     color: 'rgb(5,220,186)',
-    padding: 5,
+    padding: 2,
     paddingRight: 10,
     paddingLeft: 15,
     fontFamily: 'SFUIText-Regular'

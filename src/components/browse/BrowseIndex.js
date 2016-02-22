@@ -20,9 +20,9 @@ const BrowseIndex = (props) => {
         return (
           <FavouriteScreen
             {...props}
-            recentWorkouts={props.featured}
             onBrowseTabSelect={onBrowseTabSelect}
             onFavouriteTabSelect={onFavouriteTabSelect}
+            recentWorkouts={props.recentWorkouts}
           />
         )
       default:
@@ -38,7 +38,6 @@ const BrowseIndex = (props) => {
 }
 
 BrowseIndex.propTypes = {
-
 }
 
 export default BrowseIndex
