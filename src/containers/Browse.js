@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import BrowseScreen from '../components/browse/BrowseScreen'
+import BrowseIndex from '../components/browse/BrowseIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
 const Browse = (props) => {
   let featured = featuredWorkoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
   let trendings = trendingsManager(props.trendings, props.workouts)
-  let listingItems = listingsManager(props.navigator)
+  let browseListingItems = browseListingsManager(props.navigator)
+  let favouriteListingItems = favouriteListingManager(props.navigator)
   let categories = categoriesManager(props.categories)
 
   let onWorkoutSelect = (workoutId) => {
@@ -26,10 +27,11 @@ const Browse = (props) => {
   }
 
   return (
-    <BrowseScreen
+    <BrowseIndex
+      browseListingItems={browseListingItems}
       categories={categories}
+      favouriteListingItems={favouriteListingItems}
       featured={featured}
-      listingItems={listingItems}
       onCategorySelect={onCategorySelect}
       onSearch={onSearch}
       onWorkoutSelect={onWorkoutSelect}
@@ -55,7 +57,7 @@ function trendingsManager (trendIds, workouts) {
     (trendId) => workouts[trendId]
   )
 }
-function listingsManager (navigator) {
+function browseListingsManager (navigator) {
   let items = [{
     icon: 'whatshot',
     title: 'Most Popular Workouts',
@@ -63,6 +65,19 @@ function listingsManager (navigator) {
   }, {
     icon: 'star',
     title: 'XRZR selected',
+    onPress: () => undefined
+  }
+  ]
+  return items
+}
+function favouriteListingManager (navigator) {
+  let items = [{
+    icon: 'whatshot',
+    title: 'WORKOUTS',
+    onPress: () => undefined
+  }, {
+    icon: 'star',
+    title: 'EXERCISES',
     onPress: () => undefined
   }
   ]

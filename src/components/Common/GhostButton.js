@@ -6,7 +6,7 @@ import React, {
   Text,
   TouchableOpacity
 } from 'react-native'
-import { VIEWPORT } from '../constants/appConstants'
+import { VIEWPORT } from '../../constants/appConstants'
 
 const GhostButton = (props) => {
   return (
@@ -30,14 +30,14 @@ const GhostButton = (props) => {
 }
 
 GhostButton.propTypes = {
-  text: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
-  fontSize: PropTypes.number,
   fontFamily: PropTypes.string,
-  onButtonPress: PropTypes.func.isRequired
+  fontSize: PropTypes.number,
+  height: PropTypes.number,
+  onButtonPress: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  width: PropTypes.number
 }
 
 GhostButton.defaultProps = {

@@ -1,67 +1,65 @@
 'use strict'
 
 import React from 'react-native';
-import{
+import {
   Component,
-  Image,
-  ListView,
   Navigator,
   StyleSheet,
   Text,
-  TextInput,
   TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+  View
+} from 'react-native'
 
 import CategoryListing from './CategoryListing'
 import WorkoutListing from '../MostPopular/Listing'
 
-import { VIEWPORT } from '../../constants/appConstants'
+import {VIEWPORT} from '../../constants/appConstants'
 const styles = StyleSheet.create(require('./TabStyles.json'));
 
 export default class TabView extends Component {
-  constructor() {
+  constructor () {
     super()
-    this.navigator = null;
+    this.navigator = null
     this.state = {
-      submitText : '',
       activeView: 'category',
-    };
-    this.filterText = '';
+      submitText: ''
+    }
+    this.filterText = ''
   }
 
-  _renderScene (route, navigator)  {
-    this.navigator = navigator;
-    switch(route.name) {
+  _renderScene (route, navigator) {
+    this.navigator = navigator
+    switch (route.name) {
       case 'instructor':
         return <View />
       case 'workout':
         return <WorkoutListing mostPopularWorkout={this.props.workouts} />
       case 'category':
-        return <CategoryListing
-          data={this.props.categories}
-          onCategorySelect={this.props.onCategorySelect} />
+        return (
+          <CategoryListing
+            data={this.props.categories}
+            onCategorySelect={this.props.onCategorySelect}
+          />)
       default:
         return (
           <View />
-        );
+        )
     }
   }
 
-  _handlePress(name, index) {
-    try{
+  _handlePress (name, index) {
+    try {
       this.navigator.jumpTo({name: name})
-    }catch(e){
-      this.navigator.push({name: name, index: index});
+    } catch (e) {
+      this.navigator.push({name: name, index: index})
     }
     this.setState({
       activeView: name,
-      index: index,
+      index: index
     })
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container} >
 
@@ -70,36 +68,47 @@ export default class TabView extends Component {
             onPress={this._handlePress.bind(this, 'instructor', 0)}
           >
             {(() => {
-              if (this.state.activeView == 'instructor')
-                return <View style={styles.selected}>
-                  <Text style={[styles.font, styles.active]}>INSTRUCTOR</Text>
-                </View>
-              else
+              if (this.state.activeView === 'instructor') {
+                return (
+                  <View style={styles.selected}>
+                    <Text style={[styles.font, styles.active]}>INSTRUCTOR</Text>
+                  </View>
+                )
+              } else {
                 return <Text style={styles.font}>INSTRUCTOR</Text>
+              }
             })()}
           </TouchableHighlight>
 
           <TouchableHighlight
-            onPress={this._handlePress.bind(this, 'workout', 1)}>
+            onPress={this._handlePress.bind(this, 'workout', 1)}
+          >
             {(() => {
-              if (this.state.activeView == 'workout')
-                return <View style={styles.selected} >
-                  <Text style={[styles.font, styles.active]}>WORKOUT</Text>
-                </View>
-              else
+              if (this.state.activeView === 'workout') {
+                return (
+                  <View style={styles.selected}>
+                    <Text style={[styles.font, styles.active]}>WORKOUT</Text>
+                  </View>
+                )
+              } else {
                 return <Text style={styles.font}>WORKOUT</Text>
+              }
             })()}
           </TouchableHighlight>
 
           <TouchableHighlight
-            onPress={this._handlePress.bind(this, 'category', 2)}>
+            onPress={this._handlePress.bind(this, 'category', 2)}
+          >
             {(() => {
-              if (this.state.activeView == 'category')
-                return <View style={styles.selected}>
+              if (this.state.activeView === 'category') {
+                return (
+                  <View style={styles.selected}>
                     <Text style={[styles.font, styles.active]}>CATEGORY</Text>
                   </View>
-              else
+                )
+              } else {
                 return <Text style={styles.font}>CATEGORY</Text>
+              }
             })()}
           </TouchableHighlight>
 
@@ -107,13 +116,13 @@ export default class TabView extends Component {
 
         <View style={styles.list}>
           <Navigator
-            initialRoute={{name: 'category', index: 1}}
-            style={{backgroundColor: 'transparent'}}
-            renderScene={this._renderScene.bind(this)}
             configureScene={(route) => Navigator.SceneConfigs.FloatFromBottom}
+            initialRoute={{name: 'category', index: 1}}
+            renderScene={this._renderScene.bind(this)}
+            style={{backgroundColor: 'transparent'}}
           />
         </View>
       </View>
-    );
+    )
   }
 }
