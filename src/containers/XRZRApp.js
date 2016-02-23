@@ -26,7 +26,7 @@ import Favourite from './FavouriteExercises'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'favourite'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )
