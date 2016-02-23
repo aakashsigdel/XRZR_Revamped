@@ -4,13 +4,17 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const BrowseNavigationBar = (props) => {
   let leftIcon = (
-    <View style={styles.roundIcon}>
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={() => props.goToProfile(1)}
+      style={styles.roundIcon}
+    >
       <Icon
         color='rgb(5,220,186)'
         name='person'
         size={25}
       />
-    </View>
+    </TouchableOpacity>
   )
   let rightIcon = (
     <TouchableOpacity onPress={props.onSearch} >

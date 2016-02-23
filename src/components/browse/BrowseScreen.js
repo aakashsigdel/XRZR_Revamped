@@ -16,6 +16,7 @@ const BrowserScreen = (props) => {
         onFavouriteTabSelect={props.onFavouriteTabSelect}
         onSearch={props.onSearch}
         selectedTab='browse'
+        goToProfile={props.goToProfile}
       />
       <ScrollView>
         <Header

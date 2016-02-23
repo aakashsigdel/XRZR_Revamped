@@ -26,6 +26,7 @@ const Browse = (props) => {
   let onSearch = () => {
     props.navigator.push({name: 'search'})
   }
+  const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
 
   return (
     <BrowseIndex
@@ -38,6 +39,7 @@ const Browse = (props) => {
       onSearch={onSearch}
       onWorkoutSelect={onWorkoutSelect}
       trendings={trendings}
+      goToProfile={goToProfile}
       { ...props.playerDispatchers }
     />
   )

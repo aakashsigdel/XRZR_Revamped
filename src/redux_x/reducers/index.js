@@ -10,6 +10,7 @@ import featuredWorkout from './featuredWorkout'
 import recentWorkout from './recentWorkout'
 import instructor from './instructor'
 import uiStates from './uiStates'
+import user from './user'
 import userData from './userData'
 
 const XRZRReducer = combineReducers({
