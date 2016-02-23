@@ -104,16 +104,16 @@ const styles = StyleSheet.create({
   },
   touchLeft: {
     borderColor: 'rgb(5,220,186)',
-    borderWidth: 2,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderWidth: 1,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
     padding: 1
   },
   touchRight: {
     borderColor: 'rgb(5,220,186)',
-    borderWidth: 2,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
+    borderWidth: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
     padding: 1
   }
 })

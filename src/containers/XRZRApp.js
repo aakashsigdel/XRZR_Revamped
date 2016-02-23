@@ -21,11 +21,12 @@ import AddExerciseToWorkout from '../containers/AddExerciseToWorkout'
 import WorkoutIntro from './WorkoutIntro'
 import Search from './Search'
 import Premium from './Premium'
+import Favourite from './FavouriteExercises'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'browse'}}
+      initialRoute={{name: 'favourite'}}
       renderScene={_renderScene}
     />
   )
@@ -64,6 +65,8 @@ const _renderScene = (route, navigator) => {
       return <WorkoutIntro navigator={navigator} />
     case 'search':
       return <Search navigator={navigator} />
+    case 'favourite':
+      return <Favourite navigator={navigator} />
     case 'premium':
       return <Premium navigator={navigator} />
     default:
