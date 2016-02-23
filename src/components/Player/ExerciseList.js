@@ -10,7 +10,7 @@ import ExerciseItem from './ExerciseItem'
 class ExerciseList extends Component {
   constructor(props){
     super(props)
-    this.state ={
+    this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
   }

@@ -7,7 +7,7 @@ import React, {
   View
 } from 'react-native'
 
-import GhostButton from '../GhostButton'
+import GhostButton from '../Common/GhostButton'
 
 const Login = (props) => {
   return (

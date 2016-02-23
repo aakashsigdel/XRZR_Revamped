@@ -11,7 +11,12 @@ const BrowserScreen = (props) => {
       source={require('../../../assets/images/background.png')}
       style={{flex: 1}}
     >
-      <BrowserNavigationBar onSearch={props.onSearch} />
+      <BrowserNavigationBar
+        onBrowseTabSelect={props.onBrowseTabSelect}
+        onFavouriteTabSelect={props.onFavouriteTabSelect}
+        onSearch={props.onSearch}
+        selectedTab='browse'
+      />
       <ScrollView>
         <Header
           featured={props.featured}
@@ -21,7 +26,7 @@ const BrowserScreen = (props) => {
           onWorkoutSelect={props.onWorkoutSelect}
           trends={props.trendings}
         />
-        <ListingMenu items={props.listingItems} />
+        <ListingMenu items={props.browseListingItems} />
         <Categories
           categories={props.categories}
           onCategorySelect={props.onCategorySelect}
@@ -33,10 +38,12 @@ const BrowserScreen = (props) => {
 }
 
 BrowserScreen.propTypes = {
+  browseListingItems: PropTypes.array,
   categories: PropTypes.array,
   featured: PropTypes.array,
-  listingItems: PropTypes.array,
+  onBrowseTabSelect: PropTypes.func,
   onCategorySelect: PropTypes.func,
+  onFavouriteTabSelect: PropTypes.func,
   onSearch: PropTypes.func,
   onWorkoutSelect: PropTypes.func,
   trendings: PropTypes.array
