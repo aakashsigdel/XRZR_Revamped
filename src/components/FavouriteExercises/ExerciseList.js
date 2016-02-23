@@ -4,7 +4,11 @@ import ExerciseListItem from './ExerciseListItem'
 
 const ExerciseList = (props) => {
   const _populateList = (item, index) => (
-    <ExerciseListItem item={item} />
+    <ExerciseListItem
+      editOnProgress={props.editOnProgress}
+      onRemoveButton={props.onRemoveButton}
+      item={item}
+    />
   )
   return (
     <View>

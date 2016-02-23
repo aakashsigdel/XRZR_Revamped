@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation'
 
 const FavouriteNavigationBar = (props) => {
   let leftIcon = (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onBackButton}>
       <Icon
         backgroundColor='transparent'
         color='rgba(255,255,255,0.5)'
@@ -15,11 +15,19 @@ const FavouriteNavigationBar = (props) => {
     </TouchableOpacity>
   )
 
-  let rightIcon = (
-    <TouchableOpacity>
-      <Text style={styles.edit}> EDIT </Text>
+  let editIcon = (
+    <TouchableOpacity onPress={props.onEditButton}>
+      <Text style={styles.edit}>EDIT </Text>
     </TouchableOpacity>
   )
+
+  let doneIcon = (
+    <TouchableOpacity onPress={props.onDoneButton}>
+      <Text style={styles.edit}>DONE </Text>
+    </TouchableOpacity>
+  )
+
+  const rightIcon = (props.editOnProgress) ? doneIcon : editIcon
 
   let browse = (
     <Text style={styles.midText}>

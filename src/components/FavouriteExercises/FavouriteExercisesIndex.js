@@ -9,10 +9,18 @@ const FavouriteExercisesIndex = (props) => {
       style={styles.container}
     >
       <FavouriteNavigationBar
-        onBrowseTabSelect={() => undefined}
+        editOnProgress={props.favouriteUiStates.editFavouriteExercises}
+        onBackButton={props.onBackButton}
+        onBrowseTabSelect={props.onBrowseTabSelect}
+        onDoneButton={props.onDoneButton}
+        onEditButton={props.onEditButton}
         onFavouriteTabSelect={() => undefined}
       />
-      <ExerciseList data={props.favourites} />
+      <ExerciseList
+        data={props.favourites}
+        editOnProgress={props.favouriteUiStates.editFavouriteExercises}
+        onRemoveButton={props.onRemoveButton}
+      />
     </Image>
   )
 }
