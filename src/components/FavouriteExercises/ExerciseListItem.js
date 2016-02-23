@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
     paddingLeft: 14
   },
   textContainer: {
-    flex: 10,
+    flex: 11,
     flexDirection: 'row'
   },
   iconContainer: {
-    flex: 2
+    flex: 1
   }
 })
 

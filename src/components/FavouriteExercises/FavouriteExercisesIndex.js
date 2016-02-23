@@ -1,4 +1,6 @@
 import React, { Image, View, StyleSheet, PropTypes } from 'react-native'
+
+import {VIEWPORT} from '../../constants/appConstants'
 import FavouriteNavigationBar from './FavouriteNavigationBar'
 import ExerciseList from './ExerciseList'
 
@@ -27,7 +29,9 @@ const FavouriteExercisesIndex = (props) => {
 
 FavouriteExercisesIndex.propTypes = {}
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    width: VIEWPORT.width
+  }
 })
 
 export default FavouriteExercisesIndex
