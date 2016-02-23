@@ -1,4 +1,11 @@
-import React, { Image, View, ScrollView, StyleSheet, Text } from 'react-native'
+import React, {
+  Image,
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity
+} from 'react-native'
 
 const WorkoutDescription = (props) => {
   return (
@@ -7,7 +14,11 @@ const WorkoutDescription = (props) => {
         source={{uri: props.workout.image_16x9}}
         style={styles.headerImage}
       >
-        <View style={styles.profileDesc}>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          onPress={() => props.goToProfile(props.instructor.id)}
+          style={styles.profileDesc}
+        >
           <Image
             style={styles.roundImage}
             source={{uri: props.instructor.image}} />
@@ -20,7 +31,7 @@ const WorkoutDescription = (props) => {
             </Text>
           </View>
 
-        </View>
+        </TouchableOpacity>
       </Image>
       <ScrollView>
         <Text style={styles.workoutDesc}>

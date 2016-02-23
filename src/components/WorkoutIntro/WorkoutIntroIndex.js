@@ -18,7 +18,11 @@ const WorkoutIntroIndex = (props) => {
         handlePressOptions={props.handlePressOptions}
       />
       <View style={{flex: 1}}>
-        <WorkoutDescription workout={props.workout} instructor={props.instructor} />
+        <WorkoutDescription
+          workout={props.workout}
+          instructor={props.instructor}
+          goToProfile={props.goToProfile}
+        />
       </View>
       <View style={{flex: 1}}>
         <ExerciseList

@@ -28,6 +28,7 @@ const WorkoutIntro = (props) => {
 
   let onDownloadButton = () => props.navigator.push({name: 'premium'})
   let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
+  const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
 
   const handlePressOptions = () => {
     props.navigator.push({
@@ -41,15 +42,16 @@ const WorkoutIntro = (props) => {
 
   return (
     <WorkoutIntroIndex
-      workout={workout}
       exercises={exercises}
+      goToProfile={goToProfile}
+      handlePressOptions={handlePressOptions}
       instructor={instructor}
-      onStartWorkout={onStartWorkout}
-      onExerciseSelect={onExerciseSelect}
       onBackButton={onBackButton}
       onDownloadButton={onDownloadButton}
+      onExerciseSelect={onExerciseSelect}
       onLikePress={onLikePress}
-      handlePressOptions={handlePressOptions}
+      onStartWorkout={onStartWorkout}
+      workout={workout}
     />
   )
 }

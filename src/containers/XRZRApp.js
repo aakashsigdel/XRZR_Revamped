@@ -21,6 +21,7 @@ import AddExerciseToWorkout from '../containers/AddExerciseToWorkout'
 import WorkoutIntro from './WorkoutIntro'
 import Search from './Search'
 import Premium from './Premium'
+import Profile from './Profile'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -66,6 +67,11 @@ const _renderScene = (route, navigator) => {
       return <Search navigator={navigator} />
     case 'premium':
       return <Premium navigator={navigator} />
+    case 'profile':
+      return <Profile
+        navigator={navigator}
+        userId={route.userId}
+      />
     default:
       return <Login
         navigator={navigator}

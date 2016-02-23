@@ -9,6 +9,7 @@ import mostPopularWorkout from './mostPopularWorkout'
 import featuredWorkout from './featuredWorkout'
 import instructor from './instructor'
 import uiStates from './uiStates'
+import user from './user'
 
 const XRZRReducer = combineReducers({
   category,
@@ -19,7 +20,8 @@ const XRZRReducer = combineReducers({
   trending,
   featuredWorkout,
   instructor,
-  uiStates
+  uiStates,
+  user
 })
 
 export default XRZRReducer

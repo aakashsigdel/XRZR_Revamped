@@ -16,4 +16,6 @@ export const VIDEO_LOADED = 'VIDEO_LOADED'
 export const VIDEO_PROGRESS = 'VIDEO_PROGRESS'
 export const LOAD_WORKOUT = 'LOAD_WORKOUT'
 
+export const GET_USER = 'GET_USER'
+
 export const SWITCH_CATEGORY = 'SWITCH_CATEGORY'
