@@ -18,10 +18,12 @@ const ExerciseListItem = (props) => {
     <View style={ styles.container }>
       <Hr />
       <View style={styles.itemContainer}>
-        {deleteButton}
-        <TouchableOpacity style={styles.textContainer}>
-          <Text style={styles.exerciseTitle}>{props.item.title}</Text>
-        </TouchableOpacity>
+        <View style={styles.textContainer}>
+          {deleteButton}
+          <TouchableOpacity>
+            <Text style={styles.exerciseTitle}>{props.item.title}</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity style={styles.iconContainer}>
           <Icon
             color='rgba(255,255,255,0.5)'
@@ -60,7 +62,8 @@ const styles = StyleSheet.create({
     paddingLeft: 14
   },
   textContainer: {
-    flex: 10
+    flex: 10,
+    flexDirection: 'row'
   },
   iconContainer: {
     flex: 2

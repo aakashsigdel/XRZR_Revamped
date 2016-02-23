@@ -16,13 +16,19 @@ const FavouriteNavigationBar = (props) => {
   )
 
   let editIcon = (
-    <TouchableOpacity onPress={props.onEditButton}>
+    <TouchableOpacity
+      onPress={props.onEditButton}
+      style={styles.rightNav}
+    >
       <Text style={styles.edit}>EDIT </Text>
     </TouchableOpacity>
   )
 
   let doneIcon = (
-    <TouchableOpacity onPress={props.onDoneButton}>
+    <TouchableOpacity
+      onPress={props.onDoneButton}
+      style={styles.rightNav}
+    >
       <Text style={styles.edit}>DONE </Text>
     </TouchableOpacity>
   )
@@ -106,6 +112,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
 
     fontSize: 13
+  },
+  rightNav: {
+    width: 40
   }
 })
 
