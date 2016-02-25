@@ -78,11 +78,11 @@ function favouriteListingManager (navigator) {
   let items = [{
     icon: 'whatshot',
     title: 'WORKOUTS',
-    onPress: () => navigator.push({name: 'favourite'})
+    onPress: () => navigator.push({name: 'favouriteWorkouts'})
   }, {
     icon: 'star',
     title: 'EXERCISES',
-    onPress: () => navigator.push({name: 'favourite'})
+    onPress: () => navigator.push({name: 'favouriteExercises'})
   }
   ]
   return items
