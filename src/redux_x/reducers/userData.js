@@ -17,7 +17,8 @@ const userData = (state = defaultState, action) => {
 }
 
 const defaultState = {
-  favouriteExercises: [3, 2, 5, 1, 7, 9, 10, 20]
+  favouriteExercises: [3, 2, 5, 1, 7, 9, 10, 20],
+  favouriteWorkouts: [5, 3, 2, 1]
 }
 
 export default userData

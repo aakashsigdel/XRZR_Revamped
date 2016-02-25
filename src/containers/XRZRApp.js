@@ -22,12 +22,13 @@ import WorkoutIntro from './WorkoutIntro'
 import Search from './Search'
 import Premium from './Premium'
 import Profile from './Profile'
-import Favourite from './FavouriteExercises'
+import FavouriteExercises from './FavouriteExercises'
+import FavouriteWorkouts from './FavouriteWorkouts'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'browse'}}
+      initialRoute={{name: 'favouriteWorkouts'}}
       renderScene={_renderScene}
     />
   )
@@ -66,8 +67,10 @@ const _renderScene = (route, navigator) => {
       return <WorkoutIntro navigator={navigator} />
     case 'search':
       return <Search navigator={navigator} />
-    case 'favourite':
-      return <Favourite navigator={navigator} />
+    case 'favouriteExercises':
+      return <FavouriteExercises navigator={navigator} />
+    case 'favouriteWorkouts':
+      return <FavouriteWorkouts navigator={navigator} />
     case 'premium':
       return <Premium navigator={navigator} />
     case 'profile':
