@@ -33,6 +33,7 @@
 		308CADFC1C643F4900DDFA66 /* SF-Compact-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 308CADFB1C643F4900DDFA66 /* SF-Compact-Text-Semibold.otf */; };
 		309790A71C7AED07001DC25A /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 309790A61C7AECF6001DC25A /* libRNBlur.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		CD20C8A51C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD20C8A41C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf */; };
 		CD528F181C69E29E00F5FBB1 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F101C69E29E00F5FBB1 /* Entypo.ttf */; };
 		CD528F191C69E29E00F5FBB1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F111C69E29E00F5FBB1 /* EvilIcons.ttf */; };
 		CD528F1A1C69E29E00F5FBB1 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F121C69E29E00F5FBB1 /* FontAwesome.ttf */; };
@@ -180,6 +181,7 @@
 		309790951C7AECF6001DC25A /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		CD20C8A41C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Medium.otf"; path = "../../../../Downloads/SF-UI/SF-UI-Display-Medium.otf"; sourceTree = "<group>"; };
 		CD528F101C69E29E00F5FBB1 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		CD528F111C69E29E00F5FBB1 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		CD528F121C69E29E00F5FBB1 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CD20C8A41C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf */,
 				CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */,
 				307E60FD1C6B4AAA00BC6E11 /* RCTOrientation */,
 				CD528F101C69E29E00F5FBB1 /* Entypo.ttf */,
@@ -672,6 +675,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				CD528F1D1C69E29E00F5FBB1 /* MaterialIcons.ttf in Resources */,
 				3034AA4F1C635B0D0017B176 /* SF-UI-Text-Regular.otf in Resources */,
+				CD20C8A51C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf in Resources */,
 				308CADEA1C643ECF00DDFA66 /* SF-Compact-Text-Regular.otf in Resources */,
 				308CADFC1C643F4900DDFA66 /* SF-Compact-Text-Semibold.otf in Resources */,
 				3034AA4E1C635B0D0017B176 /* SF-UI-Display-Regular.otf in Resources */,
