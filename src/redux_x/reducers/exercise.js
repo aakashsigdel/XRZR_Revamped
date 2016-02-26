@@ -22,13 +22,16 @@ const exercise = (state = defaultExercise, action) => {
 }
 
 const defaultExercise = {
-    0: {
+  0: {
     'id': 0,
     'title': 'Cat cow',
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Cat%20cow.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Cat%20cow.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   1: {
     'id': 1,
@@ -36,7 +39,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20deadlifts%20straight%20leg.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20deadlifts%20straight%20leg.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   2: {
     'id': 2,
@@ -44,7 +50,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20deadlifts.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20deadlifts.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   3: {
     'id': 3,
@@ -52,7 +61,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20low%20jumps.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20low%20jumps.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   4: {
     'id': 4,
@@ -60,7 +72,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20squats.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Kettlebell%20squats.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   5: {
     'id': 5,
@@ -68,7 +83,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Leg%20splits.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Leg%20splits.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   6: {
     'id': 6,
@@ -76,7 +94,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Pilates%20crunch.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Pilates%20crunch.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   7: {
     'id': 7,
@@ -84,7 +105,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Plank%20Push-up.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Plank%20Push-up.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   8: {
     'id': 8,
@@ -92,7 +116,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Plank.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Plank.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   9: {
     'id': 9,
@@ -100,7 +127,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Prasarita%20Padottanasana.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Prasarita%20Padottanasana.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   10: {
     'id': 10,
@@ -108,7 +138,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Pulz.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Pulz.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   11: {
     'id': 11,
@@ -116,7 +149,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Side%20lunge%20left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Side%20lunge%20left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   12: {
     'id': 12,
@@ -124,7 +160,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Side%20lunge%20right.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Side%20lunge%20right.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   13: {
     'id': 13,
@@ -132,7 +171,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Sideplank%20Twist%20Left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Sideplank%20Twist%20Left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   14: {
     'id': 14,
@@ -140,7 +182,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Sideplank%20Twist%20Right.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Sideplank%20Twist%20Right.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   15: {
     'id': 15,
@@ -148,7 +193,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Stairs.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Stairs.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   16: {
     'id': 16,
@@ -156,7 +204,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hamstring%20curl.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hamstring%20curl.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   17: {
     'id': 17,
@@ -164,7 +215,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hip%20drops%20left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hip%20drops%20left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   18: {
     'id': 18,
@@ -172,7 +226,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hip%20drops%20right.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Hip%20drops%20right.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   19: {
     'id': 19,
@@ -180,7 +237,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Y-ups.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20Y-ups.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   20: {
     'id': 20,
@@ -188,7 +248,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20ballet%20side%20lunge%20left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20ballet%20side%20lunge%20left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   21: {
     'id': 21,
@@ -196,7 +259,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20ballet%20side%20lunge.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20ballet%20side%20lunge.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   22: {
     'id': 22,
@@ -204,7 +270,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20bicep%20hug.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20bicep%20hug.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   23: {
     'id': 23,
@@ -212,7 +281,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20crunches.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20crunches.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   24: {
     'id': 24,
@@ -220,7 +292,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20forward%20lunge.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20forward%20lunge.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   25: {
     'id': 25,
@@ -228,7 +303,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20low%20row.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20low%20row.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   26: {
     'id': 26,
@@ -236,7 +314,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20mountain%20climbers.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20mountain%20climbers.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   27: {
     'id': 27,
@@ -244,7 +325,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20oblique%20crunches.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20oblique%20crunches.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   28: {
     'id': 28,
@@ -252,7 +336,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20pike.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20pike.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   29: {
     'id': 29,
@@ -260,7 +347,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20row.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/TRX%20row.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   30: {
     'id': 30,
@@ -268,7 +358,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Triceps%20with%20chair.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Triceps%20with%20chair.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   31: {
     'id': 31,
@@ -276,7 +369,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Yoga%20Flow.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/Yoga%20Flow.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   32: {
     'id': 32,
@@ -284,7 +380,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/ab%20circle%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/ab%20circle%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   33: {
     'id': 33,
@@ -292,7 +391,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/ab%20crunch%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/ab%20crunch%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   34: {
     'id': 34,
@@ -300,7 +402,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20armstand%202.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20armstand%202.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   35: {
     'id': 35,
@@ -308,7 +413,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20armstand.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20armstand.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   36: {
     'id': 36,
@@ -316,7 +424,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20plank%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20plank%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   37: {
     'id': 37,
@@ -324,7 +435,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20plank.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20plank.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   38: {
     'id': 38,
@@ -332,7 +446,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/arm%20raise%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/arm%20raise%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   39: {
     'id': 39,
@@ -340,7 +457,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/chair%20step.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/chair%20step.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   40: {
     'id': 40,
@@ -348,7 +468,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/childpose.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/childpose.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   41: {
     'id': 41,
@@ -356,7 +479,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/crunch%20twist.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/crunch%20twist.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   42: {
     'id': 42,
@@ -364,7 +490,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/frog%20runner.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/frog%20runner.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   43: {
     'id': 43,
@@ -372,7 +501,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/glute%20leg%20raise%20left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/glute%20leg%20raise%20left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   44: {
     'id': 44,
@@ -380,7 +512,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/glute%20leg%20raise%20right.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/glute%20leg%20raise%20right.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   45: {
     'id': 45,
@@ -388,7 +523,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/half%20burpee.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/half%20burpee.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   46: {
     'id': 46,
@@ -396,7 +534,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/hindu%20push%20up.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/hindu%20push%20up.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   47: {
     'id': 47,
@@ -404,7 +545,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/jump%20%2B%20arm%20walk.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/jump%20%2B%20arm%20walk.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   48: {
     'id': 48,
@@ -412,7 +556,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/kettlebell%20sumo%20squats.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/kettlebell%20sumo%20squats.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   49: {
     'id': 49,
@@ -420,7 +567,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/laying%20glute%20killer.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/laying%20glute%20killer.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   50: {
     'id': 50,
@@ -428,7 +578,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/leg%20raise%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/leg%20raise%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   51: {
     'id': 51,
@@ -436,7 +589,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/low%20squat.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/low%20squat.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   52: {
     'id': 52,
@@ -444,7 +600,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/low%20walk.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/low%20walk.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   53: {
     'id': 53,
@@ -452,7 +611,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/lungexrunning%20stretch.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/lungexrunning%20stretch.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   54: {
     'id': 54,
@@ -460,7 +622,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/mountain%20climbers.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/mountain%20climbers.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   55: {
     'id': 55,
@@ -468,7 +633,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/noname%20left.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/noname%20left.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   56: {
     'id': 56,
@@ -476,7 +644,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/noname.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/noname.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   57: {
     'id': 57,
@@ -484,7 +655,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/russian%20twists%20kettlebell-1.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/russian%20twists%20kettlebell-1.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   58: {
     'id': 58,
@@ -492,7 +666,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/russian%20twists%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/russian%20twists%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   59: {
     'id': 59,
@@ -500,7 +677,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/scissors.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/scissors.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   60: {
     'id': 60,
@@ -508,7 +688,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/side%20lunge%20kettlebell.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/side%20lunge%20kettlebell.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   61: {
     'id': 61,
@@ -516,7 +699,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/side%20lunge.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/side%20lunge.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   62: {
     'id': 62,
@@ -524,7 +710,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/spiderman%20push%20up.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/spiderman%20push%20up.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   },
   63: {
     'id': 63,
@@ -532,7 +721,10 @@ const defaultExercise = {
     'mode': 'time',
     'instructor': 1,
     'duration': 45,
-    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/wall%20sit.mov'
+    'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/wall%20sit.mov',
+    tag: '#yoga, #therapy, #asthanga',
+    sound: false,
+    description: 'A few word about exercise or guideline.'
   }
 }
 
