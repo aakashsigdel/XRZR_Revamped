@@ -1,7 +1,7 @@
 import React, {
-  StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  PropTypes
 } from 'react-native'
 import Video from 'react-native-video'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -13,7 +13,6 @@ const Player = (props) => {
         onPress={props.onVideoTouch}
         style={{flex: 1}}
       >
-
         <Video
           muted={props.muted}
           onLoad={props.onVideoLoaded}
@@ -21,8 +20,8 @@ const Player = (props) => {
           paused={props.paused}
           repeat
           resizeMode='contain'
-          style={{flex:1}}
           source={{uri: props.videoUri}}
+          style={{flex: 1}}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -41,7 +40,18 @@ const Player = (props) => {
   )
 }
 
-const styles ={
+Player.propTypes = {
+  flex: PropTypes.number,
+  muted: PropTypes.bool,
+  onClosePressed: PropTypes.func,
+  onVideoLoaded: PropTypes.func,
+  onVideoProgress: PropTypes.func,
+  onVideoTouch: PropTypes.func,
+  paused: PropTypes.bool,
+  videoUri: PropTypes.string
+}
+
+const styles = {
   closeButton: {
     position: 'absolute',
     left: 12.5,
