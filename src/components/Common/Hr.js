@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   container: {},
   hrStyle: {
     height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+    backgroundColor: 'rgba(255, 255, 255, 0.2)'
   }
 })
 

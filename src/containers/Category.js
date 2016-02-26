@@ -7,7 +7,7 @@ import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 
 const Category = (props) => {
   let category = props.uiStates.selectedCategory
-  denormalizedData = denormalizeExerciseItems(
+  let denormalizedData = denormalizeExerciseItems(
     category,
     props.categories,
     props.workouts,
@@ -22,8 +22,8 @@ const Category = (props) => {
 
   let onBackButton = props.navigator.pop
 
-  const onSearch = _ => {
-    props.navigator.push({ name: "search" })
+  const onSearch = (_) => {
+    props.navigator.push({name: 'search'})
   }
 
   return (

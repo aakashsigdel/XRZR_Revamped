@@ -2,11 +2,9 @@ import React, {
   Component,
   Image,
   View,
-  TouchableOpacity,
-  Text,
   StyleSheet,
+  PropTypes
 } from 'react-native'
-import Video from 'react-native-video'
 import Orientation from 'react-native-orientation'
 
 import {
@@ -20,7 +18,7 @@ import PlayerController from './PlayerController'
 
 class VideoScreen extends Component {
   constructor () {
-    super();
+    super()
     this.state = {
       orientationStatus: ORIENTATION.PORTRAIT
     }
@@ -31,7 +29,7 @@ class VideoScreen extends Component {
     Orientation.addOrientationListener(this._orientationDidChange.bind(this))
   }
 
-  _orientationDidChange ( orientation ) {
+  _orientationDidChange (orientation) {
     console.log('changed')
     if (orientation === ORIENTATION.LANDSCAPE) {
       this.setState({
@@ -44,20 +42,22 @@ class VideoScreen extends Component {
     }
   }
 
-  render() {
+  render () {
     if (this.state.orientationStatus === ORIENTATION.LANDSCAPE) {
       return (
         <View style={{flex: 1}}>
-          <Player flex={1} {...playerData(this.props.state)}
-            onVideoTouch={this.props.pauseVideo}
+          <Player
+            flex={1}
             onVideoLoaded={this.props.videoLoaded}
             onVideoProgress={this.props.videoProgress}
+            onVideoTouch={this.props.pauseVideo}
+            {...playerData(this.props.state)}
           />
           <View style={{position: 'absolute', bottom: 0, left: 0, right: 0}}>
-            <PlayerController 
+            <PlayerController
               backgroundColor='transparent'
-              onPreviousPressed={this.props.previousVideo}
               onNextPressed={this.props.nextVideo}
+              onPreviousPressed={this.props.previousVideo}
               {...playerControllerData(this.props.state)}
             />
           </View>
@@ -65,81 +65,90 @@ class VideoScreen extends Component {
       )
     }
     return (
-      <Image source={require("../../../assets/images/background.png")}
-             style={styles.container}>
+      <Image
+        source={require('../../../assets/images/background.png')}
+        style={styles.container}
+      >
 
-        <Player flex={2.2222} {...playerData(this.props.state)}
-                onVideoTouch={this.props.pauseVideo}
-                onVideoLoaded={this.props.videoLoaded}
-                onVideoProgress={this.props.videoProgress}
-                onClosePressed={this.props.closePressed}
+        <Player
+          flex={2.2222}
+          onClosePressed={this.props.closePressed}
+          onVideoLoaded={this.props.videoLoaded}
+          onVideoProgress={this.props.videoProgress}
+          onVideoTouch={this.props.pauseVideo}
+          {...playerData(this.props.state)}
         />
 
-        <ExerciseList flex={3.836}
-                      data={exerciseListData(this.props.state)}
-                      onVideoSelect={this.props.changeVideo}
-                      nowPlaying={getNowPlaying(this.props.state)}
-                      onNavigate={this.props.onNavigate}
+        <ExerciseList
+          data={exerciseListData(this.props.state)}
+          flex={3.836}
+          nowPlaying={getNowPlaying(this.props.state)}
+          onNavigate={this.props.onNavigate}
+          onVideoSelect={this.props.changeVideo}
         />
-        <PlayerController flex={1}
-                          onPreviousPressed={this.props.previousVideo}
-                          onNextPressed={this.props.nextVideo}
-                          {...playerControllerData(this.props.state)}
+        <PlayerController
+          flex={1}
+          onNextPressed={this.props.nextVideo}
+          onPreviousPressed={this.props.previousVideo}
+          {...playerControllerData(this.props.state)}
         />
       </Image>
     )
   }
 }
 
-function playerData(state){
+function playerData (state) {
   let workoutId = state.player.workoutId
   let workout = state.workout[workoutId]
-  if (! workout){
+  if (!workout) {
     return {}
   }
 
   let exerciseId = state.player.nowPlaying
-  if (exerciseId === undefined){
+  if (exerciseId === undefined) {
     exerciseId = workout.exercises[0]
   }
   let exercise = state.exercise[exerciseId]
-  if (! exercise)
+  if (!exercise) {
     return {}
+  }
 
   return {
-    paused: state.player.paused == 1,
+    paused: state.player.paused === 1,
     muted: true,
     videoUri: exercise.videoUri,
-    repeat: true,
+    repeat: true
   }
 }
 
-function exerciseListData(state){
+function exerciseListData (state) {
   let workoutId = state.player.workoutId
   let workout = state.workout[workoutId]
-  if (! workout){
+  if (!workout) {
     return {}
   }
 
   let exercises = workout.exercises
   let exercisesData = exercises.map(
-    (exerciseId, index)=> {
-      return {...state.exercise[exerciseId], index:index}
+    (exerciseId, index) => {
+      return {...state.exercise[exerciseId], index: index}
     }
   )
 
   return exercisesData
 }
 
-function playerControllerData(state){
+function playerControllerData (state) {
   let exerciseId = getNowPlaying(state)
   let exercise = state.exercise[exerciseId]
-  if (! exercise)
+  if (!exercise) {
     return {}
+  }
 
   let duration = -1
-  if (exercise.mode == 'time')
+  if (exercise.mode === 'time') {
     duration = exercise.duration
+  }
 
   let progress = 0
   if (state.player.currentTime > 0) {
@@ -148,44 +157,55 @@ function playerControllerData(state){
     progress = 0
   }
 
-  let showTime = exercise.mode==='time'
+  let showTime = exercise.mode === 'time'
 
   return {
     title: exercise.title,
     progress: progress,
     duration: duration,
-    showTime: showTime,
+    showTime: showTime
   }
-
 }
 
-function getNowPlaying(state){
+function getNowPlaying (state) {
   let workoutId = state.player.workoutId
   let workout = state.workout[workoutId]
-  if (! workout){
+  if (!workout) {
     return {}
   }
 
   let exerciseId = state.player.nowPlaying
-  if (exerciseId === undefined){
+  if (exerciseId === undefined) {
     return workout.exercises[0]
   }
   return exerciseId
 }
 
+VideoScreen.propTypes = {
+  changeVideo: PropTypes.func,
+  closePressed: PropTypes.func,
+  nextVideo: PropTypes.func,
+  onNavigate: PropTypes.func,
+  pauseVideo: PropTypes.func,
+  previousVideo: PropTypes.func,
+  state: PropTypes.object,
+  videoLoaded: PropTypes.func,
+  videoProgress: PropTypes.func
+}
+
 const styles = StyleSheet.create({
-  container:{
+  container: {
     width: VIEWPORT.width,
     height: VIEWPORT.height
   },
   videoContainer: {
-    flex: 2.22222,
+    flex: 2.22222
   },
   listView: {
-    flex: 3.836,
+    flex: 3.836
   },
   playerControl: {
-    flex: 1,
+    flex: 1
   }
 })
 
