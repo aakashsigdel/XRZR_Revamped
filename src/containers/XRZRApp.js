@@ -30,7 +30,7 @@ import ExerciseProperties from './ExerciseProperties'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'exerciseProperties'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )

@@ -15,7 +15,10 @@ const exercise = (state = defaultExercise, action) => {
         ...action.exercise
       }
     case DELETE_EXERCISE:
-      return state.filter((exercise) => exercise.id !== action.exerciseId)
+      return {
+        ...state,
+        [action.exerciseId]: undefined
+      }
     default:
       return state
   }

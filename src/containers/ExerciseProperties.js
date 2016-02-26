@@ -11,9 +11,12 @@ const ExerciseProperties = (props) => {
   const exerciseId = 27
   const exercise = exerciseManager(exerciseId, props.exercises)
 
+  const onCloseButton = () => this.navigator.pop()
+
   return (
     <ExercisePropertiesIndex
       exercise={exercise}
+      onCloseButton={onCloseButton}
     />
   )
 }
