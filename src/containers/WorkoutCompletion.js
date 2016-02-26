@@ -6,18 +6,27 @@ import React, {
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
+import * as userDataActionCreators from '../redux_x/actions/userDataActionCreators'
+
 import WorkoutCompletionIndex from '../components/WorkoutCompletion/WorkoutCompletionIndex'
 
 const WorkoutCompletion = (props) => {
   const workout = workoutManager(props.player.workoutId, props.workouts)
+  const onCloseButton = () => props.navigator.pop()
+  const onShareButton = () => undefined
+  const onLikeButton = props.userDataDispatchers.likeWorkout
+
   return (
     <WorkoutCompletionIndex
+      onCloseButton={onCloseButton}
+      onLikeButton={onLikeButton}
+      onShareButton={onShareButton}
       workout={workout}
     />
   )
 }
 
-function workoutManager(workoutId, workouts) {
+function workoutManager (workoutId, workouts) {
   return workouts[workoutId]
 }
 
@@ -32,7 +41,7 @@ export default connect(
   },
   (dispatch) => {
     return {
-
+      userDataDispatchers: bindActionCreators(userDataActionCreators, dispatch)
     }
   }
 )(WorkoutCompletion)

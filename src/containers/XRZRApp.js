@@ -29,7 +29,7 @@ import WorkoutCompletion from './WorkoutCompletion'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'workoutCompletion'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )

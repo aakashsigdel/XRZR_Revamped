@@ -10,16 +10,17 @@ import React, {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 
-
 import {VIEWPORT} from '../../constants/appConstants'
 
 const WorkoutCompletionIndex = (props) => {
+  const onLikeButton = () => props.onLikeButton(props.workout.id)
   return (
     <Image
       source={require('../../../assets/images/background.png')}
       style={ styles.container }
     >
       <TouchableOpacity
+        onPress={props.onCloseButton}
         style={styles.closeButton}
       >
         <Icon
@@ -44,6 +45,7 @@ const WorkoutCompletionIndex = (props) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          onPress={props.onShareButton}
           style={styles.shareButton}
         >
           <Icon
@@ -57,6 +59,7 @@ const WorkoutCompletionIndex = (props) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPress={onLikeButton}
           style={styles.likeButton}
         >
           <FIcon
