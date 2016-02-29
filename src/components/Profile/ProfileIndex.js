@@ -53,6 +53,7 @@ const ProfileIndex = (props) => {
         </View>
         <ProfileNavigation
           user={props.user}
+          handlePressOptions={props.handlePressOptions}
           navigator={props.navigator}
         />
       </ScrollView>

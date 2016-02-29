@@ -6,7 +6,7 @@ const initialState = {
     id: 0,
     name: 'Kalle Fit',
     image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg',
-    isInstructor: true,
+    isInstructor: false,
     workout: [1, 2, 3]
   },
   1: {
@@ -27,14 +27,14 @@ const initialState = {
     id: 3,
     name: 'Rachel Grey',
     image: 'http://www.ulasbola.com/wp-content/uploads/2013/01/Theo-Walcott1.jpg',
-    isInstructor: true,
+    isInstructor: false,
     workout: [1, 2, 3]
   },
   4: {
     id: 4,
     name: 'Gray Rachel 2',
     image: 'http://www.ulasbola.com/wp-content/uploads/2013/01/Theo-Walcott1.jpg',
-    isInstructor: false,
+    isInstructor: true,
     workout: [1, 2, 4, 6]
   }
 }
