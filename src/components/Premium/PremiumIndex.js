@@ -1,4 +1,11 @@
-import React, { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import React, {
+  Image,
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  PropTypes
+} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import {VIEWPORT} from '../../constants/appConstants'
@@ -6,39 +13,71 @@ import {VIEWPORT} from '../../constants/appConstants'
 const PremiumIndex = (props) => {
   return (
     <Image
-      source={require("../../../assets/images/background.png")}
-      style={ styles.container }>
-
-      <TouchableOpacity onPress={props.onClosePressed} style={styles.closeButton}>
-        <Icon name="close" size={35} color="white" />
+      source={require('../../../assets/images/background.png')}
+      style={styles.container}
+    >
+      <TouchableOpacity
+        onPress={props.onClosePressed}
+        style={styles.closeButton}
+      >
+        <Icon
+          color='white'
+          name='close'
+          size={35}
+        />
       </TouchableOpacity>
 
       <View>
         <View style={styles.messageContent}>
-          <Text style={styles.upgradeTitle}>UPGRADE TO PREMIUM</Text>
+          <Text style={styles.upgradeTitle}>
+            UPGRADE TO PREMIUM
+          </Text>
           <View style={styles.upgradeDesc}>
             <View style={styles.rowItem}>
-              <Icon name="done" size={30} color="white" />
-              <Text style={styles.textDesc}>No Advertisements</Text>
+              <Icon
+                color='white'
+                name='done'
+                size={30}
+              />
+              <Text style={styles.textDesc}>
+                No Advertisements
+              </Text>
             </View>
             <View style={styles.rowItem}>
-              <Icon name="done" size={30} color="white" />
-              <Text style={styles.textDesc}>Create your own Workouts</Text>
+              <Icon
+                color='white'
+                name='done'
+                size={30}
+              />
+              <Text style={styles.textDesc}>
+                Create your own Workouts
+              </Text>
             </View>
             <View style={styles.rowItem}>
-              <Icon name="done" size={30} color="white" />
-              <Text style={styles.textDesc}>Use XRZR offline</Text>
+              <Icon
+                color='white'
+                name='done'
+                size={30}
+              />
+              <Text style={styles.textDesc}>
+                Use XRZR offline
+              </Text>
             </View>
           </View>
 
         </View>
         <View style={styles.upgradeButton}>
-            <Text style={styles.upgradeButtonText}>UPGRADE $6.99/mo</Text>
+            <Text style={styles.upgradeButtonText}>
+              UPGRADE $6.99/mo
+            </Text>
         </View>
       </View>
-
     </Image>
   )
+}
+
+PremiumIndex.propTypes = {
+  onClosePressed: PropTypes.func
 }
 
 const styles = StyleSheet.create({
@@ -59,7 +98,7 @@ const styles = StyleSheet.create({
   upgradeTitle: {
     fontFamily: 'Avenir-Medium',
     fontSize: 20,
-    color: "white"
+    color: 'white'
   },
   rowItem: {
     flexDirection: 'row',
@@ -75,7 +114,7 @@ const styles = StyleSheet.create({
   },
   upgradeButton: {
     margin: 12.5,
-    marginTop:1,
+    marginTop: 1,
     backgroundColor: 'rgba(0,0,0,0.1)'
   },
   upgradeButtonText: {
