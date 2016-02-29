@@ -7,7 +7,7 @@ import React, {
   Text,
   View
 } from 'react-native'
-import Cover from './Cover'
+import Cover from '../Common/Cover'
 import Description from './Description'
 import InstagramList from './InstagramList'
 import WorkoutList from './WorkoutList'
