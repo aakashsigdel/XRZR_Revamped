@@ -43,6 +43,8 @@
 		CD528F1E1C69E29E00F5FBB1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F161C69E29E00F5FBB1 /* Octicons.ttf */; };
 		CD528F1F1C69E29E00F5FBB1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD528F171C69E29E00F5FBB1 /* Zocial.ttf */; };
 		CD54A1BA1C69B3E7008C26AB /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD54A1B61C69B3BA008C26AB /* libRCTVideo.a */; };
+		CD96F9BE1C842F3600B7BF08 /* SF-UI-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD96F9BD1C842F3600B7BF08 /* SF-UI-Display-Semibold.otf */; };
+		CD96F9CD1C842F9900B7BF08 /* SF-Compact-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD96F9CC1C842F9900B7BF08 /* SF-Compact-Display-Semibold.otf */; };
 		CDB40A1E1C71A099002B625C /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +193,8 @@
 		CD528F161C69E29E00F5FBB1 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		CD528F171C69E29E00F5FBB1 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		CD54A1A81C69B3BA008C26AB /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		CD96F9BD1C842F3600B7BF08 /* SF-UI-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Semibold.otf"; sourceTree = "<group>"; };
+		CD96F9CC1C842F9900B7BF08 /* SF-Compact-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Compact-Display-Semibold.otf"; sourceTree = "<group>"; };
 		CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -385,6 +389,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CD96F9CC1C842F9900B7BF08 /* SF-Compact-Display-Semibold.otf */,
+				CD96F9BD1C842F3600B7BF08 /* SF-UI-Display-Semibold.otf */,
 				CD20C8A41C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf */,
 				CDB40A1D1C71A099002B625C /* SF-UI-Text-Light.otf */,
 				307E60FD1C6B4AAA00BC6E11 /* RCTOrientation */,
@@ -669,6 +675,7 @@
 				CD528F191C69E29E00F5FBB1 /* EvilIcons.ttf in Resources */,
 				CD528F1F1C69E29E00F5FBB1 /* Zocial.ttf in Resources */,
 				CD528F181C69E29E00F5FBB1 /* Entypo.ttf in Resources */,
+				CD96F9CD1C842F9900B7BF08 /* SF-Compact-Display-Semibold.otf in Resources */,
 				CD528F1E1C69E29E00F5FBB1 /* Octicons.ttf in Resources */,
 				CD528F1C1C69E29E00F5FBB1 /* Ionicons.ttf in Resources */,
 				3034AA501C635B0D0017B176 /* SF-UI-Text-Semibold.otf in Resources */,
@@ -677,6 +684,7 @@
 				3034AA4F1C635B0D0017B176 /* SF-UI-Text-Regular.otf in Resources */,
 				CD20C8A51C7EDCEA00F27D8C /* SF-UI-Display-Medium.otf in Resources */,
 				308CADEA1C643ECF00DDFA66 /* SF-Compact-Text-Regular.otf in Resources */,
+				CD96F9BE1C842F3600B7BF08 /* SF-UI-Display-Semibold.otf in Resources */,
 				308CADFC1C643F4900DDFA66 /* SF-Compact-Text-Semibold.otf in Resources */,
 				3034AA4E1C635B0D0017B176 /* SF-UI-Display-Regular.otf in Resources */,
 				3034AA4D1C635B0D0017B176 /* SF-UI-Display-Light.otf in Resources */,

@@ -14,6 +14,7 @@ const workout = (state = defaultWorkout, action) => {
         [action.id]: action.workout
       }
     case UPDATE_WORKOUT:
+      console.log(action.workout)
       return {
         ...state,
         [action.id]: {
@@ -37,6 +38,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/kalle%20fit%203.png',
     duration: '5 mins',
     instructor: 2,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   },
   2: {
@@ -47,6 +51,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/stina%20troest%201.png',
     duration: '5 mins',
     instructor: 1,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   },
   3: {
@@ -57,6 +64,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/kalle%20fit.png',
     duration: '21 mins',
     instructor: 2,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Bodyweight',
     like: false
   },
   4: {
@@ -67,6 +77,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/rachel%202.png',
     duration: '30 mins',
     instructor: 0,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   },
   5: {
@@ -77,6 +90,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/stina%20troest%202.png',
     duration: '7 mins',
     instructor: 1,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   },
   6: {
@@ -87,6 +103,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/kalle%20fit%202.png',
     duration: '15 mins',
     instructor: 2,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   },
   7: {
@@ -97,6 +116,9 @@ const defaultWorkout = {
     image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/Workout/stina%20troest%203.png',
     duration: '15 mins',
     instructor: 1,
+    workout_set: 4,
+    pause_between_exercises: 20,
+    category: 'Yoga',
     like: false
   }
 }
