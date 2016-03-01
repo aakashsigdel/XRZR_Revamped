@@ -34,8 +34,9 @@ const WorkoutIntro = (props) => {
     props.navigator.push({
       name: 'action',
       actionElements: [
-        {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='white' size={11} />, border: true},
-          {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />}
+        {name: 'SHARE WORKOUT', icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />},
+        {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />, border: true},
+        {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='rgba(255, 255, 255, 0.5)' size={20} />}
       ]
     })
   }
