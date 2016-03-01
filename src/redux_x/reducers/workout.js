@@ -14,6 +14,7 @@ const workout = (state = defaultWorkout, action) => {
         [action.id]: action.workout
       }
     case UPDATE_WORKOUT:
+      console.log(action.workout)
       return {
         ...state,
         [action.id]: {

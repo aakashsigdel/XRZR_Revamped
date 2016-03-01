@@ -35,6 +35,7 @@ const WorkoutDetails = (props) => {
           <TextInput
             defaultValue={props.workout.workout_set.toString()}
             keyboardType='number-pad'
+            onChangeText={props.onWorkoutSetChange}
             style={[styles.rowText, styles.inputBox]}
           />
         </View>
@@ -45,6 +46,7 @@ const WorkoutDetails = (props) => {
             <TextInput
               defaultValue={props.workout.pause_between_exercises.toString()}
               keyboardType='number-pad'
+              onChangeText={props.onPBEChange}
               style={[styles.rowText, styles.inputBox]}
             />
             <Text style={styles.rowText}> sec</Text>
@@ -55,6 +57,7 @@ const WorkoutDetails = (props) => {
           <Text style={[styles.rowText]}>CATEGORY</Text>
           <TextInput
             defaultValue={props.workout.category.tag.toUpperCase()}
+            onChangeText={props.onCategoryChange}
             style={[styles.rowText, styles.inputBox]}
           />
         </View>
@@ -64,6 +67,7 @@ const WorkoutDetails = (props) => {
           <TextInput
             defaultValue={props.workout.description}
             multiline
+            onChangeText={props.onDescriptionChange}
             style={[styles.rowText, styles.descInputBox]}
           />
         </View>

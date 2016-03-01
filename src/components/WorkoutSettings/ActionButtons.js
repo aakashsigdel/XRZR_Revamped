@@ -2,6 +2,7 @@ import React, {
   View,
   StyleSheet,
   Text,
+  TouchableOpacity,
   PropTypes
 } from 'react-native'
 
@@ -13,11 +14,14 @@ const ActionButtons = (props) => {
           EDIT EXERCISES
         </Text>
       </View>
-      <View style={styles.saveWorkout}>
+      <TouchableOpacity
+        onPress={props.onSaveButton}
+        style={styles.saveWorkout}
+      >
         <Text style={styles.buttonText}>
           SAVE
         </Text>
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }

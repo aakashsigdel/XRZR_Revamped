@@ -8,19 +8,54 @@ import NavigationBar from './WSNavbar'
 import WorkoutDetails from './WorkoutDetails'
 import ActionButtons from './ActionButtons'
 
-const WorkoutSettingsIndex = (props) => {
-  return (
-    <View style={ styles.container }>
-      <NavigationBar
-        onCloseButton={props.onCloseButton}
-        title={props.workout.title}
-      />
-      <WorkoutDetails
-        workout={props.workout}
-      />
-      <ActionButtons />
-    </View>
-  )
+class WorkoutSettingsIndex extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  onWorkoutSetChange (workout_set) {
+    this.setState({
+      workout_set
+    })
+  }
+  onPBEChange (pause_between_exercises) {
+    this.setState({
+      pause_between_exercises
+    })
+  }
+  onCategoryChange (category) {
+    this.setState({
+      category
+    })
+  }
+  onDescriptionChange (description) {
+    this.setState({
+      description
+    })
+  }
+
+  render (props = this.props) {
+    const onSaveButton = () => props.onSaveButton(this.state)
+    return (
+      <View style={styles.container}>
+        <NavigationBar
+          onCloseButton={props.onCloseButton}
+          title={props.workout.title}
+        />
+        <WorkoutDetails
+          onCategoryChange={this.onCategoryChange.bind(this)}
+          onDescriptionChange={this.onDescriptionChange.bind(this)}
+          onPBEChange={this.onPBEChange.bind(this)}
+          onWorkoutSetChange={this.onWorkoutSetChange.bind(this)}
+          workout={props.workout}
+        />
+        <ActionButtons
+          onSaveButton={onSaveButton}
+        />
+      </View>
+    )
+  }
 }
 
 WorkoutSettingsIndex.propTypes = {}
