@@ -27,11 +27,12 @@ import FavouriteWorkouts from './FavouriteWorkouts'
 import WorkoutCompletion from './WorkoutCompletion'
 import ExerciseProperties from './ExerciseProperties'
 import WorkoutSettings from './WorkoutSettings'
+import EditWorkoutExercises from './EditWorkoutExercises'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'workoutSettings'}}
+      initialRoute={{name: 'editWorkoutExercises'}}
       renderScene={_renderScene}
     />
   )
@@ -87,6 +88,8 @@ const _renderScene = (route, navigator) => {
       return <ExerciseProperties navigator={navigator} />
     case 'workoutSettings':
       return <WorkoutSettings navigator={navigator} />
+    case 'editWorkoutExercises':
+      return <EditWorkoutExercises navigator={navigator} />
     default:
       return <Login
         navigator={navigator}

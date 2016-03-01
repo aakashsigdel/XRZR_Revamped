@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 import Navigation from '../Navigation/Navigation'
 
-const WSNavbar = (props) => {
+const NavBar = (props) => {
   const title = (props.title || props.title.length >= 35)
     ? props.title.slice(0, 33) + '...'
     : props.title
@@ -40,23 +40,7 @@ const WSNavbar = (props) => {
     <View
       style={styles.rightContainer}
     >
-      <TouchableOpacity
-        style={styles.lockContainer}
-      >
-        <Icon
-          color='rgba(255,255,255,0.5)'
-          name='locked'
-          size={10}
-          style={styles.lockedIcon}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Icon
-          color='rgba(255,255,255,0.5)'
-          name='android-delete'
-          size={25}
-        />
-      </TouchableOpacity>
+      <Text style={styles.rightText}>EDIT</Text>
     </View>
   )
   return (
@@ -68,7 +52,7 @@ const WSNavbar = (props) => {
   )
 }
 
-WSNavbar.propTypes = {
+NavBar.propTypes = {
   onCloseButton: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
 }
@@ -95,18 +79,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 5,
-    marginBottom: 7
+    marginBottom: 11
   },
-  lockContainer: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    borderColor: 'rgba(255,255,255,0.5)',
-    borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 15
+  rightText: {
+    color: 'rgba(255,255,255,0.5)',
+    fontFamily: 'SFCompactDisplay-Semibold',
+    fontSize: 15
   }
 })
 
-export default WSNavbar
+export default NavBar

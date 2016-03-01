@@ -9,10 +9,14 @@ const ExerciseListItem = (props) => {
     const onRemoveButton = () => props.onRemoveButton(props.item.id)
     deleteButton = (
       <TouchableOpacity onPress={onRemoveButton}>
-        <Icon name='minus-circled' size={20} color='rgb(255,134,126)' style={styles.deleteIcon}/>
+        <Icon name='minus-circled' size={20} color='#fe3f7b' style={styles.deleteIcon}/>
       </TouchableOpacity>
     )
+  } else if (props.index !== undefined) {
+    deleteButton = <Text style={styles.indexCounter}>{props.index}</Text>
   }
+
+  const duration = props.item.duration + ((props.item.mode === 'loop') ? ' reps' : ' sec')
 
   return (
     <View style={ styles.container }>
@@ -24,14 +28,11 @@ const ExerciseListItem = (props) => {
             <Text style={styles.exerciseTitle}>{props.item.title}</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.iconContainer}>
-          <Icon
-            color='rgba(255,255,255,0.5)'
-            name='more'
-            size={20}
-            style={styles.moreIcon}
-          />
-        </TouchableOpacity>
+        <View style={styles.iconContainer}>
+          <Text style={styles.rightText}>
+            {duration}
+          </Text>
+        </View>
       </View>
     </View>
   )
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
 
     paddingTop: 12.5,
-    paddingLeft: 15,
+    paddingLeft: 10,
     paddingBottom: 14
   },
   itemContainer: {
@@ -63,14 +64,29 @@ const styles = StyleSheet.create({
   },
   deleteIcon: {
     paddingTop: 10,
-    paddingLeft: 14
+    paddingLeft: 5,
+    paddingRight: 5
   },
   textContainer: {
     flex: 11,
     flexDirection: 'row'
   },
   iconContainer: {
-    flex: 1
+    flex: 3
+  },
+  rightText: {
+    color: 'rgba(255,255,255,0.5)',
+    fontFamily: 'Avenir-Book',
+    fontSize: 12,
+    textAlign: 'right',
+    paddingTop: 12.5,
+  },
+  indexCounter: {
+    color: 'rgba(255,255,255,0.5)',
+    fontFamily: 'Avenir-Book',
+    fontSize: 12,
+    paddingTop: 12.5,
+    paddingLeft: 5
   }
 })
 
