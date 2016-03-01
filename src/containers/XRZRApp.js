@@ -32,7 +32,7 @@ import EditWorkoutExercises from './EditWorkoutExercises'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'editWorkoutExercises'}}
+      initialRoute={{name: 'browse'}}
       renderScene={_renderScene}
     />
   )
@@ -87,9 +87,15 @@ const _renderScene = (route, navigator) => {
     case 'exerciseProperties':
       return <ExerciseProperties navigator={navigator} />
     case 'workoutSettings':
-      return <WorkoutSettings navigator={navigator} />
+      return <WorkoutSettings
+        navigator={navigator}
+        workoutId={route.workoutId}
+      />
     case 'editWorkoutExercises':
-      return <EditWorkoutExercises navigator={navigator} />
+      return <EditWorkoutExercises
+        navigator={navigator}
+        workoutId={route.workoutId}
+      />
     default:
       return <Login
         navigator={navigator}

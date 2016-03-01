@@ -12,7 +12,7 @@ import Hr from '../Common/Hr'
 
 const EditExerciseListItem = (props) => {
   let deleteButton = null
-  const onRemoveButton = () => props.onRemoveButton(props.item.id)
+  const onRemoveButton = () => props.onRemoveButton(props.index)
   deleteButton = (
     <TouchableOpacity onPress={onRemoveButton}>
       <Icon name='minus-circled' size={20} color='#fe3f7b' style={styles.deleteIcon}/>
@@ -30,7 +30,10 @@ const EditExerciseListItem = (props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.iconContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onLongPress={props.onLongPress}
+            onPressOut={props.onPressOut}
+          >
             <Icon name='navicon' color='rgba(255,255,255,0.5)' size={30} />
           </TouchableOpacity>
         </View>

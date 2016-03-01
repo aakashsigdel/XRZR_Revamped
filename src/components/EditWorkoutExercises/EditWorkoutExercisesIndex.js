@@ -4,22 +4,62 @@ import React, {
   PropTypes
 } from 'react-native'
 
+import SortableListView from 'react-native-sortable-listview'
+
 import NavBar from './NavBar'
 import ExerciseList from './ExerciseList'
 
-const EditWorkoutExercisesIndex = (props) => {
-  return (
-    <View style={ styles.container }>
-      <NavBar
-        title='The undead sail awkwardly pulls the parrot.'
-        onCloseButton={() => undefined}
+class EditWorkoutExercisesIndex extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      editOnProgress: props.editOnProgress,
+      order: props.workout.exercises.map((value, index) => index),
+      exercises: props.workout.exercises
+    }
+  }
 
-      />
-      <ExerciseList
-        workout={props.workout}
-      />
-    </View>
-  )
+  onEdit () {
+    this.setState({
+      editOnProgress: true
+    })
+  }
+  onDone () {
+    console.warn('done')
+    this.setState({
+      editOnProgress: false
+    })
+  }
+  onExerciseRemove (index) {
+    const exercises = this.state.exercises.slice(0, index)
+      .concat(this.state.exercises.slice(index, this.state.exercises.length))
+    const order = this.state.order.slice(0, index)
+      .concat(this.state.order.slice(index, this.state.order.length))
+    this.setState({
+      exercises: exercises,
+      order: order
+    })
+  }
+
+  render (props = this.props) {
+    return (
+      <View style={ styles.container }>
+        <NavBar
+          editOnProgress={this.state.editOnProgress}
+          title={props.workout.title}
+          onCloseButton={props.onCloseButton}
+
+          onEdit={this.onEdit.bind(this)}
+          onDone={this.onDone.bind(this)}
+        />
+        <ExerciseList
+           editOnProgress={this.state.editOnProgress}
+           exercises={this.state.exercises}
+           onRemoveButton={this.onExerciseRemove.bind(this)}
+         />
+      </View>
+    )
+  }
 }
 
 EditWorkoutExercisesIndex.propTypes = {}

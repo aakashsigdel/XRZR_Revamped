@@ -30,12 +30,14 @@ const WorkoutIntro = (props) => {
   let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
   const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
 
+  const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
+
   const handlePressOptions = () => {
     props.navigator.push({
       name: 'action',
       actionElements: [
         {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='white' size={11} />, border: true},
-          {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />}
+        {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='white' size={20} />, action: onEditWorkout}
       ]
     })
   }

@@ -36,12 +36,15 @@ const NavBar = (props) => {
     </View>
   )
 
+  const touchHandler = props.editOnProgress ? props.onEdit : props.onDone
+  console.log(touchHandler)
   const right = (
-    <View
+    <TouchableOpacity
+      onPress={touchHandler}
       style={styles.rightContainer}
     >
-      <Text style={styles.rightText}>EDIT</Text>
-    </View>
+      <Text style={styles.rightText}>{props.editOnProgress ? 'DONE' : 'EDIT'}</Text>
+    </TouchableOpacity>
   )
   return (
     <Navigation

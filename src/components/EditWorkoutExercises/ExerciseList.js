@@ -11,14 +11,19 @@ import ExerciseListItem from './ExerciseListItem'
 import EditExerciseListItem from './EditExerciseListItem'
 
 const ExerciseList = (props) => {
-  let indexCounter = 0
+  let indexCounter = -1
   const _populateList = (item) => {
     indexCounter += 1
-    return (<EditExerciseListItem
-      editOnProgress={true}
+    if (props.editOnProgress) {
+      return (<EditExerciseListItem
+        index={indexCounter}
+        item={item}
+        onRemoveButton={props.onRemoveButton}
+      />)
+    }
+    return (<ExerciseListItem
       index={indexCounter}
       item={item}
-      onRemoveButton={() => undefined}
     />)
   }
   return (
@@ -27,12 +32,12 @@ const ExerciseList = (props) => {
         <Text style={styles.header}>WORKOUT EXERCISES</Text>
         <ListWrapper
           _populateList={_populateList}
-          data={props.workout.exercises}
+          data={props.exercises}
         />
       </View>
       <TouchableOpacity
-        style={styles.saveButton}
         onPress={props.onSaveButton}
+        style={styles.saveButton}
       >
         <Text style={styles.saveText}>
           SAVE

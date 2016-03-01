@@ -51,6 +51,7 @@ class WorkoutSettingsIndex extends React.Component {
           workout={props.workout}
         />
         <ActionButtons
+          onEditExercises={props.onEditExercises}
           onSaveButton={onSaveButton}
         />
       </View>

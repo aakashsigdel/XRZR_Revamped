@@ -7,10 +7,20 @@ import {bindActionCreators} from 'redux'
 import EditWorkoutExercisesIndex from '../components/EditWorkoutExercises/EditWorkoutExercisesIndex'
 
 const EditWorkoutExercises = (props) => {
-  const workoutId = 1
+  const workoutId = props.workoutId
   const workout = workoutManager(workoutId, props.workouts, props.exercises)
+
+  const editOnProgress = true
+
+  const onCloseButton = props.navigator.pop
+  const onEditButton = () => console.warn("edit")
+  const onDoneButton = () => console.warn('done')
   return (
     <EditWorkoutExercisesIndex
+      editOnProgress={editOnProgress}
+      onCloseButton={onCloseButton}
+      onDoneButton={onDoneButton}
+      onEditButton={onEditButton}
       workout={workout}
     />
   )

@@ -9,11 +9,14 @@ import React, {
 const ActionButtons = (props) => {
   return (
     <View style={ styles.container }>
-      <View style={styles.editExercises}>
+      <TouchableOpacity
+        onPress={props.onEditExercises}
+        style={styles.editExercises}
+      >
         <Text style={styles.buttonText}>
           EDIT EXERCISES
         </Text>
-      </View>
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={props.onSaveButton}
         style={styles.saveWorkout}

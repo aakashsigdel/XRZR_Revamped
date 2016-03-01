@@ -14,8 +14,8 @@ class WorkoutSettings extends React.Component {
     this.state = {}
   }
   render (props = this.props) {
-    const onCloseButton = () => console.warn('close button')
-    const workoutId = 1
+    const onCloseButton = props.navigator.pop
+    const workoutId = props.workoutId
     const workout = workoutManager(workoutId, props.workouts, props.categories)
 
     const onSaveButton = (workout) => {
@@ -24,9 +24,12 @@ class WorkoutSettings extends React.Component {
         ...workout
       })
     }
+    const onEditExercises = () => props.navigator.push({name: 'editWorkoutExercises', workoutId: workoutId})
+
     return (
       <WorkoutSettingsIndex
         onCloseButton={onCloseButton}
+        onEditExercises={onEditExercises}
         onSaveButton={onSaveButton}
         workout={workout}
       />
