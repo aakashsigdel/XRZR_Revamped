@@ -14,13 +14,30 @@ const goToWorkoutIntro = (props, workoutId) => {
   props.navigator.push({name: 'workoutIntro'})
 }
 
-const handlePressOptions = (props) => {
+const handleProfileSettingPress = (props) => {
+  return () => {
+    props.navigator.push({
+      name: 'profileSettings'
+    })
+  }
+}
+const handlePressOptions = (props, buttonType) => {
   let actionElements = {}
   if (props.user[props.userId].isInstructor) {
     actionElements = [
-      {name: 'CREATE NEW WORKOUT', icon: <FIcon name='history' color='rgba(255, 255, 255, 0.5)' size={20} />},
-      {name: 'CREATE NEW EXERCISE', icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25} />},
-      {name: 'PROFILE SETTINGS', icon: <Icon name='gear-b' color='rgba(255, 255, 255, 0.5)' size={25} />}
+      {
+        name: 'CREATE NEW WORKOUT',
+        icon: <FIcon name='history' color='rgba(255, 255, 255, 0.5)' size={20} />
+      },
+      {
+        name: 'CREATE NEW EXERCISE',
+        icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25} />
+      },
+      {
+        name: 'PROFILE SETTINGS',
+        action: handleProfileSettingPress(props),
+        icon: <Icon name='gear-b' color='rgba(255, 255, 255, 0.5)' size={25} />
+      }
     ]
   } else {
     actionElements = [
@@ -40,7 +57,7 @@ const Profile = (props) => {
       workouts={props.workouts}
       navigator={props.navigator}
       goToWorkoutIntro={(workoutId) => goToWorkoutIntro(props, workoutId)}
-      handlePressOptions={() => handlePressOptions(props)}
+      handlePressOptions={(buttonType) => handlePressOptions(props, buttonType)}
     />
   )
 }
