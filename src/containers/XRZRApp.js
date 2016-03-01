@@ -29,6 +29,7 @@ import ExerciseProperties from './ExerciseProperties'
 import WorkoutSettings from './WorkoutSettings'
 import EditWorkoutExercises from './EditWorkoutExercises'
 import ProfileSettings from './ProfileSettings'
+import NewWorkout from './NewWorkout'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -99,6 +100,8 @@ const _renderScene = (route, navigator) => {
       />
     case 'profileSettings':
       return <ProfileSettings navigator={navigator} />
+    case 'newWorkout':
+      return <NewWorkout navigator={navigator} />
     default:
       return <Login
         navigator={navigator}

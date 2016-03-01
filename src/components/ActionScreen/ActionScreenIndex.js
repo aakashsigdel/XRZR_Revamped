@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    borderColor: 'white',
+    borderColor: 'rgba(255, 255, 255, 0.5)',
     borderWidth: 1
   },
   hr: {

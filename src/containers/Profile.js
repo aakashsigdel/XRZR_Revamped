@@ -21,12 +21,22 @@ const handleProfileSettingPress = (props) => {
     })
   }
 }
+
+const handleCreateNewWorkout = (props) => {
+  return () => {
+    props.navigator.push({
+      name: 'newWorkout'
+    })
+  }
+}
+
 const handlePressOptions = (props, buttonType) => {
   let actionElements = {}
   if (props.user[props.userId].isInstructor) {
     actionElements = [
       {
         name: 'CREATE NEW WORKOUT',
+        action: handleCreateNewWorkout(props),
         icon: <FIcon name='history' color='rgba(255, 255, 255, 0.5)' size={20} />
       },
       {
