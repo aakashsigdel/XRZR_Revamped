@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import EditWorkoutExercisesIndex from '../components/EditWorkoutExercises/EditWorkoutExercisesIndex'
+import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 
 const EditWorkoutExercises = (props) => {
   const workoutId = props.workoutId
@@ -13,6 +14,7 @@ const EditWorkoutExercises = (props) => {
   const editOnProgress = true
 
   const onCloseButton = props.navigator.pop
+  const onSaveButton = props.workoutDispatchers.updateWorkout
   const onEditButton = () => console.warn("edit")
   const onDoneButton = () => console.warn('done')
   return (
@@ -21,6 +23,7 @@ const EditWorkoutExercises = (props) => {
       onCloseButton={onCloseButton}
       onDoneButton={onDoneButton}
       onEditButton={onEditButton}
+      onSaveButton={onSaveButton}
       workout={workout}
     />
   )
@@ -43,6 +46,8 @@ export default connect(
     }
   },
   (dispatch) => {
-    return {}
+    return {
+      workoutDispatchers: bindActionCreators(WorkoutActionCreators, dispatch)
+    }
   }
 )(EditWorkoutExercises)
