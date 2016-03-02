@@ -1,9 +1,10 @@
 import { ADD_WORKOUT, UPDATE_WORKOUT, DELETE_WORKOUT } from './actionTypes'
 
-export const addWorkout = (workout) => {
+export const addWorkout = (title) => {
   return {
     type: ADD_WORKOUT,
-    workout}
+    title
+  }
 }
 
 export const updateWorkout = (workout) => {

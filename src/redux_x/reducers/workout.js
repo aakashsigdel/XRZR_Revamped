@@ -5,13 +5,19 @@ import {
   UPDATE_WORKOUT,
   DELETE_WORKOUT
 } from '../actions/actionTypes'
+import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 
 const workout = (state = defaultWorkout, action) => {
   switch (action.type) {
     case ADD_WORKOUT:
+      const newId = Object.keys(state).length + 1
       return {
         ...state,
-        [action.id]: action.workout
+        [newId]: {
+          ...defaultWorkoutSkeleton,
+          title: action.title,
+          id: newId
+        }
       }
     case UPDATE_WORKOUT:
       console.log(action.workout)
@@ -27,6 +33,18 @@ const workout = (state = defaultWorkout, action) => {
     default:
       return state
   }
+}
+
+const defaultWorkoutSkeleton = {
+  exercises: [],
+  description: 'Add a description from settings',
+  image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/others/workoutPlaceholder.png',
+  duration: '0 mins',
+  instructor: 0,
+  workout_set: 0,
+  pause_between_exercises: 0,
+  category: 'Yoga',
+  like: false
 }
 
 const defaultWorkout = {
