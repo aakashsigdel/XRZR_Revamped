@@ -25,16 +25,15 @@ class EditWorkoutExercisesIndex extends React.Component {
     })
   }
   onDone () {
-    console.warn('done')
     this.setState({
       editOnProgress: false
     })
   }
   onExerciseRemove (index) {
     const exercises = this.state.exercises.slice(0, index)
-      .concat(this.state.exercises.slice(index, this.state.exercises.length))
+      .concat(this.state.exercises.slice(index + 1, this.state.exercises.length))
     const order = this.state.order.slice(0, index)
-      .concat(this.state.order.slice(index, this.state.order.length))
+      .concat(this.state.order.slice(index + 1, this.state.order.length))
     this.setState({
       exercises: exercises,
       order: order
@@ -42,6 +41,16 @@ class EditWorkoutExercisesIndex extends React.Component {
   }
 
   render (props = this.props) {
+    const onSaveButton = () => {
+      props.onSaveButton({
+        id: props.workout.id,
+        exercises: this.state.exercises.map((exercise) => exercise.id)
+      })
+      this.setState({
+        editOnProgress: false
+      })
+    }
+
     return (
       <View style={ styles.container }>
         <NavBar
@@ -56,6 +65,7 @@ class EditWorkoutExercisesIndex extends React.Component {
            editOnProgress={this.state.editOnProgress}
            exercises={this.state.exercises}
            onRemoveButton={this.onExerciseRemove.bind(this)}
+           onSaveButton={onSaveButton}
          />
       </View>
     )

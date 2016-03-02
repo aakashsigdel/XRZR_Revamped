@@ -36,8 +36,7 @@ const NavBar = (props) => {
     </View>
   )
 
-  const touchHandler = props.editOnProgress ? props.onEdit : props.onDone
-  console.log(touchHandler)
+  const touchHandler = props.editOnProgress ? props.onDone : props.onEdit
   const right = (
     <TouchableOpacity
       onPress={touchHandler}
