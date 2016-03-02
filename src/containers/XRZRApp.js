@@ -30,11 +30,12 @@ import WorkoutSettings from './WorkoutSettings'
 import EditWorkoutExercises from './EditWorkoutExercises'
 import ProfileSettings from './ProfileSettings'
 import NewWorkout from './NewWorkout'
+import DeleteWorkout from './DeleteWorkout'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'browse'}}
+      initialRoute={{name: 'deleteWorkout'}}
       renderScene={_renderScene}
     />
   )
@@ -102,6 +103,11 @@ const _renderScene = (route, navigator) => {
       return <ProfileSettings navigator={navigator} />
     case 'newWorkout':
       return <NewWorkout navigator={navigator} />
+    case 'deleteWorkout':
+      return <DeleteWorkout
+        navigator={navigator}
+        workoutId={1/* route.workoutId*/}
+      />
     default:
       return <Login
         navigator={navigator}
