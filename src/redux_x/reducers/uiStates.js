@@ -30,7 +30,8 @@ const uiStates = (state = defaultState, action) => {
 const defaultState = {
   selectedCategory: 'Yoga',
   editFavouriteExercises: false,
-  editWorkoutExercisesList: false
+  editWorkoutExercisesList: false,
+  newWorkoutId: null
 }
 
 export default uiStates

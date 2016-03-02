@@ -11,8 +11,24 @@ import WorkoutName from './WorkoutName'
 import CreateWorkoutButton from './CreateWorkoutButton'
 
 export default class NewWorkoutIndex extends Component {
-  _handleCreateWorkout () {
-    this.props.navigator.popToTop()
+  constructor () {
+    super()
+    this.state = {
+      workoutName: ''
+    }
+  }
+
+  _handleCreateWorkout (props) {
+    return () => {
+      props.addWorkout(this.state.workoutName)
+      props.navigator.popToTop()
+    }
+  }
+
+  _setWorkoutName (workoutName) {
+    this.setState({
+      workoutName: workoutName
+    })
   }
 
   render () {
@@ -22,9 +38,11 @@ export default class NewWorkoutIndex extends Component {
           navigator={this.props.navigator}
         />
         <Info />
-        <WorkoutName />
+        <WorkoutName
+          setWorkoutName={(workoutName) => this._setWorkoutName(workoutName)}
+        />
         <CreateWorkoutButton
-          handleCreateWorkout={this._handleCreateWorkout.bind(this)}
+          handleCreateWorkout={this._handleCreateWorkout(this.props)}
         />
       </View>
     )
