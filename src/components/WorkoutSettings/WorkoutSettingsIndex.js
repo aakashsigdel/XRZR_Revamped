@@ -41,6 +41,7 @@ class WorkoutSettingsIndex extends React.Component {
       <View style={styles.container}>
         <NavigationBar
           onCloseButton={props.onCloseButton}
+          onDeleteButton={props.onDeleteButton}
           title={props.workout.title}
         />
         <WorkoutDetails
