@@ -94,7 +94,7 @@ const _renderScene = (route, navigator) => {
     case 'editWorkoutExercises':
       return <EditWorkoutExercises
         navigator={navigator}
-        workoutId={1 /* route.workoutId*/}
+        workoutId={route.workoutId}
       />
     default:
       return <Login
