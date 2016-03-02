@@ -35,7 +35,7 @@ import DeleteWorkout from './DeleteWorkout'
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <Navigator
-      initialRoute={{name: 'deleteWorkout'}}
+      initialRoute={{name: 'workoutSettings'}}
       renderScene={_renderScene}
     />
   )
@@ -92,7 +92,7 @@ const _renderScene = (route, navigator) => {
     case 'workoutSettings':
       return <WorkoutSettings
         navigator={navigator}
-        workoutId={route.workoutId}
+        workoutId={1/* route.workoutId*/}
       />
     case 'editWorkoutExercises':
       return <EditWorkoutExercises

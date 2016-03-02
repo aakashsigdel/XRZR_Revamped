@@ -25,10 +25,12 @@ class WorkoutSettings extends React.Component {
       })
     }
     const onEditExercises = () => props.navigator.push({name: 'editWorkoutExercises', workoutId: workoutId})
+    const onDeleteButton = () => props.navigator.push({name: 'deleteWorkout', workoutId: workoutId})
 
     return (
       <WorkoutSettingsIndex
         onCloseButton={onCloseButton}
+        onDeleteButton={onDeleteButton}
         onEditExercises={onEditExercises}
         onSaveButton={onSaveButton}
         workout={workout}

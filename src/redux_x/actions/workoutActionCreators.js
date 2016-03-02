@@ -17,5 +17,6 @@ export const updateWorkout = (workout) => {
 export const deleteWorkout = (workoutId) => {
   return {
     type: DELETE_WORKOUT,
-    workoutId}
+    workoutId
+  }
 }

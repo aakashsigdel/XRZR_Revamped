@@ -23,7 +23,10 @@ const workout = (state = defaultWorkout, action) => {
         }
       }
     case DELETE_WORKOUT:
-      return state.filter((workout) => workout.id !== action.workoutId)
+      return {
+        ...state,
+        [action.workoutId]: undefined
+      }
     default:
       return state
   }

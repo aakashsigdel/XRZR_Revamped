@@ -15,7 +15,7 @@ const DeleteWorkoutIndex = (props) => {
         </Text>
         <View style={styles.buttons}>
           <TouchableOpacity
-            onPress={props.onDelete}
+            onPress={props.onDeleteButton}
             style={styles.deleteButton}
           >
             <Text style={styles.deleteText}>
@@ -23,7 +23,7 @@ const DeleteWorkoutIndex = (props) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={props.onCancel}
+            onPress={props.onCancelButton}
             style={styles.cancelButton}
           >
             <Text style={styles.cancelText}>

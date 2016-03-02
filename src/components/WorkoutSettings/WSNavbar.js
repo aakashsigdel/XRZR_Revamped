@@ -50,7 +50,9 @@ const WSNavbar = (props) => {
           style={styles.lockedIcon}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={props.onDeleteButton}
+      >
         <Icon
           color='rgba(255,255,255,0.5)'
           name='android-delete'
