@@ -33,7 +33,7 @@ const DeleteExercises = (props) => {
               style={styles.cancelButton}
             >
               <Text style={styles.cancelText}>
-                Cancel
+                Nope
               </Text>
             </TouchableOpacity>
           </View>
