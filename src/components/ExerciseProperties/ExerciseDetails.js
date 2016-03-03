@@ -6,17 +6,23 @@ import React, {
 
 import VideoPlayer from '../Common/VideoPlayer'
 import PropertyList from './PropertyList'
+import Placeholder from './Placeholder'
 
 const ExerciseDetails = (props) => {
   return (
     <View style={styles.container}>
-      <VideoPlayer
-        muted
-        videoUri={props.exercise.videoUri}
-        height={211}
-      />
+      {
+        props.isNewExercise
+        ? <Placeholder height={211} />
+        : <VideoPlayer
+            muted
+            videoUri={props.exercise.videoUri}
+            height={211}
+          />
+      }
       <PropertyList
         exercise={props.exercise}
+        isNewExercise={props.isNewExercise}
       />
     </View>
   )

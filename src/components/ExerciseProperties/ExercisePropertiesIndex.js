@@ -17,8 +17,11 @@ const ExercisePropertiesIndex = (props) => {
       />
       <ExerciseDetails
         exercise={props.exercise}
+        isNewExercise={props.isNewExercise}
       />
-      <ActionButtons />
+      <ActionButtons
+        isNewExercise={props.isNewExercise}
+      />
     </View>
   )
 }

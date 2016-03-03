@@ -1,11 +1,11 @@
 import React, {
-  View,
   ScrollView,
   StyleSheet,
-  PropTypes,
   Text,
-  Switch
+  TextInput,
+  View
 } from 'react-native'
+import Switch from 'react-native-material-switch'
 
 import Hr from '../Common/Hr'
 
@@ -15,26 +15,45 @@ const PropertyListItem = (props) => {
       <Hr />
       <View style={styles.itemContainer}>
         <Text style={styles.titleText}>EXERCISE NAME</Text>
-        <Text style={styles.valueText}>{props.exercise.title}</Text>
+        <TextInput
+          style={styles.valueText}
+          defaultValue={props.isNewExercise ? '' : props.exercise.title}
+          editable={props.isNewExercise ? true : false}
+        />
       </View>
       <Hr />
       <View style={styles.itemContainer}>
         <Text style={styles.titleText}>TAGS</Text>
-        <Text style={styles.valueText}>{props.exercise.tag}</Text>
+        <TextInput
+          style={styles.valueText}
+          defaultValue={props.isNewExercise ? '' : props.exercise.tag}
+          editable={props.isNewExercise ? true : false}
+        />
       </View>
       <Hr />
-      <View style={styles.itemContainer}>
+      <View style={[styles.itemContainer, styles.additionalPadding]}>
         <Text style={styles.titleText}>SOUND</Text>
         <Switch
-          disabled
-          value={props.exercise.sound}
-          style={styles.switchButton}
+          buttonRadius={10}
+          inactiveButtonColor='#B0B0B4'
+          inactiveButtonPressedColor='#B0B0B4'
+          activeButtonColor='#1DD7AB'
+          activeButtonPressedColor='#1DD7AB'
+          activeBackgroundColor='#197461'
+          switchHeight={15}
+          switchWidth={33}
         />
       </View>
       <Hr />
       <View style={styles.descContainer}>
         <Text style={styles.titleText}>DESCRIPTION</Text>
-        <Text style={styles.valueText}>{props.exercise.description}</Text>
+        <TextInput
+          style={styles.multilineValueText}
+          placeholder={props.exercise.description}
+          placeholderTextColor='rgba(255, 255, 255, 0.5)'
+          multiline
+          editable={props.isNewExercise ? true : false}
+        />
       </View>
     </ScrollView>
   )
@@ -46,8 +65,10 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 25,
-    marginBottom: 7.5
+    alignItems: 'center',
+    marginRight: 5.5,
+    paddingTop: 10,
+    paddingBottom: 10
   },
   descContainer: {
     marginTop: 25,
@@ -59,9 +80,25 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   valueText: {
-    color: 'rgba(255,255,255,0.7)',
+    width: 220,
+    height: 40,
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 13,
+    fontWeight: '900',
+    fontFamily: 'Avenir-Book',
+    textAlign: 'right',
+  },
+  multilineValueText: {
+    height: 80,
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 13,
+    fontWeight: '900',
     fontFamily: 'Avenir-Book'
   },
+  additionalPadding: {
+    paddingTop: 20,
+    paddingBottom: 20
+  }
 })
 
 export default PropertyListItem

@@ -14,6 +14,7 @@ class ExerciseProperties extends Component {
       <ExercisePropertiesIndex
         exercise={exercise}
         onCloseButton={onCloseButton}
+        isNewExercise={false}
       />
     )
   }
