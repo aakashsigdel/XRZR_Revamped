@@ -68,7 +68,7 @@ PlayerController.propTypes = {
   onNextPressed: PropTypes.func,
   onPreviousPressed: PropTypes.func,
   progress: PropTypes.number,
-  showTime: PropTypes.number,
+  showTime: PropTypes.bool,
   title: PropTypes.string
 }
 

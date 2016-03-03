@@ -31,6 +31,7 @@ import EditWorkoutExercises from './EditWorkoutExercises'
 import ProfileSettings from './ProfileSettings'
 import NewWorkout from './NewWorkout'
 import DeleteWorkout from './DeleteWorkout'
+import Advertisement from './Advertisement'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -107,6 +108,11 @@ const _renderScene = (route, navigator) => {
       return <DeleteWorkout
         navigator={navigator}
         workoutId={route.workoutId}
+      />
+    case 'ads':
+      return <Advertisement
+        navigator={navigator}
+        onClose={route.onAdClose}
       />
     default:
       return <Login
