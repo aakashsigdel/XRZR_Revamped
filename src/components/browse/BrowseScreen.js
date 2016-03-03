@@ -4,6 +4,7 @@ import {TrendingWorkouts} from './Trendings'
 import {ListingMenu} from './ListingMenu'
 import {Categories} from './Categories'
 import BrowserNavigationBar from './BrowseNavigationBar'
+import StatusMessage from '../Common/StatusMessage'
 
 const BrowserScreen = (props) => {
   return (
@@ -33,6 +34,7 @@ const BrowserScreen = (props) => {
           onCategorySelect={props.onCategorySelect}
         />
       </ScrollView>
+      <StatusMessage visible={false}/>
 
     </Image>
   )
