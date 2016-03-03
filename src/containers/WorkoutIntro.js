@@ -13,10 +13,15 @@ const WorkoutIntro = (props) => {
   let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
   let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
 
-  let onStartWorkout = () => {
+  let onAdClose = () => {
     props.playerActions.loadWorkout(props.player.workoutId)
-    props.navigator.push({name: 'player'})
+    props.navigator.replace({name: 'player'})
   }
+
+  let onStartWorkout = () => props.navigator.push({
+    name: 'ads',
+    onAdClose: onAdClose
+  })
 
   let onExerciseSelect = (videoId) => {
     props.playerActions.loadWorkout(props.player.workoutId)
