@@ -7,6 +7,7 @@ import React, {
 import ExercisePropertiesNavBar from './ExercisePropertiesNavBar'
 import ExerciseDetails from './ExerciseDetails'
 import ActionButtons from './PropertyActionButtons'
+import DeleteExercise from './DeleteExercise'
 
 const ExercisePropertiesIndex = (props) => {
   return (
@@ -19,6 +20,12 @@ const ExercisePropertiesIndex = (props) => {
         exercise={props.exercise}
       />
       <ActionButtons />
+      <DeleteExercise
+        exercise={props.exercise}
+        onDeleteButton={props.onDeleteConfirm}
+        onNopeButton={props.onNopeConfirm}
+        visible={props.modalVisibility}
+      />
     </View>
   )
 }

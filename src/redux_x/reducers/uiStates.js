@@ -3,7 +3,8 @@
 import {
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_DONE,
-  EDIT_FAVOURITE_EXERCISES_FLAG
+  EDIT_FAVOURITE_EXERCISES_FLAG,
+  MODAL_DELETE_EXERCISE
 } from '../actions/actionTypes'
 
 const uiStates = (state = defaultState, action) => {
@@ -23,6 +24,11 @@ const uiStates = (state = defaultState, action) => {
         ...state,
         editFavouriteExercises: false
       }
+    case MODAL_DELETE_EXERCISE:
+      return {
+        ...state,
+        showModalDeleteExercise: action.showModal
+      }
   }
   return state
 }
@@ -30,7 +36,9 @@ const uiStates = (state = defaultState, action) => {
 const defaultState = {
   selectedCategory: 'Yoga',
   editFavouriteExercises: false,
-  editWorkoutExercisesList: false
+  editWorkoutExercisesList: false,
+
+  showModalDeleteExercise: false
 }
 
 export default uiStates

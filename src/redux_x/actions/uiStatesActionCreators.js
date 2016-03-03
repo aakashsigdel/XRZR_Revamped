@@ -1,7 +1,8 @@
 import {
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_FLAG,
-  EDIT_FAVOURITE_EXERCISES_DONE
+  EDIT_FAVOURITE_EXERCISES_DONE,
+  MODAL_DELETE_EXERCISE
 } from './actionTypes'
 
 export const switchCategory = (category) => {
@@ -20,5 +21,12 @@ export const editFavouriteExercisesFlag = () => {
 export const doneEditFavouriteExercisesFlag = () => {
   return {
     type: EDIT_FAVOURITE_EXERCISES_DONE
+  }
+}
+
+export const changeDeleteExerciseModal = (showModal) => {
+  return {
+    type: MODAL_DELETE_EXERCISE,
+    showModal
   }
 }

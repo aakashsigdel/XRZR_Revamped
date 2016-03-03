@@ -2,26 +2,35 @@ import React, {
   PropTypes
 } from 'react-native'
 import {connect} from 'react-redux'
-import {bindActionCreator} from 'redux'
+import {bindActionCreators} from 'redux'
 
 import ExercisePropertiesIndex from '../components/ExerciseProperties/ExercisePropertiesIndex'
+import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
+import * as uiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
 const ExerciseProperties = (props) => {
 
-  const exerciseId = 27
+  const exerciseId = 27 // @TODO
   const exercise = exerciseManager(exerciseId, props.exercises)
 
-  const onCloseButton = () => this.navigator.pop()
+  const onCloseButton = () => props.navigator.pop()
+  const onDeleteConfirm = () => props.exerciseDispatchers.deleteExercise(exercise.id)
+  const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
+  const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
 
   return (
     <ExercisePropertiesIndex
       exercise={exercise}
+      modalVisibility={props.uiStates.showModalDeleteExercise}
       onCloseButton={onCloseButton}
+      onDeleteButton={onDeleteButton}
+      onDeleteConfirm={onDeleteConfirm}
+      onNopeConfirm={onNopeConfirm}
     />
   )
 }
 
-function exerciseManager(exerciseId, exercises){
+function exerciseManager (exerciseId, exercises){
   return exercises[exerciseId]
 }
 
@@ -29,10 +38,14 @@ ExerciseProperties.propTypes = {}
 export default connect(
   (state) => {
     return {
-      exercises: state.exercise
+      exercises: state.exercise,
+      uiStates: state.uiStates
     }
   },
   (dispatch) => {
-    return {}
+    return {
+      exerciseDispatchers: bindActionCreators(ExerciseActionCreators, dispatch),
+      uiDispatchers: bindActionCreators(uiActionCreators, dispatch)
+    }
   }
 )(ExerciseProperties)
