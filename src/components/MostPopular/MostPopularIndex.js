@@ -29,11 +29,9 @@ const MostPopularIndex = (props) => {
       <TouchableOpacity
         onPress={() => props.navigator.pop()}
       >
-        <Icon
-          name='android-arrow-back'
-          size={35}
-          color='white'
-          backgroundColor='transparent'
+        <Image
+          source={require('../../../assets/images/back.png')}
+          style={styles.backButton}
         />
       </TouchableOpacity>
     )
@@ -107,6 +105,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'SFUIText-Light',
     fontSize: 31
+  },
+  backButton: {
+    width: 20,
+    height: 20,
+    marginLeft: 5,
+    marginBottom: 10
   }
 })
 

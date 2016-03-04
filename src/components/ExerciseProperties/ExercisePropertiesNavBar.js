@@ -14,11 +14,9 @@ const ExercisePropertiesNavBar = (props) => {
     <TouchableOpacity
       onPress={props.onCloseButton}
     >
-      <Icon
-        color='rgba(255,255,255,0.5)'
-        name='close'
-        size={45}
-        style={styles.closeButton}
+      <Image
+        source={require('../../../assets/images/back.png')}
+        style={styles.backButton}
       />
     </TouchableOpacity>
   )
@@ -53,6 +51,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingRight: 12
 
+  },
+  backButton: {
+    width: 20,
+    height: 20,
+    marginLeft: 8,
+    marginBottom: 10
   }
 })
 

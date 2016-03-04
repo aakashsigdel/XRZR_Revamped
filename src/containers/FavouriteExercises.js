@@ -65,7 +65,7 @@ const FavouriteExercises = (props) => {
   )
 }
 
-function favouriteExercisesManager(favouriteIds, exercises){
+function favouriteExercisesManager (favouriteIds, exercises){
   return favouriteIds.map((itemId) => {
     return exercises[itemId]
   })
