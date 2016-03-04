@@ -1,13 +1,24 @@
-import React, { Navigator, PropTypes } from 'react-native'
+import React, {
+  Image,
+  Navigator
+} from 'react-native'
 import BrowseScreen from './BrowseScreen'
+import BrowserNavigationBar from './BrowseNavigationBar'
 import FavouriteScreen from './FavouriteScreen'
 
+let navigator_ref = null
 const BrowseIndex = (props) => {
+  const onBrowseTabSelect = () => {
+    props.onTabChanged('browse')
+    navigator_ref.pop()
+  }
+  const onFavouriteTabSelect = () => {
+    props.onTabChanged('favourite')
+    navigator_ref.push({name: 'favourite'})
+  }
 
   function _renderScene (route, navigator) {
-    let onBrowseTabSelect = () => navigator.replace({name: 'browse'})
-    let onFavouriteTabSelect = () => navigator.replace({name: 'favourite'})
-
+    navigator_ref = navigator
     switch (route.name) {
       case 'browse':
         return (
@@ -30,10 +41,23 @@ const BrowseIndex = (props) => {
     }
   }
   return (
-    <Navigator
-      initialRoute={{name: 'browse'}}
-      renderScene={_renderScene}
-    />
+    <Image
+      source={require('../../../assets/images/background.png')}
+      style={{flex: 1}}
+    >
+      <BrowserNavigationBar
+        goToProfile={props.goToProfile}
+        onBrowseTabSelect={onBrowseTabSelect}
+        onFavouriteTabSelect={onFavouriteTabSelect}
+        onSearch={props.onSearch}
+        selectedTab={props.selectedTab}
+      />
+      <Navigator
+        configureScene={() => Navigator.SceneConfigs.FloatFromBottom}
+        initialRoute={{name: 'browse'}}
+        renderScene={_renderScene}
+      />
+    </Image>
   )
 }
 

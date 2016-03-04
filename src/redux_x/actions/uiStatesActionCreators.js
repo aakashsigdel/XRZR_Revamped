@@ -1,4 +1,5 @@
 import {
+  CHANGE_BROWSE_TAB,
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_FLAG,
   EDIT_FAVOURITE_EXERCISES_DONE,
@@ -6,6 +7,12 @@ import {
   SET_NEW_WORKOUT_ID
 } from './actionTypes'
 
+export const switchBrowseTab = (selectedBrowseTab) => {
+  return {
+    type: CHANGE_BROWSE_TAB,
+    selectedBrowseTab
+  }
+}
 export const switchCategory = (category) => {
   return {
     type: SWITCH_CATEGORY,

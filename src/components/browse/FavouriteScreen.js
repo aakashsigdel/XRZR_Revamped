@@ -1,4 +1,8 @@
-import React, { Image, ScrollView, StyleSheet, PropTypes } from 'react-native'
+import React, {
+  ScrollView,
+  PropTypes,
+  View
+} from 'react-native'
 
 import BrowserNavigationBar from './BrowseNavigationBar'
 import {ListingMenu} from './ListingMenu'
@@ -6,17 +10,9 @@ import RecentWorkouts from './RecentWorkouts'
 
 const FavouriteScreen = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={{flex: 1}}
     >
-      <BrowserNavigationBar
-        goToProfile={props.goToProfile}
-        onBrowseTabSelect={props.onBrowseTabSelect}
-        onFavouriteTabSelect={props.onFavouriteTabSelect}
-        onSearch={props.onSearch}
-        selectedTab='favourite'
-      />
       <ScrollView>
         <ListingMenu items={props.favouriteListingItems} />
 
@@ -25,7 +21,7 @@ const FavouriteScreen = (props) => {
           recentWorkouts={props.recentWorkouts}
         />
       </ScrollView>
-    </Image>
+    </View>
   )
 }
 

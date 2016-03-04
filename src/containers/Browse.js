@@ -27,6 +27,7 @@ const Browse = (props) => {
     props.navigator.push({name: 'search'})
   }
   const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
+  const onTabChanged = (tabName) => props.uiDispatchers.switchBrowseTab(tabName)
 
   return (
     <BrowseIndex
@@ -37,7 +38,9 @@ const Browse = (props) => {
       recentWorkouts={recent}
       onCategorySelect={onCategorySelect}
       onSearch={onSearch}
+      onTabChanged={onTabChanged}
       onWorkoutSelect={onWorkoutSelect}
+      selectedTab={props.uiStates.selectedBrowseTab}
       trendings={trendings}
       goToProfile={goToProfile}
       { ...props.playerDispatchers }

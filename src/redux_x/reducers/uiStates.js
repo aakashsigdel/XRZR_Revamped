@@ -1,6 +1,7 @@
 'use strict'
 
 import {
+  CHANGE_BROWSE_TAB,
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_DONE,
   EDIT_FAVOURITE_EXERCISES_FLAG,
@@ -9,6 +10,11 @@ import {
 
 const uiStates = (state = defaultState, action) => {
   switch (action.type) {
+    case CHANGE_BROWSE_TAB:
+      return {
+        ...state,
+        selectedBrowseTab: action.selectedBrowseTab
+      }
     case SWITCH_CATEGORY:
       return {
         ...state,
@@ -34,11 +40,13 @@ const uiStates = (state = defaultState, action) => {
 }
 
 const defaultState = {
+  selectedBrowseTab: 'browse',
   selectedCategory: 'Yoga',
   editFavouriteExercises: false,
   editWorkoutExercisesList: false,
   showModalDeleteExercise: false,
-  newWorkoutId: null
+  newWorkoutId: null,
+
 }
 
 export default uiStates
