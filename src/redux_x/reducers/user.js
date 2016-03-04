@@ -6,7 +6,7 @@ const initialState = {
     id: 0,
     name: 'Kalle Fit',
     image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg',
-    isInstructor: false,
+    isInstructor: true,
     workout: [1, 2, 3]
   },
   1: {

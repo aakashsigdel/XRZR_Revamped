@@ -7,6 +7,15 @@ import React, {
 } from 'react-native'
 
 const PropertyActionButtons = (props) => {
+  if (props.isNewExercise) {
+    return (
+      <View style={ styles.container }>
+        <TouchableOpacity style={styles.saveButton}>
+          <Text style={styles.saveText}>SAVE</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
   return (
     <View style={ styles.container }>
       <TouchableOpacity style={styles.editButton}>

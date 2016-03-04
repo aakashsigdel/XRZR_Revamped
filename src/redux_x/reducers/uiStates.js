@@ -37,8 +37,8 @@ const defaultState = {
   selectedCategory: 'Yoga',
   editFavouriteExercises: false,
   editWorkoutExercisesList: false,
-
-  showModalDeleteExercise: false
+  showModalDeleteExercise: false,
+  newWorkoutId: null
 }
 
 export default uiStates

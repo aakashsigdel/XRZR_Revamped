@@ -2,7 +2,8 @@ import {
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_FLAG,
   EDIT_FAVOURITE_EXERCISES_DONE,
-  MODAL_DELETE_EXERCISE
+  MODAL_DELETE_EXERCISE,
+  SET_NEW_WORKOUT_ID
 } from './actionTypes'
 
 export const switchCategory = (category) => {
@@ -28,5 +29,12 @@ export const changeDeleteExerciseModal = (showModal) => {
   return {
     type: MODAL_DELETE_EXERCISE,
     showModal
+  }
+}
+
+export const setNewWorkoutId = (id) => {
+  return {
+    type: SET_NEW_WORKOUT_ID,
+    id
   }
 }

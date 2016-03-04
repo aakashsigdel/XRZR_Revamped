@@ -1,6 +1,4 @@
-import React, {
-  PropTypes
-} from 'react-native'
+import React, { Component } from 'react-native'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -8,26 +6,27 @@ import ExercisePropertiesIndex from '../components/ExerciseProperties/ExercisePr
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as uiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
-const ExerciseProperties = (props) => {
+class ExerciseProperties extends Component {
+  render (props = this.props) {
+    const exerciseId = 27 // @TODO
+    const exercise = exerciseManager(exerciseId, props.exercises)
 
-  const exerciseId = 27 // @TODO
-  const exercise = exerciseManager(exerciseId, props.exercises)
+    const onCloseButton = () => props.navigator.pop()
+    const onDeleteConfirm = () => props.exerciseDispatchers.deleteExercise(exercise.id)
+    const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
+    const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
 
-  const onCloseButton = () => props.navigator.pop()
-  const onDeleteConfirm = () => props.exerciseDispatchers.deleteExercise(exercise.id)
-  const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
-  const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
-
-  return (
-    <ExercisePropertiesIndex
-      exercise={exercise}
-      modalVisibility={props.uiStates.showModalDeleteExercise}
-      onCloseButton={onCloseButton}
-      onDeleteButton={onDeleteButton}
-      onDeleteConfirm={onDeleteConfirm}
-      onNopeConfirm={onNopeConfirm}
-    />
-  )
+    return (
+      <ExercisePropertiesIndex
+        exercise={exercise}
+        modalVisibility={props.uiStates.showModalDeleteExercise}
+        onCloseButton={onCloseButton}
+        onDeleteButton={onDeleteButton}
+        onDeleteConfirm={onDeleteConfirm}
+        onNopeConfirm={onNopeConfirm}
+      />
+    )
+  }
 }
 
 function exerciseManager (exerciseId, exercises){

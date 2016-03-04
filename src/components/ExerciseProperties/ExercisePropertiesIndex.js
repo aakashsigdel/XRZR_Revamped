@@ -18,8 +18,11 @@ const ExercisePropertiesIndex = (props) => {
       />
       <ExerciseDetails
         exercise={props.exercise}
+        isNewExercise={props.isNewExercise}
       />
-      <ActionButtons />
+      <ActionButtons
+        isNewExercise={props.isNewExercise}
+      />
       <DeleteExercise
         exercise={props.exercise}
         onDeleteButton={props.onDeleteConfirm}

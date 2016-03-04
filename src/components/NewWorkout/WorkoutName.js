@@ -1,6 +1,7 @@
 'use strict'
 
 import React, {
+  PropTypes,
   StyleSheet,
   Text,
   TextInput,
@@ -15,11 +16,16 @@ const WorkoutName = (props) => {
       </Text>
       <View style={styles.textInputContainer}>
         <TextInput
+          onChangeText={(text) => props.setWorkoutName(text)}
           style={styles.textInput}
         />
       </View>
     </View>
   )
+}
+
+WorkoutName.propTypes = {
+  setWorkoutName: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
