@@ -1,5 +1,5 @@
 import React, {
-  View,
+  Image,
   Navigator
 } from 'react-native'
 import BrowseScreen from './BrowseScreen'
@@ -41,8 +41,9 @@ const BrowseIndex = (props) => {
     }
   }
   return (
-    <View
-      style={{flex: 1, backgroundColor: 'black'}}
+    <Image
+      source={require('../../../assets/images/background.png')}
+      style={{flex: 1}}
     >
       <BrowserNavigationBar
         goToProfile={props.goToProfile}
@@ -56,7 +57,7 @@ const BrowseIndex = (props) => {
         initialRoute={{name: 'browse'}}
         renderScene={_renderScene}
       />
-    </View>
+    </Image>
   )
 }
 
