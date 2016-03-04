@@ -71,7 +71,7 @@ class VideoScreen extends Component {
       >
 
         <Player
-          flex={2.2222}
+          flex={2.4}
           onClosePressed={this.props.closePressed}
           onVideoLoaded={this.props.videoLoaded}
           onVideoProgress={this.props.videoProgress}
@@ -81,13 +81,13 @@ class VideoScreen extends Component {
 
         <ExerciseList
           data={exerciseListData(this.props.state)}
-          flex={3.836}
+          flex={3.4}
           nowPlaying={getNowPlaying(this.props.state)}
           onNavigate={this.props.onNavigate}
           onVideoSelect={this.props.changeVideo}
         />
         <PlayerController
-          flex={1}
+          flex={1.8}
           onNextPressed={this.props.nextVideo}
           onPreviousPressed={this.props.previousVideo}
           {...playerControllerData(this.props.state)}

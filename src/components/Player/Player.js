@@ -54,8 +54,8 @@ Player.propTypes = {
 const styles = {
   closeButton: {
     position: 'absolute',
-    left: 12.5,
-    top: 29
+    left: 10,
+    top: 24
   }
 }
 

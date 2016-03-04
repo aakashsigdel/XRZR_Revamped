@@ -1,4 +1,8 @@
-import React, { PropTypes } from 'react-native'
+import React, {
+  Image,
+  PropTypes,
+  StyleSheet
+} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -41,9 +45,20 @@ const WorkoutIntro = (props) => {
     props.navigator.push({
       name: 'action',
       actionElements: [
-        {name: 'SHARE WORKOUT', icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />},
-        {name: 'UNPUBLISH WORKOUT', icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />, border: true},
-        {name: 'EDIT WORKOUT', icon: <FIcon name='history' color='rgba(255, 255, 255, 0.5)' size={20} />, action: onEditWorkout}
+        {
+          name: 'SHARE WORKOUT',
+          icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />
+        },
+        {
+          name: 'UNPUBLISH WORKOUT',
+          icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />,
+          border: true
+        },
+        {
+          name: 'EDIT WORKOUT',
+          icon: <Image source={require('../../assets/images/history.png')} style={styles.history} />,
+          action: onEditWorkout
+        }
       ]
     })
   }
@@ -63,6 +78,14 @@ const WorkoutIntro = (props) => {
     />
   )
 }
+
+const styles = StyleSheet.create({
+  history: {
+    height: 21,
+    width: 21,
+    resizeMode: 'contain'
+  }
+})
 
 function _getWorkoutInfo (workoutId, workouts) {
   let workout = workouts[workoutId]
