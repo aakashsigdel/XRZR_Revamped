@@ -24,11 +24,24 @@ const Player = (props) => {
   }
 
   const closeButtonPressed = () => props.navigator.pop()
+  const handleEditExercise = (props) => {
+    return () => {
+      props.navigator.push({
+        name: 'exerciseProperties',
+        isNewExercise: false
+      })
+    }
+  }
   const onNavigate = (route, exercise) => {
     const actionElements = [
+      {
+        name: 'EDIT EXERCISE',
+        action: handleEditExercise(props),
+        icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25} />
+      },
       {name: 'ADD EXERCISE TO A WORKOUT',
         icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
-          action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exerciseId: exercise.id})
+        action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exerciseId: exercise.id})
       },
       {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />},
       {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />}
