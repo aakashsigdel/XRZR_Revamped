@@ -10,7 +10,7 @@ const BrowseNavigationBar = (props) => {
       style={styles.roundIcon}
     >
       <Icon
-        color='rgb(5,220,186)'
+        color='rgb(213,10,177)'
         name='person'
         size={25}
       />
@@ -20,7 +20,7 @@ const BrowseNavigationBar = (props) => {
     <TouchableOpacity onPress={props.onSearch} >
       <Icon
         backgroundColor='transparent'
-        color='rgb(5,220,186)'
+        color='rgb(213,10,177)'
         name='ios-search-strong'
         size={25}
         style={{marginBottom: 10}}
@@ -35,12 +35,12 @@ const BrowseNavigationBar = (props) => {
   )
   let browseStyle = {backgroundColor: 'transparent'}
   if (props.selectedTab === 'browse') {
-    browseStyle = {backgroundColor: 'rgb(5,220,186)'}
+    browseStyle = {backgroundColor: 'rgb(213,10,177)'}
   }
 
   let favStyle = {backgroundColor: 'transparent'}
   if (props.selectedTab === 'favourite') {
-    favStyle = {backgroundColor: 'rgb(5,220,186)'}
+    favStyle = {backgroundColor: 'rgb(213,10,177)'}
   }
 
   let favourite = (
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    borderColor: 'rgb(5,220,186)',
+    borderColor: 'rgb(213,10,177)',
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 8.5
   },
   midText: {
-    color: 'rgb(5,220,186)',
+    color: 'rgb(213,10,177)',
     padding: 2,
     paddingRight: 10,
     paddingLeft: 15,
@@ -107,14 +107,14 @@ const styles = StyleSheet.create({
 
   },
   touchLeft: {
-    borderColor: 'rgb(5,220,186)',
+    borderColor: 'rgb(213,10,177)',
     borderWidth: 1,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     padding: 1
   },
   touchRight: {
-    borderColor: 'rgb(5,220,186)',
+    borderColor: 'rgb(213,10,177)',
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
