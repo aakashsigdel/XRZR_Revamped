@@ -22,7 +22,7 @@ class ExerciseProperties extends Component {
     })
   }
 
-  render () {
+  render (props = this.props) {
     const exerciseId = 27 // @todo
     const exercise = exerciseManager(exerciseId, this.props.exercises)
 

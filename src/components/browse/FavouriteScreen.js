@@ -11,6 +11,7 @@ const FavouriteScreen = (props) => {
       style={{flex: 1}}
     >
       <BrowserNavigationBar
+        goToProfile={props.goToProfile}
         onBrowseTabSelect={props.onBrowseTabSelect}
         onFavouriteTabSelect={props.onFavouriteTabSelect}
         onSearch={props.onSearch}
