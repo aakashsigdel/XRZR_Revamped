@@ -10,7 +10,10 @@ const PropertyActionButtons = (props) => {
   if (props.isNewExercise) {
     return (
       <View style={ styles.container }>
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity
+          onPress={props.toggleModalState}
+          style={styles.saveButton}
+        >
           <Text style={styles.saveText}>SAVE</Text>
         </TouchableOpacity>
       </View>

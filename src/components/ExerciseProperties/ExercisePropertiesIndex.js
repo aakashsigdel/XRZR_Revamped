@@ -21,6 +21,7 @@ const ExercisePropertiesIndex = (props) => {
       />
       <ActionButtons
         isNewExercise={props.isNewExercise}
+        toggleModalState={props.toggleModalState}
       />
     </View>
   )

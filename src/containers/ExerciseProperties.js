@@ -5,25 +5,42 @@ import ExercisePropertiesIndex from '../components/ExerciseProperties/ExercisePr
 import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
 
 class ExerciseProperties extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isModalVisible: false
+    }
+  }
+
+  toggleModalState () {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
+  }
+
   render () {
     const exerciseId = 27
     const exercise = exerciseManager(exerciseId, this.props.exercises)
 
     const onCloseButton = () => this.props.navigator.pop()
 
-    console.warn(exercise)
-    return (
-      <NewExerciseUploadingIndex
-        user={this.props.user}
-        exercise={exercise}
-      />
-    )
+    if (this.state.isModalVisible) {
+      return (
+        <NewExerciseUploadingIndex
+          user={this.props.user}
+          exercise={exercise}
+          toggleModalState={() => this.toggleModalState()}
+          navigator={this.props.navigator}
+        />
+      )
+    }
     return (
       <ExercisePropertiesIndex
         exercise={exercise}
         instructor={this.props.instructor}
         onCloseButton={onCloseButton}
-        isNewExercise={false}
+        isNewExercise={true}
+        toggleModalState={() => this.toggleModalState()}
       />
     )
   }

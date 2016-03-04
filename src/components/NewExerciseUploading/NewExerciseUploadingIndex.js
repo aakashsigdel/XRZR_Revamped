@@ -11,7 +11,7 @@ import ProgressBar from './ProgressBar'
 
 export default class NewExerciseUploadingIndex extends Component {
   _handleCancelPress () {
-    this.props.navigator.pop()
+    this.props.toggleModalState()
   }
 
   _handleSavePress () {
