@@ -1,6 +1,6 @@
 'use strict'
 
-import React from 'react-native';
+import React from 'react-native'
 import {
   Component,
   Navigator,
@@ -33,7 +33,10 @@ export default class TabView extends Component {
       case 'instructor':
         return <View />
       case 'workout':
-        return <WorkoutListing mostPopularWorkout={this.props.workouts} />
+        return <WorkoutListing
+          loadWorkout={this.props.loadWorkout}
+          mostPopularWorkout={this.props.workouts}
+        />
       case 'category':
         return (
           <CategoryListing
@@ -60,6 +63,12 @@ export default class TabView extends Component {
   }
 
   render () {
+    return (
+      <WorkoutListing
+        loadWorkout={this.props.loadWorkout}
+        mostPopularWorkout={this.props.workouts}
+      />
+    )
     return (
       <View style={styles.container} >
 

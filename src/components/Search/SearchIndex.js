@@ -1,5 +1,5 @@
 import React, {
-  Image,
+  View,
   PropTypes,
   StyleSheet
 } from 'react-native'
@@ -9,17 +9,17 @@ import TabView from './TabView'
 
 const SearchIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
       <SearchNavigationBar onClosePressed={props.onClosePressed} />
       <TabView
         categories={props.categories}
         onCategorySelect={props.onCategorySelect}
+        loadWorkout={props.loadWorkout}
         workouts={props.workouts}
       />
-    </Image>
+    </View>
   )
 }
 
@@ -31,7 +31,9 @@ SearchIndex.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    backgroundColor: 'black'
+  }
 })
 
 export default SearchIndex

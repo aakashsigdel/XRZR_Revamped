@@ -5,20 +5,24 @@ import React, {
   TextInput,
   TouchableOpacity
 } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import Navigation from '../Navigation/Navigation'
 
 const SearchNavigationBar = (props) => {
   let left = {
-    custom: <TouchableOpacity onPress={props.onClosePressed}>
-      <Icon
-        color='rgba(255,255,255, 0.5)'
-        name='close'
-        size={35}
-      />
-
-    </TouchableOpacity>
+    custom: (
+      <TouchableOpacity
+        onPress={props.onClosePressed}
+        style={styles.closeButton}
+      >
+        <Icon
+          color='rgba(255,255,255,0.5)'
+          name='ios-close-empty'
+          size={53}
+        />
+      </TouchableOpacity>
+    )
   }
   let right = {
     custom: (
@@ -31,8 +35,8 @@ const SearchNavigationBar = (props) => {
         />
         <Icon
           color='rgba(255,255,255, 0.5)'
-          name='search'
-          size={20}
+          name='ios-search'
+          size={17}
           style={[styles.searcher, styles.icon]}
         />
       </View>
@@ -52,9 +56,12 @@ SearchNavigationBar.propTypes = {
 }
 const styles = StyleSheet.create({
   container: {},
+  closeButton: {
+    marginBottom: -13
+  },
   searcher: {
     height: 28,
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(255,255,255,0.2)'
   },
   searchContainer: {
     flexDirection: 'row',
@@ -65,6 +72,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft: 10,
 
+    color: 'rgba(255,255,255,0.5)',
     fontSize: 13,
     fontFamily: 'Avenir-Book'
   },

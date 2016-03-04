@@ -1,9 +1,13 @@
-import React, { View, StyleSheet } from 'react-native'
+import React, {
+  View,
+  StyleSheet
+} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import SearchIndex from '../components/Search/SearchIndex'
+import { loadWorkout } from '../redux_x/actions/videoActionCreators'
 
 const Search = (props) => {
   let onCategorySelect = (categoryId) => {
@@ -11,15 +15,24 @@ const Search = (props) => {
     props.navigator.push({name: 'category'})
   }
 
+  const loadWorkout = (workoutId) => {
+    props.loadWorkout(workoutId)
+    props.navigator.push({
+      name: 'workoutIntro'
+    })
+  }
+
   let onClosePressed = () => {
     props.navigator.pop()
   }
 
   return (
-    <SearchIndex workouts={denormalizeInstructor(props.workouts, props.instructors)}
-                 categories={denormalizeCategories(props.categories)}
-                 onCategorySelect={onCategorySelect}
-                 onClosePressed={onClosePressed}
+    <SearchIndex
+      categories={denormalizeCategories(props.categories)}
+      loadWorkout={loadWorkout}
+      onCategorySelect={onCategorySelect}
+      onClosePressed={onClosePressed}
+      workouts={denormalizeInstructor(props.workouts, props.instructors)}
     />
   )
 }
@@ -49,7 +62,8 @@ export default connect(
   },
   (dispatch) => {
     return {
-      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch)
+      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
+      loadWorkout: bindActionCreators(loadWorkout, dispatch)
     }
   }
 )(Search)
