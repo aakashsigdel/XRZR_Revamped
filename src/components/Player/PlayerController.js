@@ -41,7 +41,7 @@ const PlayerController = (props) => {
 
         <View style={styles.details}>
           <Text style={[styles.text, styles.counter]}>{remainingTime}</Text>
-          <Text style={[styles.text]}>{props.title}</Text>
+          <Text style={[styles.text, styles.title]}>{props.title}</Text>
         </View>
 
         <Icon.Button
@@ -50,6 +50,7 @@ const PlayerController = (props) => {
           name='forward'
           onPress={props.onNextPressed}
           size={25}
+          style={{marginRight: -10}}
         />
 
       </View>
@@ -83,7 +84,8 @@ const styles = StyleSheet.create({
   controllers: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    marginTop: 5
   },
   controllerIcon: {
     color: 'white'
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   counter: {
-    fontSize: 45
+    fontSize: 97
   },
   seeker: {
     flexDirection: 'row',
@@ -112,6 +114,9 @@ const styles = StyleSheet.create({
   },
   details: {
     alignItems: 'center'
+  },
+  title: {
+    marginTop: -5
   }
 })
 

@@ -1,4 +1,10 @@
-import React, { View, StyleSheet, TouchableOpacity } from 'react-native'
+import React, {
+  Image,
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 
@@ -22,11 +28,9 @@ const WorkoutIntroNavigation = (props) => {
     custom: <View>
       <View style={styles.rightIcons}>
         <TouchableOpacity onPress={props.onDownloadButton}>
-          <Icon
-            color='rgba(255,255,255,0.5)'
-            name='ios-download-outline'
-            size={30}
-            style={[styles.icon, styles.download]}
+          <Image
+            source={require('../../../assets/images/download.png')}
+            style={styles.download}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.onLikePress(!props.workout.like)}>
@@ -36,8 +40,17 @@ const WorkoutIntroNavigation = (props) => {
               : <FIcon name='heart-o' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
           }
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.handlePressOptions()}>
-          <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} />
+        <TouchableOpacity onPress={() => props.handlePressOptions()} style={{marginTop: 6}}>
+          {/* <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} /> */}
+          <Text style={styles.dotText} >
+            {'•'}
+          </Text>
+          <Text style={styles.dotText} >
+            {'•'}
+          </Text>
+          <Text style={styles.dotText} >
+            {'•'}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -52,6 +65,14 @@ const WorkoutIntroNavigation = (props) => {
 
 const styles = StyleSheet.create({
   container: {},
+  dotText: {
+    lineHeight: 8,
+    fontSize: 12,
+    letterSpacing: 1,
+    color: 'white',
+    opacity: 0.7,
+    paddingLeft: 15
+  },
   rightIcons: {
     flexDirection: 'row'
   },
@@ -59,6 +80,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   download: {
+    height: 24,
+    width: 24,
     paddingBottom: 5
   },
   heart: {

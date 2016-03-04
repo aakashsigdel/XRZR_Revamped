@@ -25,12 +25,9 @@ const ExerciseListItem = (props) => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.iconContainer}>
-          <Icon
-            color='rgba(255,255,255,0.5)'
-            name='more'
-            size={20}
-            style={styles.moreIcon}
-          />
+          <Text style={styles.dotText} >
+            {'•••'}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,6 +42,12 @@ ExerciseListItem.propTypes = {
 const styles = StyleSheet.create({
   container: {
   },
+  dotText: {
+    fontSize: 10,
+    letterSpacing: 1,
+    color: 'white',
+    opacity: 0.7
+  },
   exerciseTitle: {
     color: 'rgba(255,255,255,0.5)',
     fontFamily: 'Avenir-Book',
@@ -55,7 +58,8 @@ const styles = StyleSheet.create({
     paddingBottom: 14
   },
   itemContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   moreIcon: {
     paddingTop: 15,

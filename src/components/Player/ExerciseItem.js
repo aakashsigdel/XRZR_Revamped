@@ -56,11 +56,9 @@ const ExerciseItem = (props) => {
           onPress={onMoreSelect}
           style={styles.options}
         >
-          <Icon
-            name='more'
-            size={15}
-            style={styles.text}
-          />
+          <Text style={styles.dotText} >
+            {'•••'}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -81,6 +79,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 42
   },
+  dotText: {
+    fontSize: 10,
+    letterSpacing: 1,
+    color: 'white',
+    opacity: 0.7
+  },
   text: {
     color: 'white',
     opacity: 0.7
@@ -99,6 +103,8 @@ const styles = StyleSheet.create({
     flex: 2.83
   },
   durationText: {
+    fontSize: 11,
+    fontFamily: 'Avenir-Book',
     textAlign: 'right'
   },
   options: {
