@@ -6,6 +6,7 @@ const ExerciseList = (props) => {
   const _populateList = (item, index) => (
     <ExerciseListItem
       editOnProgress={props.editOnProgress}
+      onMoreButton={props.onMoreButton}
       onRemoveButton={props.onRemoveButton}
       item={item}
     />
