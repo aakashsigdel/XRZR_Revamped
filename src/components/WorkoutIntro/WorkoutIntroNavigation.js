@@ -1,4 +1,4 @@
-import React, { View, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 
@@ -9,11 +9,9 @@ const WorkoutIntroNavigation = (props) => {
     custom: <TouchableOpacity
       onPress={props.onBackButton}
     >
-      <Icon
-        backgroundColor='transparent'
-        color='rgba(255,255,255,0.5)'
-        name='android-arrow-back'
-        size={35}
+      <Image
+        source={require('../../../assets/images/back.png')}
+        style={{width: 20, height: 20, marginLeft: 8, marginBottom: 10}}
       />
     </TouchableOpacity>
   }

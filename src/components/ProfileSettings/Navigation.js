@@ -11,11 +11,9 @@ const ProfileNavigation = (props) => {
       <TouchableOpacity
         onPress={() => props.navigator.pop()}
       >
-        <Icon
-          name='android-arrow-back'
-          size={35}
-          color='white'
-          backgroundColor='transparent'
+        <Image
+          source={require('../../../assets/images/back.png')}
+          style={{width: 20, height: 20, marginLeft: 8, marginBottom: 10}}
         />
       </TouchableOpacity>
     )

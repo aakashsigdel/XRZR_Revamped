@@ -1,4 +1,4 @@
-import React, { View, StyleSheet, Text, TouchableOpacity, PropTypes } from 'react-native'
+import React, { Image, View, StyleSheet, Text, TouchableOpacity, PropTypes } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import Navigation from '../Navigation/Navigation'
@@ -6,11 +6,9 @@ import Navigation from '../Navigation/Navigation'
 const FavouriteNavigationBar = (props) => {
   let leftIcon = (
     <TouchableOpacity onPress={props.onBackButton}>
-      <Icon
-        backgroundColor='transparent'
-        color='rgba(255,255,255,0.5)'
-        name='android-arrow-back'
-        size={35}
+      <Image
+        source={require('../../../assets/images/back.png')}
+        style={styles.backButton}
       />
     </TouchableOpacity>
   )
@@ -115,6 +113,12 @@ const styles = StyleSheet.create({
   },
   rightNav: {
     width: 40
+  },
+  backButton: {
+    width: 20,
+    height: 20,
+    marginLeft: 5,
+    marginBottom: 10
   }
 })
 

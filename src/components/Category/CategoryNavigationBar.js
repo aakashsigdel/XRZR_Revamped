@@ -1,6 +1,8 @@
 import React, {
+  Image,
   TouchableOpacity,
-  PropTypes
+  PropTypes,
+  StyleSheet
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -12,11 +14,9 @@ const CategoryNavigationBar = (props) => {
       <TouchableOpacity
         onPress={props.onBackButton}
       >
-        <Icon
-          backgroundColor='transparent'
-          color='white'
-          name='android-arrow-back'
-          size={35}
+        <Image
+          source={require('../../../assets/images/back.png')}
+          style={styles.backButton}
         />
       </TouchableOpacity>
     )
@@ -50,8 +50,14 @@ CategoryNavigationBar.propTypes = {
   onBackButton: PropTypes.func,
   onSearch: PropTypes.func
 }
-// const styles = StyleSheet.create({
-//  container: {}
-// })
+const styles = StyleSheet.create({
+  container: {},
+  backButton: {
+    width: 20,
+    height: 20,
+    marginLeft: 8,
+    marginBottom: 10
+  }
+})
 
 export default CategoryNavigationBar

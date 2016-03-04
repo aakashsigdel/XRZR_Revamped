@@ -1,24 +1,18 @@
-import React, { Image, PropTypes, ScrollView } from 'react-native'
+import React, {
+  PropTypes,
+  ScrollView,
+  View
+} from 'react-native'
 import Header from './Header'
 import {TrendingWorkouts} from './Trendings'
 import {ListingMenu} from './ListingMenu'
 import {Categories} from './Categories'
-import BrowserNavigationBar from './BrowseNavigationBar'
+
 import StatusMessage from '../Common/StatusMessage'
 
 const BrowserScreen = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
-      style={{flex: 1}}
-    >
-      <BrowserNavigationBar
-        onBrowseTabSelect={props.onBrowseTabSelect}
-        onFavouriteTabSelect={props.onFavouriteTabSelect}
-        onSearch={props.onSearch}
-        selectedTab='browse'
-        goToProfile={props.goToProfile}
-      />
+    <View style={{flex: 1}}>
       <ScrollView>
         <Header
           featured={props.featured}
@@ -35,8 +29,7 @@ const BrowserScreen = (props) => {
         />
       </ScrollView>
       <StatusMessage visible={false}/>
-
-    </Image>
+    </View>
   )
 }
 

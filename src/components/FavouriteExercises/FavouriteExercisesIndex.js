@@ -22,6 +22,7 @@ const FavouriteExercisesIndex = (props) => {
         data={props.favourites}
         editOnProgress={props.favouriteUiStates.editFavouriteExercises}
         onRemoveButton={props.onRemoveButton}
+        onMoreButton={props.onMoreButton}
       />
     </Image>
   )

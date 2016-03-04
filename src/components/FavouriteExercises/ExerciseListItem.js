@@ -14,6 +14,8 @@ const ExerciseListItem = (props) => {
     )
   }
 
+  const onMoreButton = () => props.onMoreButton('action', props.item)
+
   return (
     <View style={ styles.container }>
       <Hr />
@@ -24,7 +26,10 @@ const ExerciseListItem = (props) => {
             <Text style={styles.exerciseTitle}>{props.item.title}</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.iconContainer}>
+        <TouchableOpacity
+          onPress={onMoreButton}
+          style={styles.iconContainer}
+        >
           <Icon
             color='rgba(255,255,255,0.5)'
             name='more'
