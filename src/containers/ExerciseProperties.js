@@ -39,7 +39,7 @@ class ExerciseProperties extends Component {
         exercise={exercise}
         instructor={this.props.instructor}
         onCloseButton={onCloseButton}
-        isNewExercise={true}
+        isNewExercise={this.props.isNewExercise}
         toggleModalState={() => this.toggleModalState()}
       />
     )
