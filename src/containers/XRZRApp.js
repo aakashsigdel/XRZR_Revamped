@@ -89,7 +89,10 @@ const _renderScene = (route, navigator) => {
     case 'workoutCompletion':
       return <WorkoutCompletion navigator={navigator} />
     case 'exerciseProperties':
-      return <ExerciseProperties navigator={navigator} />
+      return <ExerciseProperties
+        navigator={navigator}
+        isNewExercise={route.isNewExercise}
+      />
     case 'workoutSettings':
       return <WorkoutSettings
         navigator={navigator}

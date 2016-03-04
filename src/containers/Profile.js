@@ -30,6 +30,15 @@ const handleCreateNewWorkout = (props) => {
   }
 }
 
+const handleCreateNewExercise = (props) => {
+  return () => {
+    props.navigator.push({
+      name: 'exerciseProperties',
+      isNewExercise: true
+    })
+  }
+}
+
 const handlePressOptions = (props, buttonType) => {
   let actionElements = {}
   if (props.user[props.userId].isInstructor) {
@@ -41,6 +50,7 @@ const handlePressOptions = (props, buttonType) => {
       },
       {
         name: 'CREATE NEW EXERCISE',
+        action: handleCreateNewExercise(props),
         icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25} />
       },
       {

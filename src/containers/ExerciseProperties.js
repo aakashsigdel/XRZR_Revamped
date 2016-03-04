@@ -6,24 +6,52 @@ import ExercisePropertiesIndex from '../components/ExerciseProperties/ExercisePr
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as uiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
+import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
+
 class ExerciseProperties extends Component {
-  render (props = this.props) {
-    const exerciseId = 27 // @TODO
-    const exercise = exerciseManager(exerciseId, props.exercises)
+  constructor () {
+    super()
+    this.state = {
+      isModalVisible: false
+    }
+  }
+
+  toggleModalState () {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
+  }
+
+  render () {
+    const exerciseId = 27 // @todo
+    const exercise = exerciseManager(exerciseId, this.props.exercises)
 
     const onCloseButton = () => props.navigator.pop()
     const onDeleteConfirm = () => props.exerciseDispatchers.deleteExercise(exercise.id)
     const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
     const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
 
+    if (this.state.isModalVisible) {
+      return (
+        <NewExerciseUploadingIndex
+          user={this.props.user}
+          exercise={exercise}
+          toggleModalState={() => this.toggleModalState()}
+          navigator={this.props.navigator}
+        />
+      )
+    }
     return (
       <ExercisePropertiesIndex
         exercise={exercise}
+        instructor={this.props.instructor}
+        isNewExercise={this.props.isNewExercise}
         modalVisibility={props.uiStates.showModalDeleteExercise}
         onCloseButton={onCloseButton}
         onDeleteButton={onDeleteButton}
         onDeleteConfirm={onDeleteConfirm}
         onNopeConfirm={onNopeConfirm}
+        toggleModalState={() => this.toggleModalState()}
       />
     )
   }
@@ -38,7 +66,8 @@ export default connect(
   (state) => {
     return {
       exercises: state.exercise,
-      uiStates: state.uiStates
+      uiStates: state.uiStates,
+      user: state.user[1]
     }
   },
   (dispatch) => {
