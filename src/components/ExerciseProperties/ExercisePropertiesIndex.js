@@ -37,7 +37,6 @@ const ExercisePropertiesIndex = (props) => {
 ExercisePropertiesIndex.propTypes = {}
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
     flex: 1
   }
 })

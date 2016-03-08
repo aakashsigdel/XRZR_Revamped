@@ -15,8 +15,7 @@ import {VIEWPORT} from '../../constants/appConstants'
 const WorkoutCompletionIndex = (props) => {
   const onLikeButton = () => props.onLikeButton(props.workout.id)
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={ styles.container }
     >
       <TouchableOpacity
@@ -72,14 +71,15 @@ const WorkoutCompletionIndex = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </Image>
+    </View>
   )
 }
 
 WorkoutCompletionIndex.propTypes = {}
 const styles = StyleSheet.create({
   container: {
-    width: VIEWPORT.width
+    width: VIEWPORT.width,
+    flex: 1
   },
   congrat: {
     textAlign: 'center',

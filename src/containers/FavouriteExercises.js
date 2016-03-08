@@ -11,7 +11,10 @@ import FavouriteExercisesIndex from '../components/FavouriteExercises/FavouriteE
 
 const FavouriteExercises = (props) => {
   const favourites = favouriteExercisesManager(props.favouriteExercises, props.exercises)
-  const onBrowseTabSelect = () => props.navigator.push({name: 'browse'})
+  const onBrowseTabSelect = () => {
+    props.uiDispatchers.switchBrowseTab('browse')
+    props.navigator.push({name: 'browse'})
+  }
   const onBackButton = props.navigator.pop
   const onDoneButton = props.uiDispatchers.doneEditFavouriteExercisesFlag
   const onEditButton = props.uiDispatchers.editFavouriteExercisesFlag

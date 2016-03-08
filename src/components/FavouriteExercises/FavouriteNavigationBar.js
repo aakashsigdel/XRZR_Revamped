@@ -40,7 +40,7 @@ const FavouriteNavigationBar = (props) => {
   )
   let browseStyle = {backgroundColor: 'transparent'}
 
-  let favStyle = {backgroundColor: 'rgb(5,220,186)'}
+  let favStyle = {backgroundColor: 'rgb(213, 10, 177)'}
   let favourite = (
     <Text style={[styles.midText, styles.selected]}>
       Favourite
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 8.5
   },
   midText: {
-    color: 'rgb(5,220,186)',
+    color: 'rgb(213, 10, 177)',
     padding: 2,
     paddingRight: 10,
     paddingLeft: 15,
@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
 
   },
   touchLeft: {
-    borderColor: 'rgb(5,220,186)',
+    borderColor: 'rgb(213, 10, 177)',
     borderWidth: 1,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     padding: 1
   },
   touchRight: {
-    borderColor: 'rgb(5,220,186)',
+    borderColor: 'rgb(213, 10, 177)',
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,

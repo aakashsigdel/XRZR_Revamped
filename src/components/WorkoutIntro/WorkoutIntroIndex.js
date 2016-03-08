@@ -39,7 +39,8 @@ const WorkoutIntroIndex = (props) => {
 const styles = StyleSheet.create({
   container: {
     width: VIEWPORT.width,
-    height: VIEWPORT.height
+    height: VIEWPORT.height,
+    flex: 1
   }
 })
 

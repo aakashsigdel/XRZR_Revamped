@@ -62,8 +62,7 @@ const ActionScreen = (props) => {
   }
 
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.superContainer}
     >
       <View style={styles.container}>
@@ -79,7 +78,7 @@ const ActionScreen = (props) => {
           CANCEL
         </Text>
       </TouchableOpacity>
-    </Image>
+    </View>
   )
 }
 

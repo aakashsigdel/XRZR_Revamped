@@ -42,7 +42,7 @@ const BrowseIndex = (props) => {
   }
   return (
     <View
-      style={{flex: 1, backgroundColor: 'black'}}
+      style={{flex: 1}}
     >
       <BrowserNavigationBar
         goToProfile={props.goToProfile}

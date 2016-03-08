@@ -11,8 +11,7 @@ import { VIEWPORT } from '../../constants/appConstants'
 
 const CategoryIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
 
@@ -42,7 +41,7 @@ const CategoryIndex = (props) => {
         onBackButton={props.onBackButton}
         onSearch={props.onSearch}
       />
-    </Image>
+    </View>
   )
 }
 

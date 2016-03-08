@@ -9,7 +9,7 @@ const ExerciseListItem = (props) => {
     const onRemoveButton = () => props.onRemoveButton(props.item.id)
     deleteButton = (
       <TouchableOpacity onPress={onRemoveButton}>
-        <Icon name='minus-circled' size={20} color='rgb(255,134,126)' style={styles.deleteIcon}/>
+        <Icon name='minus-circled' size={20} color='rgb(249, 65, 125)' style={styles.deleteIcon}/>
       </TouchableOpacity>
     )
   }
