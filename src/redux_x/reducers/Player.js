@@ -23,13 +23,13 @@ const player = (state = defaultState, action) => {
         paused: !state.paused
       }
     case CHANGE_VIDEO:
-      if (!action.videoId) {
+      if (action.videoIndex === undefined) {
         return state
       }
 
       return {
         ...state,
-        nowPlaying: action.videoId,
+        nowPlaying: action.videoIndex,
         lastKnownTime: 0,
         currentTime: 0,
         paused: false

@@ -11,7 +11,7 @@ const WorkoutIntroNavigation = (props) => {
     >
       <Image
         source={require('../../../assets/images/back.png')}
-        style={{width: 20, height: 20, marginLeft: 8, marginBottom: 10}}
+        style={{width: 22, height: 22, marginLeft: 8, marginBottom: 10}}
       />
     </TouchableOpacity>
   }
@@ -20,10 +20,8 @@ const WorkoutIntroNavigation = (props) => {
     custom: <View>
       <View style={styles.rightIcons}>
         <TouchableOpacity onPress={props.onDownloadButton}>
-          <Icon
-            color='rgba(255,255,255,0.5)'
-            name='ios-download-outline'
-            size={30}
+          <Image
+            source={require('../../../assets/images/download.png')}
             style={[styles.icon, styles.download]}
           />
         </TouchableOpacity>
@@ -57,7 +55,9 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   download: {
-    paddingBottom: 5
+    width: 22,
+    height: 22,
+    marginTop: 5
   },
   heart: {
     paddingTop: 3

@@ -17,7 +17,7 @@ const ExerciseItem = (props) => {
       {props.item.index + 1}
     </Text>)
 
-  if (props.nowPlaying === props.item.id) {
+  if (props.nowPlaying === props.item.index) {
     idText = (
       <Icon
         name='play'
@@ -27,7 +27,7 @@ const ExerciseItem = (props) => {
     )
   }
 
-  const onVideoSelect = () => props.onVideoSelect(props.item.id)
+  const onVideoSelect = () => props.onVideoSelect(props.item.index)
   const onMoreSelect = () => props.onNavigate('action', props.item)
 
   return (

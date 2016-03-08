@@ -12,10 +12,10 @@ export const pauseVideo = () => {
   }
 }
 
-export const changeVideo = (videoId) => {
+export const changeVideo = (videoIndex) => {
   return {
     type: CHANGE_VIDEO,
-    videoId: videoId
+    videoIndex
   }
 }
 

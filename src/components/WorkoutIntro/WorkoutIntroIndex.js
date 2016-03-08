@@ -1,14 +1,14 @@
-import React, { Image, View, StyleSheet } from 'react-native'
+import React, { Image, View, ScrollView, StyleSheet } from 'react-native'
 import WorkoutIntroNavigation from './WorkoutIntroNavigation'
 import WorkoutDescription from './WorkoutDescription'
 import ExerciseList from './ExerciseList'
 import { VIEWPORT } from '../../constants/appConstants'
+import StartButton from './StartButton'
 
 const WorkoutIntroIndex = (props) => {
   return (
-    <Image
+    <View
       style={styles.container}
-      source={require('../../../assets/images/background.png')}
     >
       <WorkoutIntroNavigation
         onBackButton={props.onBackButton}
@@ -17,21 +17,22 @@ const WorkoutIntroIndex = (props) => {
         workout={props.workout}
         handlePressOptions={props.handlePressOptions}
       />
-      <View style={{flex: 1}}>
+      <ScrollView>
         <WorkoutDescription
           workout={props.workout}
           instructor={props.instructor}
           goToProfile={props.goToProfile}
         />
-      </View>
-      <View style={{flex: 1}}>
         <ExerciseList
           exercises={props.exercises}
           onStartWorkout={props.onStartWorkout}
           onExerciseSelect={props.onExerciseSelect}
         />
-      </View>
-    </Image>
+      </ScrollView>
+      <StartButton
+        onStartWorkout={props.onStartWorkout}
+      />
+    </View>
   )
 }
 
