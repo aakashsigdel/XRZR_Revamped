@@ -31,7 +31,17 @@ const FavouriteWorkoutNavBar = (props) => {
     </TouchableOpacity>
   )
 
-  const rightIcon = (props.editOnProgress) ? doneIcon : editIcon
+  let rightIcon = (
+    <TouchableOpacity onPress={props.onSearch} >
+      <Icon
+        backgroundColor='transparent'
+        color='rgb(213,10,177)'
+        name='ios-search-strong'
+        size={25}
+        style={{marginBottom: 10}}
+      />
+    </TouchableOpacity>
+  )
 
   let browse = (
     <Text style={styles.midText}>
