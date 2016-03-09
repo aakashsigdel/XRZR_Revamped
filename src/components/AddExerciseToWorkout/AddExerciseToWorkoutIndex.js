@@ -20,7 +20,7 @@ const AddExerciseToWorkoutIndex = (props) => {
           onPress={props.navigator.pop}
         >
           <Icon name='close'
-            size={40}
+            size={35}
             backgroundColor='transparent'
             color='rgba(255,255,255,0.6)'
           />
@@ -35,7 +35,14 @@ const AddExerciseToWorkoutIndex = (props) => {
           popRoute={props.popRoute}
         />
       </View>
-      <TouchableOpacity style={styles.newWorkoutBtn} />
+      <TouchableOpacity
+        onPress={props.handleNewWorkoutPress}
+        style={styles.newWorkoutButton}
+      >
+        <Text style={styles.newWorkoutText}>
+          {'NEW WORKOUT'}
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -49,18 +56,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: HEADERBAR_HEIGHT,
     borderBottomColor: 'rgba(255, 255, 255, 0.1)',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    marginLeft: 5,
+    marginTop: 10
   },
   topBarText: {
     alignSelf: 'center',
     fontSize: 11,
     fontFamily: 'SFCompactText-Semibold',
     fontWeight: 'bold',
-    color: 'rgba(255, 255, 255, 0.5)',
-    marginLeft: 5
+    color: 'rgba(255, 255, 255, 0.5)'
   },
   listingContainer: {
     flex: 1
+  },
+  newWorkoutButton: {
+    backgroundColor: 'rgb(213, 10 ,177)',
+    height: 55,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  newWorkoutText: {
+    color: 'white'
   }
 })
 
