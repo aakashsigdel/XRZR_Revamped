@@ -13,8 +13,7 @@ import Listing from './Listing'
 
 const AddExerciseToWorkoutIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}>
       <View style={styles.topBar}>
         <TouchableOpacity
@@ -37,7 +36,7 @@ const AddExerciseToWorkoutIndex = (props) => {
         />
       </View>
       <TouchableOpacity style={styles.newWorkoutBtn} />
-    </Image>
+    </View>
   )
 }
 
