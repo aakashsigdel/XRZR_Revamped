@@ -39,16 +39,16 @@ const WorkoutIntroNavigation = (props) => {
               : <FIcon name='heart-o' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
           }
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.handlePressOptions()} style={{marginTop: 6}}>
+        <TouchableOpacity onPress={() => props.handlePressOptions()} style={{marginTop: 3}}>
           {/* <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} /> */}
           <Text style={styles.dotText} >
-            {'•'}
+            {'■'}
           </Text>
           <Text style={styles.dotText} >
-            {'•'}
+            {'■'}
           </Text>
           <Text style={styles.dotText} >
-            {'•'}
+            {'■'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -66,14 +66,15 @@ const styles = StyleSheet.create({
   container: {},
   dotText: {
     lineHeight: 8,
-    fontSize: 12,
+    fontSize: 5,
     letterSpacing: 1,
     color: 'white',
     opacity: 0.7,
     paddingLeft: 15
   },
   rightIcons: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 5
   },
   icons: {
     paddingLeft: 15

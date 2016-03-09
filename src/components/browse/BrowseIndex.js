@@ -1,4 +1,5 @@
 import React, {
+  View,
   Image,
   Navigator
 } from 'react-native'
@@ -56,7 +57,7 @@ const BrowseIndex = (props) => {
         initialRoute={{name: 'browse'}}
         renderScene={_renderScene}
       />
-    </Image>
+    </View>
   )
 }
 
