@@ -13,7 +13,7 @@ import { VIEWPORT } from '../../constants/appConstants'
 export default class ProfileSettingsIndex extends Component {
   render () {
     return (
-      <View style={styles.containr}>
+      <View style={styles.container}>
         <View style={styles.cover}>
           <Cover
             user={this.props.user}

@@ -28,5 +28,5 @@ const mapStateToProps = (state) => {
   }
 }
 export default connect(
-  (state) => mapStateToProps(state),
+  (state) => mapStateToProps(state)
 )(ProfileSettings)

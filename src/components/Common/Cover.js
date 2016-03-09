@@ -11,7 +11,7 @@ import { VIEWPORT } from '../../constants/appConstants'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const _renderTick = (isInstructor) => {
-  if(isInstructor) {
+  if (isInstructor) {
     return (
       <Image
         source={require('../../../assets/images/tickIcon.png')}
@@ -48,10 +48,10 @@ const Cover = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   coverImage: {
-    flex: 1,
+    flex: 1
   },
   blur: {
     alignItems: 'center',
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: 20,
     position: 'absolute',
     right: VIEWPORT.width / 2.8,
-    top: VIEWPORT.height / 4.5,
+    top: VIEWPORT.height / 4.5
   },
   profileName: {
     fontFamily: 'SFUIText-Light',

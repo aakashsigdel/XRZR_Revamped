@@ -1,6 +1,6 @@
 'use strict'
 
-import React, { TouchableOpacity } from 'react-native'
+import React, { Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 import Navigation from '../Navigation/Navigation'
@@ -19,13 +19,12 @@ const ProfileNavigation = (props) => {
     )
   }
 
-
   return (
     <Navigation
       left={navLeft}
       mid={{}}
-      right={{}}
       position='absolute'
+      right={{}}
     />
   )
 }
