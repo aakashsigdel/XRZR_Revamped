@@ -9,6 +9,8 @@ import React, {
 } from 'react-native'
 import Switch from 'react-native-material-switch'
 
+import Hr from '../Common/Hr'
+
 const Settings = (props) => {
   return (
     <View style={styles.container}>
@@ -27,6 +29,7 @@ const Settings = (props) => {
           switchWidth={33}
         />
       </View>
+      <Hr />
       <TouchableOpacity style={styles.instagramContainer}>
         <Text style={styles.text}>
           INSTAGRAM
@@ -35,6 +38,7 @@ const Settings = (props) => {
           CONNECT
         </Text>
       </TouchableOpacity>
+      <Hr />
       <View style={styles.description}>
         <Text style={styles.text}>
           DESCRIPTION
@@ -45,7 +49,9 @@ const Settings = (props) => {
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
           style={styles.textInput}
         />
+        <Hr />
       </View>
+
     </View>
   )
 }
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 20,
     borderBottomWidth: 0.5,
-    borderColor: 'rgba(255, 255, 255, 0.5)'
+    //borderColor: 'rgba(255, 255, 255, 0.5)'
   },
   instagramContainer: {
     // flex: 1.38,
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     height: 58,
     borderBottomWidth: 0.5,
-    borderColor: 'rgba(255, 255, 255, 0.5)'
+    //borderColor: 'rgba(255, 255, 255, 0.5)'
 
   },
   description: {
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontSize: 12,
     borderBottomWidth: 0.5,
-    borderColor: 'rgba(255, 255, 255, 0.2)'
+    //borderColor: 'rgba(255, 255, 255, 0.2)'
   },
   text: {
     fontFamily: 'Avenir-Book',

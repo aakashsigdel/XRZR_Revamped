@@ -28,7 +28,9 @@
 		7475C4052F7B4B878E4EABD2 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A22E745FFD0C4161A91767CF /* libRCTVideo.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A9A605C75EB546E5B4EDF1A6 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4047FE49C4F4423499FC2896 /* libRNBlur.a */; };
-		C2049A3F6C1D4311B2C84174 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E607E31A8E2B409BB0A07D93 /* libBVLinearGradient.a */; };
+		CD07C9041C900F2800750CB0 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C050BF1C87FB9700BBC886 /* libBVLinearGradient.a */; };
+		CD07C9061C90236000750CB0 /* SF-Compact-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD07C9051C90236000750CB0 /* SF-Compact-Display-Semibold.otf */; };
+		CD07C9081C90277F00750CB0 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD07C9071C90277F00750CB0 /* SF-UI-Display-Light.otf */; };
 		CD423CFE1C895F8B000441B8 /* SF-Compact-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CF81C895F8B000441B8 /* SF-Compact-Display-Regular.otf */; };
 		CD423CFF1C895F8B000441B8 /* SF-Compact-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CF91C895F8B000441B8 /* SF-Compact-Text-Regular.otf */; };
 		CD423D001C895F8B000441B8 /* SF-Compact-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFA1C895F8B000441B8 /* SF-Compact-Text-Semibold.otf */; };
@@ -175,6 +177,8 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		A22E745FFD0C4161A91767CF /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
+		CD07C9051C90236000750CB0 /* SF-Compact-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Semibold.otf"; path = "../assets/fonts/SF-Compact-Display-Semibold.otf"; sourceTree = "<group>"; };
+		CD07C9071C90277F00750CB0 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Light.otf"; path = "../assets/fonts/SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
 		CD423CF81C895F8B000441B8 /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Regular.otf"; path = "../assets/fonts/SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
 		CD423CF91C895F8B000441B8 /* SF-Compact-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Text-Regular.otf"; path = "../assets/fonts/SF-Compact-Text-Regular.otf"; sourceTree = "<group>"; };
 		CD423CFA1C895F8B000441B8 /* SF-Compact-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Text-Semibold.otf"; path = "../assets/fonts/SF-Compact-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -185,7 +189,6 @@
 		CFE4FD9E64EE47A9BF0A398F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		D2E4E29237FB4331A443D8C1 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		D754F2DE5C8D44868197F0FF /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		E607E31A8E2B409BB0A07D93 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +214,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A9A605C75EB546E5B4EDF1A6 /* libRNBlur.a in Frameworks */,
-				C2049A3F6C1D4311B2C84174 /* libBVLinearGradient.a in Frameworks */,
+				CD07C9041C900F2800750CB0 /* libBVLinearGradient.a in Frameworks */,
 				4028070DE52047569E41EE01 /* libRNVectorIcons.a in Frameworks */,
 				7475C4052F7B4B878E4EABD2 /* libRCTVideo.a in Frameworks */,
 			);
@@ -318,6 +321,8 @@
 		30C0508D1C87F7DA00BBC886 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CD07C9071C90277F00750CB0 /* SF-UI-Display-Light.otf */,
+				CD07C9051C90236000750CB0 /* SF-Compact-Display-Semibold.otf */,
 				CDE6D7E21C8EB362009EB1B2 /* SF-UI-Display-Medium.otf */,
 				CD423CF81C895F8B000441B8 /* SF-Compact-Display-Regular.otf */,
 				CD423CF91C895F8B000441B8 /* SF-Compact-Text-Regular.otf */,
@@ -667,7 +672,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD07C9061C90236000750CB0 /* SF-Compact-Display-Semibold.otf in Resources */,
 				CDE6D7E31C8EB362009EB1B2 /* SF-UI-Display-Medium.otf in Resources */,
+				CD07C9081C90277F00750CB0 /* SF-UI-Display-Light.otf in Resources */,
 				CD423D021C895F8B000441B8 /* SF-UI-Text-Light.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,

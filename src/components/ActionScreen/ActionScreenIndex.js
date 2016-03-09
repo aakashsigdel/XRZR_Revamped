@@ -8,10 +8,11 @@ import React, {
   View
 } from 'react-native'
 import { VIEWPORT } from '../../constants/appConstants'
+import Hr from '../Common/Hr'
 
 const ActionScreen = (props) => {
   const _renderHr = () => {
-    return <View style={styles.hr} />
+    return <Hr />
   }
 
   const _populateRows = () => {

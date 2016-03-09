@@ -1,4 +1,5 @@
 import React, {
+  Image,
   View,
   StyleSheet,
   Text,

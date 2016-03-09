@@ -7,9 +7,9 @@ import React, {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-export const ListingMenu = (props) => {
-  const Hr = (props) => <View style={styles.hr} />
+import Hr from '../Common/Hr'
 
+export const ListingMenu = (props) => {
   let menuItems = props.items.map(
     (item, index) => (
       <TouchableOpacity
@@ -65,9 +65,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: 'rgba(255,255,255,0.6)',
     fontFamily: 'SFCompactText-Regular'
-  },
-  hr: {
-    height: 1,
-    backgroundColor: 'rgba(255,255,255,0.1)'
   }
 })
