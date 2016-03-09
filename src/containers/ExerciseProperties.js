@@ -27,7 +27,7 @@ class ExerciseProperties extends Component {
     const exercise = exerciseManager(exerciseId, this.props.exercises)
 
     const onCloseButton = () => props.navigator.pop()
-    const onDeleteConfirm = () => props.exerciseDispatchers.deleteExercise(exercise.id)
+    const onDeleteConfirm = () => undefined//props.exerciseDispatchers.deleteExercise(exercise.id)
     const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
     const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
 
