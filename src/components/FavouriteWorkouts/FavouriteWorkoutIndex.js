@@ -5,7 +5,7 @@ import React, {
   PropTypes
 } from 'react-native'
 
-import FavouriteWorkoutNavBar from '../browse/BrowseNavigationBar' // <<
+import FavouriteWorkoutNavBar from './FavouriteWorkoutNavBar' // <<
 import FavouriteWorkoutListing from './FavouriteWorkoutListing'
 
 import {VIEWPORT} from '../../constants/appConstants'
@@ -17,6 +17,7 @@ const FavouriteWorkoutIndex = (props) => {
     >
       <FavouriteWorkoutNavBar
         goToProfile={props.goToProfile}
+        onBackButton={props.onBackButton}
         onBrowseTabSelect={props.onBrowseTabSelect}
         onFavouriteTabSelect={props.onFavouriteTabSelect}
         onSearch={props.onSearch}

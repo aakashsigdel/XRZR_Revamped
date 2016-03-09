@@ -18,6 +18,7 @@ const FavouriteWorkouts = (props) => {
     props.navigator.push({name: 'workoutIntro'})
   }
 
+  let onBackButton = props.navigator.pop
   const onBrowseTabSelect = () => {
     props.uiDispatchers.switchBrowseTab('browse')
     props.navigator.replace({name: 'browse'})
@@ -33,6 +34,7 @@ const FavouriteWorkouts = (props) => {
       goToProfile={goToProfile}
       loadWorkout={onWorkoutSelect}
 
+      onBackButton={onBackButton}
       onBrowseTabSelect={onBrowseTabSelect}
       onFavouriteTabSelect={onFavouriteTabSelect}
       onSearch={onSearch}
