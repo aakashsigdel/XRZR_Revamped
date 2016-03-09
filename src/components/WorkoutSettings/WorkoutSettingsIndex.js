@@ -63,8 +63,7 @@ class WorkoutSettingsIndex extends React.Component {
 WorkoutSettingsIndex.propTypes = {}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.9)'
+    flex: 1
   }
 })
 

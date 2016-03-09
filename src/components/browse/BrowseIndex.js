@@ -41,8 +41,7 @@ const BrowseIndex = (props) => {
     }
   }
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={{flex: 1}}
     >
       <BrowserNavigationBar

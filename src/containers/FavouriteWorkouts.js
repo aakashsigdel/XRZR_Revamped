@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import FavouriteWorkoutIndex from '../components/FavouriteWorkouts/FavouriteWorkoutIndex'
+import * as UiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 
 const FavouriteWorkouts = (props) => {
@@ -17,7 +18,10 @@ const FavouriteWorkouts = (props) => {
     props.navigator.push({name: 'workoutIntro'})
   }
 
-  const onBrowseTabSelect = () => props.navigator.replace({name: 'browse'})
+  const onBrowseTabSelect = () => {
+    props.uiDispatchers.switchBrowseTab('browse')
+    props.navigator.replace({name: 'browse'})
+  }
   const onFavouriteTabSelect = () => undefined
   const onSearch = () => props.navigator.push({name: 'search'})
 
@@ -60,6 +64,7 @@ export default connect(
   },
   (dispatch) => {
     return {
+      uiDispatchers: bindActionCreators(UiActionCreators, dispatch),
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch)
     }
   }

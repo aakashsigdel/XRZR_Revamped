@@ -12,8 +12,7 @@ import {VIEWPORT} from '../../constants/appConstants'
 
 const PremiumIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
       <TouchableOpacity
@@ -72,7 +71,7 @@ const PremiumIndex = (props) => {
             </Text>
         </View>
       </View>
-    </Image>
+    </View>
   )
 }
 
@@ -90,15 +89,17 @@ const styles = StyleSheet.create({
   },
   messageContent: {
     margin: 12.5,
-    marginTop: 121.5,
+    marginTop: 65,
     marginBottom: 5,
     padding: 50,
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    paddingBottom: 90,
+    backgroundColor: 'rgba(255,255,255,0.2)'
   },
   upgradeTitle: {
     fontFamily: 'Avenir-Medium',
-    fontSize: 20,
-    color: 'white'
+    fontSize: 19,
+    color: 'white',
+    paddingTop: 5
   },
   rowItem: {
     flexDirection: 'row',
@@ -109,20 +110,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
 
     fontFamily: 'Avenir-Roman',
-    fontSize: 12,
+    fontSize: 13,
     color: 'white'
   },
   upgradeButton: {
     margin: 12.5,
     marginTop: 1,
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(213, 10, 177, 1)'
   },
   upgradeButtonText: {
-    padding: 20,
+    padding: 14,
     textAlign: 'center',
 
     fontFamily: 'Avenir-Book',
-    fontSize: 14,
+    fontSize: 13,
     color: 'white'
   }
 })

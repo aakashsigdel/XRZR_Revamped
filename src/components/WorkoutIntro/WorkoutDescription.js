@@ -24,7 +24,7 @@ const WorkoutDescription = (props) => {
             source={{uri: props.instructor.image}} />
           <View style={styles.textDesc} >
             <Text style={styles.titleText}>
-              {props.workout.title}
+              {props.workout.title.toUpperCase()}
             </Text>
             <Text style={styles.descText}>
               With {props.instructor.name} . {props.workout.duration}
@@ -55,25 +55,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   roundImage: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 35,
+    width: 35,
+    borderRadius: 18,
     borderColor: 'white',
-    borderWidth: 2
+    borderWidth: 1
   },
   textDesc: {
     marginLeft: 12.5,
+    paddingTop: 5,
     backgroundColor: 'transparent'
   },
   titleText: {
     fontFamily: 'SFCompactText-Semibold',
-    fontSize: 14,
+    fontSize: 11,
     color: 'rgb(255, 255, 255)'
   },
   descText: {
     color: 'white',
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 13
+    fontSize: 11
   },
   workoutDesc: {
     padding: 13,

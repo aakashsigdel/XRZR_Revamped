@@ -18,7 +18,7 @@ const Player = (props) => {
   let nextVideoDispatcher = () => {
     const nextVideoId = getNextVideoId(props.state)
     if (nextVideoId === -1) {
-      props.navigator.push({name: 'workoutCompletion'})
+      props.navigator.replace({name: 'workoutCompletion'})
     }
     props.playerActions.changeVideo(nextVideoId)
   }
@@ -69,31 +69,33 @@ const Player = (props) => {
 }
 
 function getPreviousVideoId (state) {
-  let workoutId = state.player.workoutId
-  let workout = state.workout[workoutId]
+  let exerciseIndex = state.player.nowPlaying
+  if (exerciseIndex === undefined) {
+    exerciseIndex = 0
+  }
 
-  let exerciseId = state.player.nowPlaying
-
-  let previousItem = workout.exercises.indexOf(exerciseId) - 1
+  let previousItem = exerciseIndex - 1
 
   if (previousItem < 0) {
     return -1
   }
-  return workout.exercises[previousItem]
+  return previousItem
 }
 
 function getNextVideoId (state) {
   let workoutId = state.player.workoutId
   let workout = state.workout[workoutId]
 
-  let exerciseId = state.player.nowPlaying
+  let exerciseIndex = state.player.nowPlaying
+  if (exerciseIndex === undefined) {
+    exerciseIndex = 0
+  }
+  let nextItem = exerciseIndex + 1
 
-  let nextItem = workout.exercises.indexOf(exerciseId) + 1
-
-  if (nextItem > workout.exercises.length) {
+  if (nextItem >= workout.exercises.length) {
     return -1
   }
-  return workout.exercises[nextItem]
+  return nextItem
 }
 
 function _bindActionCreators (dispatch) {

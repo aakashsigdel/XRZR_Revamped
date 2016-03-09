@@ -6,8 +6,7 @@ import ExerciseList from './ExerciseList'
 
 const FavouriteExercisesIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
       <FavouriteNavigationBar
@@ -24,7 +23,7 @@ const FavouriteExercisesIndex = (props) => {
         onRemoveButton={props.onRemoveButton}
         onMoreButton={props.onMoreButton}
       />
-    </Image>
+    </View>
   )
 }
 

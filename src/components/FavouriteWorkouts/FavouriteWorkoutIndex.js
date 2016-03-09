@@ -12,8 +12,7 @@ import {VIEWPORT} from '../../constants/appConstants'
 
 const FavouriteWorkoutIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
       <FavouriteWorkoutNavBar
@@ -27,7 +26,7 @@ const FavouriteWorkoutIndex = (props) => {
         favouriteWorkouts={props.favouriteWorkouts}
         loadWorkout={props.loadWorkout}
       />
-    </Image>
+    </View>
   )
 }
 
@@ -42,7 +41,8 @@ FavouriteWorkoutIndex.propTypes = {
 }
 const styles = StyleSheet.create({
   container: {
-    width: VIEWPORT.width
+    width: VIEWPORT.width,
+    flex: 1
   }
 })
 

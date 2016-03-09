@@ -1,5 +1,5 @@
-import React, { ListView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { ListView, View, StyleSheet } from 'react-native'
+
 import ExerciseListItem from './ExerciseListItem'
 
 const ExerciseList = (props) => {
@@ -16,12 +16,6 @@ const ExerciseList = (props) => {
       <ListView dataSource={_getDataSource(props.exercises)}
         renderRow={_populateList}
       />
-      <TouchableOpacity style={styles.startButton}
-        onPress={props.onStartWorkout}
-      >
-        <Icon name='play' style={[styles.buttonText, styles.playIcon]} size={20} />
-        <Text style={[styles.buttonText, styles.workoutTitle]}>START WORKOUT</Text>
-      </TouchableOpacity>
     </View>
   )
 }
@@ -33,25 +27,7 @@ const _getDataSource = (itemList) => {
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
-  startButton: {
-    backgroundColor: 'rgb(65, 134, 117)',
-    height: 55,
-
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  buttonText: {
-    color: 'white'
-  },
-  playIcon: {
-    paddingLeft: 15
-  },
-  workoutTitle: {
-    paddingLeft: 100,
-    fontFamily: 'SFUIDisplay-Regular',
-    fontSize: 17
-  }
+  container: {}
 })
 
 export default ExerciseList

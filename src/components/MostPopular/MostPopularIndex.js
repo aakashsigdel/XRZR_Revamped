@@ -55,8 +55,7 @@ const MostPopularIndex = (props) => {
   }
 
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={styles.container}
     >
       <Image
@@ -78,7 +77,7 @@ const MostPopularIndex = (props) => {
         right={navRight}
         position='absolute'
       />
-    </Image>
+    </View>
   )
 }
 

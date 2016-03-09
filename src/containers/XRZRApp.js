@@ -2,7 +2,9 @@
 
 import React, {
   Navigator,
-  PropTypes
+  PropTypes,
+  StyleSheet,
+  View
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -35,10 +37,12 @@ import Advertisement from './Advertisement'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
-    <Navigator
-      initialRoute={{name: 'browse'}}
-      renderScene={_renderScene}
-    />
+    <View style={styles.container}>
+      <Navigator
+        initialRoute={{name: 'browse'}}
+        renderScene={_renderScene}
+      />
+    </View>
   )
 }
 
@@ -131,6 +135,13 @@ XRZRApp.propTypes = {
   state: PropTypes.object,
   actions: PropTypes.object
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(0,0,0,1)',
+    flex: 1
+  }
+})
 
 // ----
 // connect

@@ -18,7 +18,7 @@ const WorkoutIntroNavigation = (props) => {
     >
       <Image
         source={require('../../../assets/images/back.png')}
-        style={{width: 20, height: 20, marginLeft: 8, marginBottom: 10}}
+        style={{width: 22, height: 22, marginLeft: 8, marginBottom: 10}}
       />
     </TouchableOpacity>
   }
@@ -29,7 +29,7 @@ const WorkoutIntroNavigation = (props) => {
         <TouchableOpacity onPress={props.onDownloadButton}>
           <Image
             source={require('../../../assets/images/download.png')}
-            style={styles.download}
+            style={[styles.icon, styles.download]}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.onLikePress(!props.workout.like)}>
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   download: {
-    height: 24,
-    width: 24,
-    paddingBottom: 5
+    width: 22,
+    height: 22,
+    marginTop: 5
   },
   heart: {
     paddingTop: 3

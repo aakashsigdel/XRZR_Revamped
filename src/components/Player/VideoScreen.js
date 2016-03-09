@@ -65,11 +65,9 @@ class VideoScreen extends Component {
       )
     }
     return (
-      <Image
-        source={require('../../../assets/images/background.png')}
+      <View
         style={styles.container}
       >
-
         <Player
           flex={2.4}
           onClosePressed={this.props.closePressed}
@@ -92,23 +90,13 @@ class VideoScreen extends Component {
           onPreviousPressed={this.props.previousVideo}
           {...playerControllerData(this.props.state)}
         />
-      </Image>
+      </View>
     )
   }
 }
 
 function playerData (state) {
-  let workoutId = state.player.workoutId
-  let workout = state.workout[workoutId]
-  if (!workout) {
-    return {}
-  }
-
-  let exerciseId = state.player.nowPlaying
-  if (exerciseId === undefined) {
-    exerciseId = workout.exercises[0]
-  }
-  let exercise = state.exercise[exerciseId]
+  let exercise = getExercise(state)
   if (!exercise) {
     return {}
   }
@@ -122,11 +110,7 @@ function playerData (state) {
 }
 
 function exerciseListData (state) {
-  let workoutId = state.player.workoutId
-  let workout = state.workout[workoutId]
-  if (!workout) {
-    return {}
-  }
+  let workout = getWorkout(state)
 
   let exercises = workout.exercises
   let exercisesData = exercises.map(
@@ -134,14 +118,12 @@ function exerciseListData (state) {
       return {...state.exercise[exerciseId], index: index}
     }
   )
-
   return exercisesData
 }
 
 function playerControllerData (state) {
-  let exerciseId = getNowPlaying(state)
-  let exercise = state.exercise[exerciseId]
-  if (!exercise) {
+  let exercise = getExercise(state)
+  if (!exercise){
     return {}
   }
 
@@ -168,17 +150,30 @@ function playerControllerData (state) {
 }
 
 function getNowPlaying (state) {
+  let exerciseIndex = state.player.nowPlaying
+  if (exerciseIndex === undefined) {
+    return 0
+  }
+  return exerciseIndex
+}
+
+function getExercise (state) {
+  let workout = getWorkout(state)
+  let exerciseIndex = state.player.nowPlaying
+  if (exerciseIndex === undefined){
+    exerciseIndex = 0
+  }
+  let exerciseId = workout.exercises[exerciseIndex]
+  return state.exercise[exerciseId]
+}
+
+function getWorkout (state) {
   let workoutId = state.player.workoutId
   let workout = state.workout[workoutId]
-  if (!workout) {
+  if (workout === undefined) {
     return {}
   }
-
-  let exerciseId = state.player.nowPlaying
-  if (exerciseId === undefined) {
-    return workout.exercises[0]
-  }
-  return exerciseId
+  return workout
 }
 
 VideoScreen.propTypes = {

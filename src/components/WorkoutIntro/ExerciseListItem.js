@@ -1,6 +1,5 @@
 import React, { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-
-const Hr = (props) => <View style={styles.hrStyle} />
+import Hr from '../Common/Hr'
 
 const ExerciseListItem = (props) => {
   return (
@@ -8,7 +7,7 @@ const ExerciseListItem = (props) => {
       <Hr />
       <TouchableOpacity
         style={styles.container}
-        onPress={() => props.onItemSelect(props.item.id)}
+        onPress={() => props.onItemSelect(props.item.index)}
       >
         <Text style={[styles.textContent, styles.number]}>{props.item.index + 1}</Text>
         <Text style={styles.textContent}>{props.item.title}</Text>
@@ -29,11 +28,8 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.6)'
   },
   number: {
-    fontSize: 10
-  },
-  hrStyle: {
-    height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)'
+    fontSize: 10,
+    color: 'rgba(255,255,255,0.5)'
   }
 })
 
