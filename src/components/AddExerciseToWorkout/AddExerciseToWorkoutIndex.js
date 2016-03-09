@@ -10,6 +10,7 @@ import React, {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { HEADERBAR_HEIGHT } from '../../constants/appConstants'
 import Listing from './Listing'
+import Hr from '../Common/Hr'
 
 const AddExerciseToWorkoutIndex = (props) => {
   return (
@@ -27,6 +28,7 @@ const AddExerciseToWorkoutIndex = (props) => {
         </TouchableOpacity>
         <Text style={styles.topBarText}>ADD TO WORKOUT</Text>
       </View>
+      <Hr />
       <View style={styles.listingContainer}>
         <Listing
           workouts={props.workouts}
@@ -55,8 +57,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: HEADERBAR_HEIGHT,
-    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
-    borderBottomWidth: 1,
+    //borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    //borderBottomWidth: 1,
     marginLeft: 5,
     marginTop: 10
   },

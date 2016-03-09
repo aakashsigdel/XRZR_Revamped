@@ -1,11 +1,14 @@
 'use strict'
 
 import React, {
+  View,
   ListView,
   StyleSheet,
   Text,
   TouchableOpacity
 } from 'react-native'
+
+import Hr from '../Common/Hr'
 
 const updateWorkout = (exerciseId, workout, props) => {
   let exercises = workout.exercises
@@ -20,14 +23,17 @@ const updateWorkout = (exerciseId, workout, props) => {
 
 const _renderRow = (rowData, props) => {
   return (
-    <TouchableOpacity
-      style={styles.rowContainer}
-      onPress={() => updateWorkout(props.exercise.id, rowData, props)}
-    >
-      <Text style={styles.text}>
-        {rowData.title.toUpperCase()}
-      </Text>
-    </TouchableOpacity>
+    <View>
+      <TouchableOpacity
+        style={styles.rowContainer}
+        onPress={() => updateWorkout(props.exercise.id, rowData, props)}
+      >
+        <Text style={styles.text}>
+          {rowData.title.toUpperCase()}
+        </Text>
+      </TouchableOpacity>
+      <Hr />
+    </View>
   )
 }
 
@@ -52,8 +58,8 @@ const Listing = (props) => {
 const styles = StyleSheet.create({
   rowContainer: {
     padding: 20,
-    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
-    borderBottomWidth: 1
+    //borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    //borderBottomWidth: 1
   },
   text: {
     color: 'white',
