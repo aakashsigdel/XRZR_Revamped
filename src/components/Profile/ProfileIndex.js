@@ -16,8 +16,7 @@ import { VIEWPORT } from '../../constants/appConstants'
 
 const ProfileIndex = (props) => {
   return (
-    <Image
-      source={require('../../../assets/images/background.png')}
+    <View
       style={{height: VIEWPORT.height, width: VIEWPORT.width}}
     >
       <ScrollView
@@ -57,7 +56,7 @@ const ProfileIndex = (props) => {
           navigator={props.navigator}
         />
       </ScrollView>
-    </Image>
+    </View>
   )
 }
 

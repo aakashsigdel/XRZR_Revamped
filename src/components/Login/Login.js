@@ -13,8 +13,7 @@ const Login = (props) => {
   return (
     <Image
       source={{
-        uri: 'https://lh3.googleusercontent.com/' +
-        'qmFzxL9Zx_xxlFwmDNENfy6xn9B3Fy6NjJYzHVAuGJE=w376-h667-no'
+        uri: 'https://aakashsigdel.github.io/XRZR_Files/others/loginImage.png'
       }}
       style={styles.container}
     >
@@ -26,8 +25,9 @@ const Login = (props) => {
       </Text>
       <View style={styles.buttonContainer}>
         <GhostButton
+          backgroundColor='rgba(213, 10, 177, 0.8)'
           text={"LOGIN WITH FACEBOOK"}
-          onButtonPress={() => console.log('Pressed Login with facebook')}
+          onButtonPress={() => props.navigator.replace({name: 'browse'})}
         />
       </View>
     </Image>

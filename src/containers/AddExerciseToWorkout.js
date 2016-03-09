@@ -9,6 +9,12 @@ const popRoute = (navigator) => {
   navigator.pop()
 }
 
+const handleNewWorkoutPress = (navigator) => {
+  navigator.push({
+    name: 'newWorkout'
+  })
+}
+
 const AddExerciseToWorkout = (props) => {
   let workouts = Object.keys(props.workouts).map((item) => {
     return props.workouts[item]
@@ -20,6 +26,7 @@ const AddExerciseToWorkout = (props) => {
       navigator={props.navigator}
       updateWorkout={(exercises) => props.dispatch(updateWorkout(exercises))}
       popRoute={() => popRoute(props.navigator)}
+      handleNewWorkoutPress={() => handleNewWorkoutPress(props.navigator)}
     />
   )
 }

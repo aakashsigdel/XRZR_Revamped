@@ -43,8 +43,8 @@ const Player = (props) => {
         icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
         action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exerciseId: exercise.id})
       },
-      {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />},
-      {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />}
+      {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23} />},
+      {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40} />}
     ]
     const actionTitle = {
       title: 'SUN SALUTATION A',
