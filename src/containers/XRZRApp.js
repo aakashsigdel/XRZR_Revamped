@@ -34,12 +34,13 @@ import ProfileSettings from './ProfileSettings'
 import NewWorkout from './NewWorkout'
 import DeleteWorkout from './DeleteWorkout'
 import Advertisement from './Advertisement'
+import PausePlay from './PausePlay'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
     <View style={styles.container}>
       <Navigator
-        initialRoute={{name: 'login'}}
+        initialRoute={{name: 'pausePlay'}}
         renderScene={_renderScene}
       />
     </View>
@@ -120,6 +121,10 @@ const _renderScene = (route, navigator) => {
       return <Advertisement
         navigator={navigator}
         onClose={route.onAdClose}
+      />
+    case 'pausePlay':
+      return <PausePlay
+        navigator={navigator}
       />
     default:
       return <Login

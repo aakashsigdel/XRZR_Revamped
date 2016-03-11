@@ -8,6 +8,7 @@
   "dependencies": {
     "react-native": "^0.21.0",
     "react-native-blur": "^0.7.10",
+    "react-native-circular-progress": "0.0.5",
     "react-native-linear-gradient": "^1.5.2",
     "react-native-looped-carousel": "0.0.8",
     "react-native-material-switch": "0.0.4",
