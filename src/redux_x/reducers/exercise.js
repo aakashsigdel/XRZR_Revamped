@@ -435,7 +435,7 @@ const defaultExercise = {
   37: {
     'id': 37,
     'title': 'active plank',
-    'mode': 'time',
+    'mode': 'loop',
     'instructor': 1,
     'duration': 45,
     'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/active%20plank.mov',

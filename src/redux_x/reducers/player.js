@@ -8,7 +8,7 @@ import {
 
 const defaultState = {
   workoutId: 1,
-  nowPlaying: undefined,
+  nowPlaying: undefined,      // this is the index thing
   paused: false,
   lastKnownTime: 0,
   currentTime: 0,

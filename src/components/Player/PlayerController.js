@@ -7,19 +7,9 @@ import React, {
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 const PlayerController = (props) => {
-  let playerPosition = props.progress * 100
-  let remainingVideo = (1 - props.progress) * 100
-  let remainingTime = remainingVideo / 100 * props.duration
-
-  if (!props.showTime) {
-    playerPosition = 0
-    remainingVideo = 100
-    remainingTime = 0
-  }
-
-  if (remainingTime <= 0 && props.showTime) {
-    props.onNextPressed()
-  }
+  let playerPosition = props.totalProgress * 100
+  let remainingVideo = (1 - props.totalProgress) * 100
+  let remainingTime = (1 - props.progress) * props.duration
 
   let remainingMinutes = Math.floor(remainingTime / 60)
   let remainingSeconds = remainingTime - (remainingMinutes * 60)
@@ -27,6 +17,25 @@ const PlayerController = (props) => {
 
   remainingTime = ('00' + remainingMinutes).slice(-2)
   remainingTime += ':' + ('00' + remainingSeconds).slice(-2)
+
+  if (!props.showTime) {
+    playerPosition = 0
+    remainingVideo = 100
+    remainingTime = props.duration
+  }
+
+  if (remainingTime <= 0 && props.showTime) {
+    props.onNextPressed()
+  }
+
+  let textStyles = [styles.text, styles.counter]
+  let seekerStyles = {}
+  let detailStyles = {}
+  if (props.landscape) {
+    textStyles = [styles.text, styles.counter, styles.landscapeText]
+    seekerStyles['backgroundColor'] = 'rgb(65, 134, 117)'
+    detailStyles = styles.detailsLandscape
+  }
 
   return (
     <View style={[{flex: props.flex}, styles.container, {backgroundColor: props.backgroundColor}]}>
@@ -39,9 +48,9 @@ const PlayerController = (props) => {
           size={25}
         />
 
-        <View style={styles.details}>
-          <Text style={[styles.text, styles.counter]}>{remainingTime}</Text>
-          <Text style={[styles.text, styles.title]}>{props.title}</Text>
+        <View style={[ styles.details, detailStyles ]}>
+          <Text style={textStyles}>{remainingTime}</Text>
+          <Text style={[styles.text, styles.title]}>{props.title.toUpperCase()}</Text>
         </View>
 
         <Icon.Button
@@ -55,7 +64,7 @@ const PlayerController = (props) => {
 
       </View>
       <View style={styles.seeker}>
-        <View style={[styles.seenVideoLength, {flex: playerPosition}]} />
+        <View style={[styles.seenVideoLength, {flex: playerPosition}, seekerStyles]} />
         <View style={[styles.remainingVideoLength, {flex: remainingVideo}]} />
       </View>
     </View>
@@ -84,17 +93,26 @@ const styles = StyleSheet.create({
   controllers: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: 5
+  },
+  landscapeControllers: {
+    justifyContent: 'center'
   },
   controllerIcon: {
     color: 'white'
   },
   text: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'SFUIText-Regular',
+    fontSize: 13
   },
   counter: {
+    fontFamily: 'SFCompactText-Regular',
     fontSize: 97
+  },
+  landscapeText: {
+    fontSize: 55
   },
   seeker: {
     flexDirection: 'row',
@@ -113,7 +131,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   details: {
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  detailsLandscape: {
+    paddingLeft: 40,
+    paddingRight: 35,
+    paddingBottom: 5
   },
   title: {
     marginTop: -5
