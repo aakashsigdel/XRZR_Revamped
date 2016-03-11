@@ -85,6 +85,7 @@ class VideoScreen extends Component {
           onVideoSelect={this.props.changeVideo}
         />
         <PlayerController
+          backgroundColor='rgba(255,255,255,0.1)'
           flex={1.8}
           onNextPressed={this.props.nextVideo}
           onPreviousPressed={this.props.previousVideo}
