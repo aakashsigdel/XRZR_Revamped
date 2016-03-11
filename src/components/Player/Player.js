@@ -55,7 +55,7 @@ const styles = {
   closeButton: {
     position: 'absolute',
     left: 10,
-    top: 24
+    top: 15
   }
 }
 

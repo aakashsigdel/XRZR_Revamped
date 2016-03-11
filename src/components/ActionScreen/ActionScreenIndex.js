@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     height: 55,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4B4E5E'
+    backgroundColor: 'rgba(255,255,255,0.2)'
   },
   cancelText: {
     fontSize: 12,

@@ -30,7 +30,6 @@ class VideoScreen extends Component {
   }
 
   _orientationDidChange (orientation) {
-    console.log('changed')
     if (orientation === ORIENTATION.LANDSCAPE) {
       this.setState({
         orientationStatus: ORIENTATION.LANDSCAPE
@@ -53,9 +52,11 @@ class VideoScreen extends Component {
             onVideoTouch={this.props.pauseVideo}
             {...playerData(this.props.state)}
           />
-          <View style={{position: 'absolute', bottom: 0, left: 0, right: 0}}>
+          <View style={{position: 'absolute', bottom: 1, left: 0, right: 0}}>
             <PlayerController
               backgroundColor='transparent'
+              flex={1.8}
+              landscape
               onNextPressed={this.props.nextVideo}
               onPreviousPressed={this.props.previousVideo}
               {...playerControllerData(this.props.state)}
@@ -85,7 +86,9 @@ class VideoScreen extends Component {
           onVideoSelect={this.props.changeVideo}
         />
         <PlayerController
+          backgroundColor='rgba(255,255,255,0.1)'
           flex={1.8}
+
           onNextPressed={this.props.nextVideo}
           onPreviousPressed={this.props.previousVideo}
           {...playerControllerData(this.props.state)}
@@ -123,14 +126,11 @@ function exerciseListData (state) {
 
 function playerControllerData (state) {
   let exercise = getExercise(state)
-  if (!exercise){
+  if (!exercise) {
     return {}
   }
 
-  let duration = -1
-  if (exercise.mode === 'time') {
-    duration = exercise.duration
-  }
+  let duration = exercise.duration
 
   let progress = 0
   if (state.player.currentTime > 0) {
@@ -141,11 +141,18 @@ function playerControllerData (state) {
 
   let showTime = exercise.mode === 'time'
 
+  let exerciseIndex = getNowPlaying(state)
+  let workout = getWorkout(state)
+  const totalExercises = workout.exercises.length
+  const totalProgress = exerciseIndex / totalExercises
+
   return {
     title: exercise.title,
     progress: progress,
     duration: duration,
-    showTime: showTime
+    showTime: showTime,
+
+    totalProgress: totalProgress
   }
 }
 
