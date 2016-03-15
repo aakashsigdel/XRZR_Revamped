@@ -40,7 +40,7 @@ const XRZRApp = ({ state, actions, store }) => {
   return (
     <View style={styles.container}>
       <Navigator
-        initialRoute={{name: 'pausePlay'}}
+        initialRoute={{name: 'browse'}}
         renderScene={_renderScene}
       />
     </View>

@@ -9,60 +9,62 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 import Hr from '../Common/Hr'
 
-const ExerciseItem = (props) => {
-  let duration = props.item.duration + ((props.item.mode === 'loop') ? ' rep' : ' sec')
+class ExerciseItem extends React.Component {
+  render (props = this.props) {
+    let duration = props.item.duration + ((props.item.mode === 'loop') ? ' rep' : ' sec')
 
-  let idText = (
-    <Text style={[styles.text, styles.idText]}>
-      {props.item.index + 1}
-    </Text>)
+    let idText = (
+      <Text style={[styles.text, styles.idText]}>
+        {props.item.index + 1}
+      </Text>)
 
-  if (props.nowPlaying === props.item.index) {
-    idText = (
-      <Icon
-        name='play'
-        size={9}
-        style={[styles.playIcon, styles.id, styles.idText]}
-      />
+    if (props.nowPlaying === props.item.index) {
+      idText = (
+        <Icon
+          name='play'
+          size={9}
+          style={[styles.playIcon, styles.id, styles.idText]}
+        />
+      )
+    }
+
+    const onVideoSelect = () => props.onVideoSelect(props.item.index)
+    const onMoreSelect = () => props.onNavigate('action', props.item)
+
+    return (
+      <View>
+        <Hr />
+        <View style={styles.container}>
+          <TouchableOpacity
+            onPress={onVideoSelect}
+            style={styles.id}
+          >
+            {idText}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={onVideoSelect}
+            style={styles.title}
+          >
+            <Text style={styles.text}>{props.item.title}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={onVideoSelect}
+            style={styles.duration}
+          >
+            <Text style={[styles.text, styles.durationText]}>{duration}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={onMoreSelect}
+            style={styles.options}
+          >
+            <Text style={styles.dotText}>
+              {'•••'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     )
   }
-
-  const onVideoSelect = () => props.onVideoSelect(props.item.index)
-  const onMoreSelect = () => props.onNavigate('action', props.item)
-
-  return (
-    <View>
-      <Hr />
-      <View style={styles.container} >
-        <TouchableOpacity
-          onPress={onVideoSelect}
-          style={styles.id}
-        >
-          {idText}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={onVideoSelect}
-          style={styles.title}
-        >
-          <Text style={styles.text}>{props.item.title}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={onVideoSelect}
-          style={styles.duration}
-        >
-          <Text style={[styles.text, styles.durationText]}>{duration}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={onMoreSelect}
-          style={styles.options}
-        >
-          <Text style={styles.dotText} >
-            {'•••'}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
 }
 
 ExerciseItem.propTypes = {

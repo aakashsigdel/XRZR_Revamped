@@ -3,7 +3,8 @@ import {
   CHANGE_VIDEO,
   VIDEO_LOADED,
   VIDEO_PROGRESS,
-  LOAD_WORKOUT
+  LOAD_WORKOUT,
+  TOGGLE_PAUSE_MODAL
 } from '../actions/actionTypes'
 
 const defaultState = {
@@ -12,7 +13,8 @@ const defaultState = {
   paused: false,
   lastKnownTime: 0,
   currentTime: 0,
-  duration: 0.0
+  duration: 0.0,
+  pauseModalVisibility: false
 }
 
 const player = (state = defaultState, action) => {
@@ -31,8 +33,7 @@ const player = (state = defaultState, action) => {
         ...state,
         nowPlaying: action.videoIndex,
         lastKnownTime: 0,
-        currentTime: 0,
-        paused: false
+        currentTime: 0
       }
     case VIDEO_LOADED:
       return {
@@ -56,6 +57,12 @@ const player = (state = defaultState, action) => {
         lastKnownTime: 0,
         currentTime: 0,
         duration: 0.0
+      }
+
+    case TOGGLE_PAUSE_MODAL:
+      return {
+        ...state,
+        pauseModalVisibility: !state.pauseModalVisibility
       }
   }
   return state

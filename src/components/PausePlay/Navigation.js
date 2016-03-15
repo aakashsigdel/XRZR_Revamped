@@ -12,7 +12,7 @@ const Navigation = (props) => {
   const leftIcon = (
     <TouchableOpacity
       activeOpacity={0.6}
-      onPress={() => props.goToProfile(1)}
+      onPress={props.onCloseButton}
       style={styles.roundIcon}
     >
       <Icon

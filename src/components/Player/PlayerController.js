@@ -6,69 +6,67 @@ import React, {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const PlayerController = (props) => {
-  let playerPosition = props.totalProgress * 100
-  let remainingVideo = (1 - props.totalProgress) * 100
-  let remainingTime = (1 - props.progress) * props.duration
+class PlayerController extends React.Component {
+  render (props = this.props) {
+    //let playerPosition = props.totalProgress * 100
+    //let remainingVideo = (1 - props.totalProgress) * 100
+    //let remainingTime = (1 - props.progress) * props.duration
+    //
+    //let remainingMinutes = Math.floor(remainingTime / 60)
+    //let remainingSeconds = remainingTime - (remainingMinutes * 60)
+    //remainingSeconds = Math.floor(remainingSeconds)
+    //
+    //remainingTime = ('00' + remainingMinutes).slice(-2)
+    //remainingTime += ':' + ('00' + remainingSeconds).slice(-2)
+    //
+    //if (!props.showTime) {
+    //  playerPosition = 0
+    //  remainingVideo = 100
+    //  remainingTime = props.duration
+    //}
+    //
+    //if (remainingTime <= 0 && props.showTime) {
+    //  props.onNextPressed()
+    //}
 
-  let remainingMinutes = Math.floor(remainingTime / 60)
-  let remainingSeconds = remainingTime - (remainingMinutes * 60)
-  remainingSeconds = Math.floor(remainingSeconds)
+    const seekbarCompletion = props.seekbarCompletion
+    const remainingVideo = 100 - seekbarCompletion
 
-  remainingTime = ('00' + remainingMinutes).slice(-2)
-  remainingTime += ':' + ('00' + remainingSeconds).slice(-2)
+    const modeStyles = (props.landscape) ? landscapeStyles : portraitStyles
 
-  if (!props.showTime) {
-    playerPosition = 0
-    remainingVideo = 100
-    remainingTime = props.duration
-  }
+    return (
+      <View style={[styles.container, modeStyles.container]}>
+        <View style={styles.controllers}>
+          <Icon.Button
+            backgroundColor='transparent'
+            color='white'
+            name='backward'
+            onPress={props.onPreviousPressed}
+            size={25}
+          />
 
-  if (remainingTime <= 0 && props.showTime) {
-    props.onNextPressed()
-  }
+          <View style={[ styles.details, modeStyles.details ]}>
+            <Text style={[styles.text, styles.counter, modeStyles.counter]}>{props.remainingTime}</Text>
+            <Text style={[styles.text, styles.title]}>{props.title.toUpperCase()}</Text>
+          </View>
 
-  let textStyles = [styles.text, styles.counter]
-  let seekerStyles = {}
-  let detailStyles = {}
-  if (props.landscape) {
-    textStyles = [styles.text, styles.counter, styles.landscapeText]
-    seekerStyles['backgroundColor'] = 'rgb(65, 134, 117)'
-    detailStyles = styles.detailsLandscape
-  }
+          <Icon.Button
+            backgroundColor='transparent'
+            color='white'
+            name='forward'
+            onPress={props.onNextPressed}
+            size={25}
+            style={{marginRight: -10}}
+          />
 
-  return (
-    <View style={[{flex: props.flex}, styles.container, {backgroundColor: props.backgroundColor}]}>
-      <View style={styles.controllers}>
-        <Icon.Button
-          backgroundColor='transparent'
-          color='white'
-          name='backward'
-          onPress={props.onPreviousPressed}
-          size={25}
-        />
-
-        <View style={[ styles.details, detailStyles ]}>
-          <Text style={textStyles}>{remainingTime}</Text>
-          <Text style={[styles.text, styles.title]}>{props.title.toUpperCase()}</Text>
         </View>
-
-        <Icon.Button
-          backgroundColor='transparent'
-          color='white'
-          name='forward'
-          onPress={props.onNextPressed}
-          size={25}
-          style={{marginRight: -10}}
-        />
-
+        <View style={styles.seeker}>
+          <View style={[styles.seenVideoLength, {flex: seekbarCompletion}, modeStyles.seenVideoLength]}/>
+          <View style={[styles.remainingVideoLength, {flex: remainingVideo}]}/>
+        </View>
       </View>
-      <View style={styles.seeker}>
-        <View style={[styles.seenVideoLength, {flex: playerPosition}, seekerStyles]} />
-        <View style={[styles.remainingVideoLength, {flex: remainingVideo}]} />
-      </View>
-    </View>
-  )
+    )
+  }
 }
 
 PlayerController.propTypes = {
@@ -86,9 +84,34 @@ PlayerController.defaultProps = {
   backgroundColor: '#3c404e'
 }
 
+const portraitStyles = {
+  container: {
+    backgroundColor: 'rgba(255,255,255,0.1)'
+  },
+  details: {},
+  counter: {},
+  seenVideoLength: {}
+}
+const landscapeStyles = {
+  container: {
+    backgroundColor: 'transparent'
+  },
+  details: {
+    paddingLeft: 40,
+    paddingRight: 35,
+    paddingBottom: 5
+  },
+  counter: {
+    fontSize: 55
+  },
+  seenVideoLength: {
+    backgroundColor: 'rgb(65, 134, 117)'
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: '#3c404e'
+    flex: 1.8
   },
   controllers: {
     flexDirection: 'row',
@@ -111,9 +134,6 @@ const styles = StyleSheet.create({
     fontFamily: 'SFCompactText-Regular',
     fontSize: 97
   },
-  landscapeText: {
-    fontSize: 55
-  },
   seeker: {
     flexDirection: 'row',
     alignItems: 'flex-end',
@@ -131,12 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   details: {
-    alignItems: 'center',
-  },
-  detailsLandscape: {
-    paddingLeft: 40,
-    paddingRight: 35,
-    paddingBottom: 5
+    alignItems: 'center'
   },
   title: {
     marginTop: -5

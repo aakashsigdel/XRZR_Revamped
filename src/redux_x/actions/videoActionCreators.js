@@ -1,4 +1,5 @@
 import {
+  TOGGLE_PAUSE_MODAL,
   PAUSE_VIDEO,
   CHANGE_VIDEO,
   VIDEO_LOADED,
@@ -37,5 +38,11 @@ export const loadWorkout = (workoutId) => {
   return {
     type: LOAD_WORKOUT,
     workoutId: workoutId
+  }
+}
+
+export const togglePauseModal = () => {
+  return {
+    type: TOGGLE_PAUSE_MODAL
   }
 }

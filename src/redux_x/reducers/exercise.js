@@ -492,7 +492,7 @@ const defaultExercise = {
     'title': 'frog runner',
     'mode': 'time',
     'instructor': 1,
-    'duration': 45,
+    'duration': 2,
     'videoUri': 'http://aakashsigdel.github.io/XRZR_Files/Exercises/frog%20runner.mov',
     tag: '#yoga, #therapy, #asthanga',
     sound: false,

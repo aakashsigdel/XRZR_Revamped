@@ -35,7 +35,7 @@ class ExerciseList extends Component {
       <ListView
         dataSource={this._getDataSource(this.props.data)}
         renderRow={this._populateList.bind(this)}
-        style={[styles.container, {flex: this.props.flex}]}
+        style={styles.container}
       />
     )
   }
@@ -51,6 +51,7 @@ ExerciseList.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 3.4,
     backgroundColor: 'rgba(0,0,0,0.2)'
   }
 })

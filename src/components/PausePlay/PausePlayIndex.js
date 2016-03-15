@@ -2,6 +2,7 @@
 
 import React, {
   Component,
+  Modal,
   StyleSheet,
   Text,
   View
@@ -19,7 +20,10 @@ export default class PausePlayIndex extends Component {
   }
   componentWillMount () {
     const delay = () => {
-      if (this.state.count >= 100) return
+      if (this.state.count >= 100) {
+        this.props.onCountCompletion()
+        return
+      }
 
       this.setState({
         count: this.state.count + 100 / this.pauseTime
@@ -45,23 +49,28 @@ export default class PausePlayIndex extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <Navigation />
+      <Modal
+        animated
+        visible={this.props.visible}
+      >
         <View style={styles.container}>
-          <View style={styles.titleTextContainer}>
-            <Text style={styles.titleText}>
-              {this.props.title}
-            </Text>
+          <Navigation onCloseButton={this.props.onCloseButton} />
+          <View style={styles.container}>
+            <View style={styles.titleTextContainer}>
+              <Text style={styles.titleText}>
+                {this.props.title}
+              </Text>
+            </View>
+            <View style={styles.countDownContainer}>
+              <CountDown
+                count={this.state.count}
+                pauseTime={this.pauseTime}
+              />
+            </View>
+            {this._renderNextExercise(this.props.nextExercise)}
           </View>
-          <View style={styles.countDownContainer}>
-            <CountDown
-              count={this.state.count}
-              pauseTime={this.pauseTime}
-            />
-          </View>
-          {this._renderNextExercise(this.props.nextExercise)}
         </View>
-      </View>
+      </Modal>
     )
   }
 }

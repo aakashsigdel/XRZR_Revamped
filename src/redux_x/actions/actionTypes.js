@@ -21,6 +21,7 @@ export const CHANGE_VIDEO = 'CHANGE_VIDEO'
 export const VIDEO_LOADED = 'VIDEO_LOADED'
 export const VIDEO_PROGRESS = 'VIDEO_PROGRESS'
 export const LOAD_WORKOUT = 'LOAD_WORKOUT'
+export const TOGGLE_PAUSE_MODAL = 'TOGGLE_PAUSE_MODAL'
 
 // USER STATE
 export const GET_USER = 'GET_USER'
