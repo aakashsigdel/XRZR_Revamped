@@ -42,6 +42,7 @@ class Player extends React.Component {
       currentTime: 0.0,
       lastKnownTime: 0.0
     })
+    console.warn('next Please')
   }
 
   onNavigate (route, exercise) {
@@ -82,6 +83,23 @@ class Player extends React.Component {
       currentTime: this.state.currentTime + (deltaTime),
       lastKnownTime: data.currentTime
     })
+  }
+
+  componentDidMount () {
+    const workout = getWorkoutExpanded(this.props.player, this.props.workouts, this.props.exercises)
+    this.props.playerActions.pauseVideo()
+
+    var that_ = this
+    setTimeout(function () {
+      that_.props.navigator.push({
+        name: 'pausePlay',
+        nextExercise: 'next Exercise Title', //
+        onCloseButton: () => that_.onPauseModalClose(that_.props),
+        onCountCompletion: () => that_.onPauseModalClose(that_.props),
+        pauseTime: workout.pause_between_exercises,
+        title: 'Starting in '
+      })
+    }, 0)
   }
 
   componentWillUpdate (newProps, newState) {
