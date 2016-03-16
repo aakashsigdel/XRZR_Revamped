@@ -49,28 +49,23 @@ export default class PausePlayIndex extends Component {
 
   render () {
     return (
-      <Modal
-        animated
-        visible={this.props.visible}
-      >
+      <View style={styles.container}>
+        <Navigation onCloseButton={this.props.onCloseButton} />
         <View style={styles.container}>
-          <Navigation onCloseButton={this.props.onCloseButton} />
-          <View style={styles.container}>
-            <View style={styles.titleTextContainer}>
-              <Text style={styles.titleText}>
-                {this.props.title}
-              </Text>
-            </View>
-            <View style={styles.countDownContainer}>
-              <CountDown
-                count={this.state.count}
-                pauseTime={this.pauseTime}
-              />
-            </View>
-            {this._renderNextExercise(this.props.nextExercise)}
+          <View style={styles.titleTextContainer}>
+            <Text style={styles.titleText}>
+              {this.props.title}
+            </Text>
           </View>
+          <View style={styles.countDownContainer}>
+            <CountDown
+              count={this.state.count}
+              pauseTime={this.pauseTime}
+            />
+          </View>
+          {this._renderNextExercise(this.props.nextExercise)}
         </View>
-      </Modal>
+      </View>
     )
   }
 }

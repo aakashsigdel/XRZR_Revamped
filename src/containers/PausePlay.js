@@ -8,10 +8,21 @@ import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
 
 export default class PausePlay extends Component {
   render () {
+    const onCloseButton = () => {
+      this.props.navigator.pop()
+      this.props.onCloseButton()
+    }
+    const onCountCompletion = () => {
+      this.props.navigator.pop()
+      this.props.onCountCompletion()
+    }
+
     return (
       <PausePlayIndex
-        pauseTime={this.props.pauseTime}
         nextExercise={this.props.nextExercise}
+        onCloseButton={onCloseButton}
+        onCountCompletion={onCountCompletion}
+        pauseTime={this.props.pauseTime}
         title={this.props.title}
       />
     )

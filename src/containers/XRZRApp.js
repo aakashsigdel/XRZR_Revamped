@@ -125,6 +125,11 @@ const _renderScene = (route, navigator) => {
     case 'pausePlay':
       return <PausePlay
         navigator={navigator}
+        nextExercise={route.nextExercise}
+        onCloseButton={route.onCloseButton}
+        onCountCompletion={route.onCountCompletion}
+        pauseTime={route.pauseTime}
+        title={route.title}
       />
     default:
       return <Login

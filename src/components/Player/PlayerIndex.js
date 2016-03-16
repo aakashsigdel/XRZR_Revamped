@@ -26,7 +26,6 @@ class VideoScreen extends Component {
   }
 
   componentDidMount () {
-    console.log('mounted')
     Orientation.addOrientationListener(this._orientationDidChange.bind(this))
   }
 

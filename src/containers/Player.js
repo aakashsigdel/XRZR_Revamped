@@ -15,6 +15,11 @@ class Player extends React.Component {
       currentTime: 0.0,
       lastKnownTime: 0.0
     }
+    this.previousVideoDispatcher = this.previousVideoDispatcher.bind(this)
+    this.nextVideoDispatcher = this.nextVideoDispatcher.bind(this)
+    this.onNavigate = this.onNavigate.bind(this)
+    this.onVideoProgress = this.onVideoProgress.bind(this)
+    this.onExerciseSelect = this.onExerciseSelect.bind(this)
   }
 
   previousVideoDispatcher () {
@@ -29,6 +34,7 @@ class Player extends React.Component {
     const nextVideoId = getNextVideoId(this.props.player, this.props.workouts)
     if (nextVideoId === -1) {
       this.props.navigator.replace({name: 'workoutCompletion'})
+      return
     }
     this.props.playerActions.changeVideo(nextVideoId)
 
@@ -85,24 +91,40 @@ class Player extends React.Component {
 
     // if we are at end of a video, next Please
     if (remainingTime === undefined) {
-       newProps.playerActions.pauseVideo()
-       newProps.playerActions.togglePauseModal()
-      this.nextVideoDispatcher.bind(this)()
+      newProps.playerActions.pauseVideo()
+      this.nextVideoDispatcher()
+
+      newProps.navigator.push({
+        name: 'pausePlay',
+        nextExercise: 'next Exercise Title',
+        onCloseButton: () => this.onPauseModalClose(newProps),
+        onCountCompletion: () => this.onPauseModalClose(newProps),
+        pauseTime: workout.pause_between_exercises,
+        title: 'Pause'
+      })
     }
+  }
+
+  onPauseModalClose (props) {
+    //props.playerActions.togglePauseModal()
+    props.playerActions.pauseVideo()
+  }
+
+  onExerciseSelect (exerciseIndex) {
+    this.props.playerActions.changeVideo(exerciseIndex)
+    this.setState({
+      currentTime: 0.0,
+      lastKnownTime: 0.0
+    })
   }
 
   render (props = this.props) {
     const closeButtonPressed = () => props.navigator.pop()
 
-    const onPauseModalClose = () => {
-      props.playerActions.togglePauseModal()
-      props.playerActions.pauseVideo()
-    }
-
     const onVideoLoaded = props.playerActions.videoLoaded
-    const onVideoProgress = this.onVideoProgress.bind(this)//props.playerActions.videoProgress
+    const onVideoProgress = this.onVideoProgress.bind(this) //props.playerActions.videoProgress
     const onVideoTouch = props.playerActions.pauseVideo
-    const onChangeVideo = props.playerActions.changeVideo
+    const onChangeVideo = this.onExerciseSelect
 
     const workout = getWorkoutExpanded(props.player, props.workouts, props.exercises)
     const nowPlayingExercise = getNowPlayingExercise(props.player, workout)
@@ -131,14 +153,6 @@ class Player extends React.Component {
           workout={workout}
           seekbarCompletion={seekbarCompletion}
           remainingTime={remainingTime}
-        />
-        <PausePlayIndex
-          visible={props.player.pauseModalVisibility}
-          pauseTime={workout.pause_between_exercises}
-          nextExercise={nowPlayingExercise.title}
-          onCloseButton={onPauseModalClose}
-          onCountCompletion={onPauseModalClose}
-          title={"Pause"}
         />
       </View>
     )

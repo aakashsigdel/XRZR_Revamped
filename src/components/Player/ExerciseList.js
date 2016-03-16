@@ -10,14 +10,21 @@ import ExerciseItem from './ExerciseItem'
 class ExerciseList extends Component {
   constructor (props) {
     super(props)
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+      dataSource: this.ds.cloneWithRows(props.data)
     }
   }
 
-  _getDataSource (itemList) {
-    return this.state.dataSource.cloneWithRows(itemList)
+  componentWillReceiveProps (newProps) {
+    //this.setState({
+    //  dataSource: this.state.dataSource.cloneWithRows(newProps.data)
+    //})
   }
+
+  //_getDataSource (itemList) {
+  //  return this.state.dataSource.cloneWithRows(itemList)
+  //}
 
   _populateList (item, index) {
     return (
@@ -29,11 +36,17 @@ class ExerciseList extends Component {
       />
     )
   }
-
+  //componentWillUpdate (np, ns) {
+  //  console.log(this.props)
+  //  console.log(np)
+  //
+  //  console.log(this.state)
+  //  console.log(ns)
+  //}
   render () {
     return (
       <ListView
-        dataSource={this._getDataSource(this.props.data)}
+        dataSource={this.state.dataSource}
         renderRow={this._populateList.bind(this)}
         style={styles.container}
       />

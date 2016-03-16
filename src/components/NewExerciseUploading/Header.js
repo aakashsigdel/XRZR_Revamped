@@ -9,7 +9,6 @@ import React, {
 import { BlurView } from 'react-native-blur'
 
 const Header = (props) => {
-  console.log(props)
   return (
     <Image
       source={{uri: props.user.image}}
