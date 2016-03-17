@@ -5,6 +5,7 @@ import React, {
   PropTypes
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { VIEWPORT } from '../../constants/appConstants'
 
 class PlayerController extends React.Component {
   render (props = this.props) {
@@ -88,7 +89,9 @@ const portraitStyles = {
   container: {
     backgroundColor: 'rgba(255,255,255,0.1)'
   },
-  details: {},
+  details: {
+    width: VIEWPORT.width - 100
+  },
   counter: {},
   seenVideoLength: {}
 }

@@ -43,9 +43,10 @@ class VideoScreen extends Component {
 
   renderLandScape (props) {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.containerLandscape}>
         <Player
           muted={props.muted}
+          onClosePressed={props.onClosePressed}
           onVideoLoaded={props.onVideoLoaded}
           onVideoProgress={props.onVideoProgress}
           onVideoTouch={props.onVideoTouch}
@@ -59,9 +60,8 @@ class VideoScreen extends Component {
             landscape
             onNextPressed={props.onNextVideo}
             onPreviousPressed={props.onPreviousVideo}
-
             title={props.nowPlayingExercise.title}
-            remainingTime='00:00'
+            remainingTime={props.remainingTime}
             seekbarCompletion={props.seekbarCompletion}
 
           />
@@ -76,12 +76,11 @@ class VideoScreen extends Component {
         style={styles.container}
       >
         <Player
+          muted={props.muted}
           onClosePressed={props.onClosePressed}
           onVideoLoaded={props.onVideoLoaded}
           onVideoProgress={props.onVideoProgress}
           onVideoTouch={props.onVideoTouch}
-
-          muted={props.muted}
           paused={props.paused}
           repeat={props.repeat}
           videoUri={props.nowPlayingExercise.videoUri}
@@ -112,77 +111,6 @@ class VideoScreen extends Component {
   }
 }
 
-//function exerciseListData (state) {
-//  let workout = getWorkout(state)
-//
-//  let exercises = workout.exercises
-//  let exercisesData = exercises.map(
-//    (exerciseId, index) => {
-//      return {...state.exercise[exerciseId], index: index}
-//    }
-//  )
-//  return exercisesData
-//}
-
-//function playerControllerData (state) {
-//  let exercise = getExercise(state)
-//  if (!exercise) {
-//    return {}
-//  }
-//
-//  let duration = exercise.duration
-//
-//  let progress = 0
-//  if (state.player.currentTime > 0) {
-//    progress = parseFloat(state.player.currentTime) / parseFloat(duration)
-//  } else {
-//    progress = 0
-//  }
-//
-//  let showTime = exercise.mode === 'time'
-//
-//  let exerciseIndex = getNowPlaying(state)
-//  let workout = getWorkout(state)
-//  const totalExercises = workout.exercises.length
-//  const totalProgress = exerciseIndex / totalExercises
-//
-//  return {
-//    title: exercise.title,
-//    progress: progress,
-//    duration: duration,
-//    showTime: showTime,
-//
-//    totalProgress: totalProgress
-//  }
-//}
-
-//function getNowPlaying (state) {
-//  let exerciseIndex = state.player.nowPlaying
-//  if (exerciseIndex === undefined) {
-//    return 0
-//  }
-//  return exerciseIndex
-//}
-
-//function getExercise (state) {
-//  let workout = getWorkout(state)
-//  let exerciseIndex = state.player.nowPlaying
-//  if (exerciseIndex === undefined){
-//    exerciseIndex = 0
-//  }
-//  let exerciseId = workout.exercises[exerciseIndex]
-//  return state.exercise[exerciseId]
-//}
-
-//function getWorkout (state) {
-//  let workoutId = state.player.workoutId
-//  let workout = state.workout[workoutId]
-//  if (workout === undefined) {
-//    return {}
-//  }
-//  return workout
-//}
-
 VideoScreen.propTypes = {
   changeVideo: PropTypes.func,
   closePressed: PropTypes.func,
@@ -199,6 +127,10 @@ const styles = StyleSheet.create({
   container: {
     width: VIEWPORT.width,
     height: VIEWPORT.height
+  },
+  containerLandscape: {
+    width: VIEWPORT.height,
+    height: VIEWPORT.width
   },
   videoContainer: {
     flex: 2.22222
