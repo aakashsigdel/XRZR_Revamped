@@ -23,7 +23,6 @@ const WorkoutIntro = (props) => {
   let onAdClose = (exerciseTitle) => {
     props.navigator.replace({
       name: 'pausePlay',
-      nextExercise: exerciseTitle,
       onCloseButton: onCountCompletion,
       onCountCompletion: onCountCompletion,
       pauseTime: workout.pause_between_exercises,
@@ -45,7 +44,6 @@ const WorkoutIntro = (props) => {
 
     props.navigator.push({
       name: 'pausePlay',
-      nextExercise: exercises[videoId].title,
       onCloseButton: onCountCompletion,
       onCountCompletion: onCountCompletion,
       pauseTime: workout.pause_between_exercises,

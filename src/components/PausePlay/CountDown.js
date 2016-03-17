@@ -20,7 +20,14 @@ const CountDown = (props) => {
     >
       {
         (fill) => (
-          <Text style={styles.points}>
+          <Text style={[
+            styles.points,
+            {
+              fontSize: props.size * 0.556,
+              left: 0.182 * props.size,
+              top: 0.142 * props.size
+            }
+          ]}>
             {countDownNumber}
           </Text>
         )

@@ -8,16 +8,34 @@ import React, {
 } from 'react-native'
 import Navigation from './Navigation'
 import CountDown from './CountDown'
+import Orientation from 'react-native-orientation'
+import {
+  VIEWPORT,
+  ORIENTATION
+} from '../../constants/appConstants'
 
 export default class PausePlayIndex extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      count: 0
+      count: 0,
+      countDownSize: 175
     }
     this.pauseTime = props.pauseTime
   }
+
+  componentDidMount () {
+    Orientation.unlockAllOrientations()
+    Orientation.addOrientationListener(this._orientationDidChange.bind(this))
+  }
+
   componentWillMount () {
+    Orientation.getOrientation((err, orientation) => {
+      this.setState({
+        orientationStatus: orientation
+      })
+    })
+
     const delay = () => {
       if (this.state.count >= 100) {
         this.props.onCountCompletion()
@@ -30,6 +48,18 @@ export default class PausePlayIndex extends Component {
       this.timeout = setTimeout(delay.bind(this), 1000)
     }
     delay(this)
+  }
+
+  _orientationDidChange (orientation) {
+    if (orientation === ORIENTATION.LANDSCAPE) {
+      this.setState({
+        countDownSize: 0.262 * VIEWPORT.width
+      })
+    } else if (orientation === ORIENTATION.PORTRAIT) {
+      this.setState({
+        countDownSize: 0.262 * VIEWPORT.height
+      })
+    }
   }
 
   _renderNextExercise (nextExercise) {
@@ -62,6 +92,7 @@ export default class PausePlayIndex extends Component {
           </View>
           <View style={styles.countDownContainer}>
             <CountDown
+              size={this.state.countDownSize}
               count={this.state.count}
               pauseTime={this.pauseTime}
             />
