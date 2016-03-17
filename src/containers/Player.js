@@ -22,6 +22,13 @@ class Player extends React.Component {
     this.onExerciseSelect = this.onExerciseSelect.bind(this)
   }
 
+  resetTimeCounter () {
+    this.setState({
+      currentTime: 0.0,
+      lastKnownTime: 0.0
+    })
+  }
+
   previousVideoDispatcher () {
     const previousVideo = getPreviousVideoId(this.props.player)
     if (previousVideo === -1) {
@@ -39,11 +46,7 @@ class Player extends React.Component {
     }
     this.props.playerActions.changeVideo(nextVideoId)
 
-    this.setState({
-      currentTime: 0.0,
-      lastKnownTime: 0.0
-    })
-
+    this.resetTimeCounter()
     return true
   }
 
@@ -79,29 +82,13 @@ class Player extends React.Component {
 
   onVideoProgress (data) {
     let deltaTime = data.currentTime - this.state.lastKnownTime
-    if (deltaTime < 0) deltaTime = 0
+
+    if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
 
     this.setState({
       currentTime: this.state.currentTime + (deltaTime),
       lastKnownTime: data.currentTime
     })
-  }
-
-  componentDidMount () {
-    const workout = getWorkoutExpanded(this.props.player, this.props.workouts, this.props.exercises)
-    this.props.playerActions.pauseVideo()
-
-    var that_ = this
-    setTimeout(function () {
-      that_.props.navigator.push({
-        name: 'pausePlay',
-        nextExercise: 'next Exercise Title', //
-        onCloseButton: () => that_.onPauseModalClose(that_.props),
-        onCountCompletion: () => that_.onPauseModalClose(that_.props),
-        pauseTime: workout.pause_between_exercises,
-        title: 'Starting in '
-      })
-    }, 0)
   }
 
   componentWillUpdate (newProps, newState) {
@@ -120,24 +107,21 @@ class Player extends React.Component {
       newProps.navigator.push({
         name: 'pausePlay',
         nextExercise: 'next Exercise Title',
-        onCloseButton: () => this.onPauseModalClose(newProps),
-        onCountCompletion: () => this.onPauseModalClose(newProps),
+        onCloseButton: () => this.onPauseScreenClose(newProps),
+        onCountCompletion: () => this.onPauseScreenClose(newProps),
         pauseTime: workout.pause_between_exercises,
         title: 'Pause'
       })
     }
   }
 
-  onPauseModalClose (props) {
+  onPauseScreenClose (props) {
     props.playerActions.pauseVideo()
   }
 
   onExerciseSelect (exerciseIndex) {
     this.props.playerActions.changeVideo(exerciseIndex)
-    this.setState({
-      currentTime: 0.0,
-      lastKnownTime: 0.0
-    })
+    this.resetTimeCounter()
   }
 
   render (props = this.props) {
