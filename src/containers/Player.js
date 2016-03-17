@@ -116,6 +116,7 @@ class Player extends React.Component {
   }
 
   onPauseScreenClose (props) {
+    props.navigator.pop()
     props.playerActions.pauseVideo()
   }
 
