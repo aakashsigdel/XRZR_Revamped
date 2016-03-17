@@ -2,7 +2,6 @@
 
 import React, {
   Component,
-  Modal,
   StyleSheet,
   Text,
   View
@@ -28,7 +27,7 @@ export default class PausePlayIndex extends Component {
       this.setState({
         count: this.state.count + 100 / this.pauseTime
       })
-      setTimeout(delay.bind(this), 1000)
+      this.timeout = setTimeout(delay.bind(this), 1000)
     }
     delay(this)
   }
@@ -45,6 +44,10 @@ export default class PausePlayIndex extends Component {
         <Text style={styles.nextExercise} />
       )
     }
+  }
+
+  componentWillUnmount () {
+    this.timeout ? window.clearTimeout(this.timeout) : null
   }
 
   render () {
