@@ -32,9 +32,10 @@ class Player extends React.Component {
 
   nextVideoDispatcher () {
     const nextVideoId = getNextVideoId(this.props.player, this.props.workouts)
+
     if (nextVideoId === -1) {
       this.props.navigator.replace({name: 'workoutCompletion'})
-      return
+      return false
     }
     this.props.playerActions.changeVideo(nextVideoId)
 
@@ -42,7 +43,8 @@ class Player extends React.Component {
       currentTime: 0.0,
       lastKnownTime: 0.0
     })
-    console.warn('next Please')
+
+    return true
   }
 
   onNavigate (route, exercise) {
@@ -110,7 +112,10 @@ class Player extends React.Component {
     // if we are at end of a video, next Please
     if (remainingTime === undefined) {
       newProps.playerActions.pauseVideo()
-      this.nextVideoDispatcher()
+      const changedVideo = this.nextVideoDispatcher()
+      if (!changedVideo) {
+        return
+      }
 
       newProps.navigator.push({
         name: 'pausePlay',
@@ -124,7 +129,6 @@ class Player extends React.Component {
   }
 
   onPauseModalClose (props) {
-    //props.playerActions.togglePauseModal()
     props.playerActions.pauseVideo()
   }
 
