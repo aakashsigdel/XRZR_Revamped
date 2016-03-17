@@ -10,27 +10,47 @@ import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
 import { updateWorkout } from '../redux_x/actions/workoutActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
-import FIcon from 'react-native-vector-icons/FontAwesome'
 
 const WorkoutIntro = (props) => {
   let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
   let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
   let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
 
-  let onAdClose = () => {
-    props.playerActions.loadWorkout(props.player.workoutId)
+  let onCountCompletion = () => {
     props.navigator.replace({name: 'player'})
   }
 
-  let onStartWorkout = () => props.navigator.push({
-    name: 'ads',
-    onAdClose: onAdClose
-  })
+  let onAdClose = (exerciseTitle) => {
+    props.navigator.replace({
+      name: 'pausePlay',
+      nextExercise: exerciseTitle,
+      onCloseButton: onCountCompletion,
+      onCountCompletion: onCountCompletion,
+      pauseTime: workout.pause_between_exercises,
+      title: 'Starting in'
+    })
+  }
+
+  let onStartWorkout = () => {
+    props.playerActions.loadWorkout(props.player.workoutId)
+    props.navigator.push({
+      name: 'ads',
+      onAdClose: () => onAdClose(exercises[0].title)
+    })
+  }
 
   let onExerciseSelect = (videoId) => {
     props.playerActions.loadWorkout(props.player.workoutId)
     props.playerActions.changeVideo(videoId)
-    props.navigator.push({name: 'player'})
+
+    props.navigator.push({
+      name: 'pausePlay',
+      nextExercise: exercises[videoId].title,
+      onCloseButton: onCountCompletion,
+      onCountCompletion: onCountCompletion,
+      pauseTime: workout.pause_between_exercises,
+      title: 'Starting in'
+    })
   }
 
   let onBackButton = () => props.navigator.pop()
