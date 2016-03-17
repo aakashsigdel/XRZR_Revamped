@@ -21,7 +21,7 @@ class Player extends React.Component {
             paused={props.paused}
             repeat
             resizeMode='contain'
-            source={{uri: 'http://192.168.0.119:8080/static/Stairs.mov'}}
+            source={{uri: props.videoUri}}
             style={{flex: 1}}
           />
         </TouchableOpacity>
