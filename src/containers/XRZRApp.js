@@ -1,6 +1,7 @@
 'use strict'
 
 import React, {
+  Component,
   Navigator,
   PropTypes,
   StyleSheet,
@@ -8,6 +9,7 @@ import React, {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Orientation from 'react-native-orientation'
 
 import * as workoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
@@ -36,105 +38,119 @@ import DeleteWorkout from './DeleteWorkout'
 import Advertisement from './Advertisement'
 import PausePlay from './PausePlay'
 
-const XRZRApp = ({ state, actions, store }) => {
-  return (
-    <View style={styles.container}>
-      <Navigator
-        initialRoute={{name: 'browse'}}
-        renderScene={_renderScene}
-      />
-    </View>
-  )
-}
+class XRZRApp extends Component {
+  componentDidMount () {
+    this.lockToPortrait()
+  }
 
-const _renderScene = (route, navigator) => {
-  switch (route.name) {
-    case 'login':
-      return <Login
-        navigator={navigator}
-      />
-    case 'player':
-      return <Player navigator={navigator} />
-    case 'browse':
-      return <Browse navigator={navigator} />
-    case 'mostPopular':
-      return <MostPopular
-        navigator={navigator}
-      />
-    case 'category':
-      return <Category
-        navigator={navigator}
-      />
-    case 'action':
-      return <ActionScreen
-        actionElements={route.actionElements}
-        actionTitle={route.actionTitle}
-        navigator={navigator}
-      />
-    case 'addExerciseToWorkout':
-      return <AddExerciseToWorkout
-        navigator={navigator}
-        exerciseId={route.exerciseId}
-      />
-    case 'workoutIntro':
-      return <WorkoutIntro navigator={navigator} />
-    case 'search':
-      return <Search navigator={navigator} />
-    case 'favouriteExercises':
-      return <FavouriteExercises navigator={navigator} />
-    case 'favouriteWorkouts':
-      return <FavouriteWorkouts navigator={navigator} />
-    case 'premium':
-      return <Premium navigator={navigator} />
-    case 'profile':
-      return <Profile
-        navigator={navigator}
-        userId={route.userId}
-      />
-    case 'workoutCompletion':
-      return <WorkoutCompletion navigator={navigator} />
-    case 'exerciseProperties':
-      return <ExerciseProperties
-        navigator={navigator}
-        isNewExercise={route.isNewExercise}
-      />
-    case 'workoutSettings':
-      return <WorkoutSettings
-        navigator={navigator}
-        workoutId={route.workoutId}
-      />
-    case 'editWorkoutExercises':
-      return <EditWorkoutExercises
-        navigator={navigator}
-        workoutId={route.workoutId}
-      />
-    case 'profileSettings':
-      return <ProfileSettings navigator={navigator} />
-    case 'newWorkout':
-      return <NewWorkout navigator={navigator} />
-    case 'deleteWorkout':
-      return <DeleteWorkout
-        navigator={navigator}
-        workoutId={route.workoutId}
-      />
-    case 'ads':
-      return <Advertisement
-        navigator={navigator}
-        onClose={route.onAdClose}
-      />
-    case 'pausePlay':
-      return <PausePlay
-        navigator={navigator}
-        nextExercise={route.nextExercise}
-        onCloseButton={route.onCloseButton}
-        onCountCompletion={route.onCountCompletion}
-        pauseTime={route.pauseTime}
-        title={route.title}
-      />
-    default:
-      return <Login
-        navigator={navigator}
-      />
+  lockToPortrait () {
+    Orientation.lockToPortrait()
+  }
+
+  _renderScene (route, navigator) {
+    console.log(this.lockToPortrait)
+    switch (route.name) {
+      case 'login':
+        return <Login
+          navigator={navigator}
+        />
+      case 'player':
+        return <Player
+          lockToPortrait={this.lockToPortrait}
+          navigator={navigator}
+        />
+      case 'browse':
+        return <Browse navigator={navigator} />
+      case 'mostPopular':
+        return <MostPopular
+          navigator={navigator}
+        />
+      case 'category':
+        return <Category
+          navigator={navigator}
+        />
+      case 'action':
+        return <ActionScreen
+          actionElements={route.actionElements}
+          actionTitle={route.actionTitle}
+          navigator={navigator}
+        />
+      case 'addExerciseToWorkout':
+        return <AddExerciseToWorkout
+          navigator={navigator}
+          exerciseId={route.exerciseId}
+        />
+      case 'workoutIntro':
+        return <WorkoutIntro navigator={navigator} />
+      case 'search':
+        return <Search navigator={navigator} />
+      case 'favouriteExercises':
+        return <FavouriteExercises navigator={navigator} />
+      case 'favouriteWorkouts':
+        return <FavouriteWorkouts navigator={navigator} />
+      case 'premium':
+        return <Premium navigator={navigator} />
+      case 'profile':
+        return <Profile
+          navigator={navigator}
+          userId={route.userId}
+        />
+      case 'workoutCompletion':
+        return <WorkoutCompletion navigator={navigator} />
+      case 'exerciseProperties':
+        return <ExerciseProperties
+          navigator={navigator}
+          isNewExercise={route.isNewExercise}
+        />
+      case 'workoutSettings':
+        return <WorkoutSettings
+          navigator={navigator}
+          workoutId={route.workoutId}
+        />
+      case 'editWorkoutExercises':
+        return <EditWorkoutExercises
+          navigator={navigator}
+          workoutId={route.workoutId}
+        />
+      case 'profileSettings':
+        return <ProfileSettings navigator={navigator} />
+      case 'newWorkout':
+        return <NewWorkout navigator={navigator} />
+      case 'deleteWorkout':
+        return <DeleteWorkout
+          navigator={navigator}
+          workoutId={route.workoutId}
+        />
+      case 'ads':
+        return <Advertisement
+          navigator={navigator}
+          onClose={route.onAdClose}
+        />
+      case 'pausePlay':
+        return <PausePlay
+          navigator={navigator}
+          nextExercise={route.nextExercise}
+          onCloseButton={route.onCloseButton}
+          onCountCompletion={route.onCountCompletion}
+          pauseTime={route.pauseTime}
+          title={route.title}
+        />
+      default:
+        return <Login
+          navigator={navigator}
+        />
+    }
+  }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <Navigator
+          initialRoute={{name: 'browse'}}
+          renderScene={(navigator, route) => this._renderScene(navigator, route)}
+        />
+      </View>
+    )
   }
 }
 

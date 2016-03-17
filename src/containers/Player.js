@@ -41,6 +41,7 @@ class Player extends React.Component {
     const nextVideoId = getNextVideoId(this.props.player, this.props.workouts)
 
     if (nextVideoId === -1) {
+      this.props.lockToPortrait()
       this.props.navigator.replace({name: 'workoutCompletion'})
       return false
     }
@@ -56,6 +57,7 @@ class Player extends React.Component {
         name: 'EDIT EXERCISE',
         icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25}/>,
         action: () => {
+          this.props.lockToPortrait()
           this.props.navigator.push({
             name: 'exerciseProperties',
             isNewExercise: false
@@ -65,7 +67,10 @@ class Player extends React.Component {
       {
         name: 'ADD EXERCISE TO A WORKOUT',
         icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30}/>,
-        action: (_) => this.props.navigator.push({ name: 'addExerciseToWorkout', exerciseId: exercise.id })
+          action: (_) => {
+            this.props.lockToPortrait()
+            this.props.navigator.push({ name: 'addExerciseToWorkout', exerciseId: exercise.id })
+          }
       },
       { name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/> },
       { name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/> }
@@ -76,6 +81,7 @@ class Player extends React.Component {
       image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg'
     }
 
+    this.props.lockToPortrait()
     this.props.navigator.push({ name: route, actionElements: actionElements, actionTitle })
     // props.navigator.push({name: route, exerciseId: exerciseId})
   }
@@ -104,6 +110,7 @@ class Player extends React.Component {
         return
       }
 
+      this.props.lockToPortrait()
       newProps.navigator.push({
         name: 'pausePlay',
         nextExercise: 'next Exercise Title',
@@ -113,6 +120,10 @@ class Player extends React.Component {
         title: 'Pause'
       })
     }
+  }
+
+  componentWillUnmount () {
+    this.props.lockToPortrait()
   }
 
   onPauseScreenClose (props) {
