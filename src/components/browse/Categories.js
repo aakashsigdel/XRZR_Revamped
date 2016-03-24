@@ -12,7 +12,7 @@ import { VIEWPORT } from '../../constants/appConstants'
 export const Categories = (props) => {
   const categories = props.categories.map(
     (category, index) => {
-      const handleCategoryPressed = () => props.onCategorySelect(category.tag)
+      const handleCategoryPressed = () => props.onCategorySelect(category.id)
       return (
         <TouchableOpacity
           key={index}

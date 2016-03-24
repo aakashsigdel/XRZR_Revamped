@@ -4,48 +4,56 @@ import { bindActionCreators } from 'redux'
 import BrowseIndex from '../components/browse/BrowseIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
+import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 
-const Browse = (props) => {
-  let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
-  let recent = workoutsManager(props.recentWorkouts, props.workouts, props.instructor)
-  let trendings = trendingsManager(props.trendings, props.workouts)
-  let browseListingItems = browseListingsManager(props.navigator)
-  let favouriteListingItems = favouriteListingManager(props.navigator)
-  let categories = categoriesManager(props.categories)
-
-  let onWorkoutSelect = (workoutId) => {
-    props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'workoutIntro'})
+class Browse extends React.Component {
+  componentDidMount (nextProps, nextState) {
+    console.debug('Fetching Category')
+    this.props.asyncDispatchers.fetchCategories()
   }
+  render (props = this.props) {
+    let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
+    let recent = workoutsManager(props.recentWorkouts, props.workouts, props.instructor)
+    let trendings = trendingsManager(props.trendings, props.workouts)
+    let browseListingItems = browseListingsManager(props.navigator)
+    let favouriteListingItems = favouriteListingManager(props.navigator)
+    let categories = categoriesManager(props.categories)
 
-  let onCategorySelect = (categoryId) => {
-    props.uiDispatchers.switchCategory(categoryId)
-    props.navigator.push({name: 'category'})
+    let onWorkoutSelect = (workoutId) => {
+      props.playerDispatchers.loadWorkout(workoutId)
+      props.navigator.push({ name: 'workoutIntro' })
+    }
+
+    let onCategorySelect = (categoryId) => {
+      props.uiDispatchers.switchCategory(categoryId)
+      props.navigator.push({ name: 'category' })
+    }
+
+    let onSearch = () => {
+      props.asyncDispatchers.fetchCategories()
+      //props.navigator.push({name: 'search'})
+    }
+    const goToProfile = (userId) => props.navigator.push({ name: 'profile', userId: userId })
+    const onTabChanged = (tabName) => props.uiDispatchers.switchBrowseTab(tabName)
+
+    return (
+      <BrowseIndex
+        browseListingItems={browseListingItems}
+        categories={categories}
+        favouriteListingItems={favouriteListingItems}
+        featured={featured}
+        recentWorkouts={recent}
+        onCategorySelect={onCategorySelect}
+        onSearch={onSearch}
+        onTabChanged={onTabChanged}
+        onWorkoutSelect={onWorkoutSelect}
+        selectedTab={props.uiStates.selectedBrowseTab}
+        trendings={trendings}
+        goToProfile={goToProfile}
+        { ...props.playerDispatchers }
+      />
+    )
   }
-
-  let onSearch = () => {
-    props.navigator.push({name: 'search'})
-  }
-  const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
-  const onTabChanged = (tabName) => props.uiDispatchers.switchBrowseTab(tabName)
-
-  return (
-    <BrowseIndex
-      browseListingItems={browseListingItems}
-      categories={categories}
-      favouriteListingItems={favouriteListingItems}
-      featured={featured}
-      recentWorkouts={recent}
-      onCategorySelect={onCategorySelect}
-      onSearch={onSearch}
-      onTabChanged={onTabChanged}
-      onWorkoutSelect={onWorkoutSelect}
-      selectedTab={props.uiStates.selectedBrowseTab}
-      trendings={trendings}
-      goToProfile={goToProfile}
-      { ...props.playerDispatchers }
-    />
-  )
 }
 
 function workoutsManager (featuredWorkouts, workouts, instructors) {
@@ -92,7 +100,12 @@ function favouriteListingManager (navigator) {
 }
 function categoriesManager (categories) {
   return Object.keys(categories).map(
-    (key) => categories[key]
+    (key) => {
+      return {
+        id: key,
+        ...categories[key]
+      }
+    }
   )
 }
 
@@ -126,7 +139,8 @@ export default connect(
   (dispatch) => {
     return {
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
-      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch)
+      uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
+      asyncDispatchers: bindActionCreators(AsyncActionCreators, dispatch)
     }
   }
 )(Browse)

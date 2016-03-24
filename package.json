@@ -6,6 +6,8 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
+    "es6-promise": "^3.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "react-native": "^0.21.0",
     "react-native-blur": "^0.7.10",
     "react-native-circular-progress": "0.0.5",
@@ -17,7 +19,8 @@
     "react-native-vector-icons": "^1.1.1",
     "react-native-video": "^0.7.1",
     "react-redux": "^4.4.0",
-    "redux": "^3.3.1"
+    "redux": "^3.3.1",
+    "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
     "remote-redux-devtools": "^0.1.2"
