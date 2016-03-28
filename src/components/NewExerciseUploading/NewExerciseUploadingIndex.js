@@ -8,17 +8,27 @@ import Navigation from './Navigation'
 import Header from './Header'
 import Info from './Info'
 import ProgressBar from './ProgressBar'
+import sendAjax from '../../utilities/SendAjax'
 
 export default class NewExerciseUploadingIndex extends Component {
-  _handleCancelPress () {
-    this.props.toggleModalState()
+
+  componentDidMount () {
+    sendAjax({
+      type: 'get',
+      url: params.url,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Accept', 'application/json, text/javascript');
+      },
+      success: function (res) {
+        params.success && params.success(JSON.parse(res));
+      },
+      error: params.error,
+      complete: params.complete,
+      cache: true
+    })
   }
 
-  _handleSavePress () {
-    this.props.navigator.popToTop()
-  }
-
-  render () {
+  render (props = this.props) {
     return (
       <Modal
         animated
@@ -26,8 +36,8 @@ export default class NewExerciseUploadingIndex extends Component {
       >
       <View style={styles.container}>
         <Navigation
-          handleCancelPress={() => this._handleCancelPress()}
-          handleSavePress={() => this._handleSavePress()}
+          handleCancelPress={props.onCancel}
+          handleSavePress={props.onSaveButton}
         />
         <Header
           user={this.props.user}

@@ -18,6 +18,7 @@ class VideoPlayer extends React.Component {
   }
 
   render () {
+    console.log(this.props.videoUri)
     return (
       <TouchableOpacity
         onPress={this._togglePause.bind(this)}

@@ -11,7 +11,7 @@ const PropertyActionButtons = (props) => {
     return (
       <View style={ styles.container }>
         <TouchableOpacity
-          onPress={props.toggleModalState}
+          onPress={props.onSaveButton}
           style={styles.saveButton}
         >
           <Text style={styles.saveText}>SAVE</Text>

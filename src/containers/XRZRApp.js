@@ -35,6 +35,7 @@ import NewWorkout from './NewWorkout'
 import DeleteWorkout from './DeleteWorkout'
 import Advertisement from './Advertisement'
 import PausePlay from './PausePlay'
+import NewExerciseUploading from './NewExerciseUploading'
 
 const XRZRApp = ({ state, actions, store }) => {
   return (
@@ -130,6 +131,12 @@ const _renderScene = (route, navigator) => {
         onCountCompletion={route.onCountCompletion}
         pauseTime={route.pauseTime}
         title={route.title}
+      />
+    case 'newExerciseUploading':
+      return <NewExerciseUploading
+        navigator={navigator}
+        exercise={route.newExercise}
+        user={route.user}
       />
     default:
       return <Login

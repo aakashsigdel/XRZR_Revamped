@@ -2,13 +2,16 @@
 import React, {
   StyleSheet,
   Text,
-  View
+  TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const renderPlaceholder = (props) => {
   return (
-    <View style={[styles.container, {height: props.height}]}>
+    <TouchableOpacity
+      onPress={props.onChooseVideo}
+      style={[styles.container, {height: props.height}]}
+    >
       <Icon name='social-youtube' color='white' size={40} />
       <Text style={styles.text}>
         {'select video exercise to'}
@@ -16,7 +19,7 @@ const renderPlaceholder = (props) => {
       <Text style={styles.text}>
         {'upload or record a new one'}
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

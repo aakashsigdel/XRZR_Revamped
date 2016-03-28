@@ -12,17 +12,25 @@ const ExerciseDetails = (props) => {
   return (
     <View style={styles.container}>
       {
-        props.isNewExercise
-        ? <Placeholder height={211} />
+        (props.isNewExercise && props.videoIsNotSelected)
+        ? <Placeholder
+          height={211}
+          onChooseVideo={props.onChooseVideo}
+        />
         : <VideoPlayer
             muted
-            videoUri={props.exercise.videoUri}
+            videoUri={props.videoUri}
             height={211}
           />
       }
       <PropertyList
         exercise={props.exercise}
         isNewExercise={props.isNewExercise}
+
+        onExerciseDescriptionChange={props.onExerciseDescriptionChange}
+        onExerciseSoundSwitchChange={props.onExerciseSoundSwitchChange}
+        onExerciseTagsChange={props.onExerciseTagsChange}
+        onExerciseTitleChange={props.onExerciseTitleChange}
       />
     </View>
   )

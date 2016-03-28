@@ -19,10 +19,19 @@ const ExercisePropertiesIndex = (props) => {
       <ExerciseDetails
         exercise={props.exercise}
         isNewExercise={props.isNewExercise}
+        onChooseVideo={props.onChooseVideo}
+
+        onExerciseDescriptionChange={props.onExerciseDescriptionChange}
+        onExerciseSoundSwitchChange={props.onExerciseSoundSwitchChange}
+        onExerciseTagsChange={props.onExerciseTagsChange}
+        onExerciseTitleChange={props.onExerciseTitleChange}
+
+        videoIsNotSelected={props.videoIsNotSelected}
+        videoUri={props.videoUri}
       />
       <ActionButtons
         isNewExercise={props.isNewExercise}
-        toggleModalState={props.toggleModalState}
+        onSaveButton={props.onSaveButton}
       />
       <DeleteExercise
         exercise={props.exercise}

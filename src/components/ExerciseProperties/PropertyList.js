@@ -16,30 +16,33 @@ const PropertyListItem = (props) => {
       <View style={styles.itemContainer}>
         <Text style={styles.titleText}>EXERCISE NAME</Text>
         <TextInput
-          style={styles.valueText}
           defaultValue={props.isNewExercise ? '' : props.exercise.title}
-          editable={props.isNewExercise ? true : false}
+          editable={props.isNewExercise}
+          onChangeText={props.onExerciseTitleChange}
+          style={styles.valueText}
         />
       </View>
       <Hr />
       <View style={styles.itemContainer}>
         <Text style={styles.titleText}>TAGS</Text>
         <TextInput
-          style={styles.valueText}
           defaultValue={props.isNewExercise ? '' : props.exercise.tag}
-          editable={props.isNewExercise ? true : false}
+          editable={props.isNewExercise}
+          onChangeText={props.onExerciseTagsChange}
+          style={styles.valueText}
         />
       </View>
       <Hr />
       <View style={[styles.itemContainer, styles.additionalPadding]}>
         <Text style={styles.titleText}>SOUND</Text>
         <Switch
+          activeBackgroundColor='#197461'
+          activeButtonColor='#1DD7AB'
+          activeButtonPressedColor='#1DD7AB'
           buttonRadius={10}
           inactiveButtonColor='#B0B0B4'
           inactiveButtonPressedColor='#B0B0B4'
-          activeButtonColor='#1DD7AB'
-          activeButtonPressedColor='#1DD7AB'
-          activeBackgroundColor='#197461'
+          onChangeState={props.onExerciseSoundSwitchChange}
           switchHeight={15}
           switchWidth={33}
         />
@@ -48,11 +51,12 @@ const PropertyListItem = (props) => {
       <View style={styles.descContainer}>
         <Text style={styles.titleText}>DESCRIPTION</Text>
         <TextInput
-          style={styles.multilineValueText}
+          editable={props.isNewExercise}
+          multiline
+          onChangeText={props.onExerciseDescriptionChange}
           placeholder={props.exercise.description}
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
-          multiline
-          editable={props.isNewExercise ? true : false}
+          style={styles.multilineValueText}
         />
       </View>
     </ScrollView>
