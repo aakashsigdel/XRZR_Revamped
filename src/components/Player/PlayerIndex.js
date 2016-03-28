@@ -24,8 +24,16 @@ class VideoScreen extends Component {
       orientationStatus: ORIENTATION.PORTRAIT
     }
   }
+  componentWillMount () {
+    Orientation.getOrientation((err, orientation) => {
+      this.setState({
+        orientationStatus: orientation
+      })
+    })
+  }
 
   componentDidMount () {
+    Orientation.unlockAllOrientations()
     Orientation.addOrientationListener(this._orientationDidChange.bind(this))
   }
 

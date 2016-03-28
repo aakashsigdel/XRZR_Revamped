@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontFamily: 'SFCompactText-Regular',
-    fontSize: 97
+    fontSize: 0.145 * VIEWPORT.height 
   },
   seeker: {
     flexDirection: 'row',
