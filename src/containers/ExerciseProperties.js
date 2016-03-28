@@ -1,4 +1,7 @@
-import React, { Component } from 'react-native'
+import React, {
+  Component,
+  NativeModules
+} from 'react-native'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
@@ -6,41 +9,80 @@ import ExercisePropertiesIndex from '../components/ExerciseProperties/ExercisePr
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as uiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 
-import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
+//import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
+
+let { ImagePickerManager } = NativeModules
 
 class ExerciseProperties extends Component {
   constructor () {
     super()
     this.state = {
-      isModalVisible: false
+      isModalVisible: false,
+      videoSource: '',
+
+      exercise_title: undefined,
+      tags: undefined,
+      description: undefined,
+      sound: undefined
     }
+    this.onChooseVideo = this.onChooseVideo.bind(this)
+    this.onExerciseDescriptionChange = this.onExerciseDescriptionChange.bind(this)
+    this.onExerciseSoundSwitchChange = this.onExerciseSoundSwitchChange.bind(this)
+    this.onExerciseTagsChange = this.onExerciseTagsChange.bind(this)
+    this.onExerciseTitleChange = this.onExerciseTitleChange.bind(this)
   }
 
-  toggleModalState () {
-    this.setState({
-      isModalVisible: !this.state.isModalVisible
-    })
-  }
+  //toggleModalState () {
+  //  this.setState({
+  //    isModalVisible: !this.state.isModalVisible
+  //  })
+  //}
 
   render (props = this.props) {
     const exerciseId = 27 // @todo
     const exercise = exerciseManager(exerciseId, this.props.exercises)
 
     const onCloseButton = () => props.navigator.pop()
-    const onDeleteConfirm = () => undefined//props.exerciseDispatchers.deleteExercise(exercise.id)
+    const onDeleteConfirm = () => undefined // @todo props.exerciseDispatchers.deleteExercise(exercise.id)
     const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
     const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
-
-    if (this.state.isModalVisible) {
-      return (
-        <NewExerciseUploadingIndex
-          user={this.props.user}
-          exercise={exercise}
-          toggleModalState={() => this.toggleModalState()}
-          navigator={this.props.navigator}
-        />
-      )
+    const onSaveButton = () => {
+      let newExercise = {
+        title: this.state.exercise_title,
+        description: this.state.description,
+        tags: this.state.tags,
+        sound: this.state.sound,
+        videoUri: this.state.videoSource
+      }
+      props.navigator.push({
+        name: 'newExerciseUploading',
+        newExercise: newExercise,
+        user: props.user
+      })
     }
+
+    let videoUri = exercise.videoUri
+    if (props.isNewExercise && this.state.videoSource) {
+      videoUri = this.state.videoSource
+    }
+
+    //if (this.state.isModalVisible) {
+    //  let newExercise = {
+    //    title: this.state.exercise_title,
+    //    description: this.state.description,
+    //    tags: this.state.tags,
+    //    sound: this.state.sound,
+    //    videoUri: this.state.videoSource
+    //  }
+    //  return (
+    //    <NewExerciseUploadingIndex
+    //      user={this.props.user}
+    //      exercise={newExercise}
+    //      toggleModalState={() => this.toggleModalState()}
+    //      navigator={this.props.navigator}
+    //    />
+    //  )
+    //}
     return (
       <ExercisePropertiesIndex
         exercise={exercise}
@@ -48,12 +90,82 @@ class ExerciseProperties extends Component {
         isNewExercise={this.props.isNewExercise}
         modalVisibility={props.uiStates.showModalDeleteExercise}
         onCloseButton={onCloseButton}
+        onChooseVideo={this.onChooseVideo}
         onDeleteButton={onDeleteButton}
         onDeleteConfirm={onDeleteConfirm}
+
+        onExerciseDescriptionChange={this.onExerciseDescriptionChange}
+        onExerciseSoundSwitchChange={this.onExerciseSoundSwitchChange}
+        onExerciseTagsChange={this.onExerciseTagsChange}
+        onExerciseTitleChange={this.onExerciseTitleChange}
+
         onNopeConfirm={onNopeConfirm}
-        toggleModalState={() => this.toggleModalState()}
+        onSaveButton={onSaveButton}
+        videoIsNotSelected={ !this.state.videoSource }
+        videoUri={videoUri}
       />
     )
+  }
+
+  onExerciseTitleChange (text) {
+    this.setState({
+      exercise_title: text
+    })
+  }
+  onExerciseTagsChange (text) {
+    this.setState({
+      tags: text
+    })
+  }
+  onExerciseDescriptionChange(text) {
+    this.setState({
+      description: text
+    })
+  }
+  onExerciseSoundSwitchChange(status) {
+    this.setState({
+      sound: status
+    })
+  }
+  onChooseVideo () {
+    var options = {
+      title: 'Select Exercise Video',
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Start Recording from camera',
+      chooseFromLibraryButtonTitle: 'Choose from Library',
+      customButtons: {
+        'Choose Photo from Facebook': 'fb', // [Button Text] : [String returned upon selection]
+      },
+      cameraType: 'back', // 'front' or 'back'
+      mediaType: 'video', // 'photo' or 'video'
+      videoQuality: 'high', // 'low', 'medium', or 'high'
+      durationLimit: 60 * 60, // video recording max time in seconds
+      storageOptions: { // if this key is provided, the image will get saved in the documents directory on ios, and the pictures directory on android (rather than a temporary directory)
+        skipBackup: true, // ios only - image will NOT be backed up to icloud
+        path: 'images' // ios only - will save image at /Documents/images rather than the root
+      }
+    }
+
+    ImagePickerManager.showImagePicker(options, (response) => {
+      console.log('Response = ', response)
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker')
+
+      } else if (response.error) {
+        console.log('ImagePickerManager Error: ', response.error);
+
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+
+      } else {
+        const source = response.uri.replace('file://', '')
+
+        this.setState({
+          videoSource: source
+        })
+      }
+    })
   }
 }
 

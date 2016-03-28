@@ -12,6 +12,7 @@ import instructor from './instructor'
 import uiStates from './uiStates'
 import user from './user'
 import userData from './userData'
+import asyncStates from './asyncStates'
 
 const XRZRReducer = combineReducers({
   category,
@@ -25,7 +26,8 @@ const XRZRReducer = combineReducers({
   instructor,
   uiStates,
   user,
-  userData
+  userData,
+  asyncStates
 })
 
 export default XRZRReducer
