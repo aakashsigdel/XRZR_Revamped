@@ -9,7 +9,7 @@ import React, {
 
 import GhostButton from '../Common/GhostButton'
 
-const Login = (props) => {
+const LoginIndex = (props) => {
   return (
     <Image
       source={{
@@ -27,7 +27,7 @@ const Login = (props) => {
         <GhostButton
           backgroundColor='rgba(213, 10, 177, 0.8)'
           text={"LOGIN WITH FACEBOOK"}
-          onButtonPress={() => props.navigator.replace({name: 'browse'})}
+          onButtonPress={props.onButtonPress}
         />
       </View>
     </Image>
@@ -55,5 +55,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Login
+export default LoginIndex
 

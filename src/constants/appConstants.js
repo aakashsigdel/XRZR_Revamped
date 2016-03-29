@@ -12,3 +12,12 @@ export const ORIENTATION = {
   PORTRAIT: 'PORTRAIT',
   LANDSCAPE: 'LANDSCAPE'
 }
+
+const URL = 'https://xrzr.backlect.com/api/xrzr'
+const VERSION = '/v1.0'
+const LOGIN_PATH = '/auth/facebook/convert-token'
+export const BASE_URL = URL + VERSION
+export const LOGIN_URL = URL + LOGIN_PATH
+
+export const LOGIN_STORAGE_KEY = '@XRZR_LOGIN_STORAGE_KEY'
+
