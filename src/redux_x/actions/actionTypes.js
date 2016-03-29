@@ -37,3 +37,8 @@ export const SET_NEW_WORKOUT_ID = 'SET_NEW_WORKOUT_ID'
 
 // Async States ahead
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
+
+// login action types
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const CLEAR_ERROR = 'CLEAR_ERROR'

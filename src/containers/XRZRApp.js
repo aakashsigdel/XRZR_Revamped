@@ -15,7 +15,7 @@ import * as workoutActionCreators from '../redux_x/actions/workoutActionCreators
 import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as categoryActionCreators from '../redux_x/actions/categoryActionCreators'
 
-import Login from '../components/Login/Login'
+import Login from './Login'
 import Player from './Player'
 import Browse from './Browse'
 import MostPopular from './MostPopular'
@@ -152,7 +152,7 @@ class XRZRApp extends Component {
     return (
       <View style={styles.container}>
         <Navigator
-          initialRoute={{name: 'browse'}}
+          initialRoute={{name: 'login'}}
           renderScene={(navigator, route) => this._renderScene(navigator, route)}
         />
       </View>
