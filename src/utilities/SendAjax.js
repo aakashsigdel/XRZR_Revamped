@@ -1,6 +1,6 @@
-var MAX_XHR_WAITING_TIME = 5000;// in ms
+var MAX_XHR_WAITING_TIME = 1000 * 60 * 60;// in ms
 
-var sendAjax = function (params) {
+export var sendAjax = function (params) {
   var xhr = new XMLHttpRequest(),
     url = params.cache ? params.url + '?' + new Date().getTime() : params.url,
     timer = setTimeout(function () {// if xhr won't finish after timeout-> trigger fail
@@ -21,6 +21,9 @@ var sendAjax = function (params) {
       }
     }
   };
+  xhr.upload.onprogress = params.progress || (() => undefined)
   params.beforeSend && params.beforeSend(xhr);
-  xhr.send();
+
+  (params.formData)? xhr.send(params.formData): xhr.send();
+
 };
