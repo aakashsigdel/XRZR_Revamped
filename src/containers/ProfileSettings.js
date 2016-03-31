@@ -24,7 +24,7 @@ class ProfileSettings extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    workouts: state.workout
+    workouts: state.workout.data
   }
 }
 export default connect(

@@ -2,45 +2,49 @@ import {
   ADD_WORKOUT,
   UPDATE_WORKOUT,
   POPULATE_WORKOUT,
-  DELETE_WORKOUT
+  DELETE_WORKOUT,
+  POST_WORKOUT
 } from './actionTypes'
+import { loadWorkout } from './videoActionCreators'
 import { BASE_URL } from '../../constants/appConstants'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 
-export const addWorkout = (title) => {
+export const addWorkout = (workout) => {
   return {
     type: ADD_WORKOUT,
-    title
+    workout
   }
 }
 
 export const postWorkoutStart = () => {
   return {
-    type: POST_WORKOUT_START
+    type: POST_WORKOUT,
+    status: 'fetch'
   }
 }
 
 export const postWorkoutEnd = (workout) => {
   return {
-    type: POST_WORKOUT_END,
-    workout
+    type: POST_WORKOUT,
+    status: 'success'
   }
 }
 
-export const postWorkoutFailure = (error) => {
+export const postWorkoutFailure = (errorMessage) => {
   return {
     type: POST_WORKOUT_FAILURE,
-    error
+    status: 'error',
+    errorMessage
   }
 }
 
-export const postWorkout = (name) => {
-  console.warn('me postworkout', name)
+export const postWorkout = (title) => {
+  console.warn('me postworkout', title)
   return (dispatch) => {
     dispatch(postWorkoutStart())
     const POST_WORKOUT_URL = BASE_URL + '/workout'
     const data = {
-      name
+      title
     }
 
     getAccessTokenFromAsyncStorage()
@@ -58,7 +62,9 @@ export const postWorkout = (name) => {
       )
       .then((response) => response.json())
       .then((responseData) => {
-        dispatch(postWorkoutEnd(responseData))
+        dispatch(addWorkout({id: responseData.entities[0].id, title}))
+        dispatch(loadWorkout(responseData.entities[0].id))
+        dispatch(postWorkoutEnd(responseData.entities))
       })
       .catch(error => dispatch(postWorkoutFailure(error)))
     })

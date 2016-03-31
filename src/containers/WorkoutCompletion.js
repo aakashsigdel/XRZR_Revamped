@@ -35,7 +35,7 @@ WorkoutCompletion.propTypes = {}
 export default connect(
   (state) => {
     return {
-      workouts: state.workout,
+      workouts: state.workout.data,
       player: state.player
     }
   },

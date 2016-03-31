@@ -18,10 +18,12 @@ export default class NewWorkoutIndex extends Component {
     }
   }
 
+  componentDidUpdate () {
+  }
+
   _handleCreateWorkout (props) {
     return () => {
       props.addWorkout(this.state.workoutName)
-      props.navigator.popToTop()
     }
   }
 

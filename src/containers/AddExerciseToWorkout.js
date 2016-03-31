@@ -46,7 +46,7 @@ AddExerciseToWorkout.propTypes = {
 const mapStateToProps = (state) => {
   return {
     exercises: state.exercise,
-    workouts: state.workout
+    workouts: state.workout.data
   }
 }
 

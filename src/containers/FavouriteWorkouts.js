@@ -60,7 +60,7 @@ export default connect(
   (state) => {
     return {
       instructors: state.instructor,
-      workouts: state.workout,
+      workouts: state.workout.data,
       favWorkouts: state.userData.favouriteWorkouts
     }
   },

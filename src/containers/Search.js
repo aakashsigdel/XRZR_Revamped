@@ -55,7 +55,7 @@ function denormalizeCategories(categories){
 export default connect(
   (state) => {
     return {
-      workouts: state.workout,
+      workouts: state.workout.data,
       categories: state.category,
       instructors: state.instructor
     }

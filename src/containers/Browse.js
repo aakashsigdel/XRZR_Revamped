@@ -130,7 +130,7 @@ export default connect(
   (state) => {
     return {
       instructor: state.instructor,
-      workouts: state.workout,
+      workouts: state.workout.data,
       trendings: state.trending,
       categories: state.category.data,
       featuredWorkouts: state.featuredWorkout,
