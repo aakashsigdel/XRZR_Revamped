@@ -6,7 +6,7 @@ import React, {
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import {sendAjax} from '../../utilities/SendAjax'
+import {sendAjax} from '../utilities/SendAjax'
 import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
 
 class NewExerciseUploading extends Component {
