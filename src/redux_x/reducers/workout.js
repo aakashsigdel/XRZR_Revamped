@@ -3,6 +3,7 @@
 import {
   ADD_WORKOUT,
   UPDATE_WORKOUT,
+  POPULATE_WORKOUT,
   DELETE_WORKOUT
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'

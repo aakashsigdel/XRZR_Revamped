@@ -1,6 +1,7 @@
 // WORKOUT STATE
 export const ADD_WORKOUT = 'ADD_WORKOUT'
 export const UPDATE_WORKOUT = 'UPDATE_WORKOUT'
+export const POPULATE_WORKOUT = 'POPULATE_WORKOUT'
 export const DELETE_WORKOUT = 'DELETE_WORKOUT'
 export const LIKE_WORKOUT = 'LIKE_WORKOUT'
 
@@ -37,6 +38,7 @@ export const SET_NEW_WORKOUT_ID = 'SET_NEW_WORKOUT_ID'
 
 // Async States ahead
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
+export const FETCH_CATEGORY_DETAILS = 'FETCH_CATEGORY_DETAILS'
 
 // login action types
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
