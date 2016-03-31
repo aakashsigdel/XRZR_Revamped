@@ -3,6 +3,7 @@
 import React, { Component } from 'react-native'
 import { connect } from 'react-redux'
 import { FBSDKLoginManager } from 'react-native-fbsdklogin'
+import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 
 import LoginIndex from '../components/Login/LoginIndex'
 import {
@@ -11,6 +12,9 @@ import {
 } from '../redux_x/actions/loginActionCreators'
 
 class Login extends Component {
+  componentDidMount () {
+    // postWorkout({name: 'yolo', description: 'bolo'})
+  }
   onButtonPress () {
     this.props.dispatch(login())
   }

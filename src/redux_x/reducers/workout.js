@@ -2,6 +2,9 @@
 
 import {
   ADD_WORKOUT,
+  POST_WORKOUT_START,
+  POST_WORKOUT_END,
+  POST_WORKOUT_FAILURE,
   UPDATE_WORKOUT,
   POPULATE_WORKOUT,
   DELETE_WORKOUT
@@ -20,6 +23,13 @@ const workout = (state = defaultWorkout, action) => {
           id: newId
         }
       }
+    case POST_WORKOUT_START:
+      return {
+        ...state
+      }
+    case POST_WORKOUT_END:
+      console.warn('end', action)
+      return state
     case UPDATE_WORKOUT:
       return {
         ...state,
@@ -66,7 +76,7 @@ const defaultWorkout = {
     instructor: 2,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   },
   2: {
@@ -79,7 +89,7 @@ const defaultWorkout = {
     instructor: 1,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   },
   3: {
@@ -105,7 +115,7 @@ const defaultWorkout = {
     instructor: 0,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   },
   5: {
@@ -118,7 +128,7 @@ const defaultWorkout = {
     instructor: 1,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   },
   6: {
@@ -131,7 +141,7 @@ const defaultWorkout = {
     instructor: 2,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   },
   7: {
@@ -144,7 +154,7 @@ const defaultWorkout = {
     instructor: 1,
     workout_set: 4,
     pause_between_exercises: 20,
-    category: 'Yoga',
+    category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
     like: false
   }
 }
