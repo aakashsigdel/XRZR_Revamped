@@ -1,4 +1,9 @@
-import { ADD_WORKOUT, UPDATE_WORKOUT, DELETE_WORKOUT } from './actionTypes'
+import {
+  ADD_WORKOUT,
+  UPDATE_WORKOUT,
+  POPULATE_WORKOUT,
+  DELETE_WORKOUT
+} from './actionTypes'
 
 export const addWorkout = (title) => {
   return {
@@ -12,6 +17,13 @@ export const updateWorkout = (workout) => {
     type: UPDATE_WORKOUT,
     id: workout.id,
     workout: workout
+  }
+}
+
+export const populateWorkouts = (workouts) => {
+  return {
+    type: POPULATE_WORKOUT,
+    workouts: workouts,
   }
 }
 

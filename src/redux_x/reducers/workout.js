@@ -21,13 +21,17 @@ const workout = (state = defaultWorkout, action) => {
         }
       }
     case UPDATE_WORKOUT:
-      console.log(action.workout)
       return {
         ...state,
         [action.id]: {
           ...state[action.id],
           ...action.workout
         }
+      }
+    case POPULATE_WORKOUT:
+      return {
+        ...state,
+        ...action.workouts
       }
     case DELETE_WORKOUT:
       return {
