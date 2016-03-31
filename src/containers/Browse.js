@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import BrowseIndex from '../components/browse/BrowseIndex'
+
+import * as CategoryActionCreators from '../redux_x/actions/categoryActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
@@ -9,7 +11,7 @@ import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 class Browse extends React.Component {
   componentDidMount (nextProps, nextState) {
     console.debug('Fetching Category')
-    this.props.asyncDispatchers.fetchCategories()
+    this.props.categoryDispatchers.fetchCategories()
   }
   render (props = this.props) {
     let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
@@ -138,6 +140,7 @@ export default connect(
   },
   (dispatch) => {
     return {
+      categoryDispatchers: bindActionCreators(CategoryActionCreators, dispatch),
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
       uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
       asyncDispatchers: bindActionCreators(AsyncActionCreators, dispatch)
