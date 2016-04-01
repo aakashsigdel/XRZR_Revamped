@@ -115,7 +115,9 @@ export function fetchCategoriesDetails (categoryID) {
           }
         })
 
-        dispatch(populateWorkouts(workouts))
+        //dispatch(populateWorkouts(workouts))
+
+        workoutIds = [3, 2, 4, 6]
         dispatch(updateCategory(categoryID, {workouts: workoutIds}))
         dispatch(fetchCategoryDetailsSuccess())
       })

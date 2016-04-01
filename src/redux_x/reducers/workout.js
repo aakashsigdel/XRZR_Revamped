@@ -41,7 +41,10 @@ const workout = (state = defaultWorkout, action) => {
     case POPULATE_WORKOUT:
       return {
         ...state,
-        ...action.workouts
+        data: [
+          ...state.data,
+          ...action.workouts
+        ]
       }
     case DELETE_WORKOUT:
       return {
