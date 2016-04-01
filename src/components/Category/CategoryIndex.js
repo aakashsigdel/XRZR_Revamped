@@ -19,7 +19,7 @@ const CategoryIndex = (props) => {
         <View style={styles.header}>
 
           <Image
-            source={{uri: props.catItem.coverImage}}
+            source={{uri: props.catItem.coverImage + '=s300'}}
             style={styles.coverImage}
           >
             <Text style={styles.categoryTitle}>

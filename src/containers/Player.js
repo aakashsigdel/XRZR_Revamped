@@ -15,6 +15,7 @@ class Player extends React.Component {
       currentTime: 0.0,
       lastKnownTime: 0.0
     }
+    this.setIntervalRef = undefined
     this.previousVideoDispatcher = this.previousVideoDispatcher.bind(this)
     this.nextVideoDispatcher = this.nextVideoDispatcher.bind(this)
     this.onNavigate = this.onNavigate.bind(this)
@@ -87,13 +88,13 @@ class Player extends React.Component {
   }
 
   onVideoProgress (data) {
-    let deltaTime = data.currentTime - this.state.lastKnownTime
-
-    if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
+    //let deltaTime = data.currentTime - this.state.lastKnownTime
+    //
+    //if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
 
     this.setState({
-      currentTime: this.state.currentTime + (deltaTime),
-      lastKnownTime: data.currentTime
+      currentTime: this.state.currentTime + 1,//(deltaTime),
+      //lastKnownTime: data.currentTime
     })
   }
 
@@ -110,6 +111,7 @@ class Player extends React.Component {
         return
       }
 
+      this.pauseTimer()
       this.props.lockToPortrait()
       newProps.navigator.push({
         name: 'pausePlay',
@@ -122,13 +124,24 @@ class Player extends React.Component {
     }
   }
 
+  pauseTimer () {
+    clearInterval(this.setIntervalRef)
+  }
+  startTimer () {
+    this.setIntervalRef = setInterval(this.onVideoProgress, 1000)
+  }
+  componentWillMount () {
+    this.startTimer()
+  }
   componentWillUnmount () {
     this.props.lockToPortrait()
+    this.pauseTimer()
   }
 
   onPauseScreenClose (props) {
     props.navigator.pop()
     props.playerActions.pauseVideo()
+    this.startTimer()
   }
 
   onExerciseSelect (exerciseIndex) {

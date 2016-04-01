@@ -17,7 +17,7 @@ class Player extends React.Component {
           <Video
             muted={props.muted}
             onLoad={props.onVideoLoaded}
-            onProgress={props.onVideoProgress}
+            // onProgress={props.onVideoProgress}
             paused={props.paused}
             repeat
             resizeMode='contain'
