@@ -52,7 +52,7 @@ export default connect(
   (state) => {
     return {
       categories: state.category,
-      workouts: state.workout
+      workouts: state.workout.data
     }
   },
   (dispatch) => {

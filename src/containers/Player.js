@@ -319,7 +319,7 @@ export default connect(
   (state) => ({
     player: state.player,
     exercises: state.exercise,
-    workouts: state.workout
+    workouts: state.workout.data
   }),
   _bindActionCreators
 )(Player)

@@ -144,7 +144,7 @@ WorkoutIntro.propTypes = {
 export default connect(
   (state) => {
     return {
-      workouts: state.workout,
+      workouts: state.workout.data,
       exercises: state.exercise,
       instructors: state.instructor,
       player: state.player

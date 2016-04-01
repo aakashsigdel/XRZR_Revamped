@@ -67,7 +67,7 @@ function denormalizeExerciseItems (category, categories, workouts, instructors){
 export default connect(
   (state) => {
     return {
-      workouts: state.workout,
+      workouts: state.workout.data,
       exercises: state.exercise,
       categories: state.category.data,
       instructors: state.instructor,
