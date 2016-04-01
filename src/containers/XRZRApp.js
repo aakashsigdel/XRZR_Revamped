@@ -38,10 +38,17 @@ import DeleteWorkout from './DeleteWorkout'
 import Advertisement from './Advertisement'
 import PausePlay from './PausePlay'
 import NewExerciseUploading from './NewExerciseUploading'
+import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 
 class XRZRApp extends Component {
   componentDidMount () {
     this.lockToPortrait()
+    getAccessTokenFromAsyncStorage()
+    .then(response => {
+      if(JSON.parse(response).access_token) {
+        this.navigator.replace({name: 'browse'})
+      }
+    })
   }
 
   lockToPortrait () {
@@ -49,6 +56,7 @@ class XRZRApp extends Component {
   }
 
   _renderScene (route, navigator) {
+    this.navigator = navigator
     switch (route.name) {
       case 'login':
         return <Login
@@ -152,7 +160,7 @@ class XRZRApp extends Component {
     return (
       <View style={styles.container}>
         <Navigator
-          initialRoute={{name: 'browse'}}
+          initialRoute={{name: 'login'}}
           renderScene={(navigator, route) => this._renderScene(navigator, route)}
         />
       </View>

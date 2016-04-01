@@ -31,11 +31,15 @@ const workout = (state = defaultWorkout, action) => {
         ...networkSwitches(state, action)
       }
     case UPDATE_WORKOUT:
+      console.warn('yo warning ho', action)
       return {
         ...state,
-        [action.id]: {
-          ...state[action.id],
-          ...action.workout
+        data: {
+          ...state.data,
+          [action.workout.id]: {
+            ...state[action.id],
+            ...action.workout
+          }
         }
       }
     case POPULATE_WORKOUT:

@@ -23,6 +23,7 @@ class WorkoutSettings extends React.Component {
         id: workoutId,
         ...workout
       })
+      props.navigator.popToTop()
     }
     const onEditExercises = () => props.navigator.push({name: 'editWorkoutExercises', workoutId: workoutId})
     const onDeleteButton = () => props.navigator.push({name: 'deleteWorkout', workoutId: workoutId})
@@ -51,7 +52,7 @@ WorkoutSettings.propTypes = {}
 export default connect(
   (state) => {
     return {
-      categories: state.category,
+      categories: state.category.data,
       workouts: state.workout.data
     }
   },

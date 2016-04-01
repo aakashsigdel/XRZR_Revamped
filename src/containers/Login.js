@@ -4,6 +4,7 @@ import React, { Component } from 'react-native'
 import { connect } from 'react-redux'
 import { FBSDKLoginManager } from 'react-native-fbsdklogin'
 import { postWorkout } from '../redux_x/actions/workoutActionCreators'
+import Loader from '../components/Common/Loader.ios.js'
 
 import LoginIndex from '../components/Login/LoginIndex'
 import {
@@ -12,16 +13,21 @@ import {
 } from '../redux_x/actions/loginActionCreators'
 
 class Login extends Component {
-  componentDidMount () {
-    // postWorkout({name: 'yolo', description: 'bolo'})
+  constructor () {
+    super ()
+    this.state = {
+      isLoading: false
+    }
   }
+
   onButtonPress () {
     this.props.dispatch(login())
+    this.setState({ isLoading: true })
   }
 
   componentDidUpdate () {
     if (this.props.access_token) {
-      this._navigateToBrowse()
+      this._navigateToBrowse.call(this)
     }  else if (this.props.error) {
       alert('LOGIN ERROR: Please try again!')
       this.props.dispatch(clearError())
@@ -29,10 +35,15 @@ class Login extends Component {
   }
 
   _navigateToBrowse () {
-    this.props.navigator.push({name: 'browse'})
+    this.props.navigator.replace({name: 'browse'})
   }
 
   render () {
+    if (this.state.isLoading) {
+      return <Loader
+        loadingText='Loggin in...'
+      />
+    }
     return (
       <LoginIndex
         onButtonPress={() => this.onButtonPress()}

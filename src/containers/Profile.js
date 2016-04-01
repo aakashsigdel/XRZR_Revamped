@@ -1,6 +1,9 @@
 'use strict'
 
-import React from 'react-native'
+import React, {
+  Component,
+  Text
+} from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ProfileIndex from '../components/Profile/ProfileIndex'
@@ -8,6 +11,8 @@ import ProfileIndex from '../components/Profile/ProfileIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
+import { fetchUser } from '../redux_x/actions/userActionCreators'
+import Loader from '../components/Common/Loader.ios.js'
 
 const goToWorkoutIntro = (props, workoutId) => {
   props.playerDispatchers.loadWorkout(workoutId)
@@ -70,25 +75,42 @@ const handlePressOptions = (props, buttonType) => {
   })
 }
 
-const Profile = (props) => {
-  return (
-    <ProfileIndex
-      user={props.user[props.userId]}
-      workouts={props.workouts}
-      navigator={props.navigator}
-      goToWorkoutIntro={(workoutId) => goToWorkoutIntro(props, workoutId)}
-      handlePressOptions={(buttonType) => handlePressOptions(props, buttonType)}
-    />
-  )
+class Profile extends Component {
+  componentDidMount () {
+    console.log('tero baje', this.props)
+    this.props.fetchUser()
+  }
+
+  componentDidUpdate (prevProps) {
+  }
+
+  render () {
+    console.warn('corw', this.props.isFetching)
+    if (this.props.isFetching)
+      return <Loader />
+    return (
+      <ProfileIndex
+        user={this.props.user[this.props.userId]}
+        workouts={this.props.workouts}
+        navigator={this.props.navigator}
+        goToWorkoutIntro={(workoutId) => goToWorkoutIntro(this.props, workoutId)}
+        handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
+      />
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.user.data,
+    isFetching: state.user.isFetching,
     workouts: state.workout.data
   }
 }
 export default connect(
   (state) => mapStateToProps(state),
-  (dispatch) => ({playerDispatchers: bindActionCreators(VideoActionCreators, dispatch)})
+    (dispatch) => ({
+      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
+      fetchUser: bindActionCreators(fetchUser, dispatch)
+    })
 )(Profile)

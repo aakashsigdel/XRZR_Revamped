@@ -11,7 +11,12 @@ import ActionButtons from './ActionButtons'
 class WorkoutSettingsIndex extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      title: '',
+      workout_set: 3,
+      pause_between_exercises: 10,
+      category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy'
+    }
   }
 
   onWorkoutSetChange (workout_set) {

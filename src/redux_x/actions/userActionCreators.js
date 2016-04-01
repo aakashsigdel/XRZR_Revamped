@@ -1,10 +1,59 @@
 'use strict'
 
-import { GET_USER } from './actionTypes'
+import {
+  FETCH_USER,
+  SET_USER
+} from './actionTypes'
+import { BASE_URL } from '../../constants/appConstants'
+import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 
-export const getUser = (userId) => {
+export const setUser = (user) => {
   return {
-    type: GET_USER,
-    userId
+    type: SET_USER,
+    user
   }
 }
+
+export const requestUser = () => {
+  return {
+    type: FETCH_USER,
+    status: 'fetch'
+  }
+}
+
+export const receiveUser = () => {
+  return {
+    type: FETCH_USER,
+    status: 'success'
+  }
+}
+
+export const fetchUserFailure = (errorMessage) => {
+  return {
+    type: FETCH_USER,
+    status: 'error',
+    errorMessage
+  }
+}
+
+export const fetchUser = (id) => {
+  return (dispatch) => {
+    dispatch(requestUser())
+
+    const USER_URL = BASE_URL + '/appuser'
+    getAccessTokenFromAsyncStorage()
+    .then((responseData) => {
+      const tempUserId = 'ag5zfmJhY2tsZWN0LWFwcHIUCxIHYXBwdXNlchiAgICAq_OHCQyiAQl4cnpyLnhyenI'
+      // const USER_URL_WITH_USERID = USER_URL + '/' + JSON.parse(responseData).access_token
+      const USER_URL_WITH_USERID = USER_URL + '/' + tempUserId
+      fetch(USER_URL_WITH_USERID)
+      .then((response) => response.json())
+      .then((userData) => {
+        dispatch(setUser(userData.entities[0].entity))
+        dispatch(receiveUser())
+      })
+      .catch((error) => dispatch(fetchUserFailure(error)))
+    })
+  }
+}
+

@@ -26,6 +26,7 @@ export const TOGGLE_PAUSE_MODAL = 'TOGGLE_PAUSE_MODAL'
 
 // USER STATE
 export const GET_USER = 'GET_USER'
+export const FETCH_USER = 'FETCH_USER'
 
 // UI STATE
 export const CHANGE_BROWSE_TAB = 'CHANGE_BROWSE_TAB'

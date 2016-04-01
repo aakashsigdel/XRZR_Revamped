@@ -41,6 +41,7 @@ const loginIntoXRZR = (dispatch, token) => {
   fetch(URL_WITH_TOKEN)
   .then((response) => response.json())
   .then(responseData => {
+    console.warn(responseData, 'access token from server')
     setLoginDetailsToAsyncStorage(dispatch, responseData)
   })
   .catch((error) => {
