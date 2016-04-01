@@ -19,7 +19,7 @@ export const Categories = (props) => {
           onPress={handleCategoryPressed}
         >
           <Image
-            source={{uri: category.coverImage}}
+            source={{uri: category.coverImage + '=s300'}}
             style={styles.catImage}
           >
             <View style={styles.overlay}>

@@ -15,6 +15,7 @@ class Player extends React.Component {
       currentTime: 0.0,
       lastKnownTime: 0.0
     }
+    this.setIntervalRef = undefined
     this.previousVideoDispatcher = this.previousVideoDispatcher.bind(this)
     this.nextVideoDispatcher = this.nextVideoDispatcher.bind(this)
     this.onNavigate = this.onNavigate.bind(this)
@@ -87,13 +88,13 @@ class Player extends React.Component {
   }
 
   onVideoProgress (data) {
-    let deltaTime = data.currentTime - this.state.lastKnownTime
-
-    if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
+    //let deltaTime = data.currentTime - this.state.lastKnownTime
+    //
+    //if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
 
     this.setState({
-      currentTime: this.state.currentTime + (deltaTime),
-      lastKnownTime: data.currentTime
+      currentTime: this.state.currentTime + 1,//(deltaTime),
+      //lastKnownTime: data.currentTime
     })
   }
 
@@ -110,10 +111,18 @@ class Player extends React.Component {
         return
       }
 
+      this.pauseTimer()
       this.props.lockToPortrait()
+
+      const nextVideoTitle = getNextVideoTitle(
+        this.props.player,
+        this.props.workouts,
+        this.props.exercises
+      )
+
       newProps.navigator.push({
         name: 'pausePlay',
-        nextExercise: 'next Exercise Title',
+        nextExercise: nextVideoTitle,
         onCloseButton: () => this.onPauseScreenClose(newProps),
         onCountCompletion: () => this.onPauseScreenClose(newProps),
         pauseTime: workout.pause_between_exercises,
@@ -122,13 +131,24 @@ class Player extends React.Component {
     }
   }
 
+  pauseTimer () {
+    clearInterval(this.setIntervalRef)
+  }
+  startTimer () {
+    this.setIntervalRef = setInterval(this.onVideoProgress, 1000)
+  }
+  componentWillMount () {
+    this.startTimer()
+  }
   componentWillUnmount () {
     this.props.lockToPortrait()
+    this.pauseTimer()
   }
 
   onPauseScreenClose (props) {
     props.navigator.pop()
     props.playerActions.pauseVideo()
+    this.startTimer()
   }
 
   onExerciseSelect (exerciseIndex) {
@@ -237,6 +257,20 @@ function getNextVideoId (player, workouts) {
   return nextItem
 }
 
+function getNextVideoTitle (player, workouts, exercises) {
+  const nextVideoId = getNextVideoId(player, workouts)
+  const workout = getWorkoutExpanded(player, workouts, exercises)
+  if (!workout){
+    return ''
+  }
+
+  const nextVideo = workout.exercises[nextVideoId]
+  if (nextVideo) {
+    return nextVideo.title
+  }
+  return ''
+}
+
 function getNowPlayingExercise (player, workout) {
   let exerciseIndex = player.nowPlaying
   if (exerciseIndex === undefined) {
@@ -246,7 +280,7 @@ function getNowPlayingExercise (player, workout) {
   return exercise
 }
 
-function getWorkout (player, workouts){
+function getWorkout (player, workouts) {
   let workoutId = player.workoutId
   let workout = workouts[workoutId]
   if (workout === undefined) {
