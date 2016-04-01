@@ -113,9 +113,16 @@ class Player extends React.Component {
 
       this.pauseTimer()
       this.props.lockToPortrait()
+
+      const nextVideoTitle = getNextVideoTitle(
+        this.props.player,
+        this.props.workouts,
+        this.props.exercises
+      )
+
       newProps.navigator.push({
         name: 'pausePlay',
-        nextExercise: 'next Exercise Title',
+        nextExercise: nextVideoTitle,
         onCloseButton: () => this.onPauseScreenClose(newProps),
         onCountCompletion: () => this.onPauseScreenClose(newProps),
         pauseTime: workout.pause_between_exercises,
@@ -250,6 +257,20 @@ function getNextVideoId (player, workouts) {
   return nextItem
 }
 
+function getNextVideoTitle (player, workouts, exercises) {
+  const nextVideoId = getNextVideoId(player, workouts)
+  const workout = getWorkoutExpanded(player, workouts, exercises)
+  if (!workout){
+    return ''
+  }
+
+  const nextVideo = workout.exercises[nextVideoId]
+  if (nextVideo) {
+    return nextVideo.title
+  }
+  return ''
+}
+
 function getNowPlayingExercise (player, workout) {
   let exerciseIndex = player.nowPlaying
   if (exerciseIndex === undefined) {
@@ -259,7 +280,7 @@ function getNowPlayingExercise (player, workout) {
   return exercise
 }
 
-function getWorkout (player, workouts){
+function getWorkout (player, workouts) {
   let workoutId = player.workoutId
   let workout = workouts[workoutId]
   if (workout === undefined) {
