@@ -5,7 +5,12 @@ import {
   FETCH_CATEGORIES,
   FETCH_CATEGORY_DETAILS
 } from './actionTypes'
+import {
+  CATEGORY_BASE_URL,
+  WORKOUT_BASE_URL
+} from '../../constants/appConstants'
 import {populateWorkouts} from './workoutActionCreators'
+import ApiUtils from '../ApiUtilities'
 
 export const addCategory = (category) => {
   return {
@@ -47,7 +52,7 @@ export function categoriesFetchSuccess () {
 export function fetchCategories () {
   return (dispatch) => {
     dispatch(requestCategories())
-    return fetch('https://xrzr.backlect.com/api/xrzr/v1.0/category')
+    return fetch(CATEGORY_BASE_URL)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
@@ -94,7 +99,7 @@ function fetchCategoryDetailsError (errorMessage) {
 export function fetchCategoriesDetails (categoryID) {
   return (dispatch) => {
     dispatch(requestCategoryDetails())
-    return fetch('https://xrzr.backlect.com/api/xrzr/v1.0/workout?filter=category:"' + categoryID + '"')
+    return fetch(WORKOUT_BASE_URL + '?filter=category:"' + categoryID + '"')
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
@@ -128,14 +133,4 @@ export function fetchCategoriesDetails (categoryID) {
   }
 }
 
-let ApiUtils = {
-  checkStatus2xx: (response) => {
-    if (response.status >= 200 && response.status < 300) {
-      return response
-    }
 
-    let error = new Error(response.statusText)
-    error.response = response
-    throw error
-  }
-}

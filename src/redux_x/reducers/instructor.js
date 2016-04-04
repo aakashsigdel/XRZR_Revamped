@@ -44,7 +44,6 @@ const initialState = {
 }
 
 const instructor = (state = initialState.data, action) => {
-  console.log(state)
   return Object.keys(state)
     .filter((user) => state[user].isInstructor)
     .map((instructorKey, index) => state[instructorKey])
