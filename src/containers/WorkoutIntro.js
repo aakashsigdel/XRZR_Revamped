@@ -31,11 +31,13 @@ const WorkoutIntro = (props) => {
   }
 
   let onStartWorkout = () => {
-    props.playerActions.loadWorkout(props.player.workoutId)
-    props.navigator.push({
-      name: 'ads',
-      onAdClose: () => onAdClose(exercises[0].title)
-    })
+    if (exercises[0]) {
+      props.playerActions.loadWorkout(props.player.workoutId)
+      props.navigator.push({
+        name: 'ads',
+        onAdClose: () => onAdClose(exercises[ 0 ].title)
+      })
+    }
   }
 
   let onExerciseSelect = (videoId) => {

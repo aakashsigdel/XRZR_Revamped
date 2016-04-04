@@ -21,3 +21,5 @@ export const LOGIN_URL = URL + LOGIN_PATH
 
 export const LOGIN_STORAGE_KEY = '@XRZR_LOGIN_STORAGE_KEY'
 
+export const CATEGORY_BASE_URL = URL + '/v1.0/category'
+export const WORKOUT_BASE_URL = URL + '/v1.0/workout'

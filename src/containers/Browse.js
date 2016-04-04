@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 import BrowseIndex from '../components/browse/BrowseIndex'
 
 import * as CategoryActionCreators from '../redux_x/actions/categoryActionCreators'
+import * as FeaturedWorkoutsActionCreators from '../redux_x/actions/featuredWorkoutsActionCreators'
+import * as TrendingWorkoutsActionCreators from '../redux_x/actions/trendingActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
@@ -11,7 +13,9 @@ import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 class Browse extends React.Component {
   componentDidMount (nextProps, nextState) {
     console.debug('Fetching Category')
-    this.props.categoryDispatchers.fetchCategories()
+    //this.props.categoryDispatchers.fetchCategories()
+    //this.props.featuredDispatchers.fetchFeaturedWorkouts()
+    this.props.trendingsDispatchers.fetchTrendingWorkouts()
   }
   render (props = this.props) {
     let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
@@ -59,15 +63,19 @@ class Browse extends React.Component {
 }
 
 function workoutsManager (featuredWorkouts, workouts, instructors) {
-  return featuredWorkouts.map(
+  let featureds = featuredWorkouts.map(
     (featuredId) => {
       let instructorId = workouts[featuredId].instructor
+      if (!(instructorId || workouts[featuredId].image_16x9)) {
+        return null
+      }
       return {
         ...workouts[featuredId],
         instructor: instructors[instructorId]
       }
     }
   )
+  return featureds.filter((a) => a)
 }
 function trendingsManager (trendIds, workouts) {
   return trendIds.map(
@@ -131,9 +139,9 @@ export default connect(
     return {
       instructor: state.instructor,
       workouts: state.workout.data,
-      trendings: state.trending,
+      trendings: state.trending.data,
       categories: state.category.data,
-      featuredWorkouts: state.featuredWorkout,
+      featuredWorkouts: state.featuredWorkout.data,
       recentWorkouts: state.recentWorkout,
       uiStates: state.uiStates
     }
@@ -141,6 +149,8 @@ export default connect(
   (dispatch) => {
     return {
       categoryDispatchers: bindActionCreators(CategoryActionCreators, dispatch),
+      featuredDispatchers: bindActionCreators(FeaturedWorkoutsActionCreators, dispatch),
+      trendingsDispatchers: bindActionCreators(TrendingWorkoutsActionCreators, dispatch),
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
       uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
       asyncDispatchers: bindActionCreators(AsyncActionCreators, dispatch)

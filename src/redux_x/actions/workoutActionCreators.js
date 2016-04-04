@@ -82,7 +82,7 @@ export const updateWorkout = (workout) => {
 export const populateWorkouts = (workouts) => {
   return {
     type: POPULATE_WORKOUT,
-    workouts: workouts,
+    workouts: workouts
   }
 }
 
