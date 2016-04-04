@@ -19,7 +19,7 @@ export function addFeaturedWorkouts (workoutIds) {
 function featuredWorkoutsRequest () {
   return {
     type: FETCH_FEATURED_WORKOUTS,
-    status: 'request'
+    status: 'fetch'
   }
 }
 function featuredWorkoutsFetchSuccess (receivedTime) {
@@ -56,6 +56,5 @@ export function fetchFeaturedWorkouts () {
         console.error('Maintainance Please')
         dispatch(featuredWorkoutsFetchError(ex.response, new Date().getTime()))
       })
-
   }
 }

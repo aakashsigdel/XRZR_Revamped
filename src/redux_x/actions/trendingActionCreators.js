@@ -19,7 +19,7 @@ export function addTrendingWorkouts (workoutIds) {
 export function trendingWorkoutRequest() {
   return {
     type: FETCH_TRENDING_WORKOUTS,
-    status: 'request'
+    status: 'fetch'
   }
 }
 export function trendingWorkoutsSuccess (receivedTime) {
