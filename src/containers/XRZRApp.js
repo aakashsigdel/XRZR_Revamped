@@ -160,7 +160,7 @@ class XRZRApp extends Component {
     return (
       <View style={styles.container}>
         <Navigator
-          initialRoute={{name: 'login'}}
+          initialRoute={{name: 'browse'}}
           renderScene={(navigator, route) => this._renderScene(navigator, route)}
         />
       </View>
