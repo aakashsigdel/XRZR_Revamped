@@ -28,15 +28,14 @@ const MostPopular = (props) => {
     props.navigator.push({name: 'search'})
   }
 
-
   return (
     <MostPopularIndex
       navigator={props.navigator}
       mostPopularWorkout={
         _mapMostPopularWorkout(
-          props.state.mostPopularWorkout,
-          props.state.workout,
-          props.state.instructor
+          props.mostPopularWorkout,
+          props.workouts,
+          props.instructors
         )
       }
       loadWorkout={_loadWorkout}
@@ -58,6 +57,10 @@ MostPopular.propTypes = {
 // connect
 // -----
 export default connect(
-  (state) => ({ state }),
+  (state) => ({
+    mostPopularWorkout: state.mostPopularWorkout,
+    workouts: state.workout.data,
+    instructors: state.instructor
+  }),
   (dispatch) => bindActionCreators({ loadWorkout }, dispatch)
 )(MostPopular)
