@@ -36,7 +36,6 @@ export default class CategoryDropDown extends Component {
   }
 
   render () {
-    console.log(this.props.categories, 'dropme')
     return (
       <Modal
         visible={this.props.isModalVisible}

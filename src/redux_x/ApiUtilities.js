@@ -94,7 +94,7 @@ let ApiUtils = {
   }
 }
 
-export function hydrateWorkout (workoutId, workout, categoryId) {
+export function hydrateWorkout (workoutId, workout) {
   let validWorkout = {...workout}
   if (!(workout && workoutId)) {
     return undefined
@@ -109,7 +109,10 @@ export function hydrateWorkout (workoutId, workout, categoryId) {
   validWorkout['instructor'] = workout.instructor || 2
   validWorkout['like'] = workout.like || false
   validWorkout['workout_set'] = workout.workout_set || 4
-  validWorkout['category'] = categoryId
+  validWorkout['category'] = workout.category
+  if (workout.category.split('/').length !== 1) {
+    validWorkout['category'] = workout.category.split('/')[1]
+  }
   return validWorkout
 }
 

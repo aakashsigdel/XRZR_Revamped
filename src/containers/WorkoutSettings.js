@@ -22,15 +22,18 @@ class WorkoutSettings extends React.Component {
       this.setState({
         isFetching: true
       })
-    }
-    if (prevProps.workouts.isFetching && !this.props.workouts.isFetching) {
-      Alert.alert(
-        'XRZR',
-        'Workout Updated!'
-      )
-      this.setState({
-        isFetching: false
-      })
+    } else if (prevProps.workouts.isFetching && !this.props.workouts.isFetching) {
+      setTimeout(() => {
+        this.setState({
+          isFetching: false
+        }, () => {
+          Alert.alert(
+            'XRZR',
+            'Workout Updated!'
+          )
+        })
+
+      }, 1000)
     }
   }
 
@@ -72,7 +75,7 @@ function workoutManager (workoutId, workouts, categories) {
   const workout = workouts[workoutId]
   return {
     ...workout,
-    category: categories[workout.category.split('/')[1]]
+    category: categories[workout.category]
   }
 }
 
