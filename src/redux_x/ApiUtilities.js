@@ -19,6 +19,25 @@ let ApiUtils = {
     return response
   },
 
+  convertEntitiesToKeyBasedDictDenormalizedBy: (jsonResponse, groups) => {
+    let response = {data: {}}
+    groups.map((group) => { response[group] = {} })
+    jsonResponse.entities.map(
+      (entity) => {
+        let entityData = entity.entity
+        response.data[entity.id] = entityData
+
+        groups.map((group) => {
+          let groupData = entityData[group].entity
+          groupData['id'] = entityData[group].id
+          response[group][groupData.id] = groupData
+          response.data[entity.id][group] = groupData.id
+        })
+      }
+    )
+    return response
+  },
+
   convertWorkoutsToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
@@ -27,10 +46,30 @@ let ApiUtils = {
       }
     )
     return response
+  },
+
+  hydrateCategories: (categories) => {
+    let newData = {}
+    Object.keys(categories).map((categoryId) => {
+      newData[categoryId] = {
+        coverImage: categories[categoryId]['image'],
+        tag: categories[categoryId]['category_name']
+      }
+    })
+    return newData
+  },
+
+  hydrateWorkouts: (workouts) => {
+    let newData = {}
+    let categoryId = ''
+    Object.keys(workouts).map((workoutId) => {
+      newData[workoutId] = hydrateWorkout(workoutId, workouts[workoutId])
+    })
+    return newData
   }
 }
 
-function hydrateWorkout (workoutId, workout) {
+function hydrateWorkout (workoutId, workout, categoryId) {
   let validWorkout = {}
   if (!(workout && workoutId)) {
     return undefined
@@ -44,6 +83,7 @@ function hydrateWorkout (workoutId, workout) {
   validWorkout['pause_between_exercises'] = workout.pause_interval || 2
   validWorkout['instructor'] = workout.instructor || 2
   validWorkout['like'] = workout.like || false
+  validWorkout['category'] = categoryId
   return validWorkout
 
 }

@@ -7,7 +7,9 @@ import {
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 import ApiUtils from '../ApiUtilities'
+import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
 
 export function addMostPopularWorkouts (workoutIds) {
   return {
@@ -38,12 +40,25 @@ function mostPopularFetchError (errorMessage, receivedTime) {
   }
 }
 export function fetchMostPopularWorkouts () {
+  const mostPopularWorkout_url = new UrlBuilder(WORKOUT_BASE_URL)
+    .addWithClause(['category'])
+    .toString()
+
   return (dispatch) => {
     dispatch(mostPopularRequest())
-    return fetch(WORKOUT_BASE_URL)
+    return fetch(mostPopularWorkout_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertWorkoutsToKeyBasedDict)
+      .then((jsonResponse) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        CategoryActions.addCategory(categories)
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
       .then((workouts) => {
         let workoutIds = Object.keys(workouts)
 
@@ -51,10 +66,10 @@ export function fetchMostPopularWorkouts () {
         dispatch(addMostPopularWorkouts(workoutIds))
         dispatch(mostPopularFetchSuccess(new Date().getTime()))
       })
-      //.catch((ex) => {
-      //  console.log(ex)
-      //  console.error('Maintainance Please')
-      //  dispatch(mostPopularFetchError(ex.response, new Date().getTime()))
-      //})
+      .catch((ex) => {
+        console.log(ex)
+        console.error('Maintainance Please')
+        dispatch(mostPopularFetchError(ex.response, new Date().getTime()))
+      })
   }
 }

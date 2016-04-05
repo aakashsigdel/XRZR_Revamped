@@ -7,7 +7,9 @@ import {
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 import ApiUtils from '../ApiUtilities'
+import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
 
 export function addFeaturedWorkouts (workoutIds) {
   return {
@@ -38,12 +40,26 @@ function featuredWorkoutsFetchError (errorMessage, receivedTime) {
   }
 }
 export function fetchFeaturedWorkouts () {
+
+  let featured_api_uri = new UrlBuilder(WORKOUT_BASE_URL)
+    .addWithClause(['category'])
+    .toString()
+
   return (dispatch) => {
     dispatch(featuredWorkoutsRequest())
-    return fetch(WORKOUT_BASE_URL)
+    return fetch(featured_api_uri)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertWorkoutsToKeyBasedDict)
+      .then((response) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        CategoryActions.addCategory(categories)
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
       .then((workouts) => {
         let workoutIds = Object.keys(workouts)
 
