@@ -12,6 +12,7 @@ import FIcon from 'react-native-vector-icons/FontAwesome'
 
 import Navigation from '../Navigation/Navigation'
 import Listing from './Listing'
+import LoadingSign from '../Common/LoadingSign'
 
 const onPressSearch = (navigator) => {
   navigator.push({
@@ -24,6 +25,13 @@ const onPressSearch = (navigator) => {
 }
 
 const MostPopularIndex = (props) => {
+  if (props.isLoading) {
+    return (
+      <View style={styles.container}>
+        <LoadingSign loadingText='Loading...'/>
+      </View>
+    )
+  }
   const navLeft = {
     custom: (
       <TouchableOpacity

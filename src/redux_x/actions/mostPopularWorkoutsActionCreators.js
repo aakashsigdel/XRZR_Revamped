@@ -1,6 +1,6 @@
 import {
-  ADD_FEATURED_WORKOUTS,
-  FETCH_FEATURED_WORKOUTS
+  ADD_MOST_POPULAR_WORKOUTS,
+  FETCH_MOST_POPULAR_WORKOUTS
 } from './actionTypes'
 
 import {
@@ -11,48 +11,46 @@ import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
 
-export function addFeaturedWorkouts (workoutIds) {
+export function addMostPopularWorkouts (workoutIds) {
   return {
-    type: ADD_FEATURED_WORKOUTS,
+    type: ADD_MOST_POPULAR_WORKOUTS,
     workoutIds
   }
 }
 
-function featuredWorkoutsRequest () {
+function mostPopularRequest () {
   return {
-    type: FETCH_FEATURED_WORKOUTS,
+    type: FETCH_MOST_POPULAR_WORKOUTS,
     status: 'fetch'
   }
 }
-function featuredWorkoutsFetchSuccess (receivedTime) {
+function mostPopularFetchSuccess (receivedTime) {
   return {
-    type: FETCH_FEATURED_WORKOUTS,
+    type: FETCH_MOST_POPULAR_WORKOUTS,
     status: 'success',
     receivedTime
   }
 }
-function featuredWorkoutsFetchError (errorMessage, receivedTime) {
+function mostPopularFetchError (errorMessage, receivedTime) {
   return {
-    type: FETCH_FEATURED_WORKOUTS,
+    type: FETCH_MOST_POPULAR_WORKOUTS,
     status: 'error',
     receivedTime,
     errorMessage
   }
 }
-export function fetchFeaturedWorkouts () {
-
-  let featured_api_uri = new UrlBuilder(WORKOUT_BASE_URL)
+export function fetchMostPopularWorkouts () {
+  const mostPopularWorkout_url = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
-    .addAndFilter('featured', true)
     .toString()
 
   return (dispatch) => {
-    dispatch(featuredWorkoutsRequest())
-    return fetch(featured_api_uri)
+    dispatch(mostPopularRequest())
+    return fetch(mostPopularWorkout_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then((response) => {
-        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'])
+      .then((jsonResponse) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'])
 
         let categories = keyBasedData['category']
         categories = ApiUtils.hydrateCategories(categories)
@@ -65,13 +63,13 @@ export function fetchFeaturedWorkouts () {
         let workoutIds = Object.keys(workouts)
 
         dispatch(WorkoutActions.populateWorkouts(workouts))
-        dispatch(addFeaturedWorkouts(workoutIds))
-        dispatch(featuredWorkoutsFetchSuccess(new Date().getTime()))
+        dispatch(addMostPopularWorkouts(workoutIds))
+        dispatch(mostPopularFetchSuccess(new Date().getTime()))
       })
       .catch((ex) => {
         console.log(ex)
         console.error('Maintainance Please')
-        dispatch(featuredWorkoutsFetchError(ex.response, new Date().getTime()))
+        dispatch(mostPopularFetchError(ex.response, new Date().getTime()))
       })
   }
 }

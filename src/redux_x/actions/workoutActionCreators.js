@@ -4,7 +4,8 @@ import {
   UPDATE_WORKOUT_LOCAL,
   POPULATE_WORKOUT,
   DELETE_WORKOUT,
-  POST_WORKOUT
+  POST_WORKOUT,
+  POPULATE_WORKOUT_EXERCISES
 } from './actionTypes'
 import { loadWorkout } from './videoActionCreators'
 import { BASE_URL } from '../../constants/appConstants'
@@ -170,5 +171,13 @@ export const deleteWorkout = (workoutId) => {
   return {
     type: DELETE_WORKOUT,
     workoutId
+  }
+}
+
+export const populateWorkoutExercises = (workoutId, exercises) => {
+  return {
+    type: POPULATE_WORKOUT_EXERCISES,
+    workoutId,
+    exercises
   }
 }

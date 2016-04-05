@@ -19,6 +19,25 @@ let ApiUtils = {
     return response
   },
 
+  convertEntitiesToKeyBasedDictDenormalizedBy: (jsonResponse, groups) => {
+    let response = {data: {}}
+    groups.map((group) => { response[group] = {} })
+    jsonResponse.entities.map(
+      (entity) => {
+        let entityData = entity.entity
+        response.data[entity.id] = entityData
+
+        groups.map((group) => {
+          let groupData = entityData[group].entity
+          groupData['id'] = entityData[group].id
+          response[group][groupData.id] = groupData
+          response.data[entity.id][group] = groupData.id
+        })
+      }
+    )
+    return response
+  },
+
   convertWorkoutsToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
@@ -27,10 +46,55 @@ let ApiUtils = {
       }
     )
     return response
+  },
+
+  convertExercisesFromWorkoutExercises: (jsonResponse) => {
+    let response = {}
+    jsonResponse.entities.map(
+      (relationEntity) => {
+        let relation = relationEntity.entity
+        let exerciseEntity = relation.exercise
+        let exercise = exerciseEntity.entity
+
+        response[relationEntity.id] = {
+          id: relationEntity.id,
+          title: exercise.title,
+          description: exercise.description,
+          mode: relation.mode,
+          instructor: 2,
+          duration: relation.duration,
+          videoUri: exercise.video,
+          tags: exercise.tags,
+          sound: exercise.sound,
+          order: relation.order
+        }
+      }
+    )
+    return response
+  },
+
+  hydrateCategories: (categories) => {
+    let newData = {}
+    Object.keys(categories).map((categoryId) => {
+      newData[categoryId] = {
+        coverImage: categories[categoryId]['image'],
+        tag: categories[categoryId]['category_name']
+      }
+    })
+    return newData
+  },
+
+  hydrateWorkouts: (workouts) => {
+    let newData = {}
+    let categoryId = ''
+    Object.keys(workouts).map((workoutId) => {
+      newData[workoutId] = hydrateWorkout(workoutId, workouts[workoutId])
+    })
+    return newData
   }
 }
 
-export function hydrateWorkout (workoutId, workout) {
+export function hydrateWorkout (workoutId, workout, categoryId) {
   let validWorkout = {...workout}
   if (!(workout && workoutId)) {
     return undefined
@@ -45,8 +109,8 @@ export function hydrateWorkout (workoutId, workout) {
   validWorkout['instructor'] = workout.instructor || 2
   validWorkout['like'] = workout.like || false
   validWorkout['workout_set'] = workout.workout_set || 4
+  validWorkout['category'] = categoryId
   return validWorkout
-
 }
 
 export default ApiUtils

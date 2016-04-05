@@ -6,7 +6,8 @@ import {
   UPDATE_WORKOUT,
   UPDATE_WORKOUT_LOCAL,
   POPULATE_WORKOUT,
-  DELETE_WORKOUT
+  DELETE_WORKOUT,
+  POPULATE_WORKOUT_EXERCISES
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -58,7 +59,21 @@ const workout = (state = defaultWorkout, action) => {
     case DELETE_WORKOUT:
       return {
         ...state,
-        [action.workoutId]: undefined
+        data:{
+          ...state.data,
+          [action.workoutId]: undefined
+        }
+      }
+    case POPULATE_WORKOUT_EXERCISES:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.workoutId]: {
+            ...state.data[action.workoutId],
+            exercises: action.exercises
+          }
+        }
       }
     default:
       return state

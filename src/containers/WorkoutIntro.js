@@ -11,92 +11,100 @@ import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
 import { updateWorkout } from '../redux_x/actions/workoutActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const WorkoutIntro = (props) => {
-  let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
-  let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
-  let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
-
-  let onCountCompletion = () => {
-    props.navigator.replace({name: 'player'})
+class WorkoutIntro extends React.Component {
+  componentWillMount () {
+    this.props.playerActions.fetchWorkoutExercises(this.props.player.workoutId)
   }
+  render (props = this.props) {
+    let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
+    let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
+    let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
 
-  let onAdClose = (exerciseTitle) => {
-    props.navigator.replace({
-      name: 'pausePlay',
-      onCloseButton: onCountCompletion,
-      onCountCompletion: onCountCompletion,
-      pauseTime: workout.pause_between_exercises,
-      title: 'Starting in'
-    })
-  }
+    const isLoading = props.player.isFetching
 
-  let onStartWorkout = () => {
-    if (exercises[0]) {
-      props.playerActions.loadWorkout(props.player.workoutId)
-      props.navigator.push({
-        name: 'ads',
-        onAdClose: () => onAdClose(exercises[ 0 ].title)
+    let onCountCompletion = () => {
+      props.navigator.replace({name: 'player'})
+    }
+
+    let onAdClose = (exerciseTitle) => {
+      props.navigator.replace({
+        name: 'pausePlay',
+        onCloseButton: onCountCompletion,
+        onCountCompletion: onCountCompletion,
+        pauseTime: workout.pause_between_exercises,
+        title: 'Starting in'
       })
     }
+
+    let onStartWorkout = () => {
+      if (exercises[0]) {
+        props.playerActions.loadWorkout(props.player.workoutId)
+        props.navigator.push({
+          name: 'ads',
+          onAdClose: () => onAdClose(exercises[ 0 ].title)
+        })
+      }
+    }
+
+    let onExerciseSelect = (videoId) => {
+      props.playerActions.loadWorkout(props.player.workoutId)
+      props.playerActions.changeVideo(videoId)
+
+      props.navigator.push({
+        name: 'pausePlay',
+        onCloseButton: onCountCompletion,
+        onCountCompletion: onCountCompletion,
+        pauseTime: workout.pause_between_exercises,
+        title: 'Starting in'
+      })
+    }
+
+    let onBackButton = () => props.navigator.pop()
+
+    let onDownloadButton = () => props.navigator.push({name: 'premium'})
+    let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
+    const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
+
+    const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
+
+    const handlePressOptions = () => {
+      props.navigator.push({
+        name: 'action',
+        actionElements: [
+          {
+            name: 'SHARE WORKOUT',
+            icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />
+          },
+          {
+            name: 'UNPUBLISH WORKOUT',
+            icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />,
+            border: true
+          },
+          {
+            name: 'EDIT WORKOUT',
+            icon: <Image source={require('../../assets/images/history.png')} style={styles.history} />,
+            action: onEditWorkout
+          }
+        ]
+      })
+    }
+
+    return (
+      <WorkoutIntroIndex
+        exercises={exercises}
+        goToProfile={goToProfile}
+        handlePressOptions={handlePressOptions}
+        instructor={instructor}
+        isLoading={isLoading}
+        onBackButton={onBackButton}
+        onDownloadButton={onDownloadButton}
+        onExerciseSelect={onExerciseSelect}
+        onLikePress={onLikePress}
+        onStartWorkout={onStartWorkout}
+        workout={workout}
+      />
+    )
   }
-
-  let onExerciseSelect = (videoId) => {
-    props.playerActions.loadWorkout(props.player.workoutId)
-    props.playerActions.changeVideo(videoId)
-
-    props.navigator.push({
-      name: 'pausePlay',
-      onCloseButton: onCountCompletion,
-      onCountCompletion: onCountCompletion,
-      pauseTime: workout.pause_between_exercises,
-      title: 'Starting in'
-    })
-  }
-
-  let onBackButton = () => props.navigator.pop()
-
-  let onDownloadButton = () => props.navigator.push({name: 'premium'})
-  let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
-  const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
-
-  const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
-
-  const handlePressOptions = () => {
-    props.navigator.push({
-      name: 'action',
-      actionElements: [
-        {
-          name: 'SHARE WORKOUT',
-          icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />
-        },
-        {
-          name: 'UNPUBLISH WORKOUT',
-          icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />,
-          border: true
-        },
-        {
-          name: 'EDIT WORKOUT',
-          icon: <Image source={require('../../assets/images/history.png')} style={styles.history} />,
-          action: onEditWorkout
-        }
-      ]
-    })
-  }
-
-  return (
-    <WorkoutIntroIndex
-      exercises={exercises}
-      goToProfile={goToProfile}
-      handlePressOptions={handlePressOptions}
-      instructor={instructor}
-      onBackButton={onBackButton}
-      onDownloadButton={onDownloadButton}
-      onExerciseSelect={onExerciseSelect}
-      onLikePress={onLikePress}
-      onStartWorkout={onStartWorkout}
-      workout={workout}
-    />
-  )
 }
 
 const styles = StyleSheet.create({

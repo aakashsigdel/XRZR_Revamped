@@ -1,10 +1,20 @@
-import React, { PropTypes, StyleSheet } from 'react-native'
+import React, { View, PropTypes, StyleSheet } from 'react-native'
 import Carousel from 'react-native-looped-carousel'
 
 import { VIEWPORT } from '../../constants/appConstants'
 import HeaderElement from './HeaderElement'
+import LoadingSign from '../Common/LoadingSign'
 
 const Header = (props) => {
+
+  if (props.isFeaturedLoading) {
+    return (
+      <View style={styles.container}>
+        <LoadingSign/>
+      </View>
+    )
+  }
+
   let featuredElements = props.featured.map(
     (item, index) => (
       <HeaderElement

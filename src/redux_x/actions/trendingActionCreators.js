@@ -7,7 +7,9 @@ import {
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 import ApiUtils from '../ApiUtilities'
+import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
 
 export function addTrendingWorkouts (workoutIds) {
   return {
@@ -19,7 +21,7 @@ export function addTrendingWorkouts (workoutIds) {
 export function trendingWorkoutRequest() {
   return {
     type: FETCH_TRENDING_WORKOUTS,
-    status: 'request'
+    status: 'fetch'
   }
 }
 export function trendingWorkoutsSuccess (receivedTime) {
@@ -39,12 +41,25 @@ export function trendingWorkoutsError (errorMessage, receivedTime) {
 }
 
 export function fetchTrendingWorkouts () {
+  const trending_api_url = new UrlBuilder(WORKOUT_BASE_URL)
+    .addWithClause(['category'])
+    .toString()
+
   return (dispatch) => {
     dispatch(trendingWorkoutRequest())
-    return fetch(WORKOUT_BASE_URL)
+    return fetch(trending_api_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertWorkoutsToKeyBasedDict)
+      .then((jsonResponse) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        CategoryActions.addCategory(categories)
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
       .then((workouts) => {
         let workoutIds = Object.keys(workouts)
         workoutIds.reverse()

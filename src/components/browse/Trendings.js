@@ -7,6 +7,7 @@ import React, {
 } from 'react-native'
 import {TrendingItem} from './TrendingItem'
 import { VIEWPORT } from '../../constants/appConstants'
+import LoadingSign from '../Common/LoadingSign'
 
 export const TrendingWorkouts = (props) => {
   let trendingItems = props.trends.map(
@@ -18,19 +19,30 @@ export const TrendingWorkouts = (props) => {
       />
     )
   )
+
+  let exercisesView = (
+    <ScrollView
+      contentContainerStyle={styles.contentContainer}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.trendings}
+    >
+      {trendingItems}
+    </ScrollView>
+  )
+
+  if (props.isTrendingLoading) {
+    exercisesView = <LoadingSign />
+  }
+
   return (
     <View style={{width: VIEWPORT.width}}>
       <Text style={styles.header}>
         TRENDING WORKOUTS
       </Text>
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.trendings}
-      >
-        {trendingItems}
-      </ScrollView>
+      <View style={styles.listContainer}>
+        {exercisesView}
+      </View>
     </View>
   )
 }
@@ -43,6 +55,9 @@ TrendingWorkouts.propTypes = {
 const styles = StyleSheet.create({
   container: {
     height: 10
+  },
+  listContainer: {
+      height: 125
   },
   header: {
     marginTop: 19,
