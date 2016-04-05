@@ -20,6 +20,8 @@ class WorkoutIntro extends React.Component {
     let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
     let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
 
+    const isLoading = props.player.isFetching
+
     let onCountCompletion = () => {
       props.navigator.replace({name: 'player'})
     }
@@ -93,6 +95,7 @@ class WorkoutIntro extends React.Component {
         goToProfile={goToProfile}
         handlePressOptions={handlePressOptions}
         instructor={instructor}
+        isLoading={isLoading}
         onBackButton={onBackButton}
         onDownloadButton={onDownloadButton}
         onExerciseSelect={onExerciseSelect}

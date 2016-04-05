@@ -27,6 +27,7 @@ const WorkoutIntroIndex = (props) => {
           exercises={props.exercises}
           onStartWorkout={props.onStartWorkout}
           onExerciseSelect={props.onExerciseSelect}
+          isLoading={props.isLoading}
         />
       </ScrollView>
       <StartButton

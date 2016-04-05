@@ -1,5 +1,6 @@
 import React, { ListView, View, StyleSheet } from 'react-native'
 
+import LoadingSign from '../Common/LoadingSign'
 import ExerciseListItem from './ExerciseListItem'
 
 const ExerciseList = (props) => {
@@ -10,6 +11,10 @@ const ExerciseList = (props) => {
       onItemSelect={props.onExerciseSelect}
       // onWorkoutSelect={props.onWorkoutSelect}
     />
+  }
+
+  if (props.isLoading) {
+    return <LoadingSign />
   }
   return (
     <View style={styles.container}>
