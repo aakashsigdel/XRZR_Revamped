@@ -15,7 +15,8 @@ class WorkoutSettingsIndex extends React.Component {
       title: '',
       workout_set: 3,
       pause_between_exercises: 10,
-      category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy'
+      category: props.workout.category.tag
+      // category: ''
     }
   }
 

@@ -16,6 +16,7 @@ class Browse extends React.Component {
     this.props.categoryDispatchers.fetchCategories()
     this.props.featuredDispatchers.fetchFeaturedWorkouts()
     this.props.trendingsDispatchers.fetchTrendingWorkouts()
+    this.props.categoryDispatchers.fetchCategories()
   }
   render (props = this.props) {
     let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)

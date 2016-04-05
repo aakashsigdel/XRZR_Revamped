@@ -1,6 +1,7 @@
 import {
   ADD_WORKOUT,
   UPDATE_WORKOUT,
+  UPDATE_WORKOUT_LOCAL,
   POPULATE_WORKOUT,
   DELETE_WORKOUT,
   POST_WORKOUT
@@ -8,6 +9,7 @@ import {
 import { loadWorkout } from './videoActionCreators'
 import { BASE_URL } from '../../constants/appConstants'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
+import { hydrateWorkout } from '../ApiUtilities.js'
 
 export const addWorkout = (workout) => {
   return {
@@ -38,13 +40,20 @@ export const postWorkoutFailure = (errorMessage) => {
   }
 }
 
+const defaultWorkoutOptions = {
+  published: false,
+  duration: '10 minutes',
+  pause_interval: 10,
+  description: 'Go To Settings To Add Description'
+}
 export const postWorkout = (title) => {
   console.warn('me postworkout', title)
   return (dispatch) => {
     dispatch(postWorkoutStart())
     const POST_WORKOUT_URL = BASE_URL + '/workout'
     const data = {
-      title
+      title,
+      ...defaultWorkoutOptions
     }
 
     getAccessTokenFromAsyncStorage()
@@ -71,11 +80,82 @@ export const postWorkout = (title) => {
   }
 }
 
-export const updateWorkout = (workout) => {
+export const requestUpdateWorkout = () => {
   return {
     type: UPDATE_WORKOUT,
+    status: 'fetch'
+  }
+}
+export const updateWorkoutSuccess = () => {
+  return {
+    type: UPDATE_WORKOUT,
+    status: 'success'
+  }
+}
+
+export const updateWorkoutFailure = () => {
+  return {
+    type: UPDATE_WORKOUT,
+    status: 'error'
+  }
+}
+
+export const updateWorkoutLocal = (workout) => {
+  return {
+    type: UPDATE_WORKOUT_LOCAL,
     id: workout.id,
     workout: workout
+  }
+}
+
+const _validateCategory = (categoryList, category) => {
+  let workoutCategory = ''
+  let result =  Object.keys(categoryList).some((c) => {
+    if (categoryList[c].tag === category) {
+      workoutCategory = c
+      return true
+    }
+    return false
+  })
+  if (result) {
+    return workoutCategory
+  }
+  return false
+}
+
+export const updateWorkout = ({id, workout}) => {
+  return (dispatch, getState) => {
+    let category = _validateCategory(getState().category.data, workout.category)
+    if(!category) {
+      alert('Invalid Category')
+      return
+    }
+    dispatch(requestUpdateWorkout())
+
+    const data = {
+      ...workout,
+      category
+    }
+    fetch(BASE_URL + '/workout/' + id, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+      dispatch(
+        updateWorkoutLocal(
+          hydrateWorkout(responseData.entities[0].id, responseData.entities[0].entity)
+        )
+      )
+      dispatch(updateWorkoutSuccess())
+    })
+    .catch((error) => {
+      dispatch(updateWorkoutFailure(error))
+    })
   }
 }
 

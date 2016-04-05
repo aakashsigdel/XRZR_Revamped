@@ -4,6 +4,7 @@ import {
   ADD_WORKOUT,
   POST_WORKOUT,
   UPDATE_WORKOUT,
+  UPDATE_WORKOUT_LOCAL,
   POPULATE_WORKOUT,
   DELETE_WORKOUT
 } from '../actions/actionTypes'
@@ -31,13 +32,17 @@ const workout = (state = defaultWorkout, action) => {
         ...networkSwitches(state, action)
       }
     case UPDATE_WORKOUT:
-      console.warn('yo warning ho', action)
+      return {
+        ...state,
+        ...networkSwitches(state, action)
+      }
+    case UPDATE_WORKOUT_LOCAL:
       return {
         ...state,
         data: {
           ...state.data,
           [action.workout.id]: {
-            ...state[action.id],
+            ...state[action.workout.id],
             ...action.workout
           }
         }

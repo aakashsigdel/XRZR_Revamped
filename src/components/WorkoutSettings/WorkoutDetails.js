@@ -33,7 +33,7 @@ const WorkoutDetails = (props) => {
         <View style={[styles.rowItem]}>
           <Text style={[styles.rowText]}>WORKOUT SETS</Text>
           <TextInput
-            defaultValue={props.workout.workout_set.toString()}
+            defaultValue={'' + props.workout.workout_set}
             keyboardType='number-pad'
             onChangeText={props.onWorkoutSetChange}
             style={[styles.rowText, styles.inputBox]}
@@ -44,7 +44,7 @@ const WorkoutDetails = (props) => {
           <Text style={[styles.rowText]}>PAUSE BETWEEN EXERCISES</Text>
           <View style={styles.pauseOption}>
             <TextInput
-              defaultValue={props.workout.pause_between_exercises.toString()}
+              defaultValue={'' + props.workout.pause_between_exercises}
               keyboardType='number-pad'
               onChangeText={props.onPBEChange}
               style={[styles.rowText, styles.inputBox]}
@@ -56,7 +56,7 @@ const WorkoutDetails = (props) => {
         <View style={[styles.rowItem]}>
           <Text style={[styles.rowText]}>CATEGORY</Text>
           <TextInput
-            defaultValue={props.workout.category.tag.toUpperCase()}
+            defaultValue={props.workout.category.tag}
             onChangeText={props.onCategoryChange}
             style={[styles.rowText, styles.inputBox]}
           />

@@ -30,8 +30,8 @@ let ApiUtils = {
   }
 }
 
-function hydrateWorkout (workoutId, workout) {
-  let validWorkout = {}
+export function hydrateWorkout (workoutId, workout) {
+  let validWorkout = {...workout}
   if (!(workout && workoutId)) {
     return undefined
   }
@@ -40,10 +40,11 @@ function hydrateWorkout (workoutId, workout) {
   validWorkout['description'] = workout.description || 'Default Description'
   validWorkout['exercises'] = workout.exercises || []
   validWorkout['image_16x9'] = workout.image || 'http://aakashsigdel.github.io/XRZR_Files/others/workoutPlaceholder.png'
-  validWorkout['duration'] = 'NA'
+  validWorkout['duration'] = workout.duration || 'NA'
   validWorkout['pause_between_exercises'] = workout.pause_interval || 2
   validWorkout['instructor'] = workout.instructor || 2
   validWorkout['like'] = workout.like || false
+  validWorkout['workout_set'] = workout.workout_set || 4
   return validWorkout
 
 }
