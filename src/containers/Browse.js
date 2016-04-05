@@ -18,12 +18,15 @@ class Browse extends React.Component {
     this.props.trendingsDispatchers.fetchTrendingWorkouts()
   }
   render (props = this.props) {
-    let featured = workoutsManager(props.featuredWorkouts, props.workouts, props.instructor)
+    let featured = workoutsManager(props.featuredWorkouts.data, props.workouts, props.instructor)
     let recent = workoutsManager(props.recentWorkouts, props.workouts, props.instructor)
-    let trendings = trendingsManager(props.trendings, props.workouts)
+    let trendings = trendingsManager(props.trendings.data, props.workouts)
     let browseListingItems = browseListingsManager(props.navigator)
     let favouriteListingItems = favouriteListingManager(props.navigator)
     let categories = categoriesManager(props.categories)
+
+    let isFeaturedLoading = props.featuredWorkouts.isFetching
+    let isTrendingLoading = props.trendings.isFetching
 
     let onWorkoutSelect = (workoutId) => {
       props.playerDispatchers.loadWorkout(workoutId)
@@ -56,6 +59,9 @@ class Browse extends React.Component {
         selectedTab={props.uiStates.selectedBrowseTab}
         trendings={trendings}
         goToProfile={goToProfile}
+
+        isFeaturedLoading={isFeaturedLoading}
+        isTrendingLoading={isTrendingLoading}
         { ...props.playerDispatchers }
       />
     )
@@ -122,9 +128,9 @@ function categoriesManager (categories) {
 Browse.propTypes = {
   instructor: PropTypes.object,
   workouts: PropTypes.object,
-  trendings: PropTypes.array,
+  trendings: PropTypes.object,
   categories: PropTypes.object,
-  featuredWorkouts: PropTypes.array,
+  featuredWorkouts: PropTypes.object,
   recentWorkouts: PropTypes.array,
   uiStates: PropTypes.object,
 
@@ -139,11 +145,12 @@ export default connect(
     return {
       instructor: state.instructor,
       workouts: state.workout.data,
-      trendings: state.trending.data,
+      trendings: state.trending,
       categories: state.category.data,
-      featuredWorkouts: state.featuredWorkout.data,
+      featuredWorkouts: state.featuredWorkout,
       recentWorkouts: state.recentWorkout,
       uiStates: state.uiStates
+
     }
   },
   (dispatch) => {

@@ -17,10 +17,12 @@ const BrowserScreen = (props) => {
         <Header
           featured={props.featured}
           onWorkoutSelect={props.onWorkoutSelect}
+          isFeaturedLoading={props.isFeaturedLoading}
         />
         <TrendingWorkouts
           onWorkoutSelect={props.onWorkoutSelect}
           trends={props.trendings}
+          isTrendingLoading={props.isTrendingLoading}
         />
         <ListingMenu items={props.browseListingItems} />
         <Categories

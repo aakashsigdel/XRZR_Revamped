@@ -29,6 +29,8 @@ class MostPopular extends React.Component {
       })
     }
 
+    const isLoading = props.mostPopularWorkout.isFetching
+
     const handlePressOnSearch = () => {
       props.navigator.push({ name: 'search' })
     }
@@ -38,13 +40,14 @@ class MostPopular extends React.Component {
         navigator={props.navigator}
         mostPopularWorkout={
           _mapMostPopularWorkout(
-            props.mostPopularWorkout,
+            props.mostPopularWorkout.data,
             props.workouts,
             props.instructors
           )
         }
         loadWorkout={_loadWorkout}
         handlePressOnSearch={handlePressOnSearch}
+        isLoading={isLoading}
       />
     )
   }
@@ -64,7 +67,7 @@ MostPopular.propTypes = {
 // -----
 export default connect(
   (state) => ({
-    mostPopularWorkout: state.mostPopularWorkout.data,
+    mostPopularWorkout: state.mostPopularWorkout,
     workouts: state.workout.data,
     instructors: state.instructor
   }),
