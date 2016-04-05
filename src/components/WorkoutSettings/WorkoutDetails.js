@@ -4,7 +4,8 @@ import React, {
   StyleSheet,
   PropTypes,
   Text,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
@@ -55,11 +56,12 @@ const WorkoutDetails = (props) => {
         <Hr/>
         <View style={[styles.rowItem]}>
           <Text style={[styles.rowText]}>CATEGORY</Text>
-          <TextInput
-            defaultValue={props.workout.category.tag}
-            onChangeText={props.onCategoryChange}
-            style={[styles.rowText, styles.inputBox]}
-          />
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={props.toggleCategoryModal}
+          >
+            <Text style={styles.rowText}>{props.category}</Text>
+          </TouchableOpacity>
         </View>
         <Hr/>
         <View style={[styles.descItem]}>

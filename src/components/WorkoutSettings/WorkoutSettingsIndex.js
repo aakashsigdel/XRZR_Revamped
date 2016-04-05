@@ -7,16 +7,17 @@ import React, {
 import NavigationBar from './WSNavbar'
 import WorkoutDetails from './WorkoutDetails'
 import ActionButtons from './ActionButtons'
+import CategoryDropDown from '../Common/CategoryDropDown'
 
 class WorkoutSettingsIndex extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: '',
+      title: props.workout.title,
       workout_set: 3,
       pause_between_exercises: 10,
-      category: props.workout.category.tag
-      // category: ''
+      category: props.workout.category.tag,
+      isModalVisible: false
     }
   }
 
@@ -41,6 +42,12 @@ class WorkoutSettingsIndex extends React.Component {
     })
   }
 
+  toggleCategoryModal () {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    })
+  }
+
   render (props = this.props) {
     const onSaveButton = () => props.onSaveButton(this.state)
     return (
@@ -52,14 +59,23 @@ class WorkoutSettingsIndex extends React.Component {
         />
         <WorkoutDetails
           onCategoryChange={this.onCategoryChange.bind(this)}
+          category={this.state.category}
           onDescriptionChange={this.onDescriptionChange.bind(this)}
           onPBEChange={this.onPBEChange.bind(this)}
           onWorkoutSetChange={this.onWorkoutSetChange.bind(this)}
           workout={props.workout}
+          toggleCategoryModal={this.toggleCategoryModal.bind(this)}
         />
         <ActionButtons
           onEditExercises={props.onEditExercises}
           onSaveButton={onSaveButton}
+        />
+        <CategoryDropDown
+          isModalVisible={this.state.isModalVisible}
+          toggleCategoryModal={this.toggleCategoryModal.bind(this)}
+          onCategoryChange={this.onCategoryChange.bind(this)}
+          categories={this.props.categories}
+          selectedCategory={props.workout.category.tag}
         />
       </View>
     )

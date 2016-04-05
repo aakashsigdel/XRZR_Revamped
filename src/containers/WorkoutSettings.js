@@ -51,7 +51,6 @@ class WorkoutSettings extends React.Component {
         id: workoutId,
         workout
       })
-      // props.navigator.popToTop()
     }
     const onEditExercises = () => props.navigator.push({name: 'editWorkoutExercises', workoutId: workoutId})
     const onDeleteButton = () => props.navigator.push({name: 'deleteWorkout', workoutId: workoutId})
@@ -63,6 +62,7 @@ class WorkoutSettings extends React.Component {
         onEditExercises={onEditExercises}
         onSaveButton={onSaveButton}
         workout={workout}
+        categories={props.categories}
       />
     )
   }
