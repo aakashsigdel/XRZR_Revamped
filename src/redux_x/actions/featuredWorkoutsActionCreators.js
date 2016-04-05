@@ -43,6 +43,7 @@ export function fetchFeaturedWorkouts () {
 
   let featured_api_uri = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
+    .addAndFilter('featured', true)
     .toString()
 
   return (dispatch) => {
