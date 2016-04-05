@@ -4,8 +4,10 @@ import {
   VIDEO_LOADED,
   VIDEO_PROGRESS,
   LOAD_WORKOUT,
-  TOGGLE_PAUSE_MODAL
+  TOGGLE_PAUSE_MODAL,
+  FETCH_WORKOUT_EXERCISES
 } from '../actions/actionTypes'
+import networkSwitches from './networkSwitches'
 
 const defaultState = {
   workoutId: 1,
@@ -14,7 +16,8 @@ const defaultState = {
   lastKnownTime: 0,
   currentTime: 0,
   duration: 0.0,
-  pauseModalVisibility: false
+  pauseModalVisibility: false,
+  ...networkSwitches()
 }
 
 const player = (state = defaultState, action) => {
@@ -63,6 +66,12 @@ const player = (state = defaultState, action) => {
       return {
         ...state,
         pauseModalVisibility: !state.pauseModalVisibility
+      }
+
+    case FETCH_WORKOUT_EXERCISES:
+      return {
+        ...state,
+        ...networkSwitches(state, action)
       }
   }
   return state

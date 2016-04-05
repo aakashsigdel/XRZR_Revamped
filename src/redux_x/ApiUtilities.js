@@ -48,6 +48,31 @@ let ApiUtils = {
     return response
   },
 
+  convertExercisesFromWorkoutExercises: (jsonResponse) => {
+    let response = {}
+    jsonResponse.entities.map(
+      (relationEntity) => {
+        let relation = relationEntity.entity
+        let exerciseEntity = relation.exercise
+        let exercise = exerciseEntity.entity
+
+        response[relationEntity.id] = {
+          id: relationEntity.id,
+          title: exercise.title,
+          description: exercise.description,
+          mode: relation.mode,
+          instructor: 2,
+          duration: relation.duration,
+          videoUri: exercise.video,
+          tags: exercise.tags,
+          sound: exercise.sound,
+          order: relation.order
+        }
+      }
+    )
+    return response
+  },
+
   hydrateCategories: (categories) => {
     let newData = {}
     Object.keys(categories).map((categoryId) => {
