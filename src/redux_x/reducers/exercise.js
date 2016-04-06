@@ -3,7 +3,8 @@
 import {
   ADD_EXERCISE,
   UPDATE_EXERCISE,
-  DELETE_EXERCISE
+  DELETE_EXERCISE,
+  LIKE_EXERCISE
 } from '../actions/actionTypes'
 
 const exercise = (state = defaultExercise, action) => {
@@ -18,6 +19,14 @@ const exercise = (state = defaultExercise, action) => {
       return {
         ...state,
         [action.exerciseId]: undefined
+      }
+    case LIKE_EXERCISE:
+      return {
+        ...state,
+        [action.exerciseId]: {
+          ...state[action.exerciseId],
+          like: action.like
+        }
       }
     default:
       return state

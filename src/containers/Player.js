@@ -7,6 +7,7 @@ import FIcon from 'react-native-vector-icons/FontAwesome'
 import PlayerIndex from '../components/Player/PlayerIndex'
 import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 
 class Player extends React.Component {
   constructor (props) {
@@ -73,7 +74,13 @@ class Player extends React.Component {
             this.props.navigator.push({ name: 'addExerciseToWorkout', exerciseId: exercise.id })
           }
       },
-      { name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/> },
+      {
+        name: (exercise.like) ? 'UNSAVE EXERCISE' : 'SAVE EXERCISE',
+        icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/>,
+        action: () => {
+          this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
+        }
+      },
       { name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/> }
     ]
     const actionTitle = {
@@ -312,7 +319,8 @@ function getExercisesOfWorkout (workout, exercises, nowPlayingIndex) {
 
 function _bindActionCreators (dispatch) {
   return {
-    playerActions: bindActionCreators(VideoActionCreators, dispatch)
+    playerActions: bindActionCreators(VideoActionCreators, dispatch),
+    exerciseActions: bindActionCreators(ExerciseActionCreators, dispatch)
   }
 }
 

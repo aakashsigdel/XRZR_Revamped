@@ -9,6 +9,11 @@ let ApiUtils = {
     throw error
   },
 
+  logger: (response) => {
+    console.log(response)
+    return response
+  },
+
   convertEntitiesToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
@@ -76,7 +81,8 @@ let ApiUtils = {
           videoUri: exercise.video,
           tags: exercise.tags,
           sound: exercise.sound,
-          order: relation.order
+          order: relation.order,
+          exerciseId: exerciseEntity.id
         }
       }
     )

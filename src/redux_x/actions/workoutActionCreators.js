@@ -184,6 +184,7 @@ export const likeWorkout = ({workoutId, like}) => {
       body: JSON.stringify({favorited: !!like})
     }
     return fetch(WORKOUT_LIKE_URL_FUNC(workoutId), params)
+      .then(ApiUtils.logger)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
