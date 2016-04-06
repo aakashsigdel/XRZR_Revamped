@@ -27,12 +27,22 @@ let ApiUtils = {
         let entityData = entity.entity
         response.data[entity.id] = entityData
 
-        groups.map((group) => {
+        let backpropagate = groups.map((group) => {
+          if (!entityData[group]) {
+            return false
+          }
+
           let groupData = entityData[group].entity
           groupData['id'] = entityData[group].id
           response[group][groupData.id] = groupData
           response.data[entity.id][group] = groupData.id
+
+          return true
         })
+
+        if (!backpropagate.every((item) => item)) {
+          response.data[entity.id] = undefined
+        }
       }
     )
     return response

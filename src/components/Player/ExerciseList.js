@@ -10,16 +10,18 @@ import ExerciseItem from './ExerciseItem'
 class ExerciseList extends Component {
   constructor (props) {
     super(props)
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => {
+      return r1.nowPlaying !== r2.nowPlaying
+    }})
     this.state = {
       dataSource: this.ds.cloneWithRows(props.data)
     }
   }
 
   componentWillReceiveProps (newProps) {
-    //this.setState({
-    //  dataSource: this.state.dataSource.cloneWithRows(newProps.data)
-    //})
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(newProps.data)
+    })
   }
 
   //_getDataSource (itemList) {

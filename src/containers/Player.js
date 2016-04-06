@@ -291,19 +291,20 @@ function getWorkout (player, workouts) {
 
 function getWorkoutExpanded (player, workouts, exercises) {
   const workout = getWorkout(player, workouts)
-  const denormalizedExercises = getExercisesOfWorkout(workout, exercises)
+  const denormalizedExercises = getExercisesOfWorkout(workout, exercises, player.nowPlaying)
   return {
     ...workout,
     exercises: denormalizedExercises
   }
 }
 
-function getExercisesOfWorkout (workout, exercises) {
+function getExercisesOfWorkout (workout, exercises, nowPlayingIndex) {
   return workout.exercises.map(
     (exerciseId, index) => {
       return {
         ...exercises[exerciseId],
-        index: index
+        index: index,
+        nowPlaying: nowPlayingIndex
       }
     }
   )
