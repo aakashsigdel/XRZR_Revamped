@@ -9,10 +9,3 @@ export const removeFavouriteExercises = (exerciseId) => {
     exerciseId
   }
 }
-
-export const likeWorkout = (workoutId) => {
-  return {
-    type: LIKE_WORKOUT,
-    workoutId
-  }
-}

@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux'
 
 import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
-import { updateWorkout } from '../redux_x/actions/workoutActionCreators'
+import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 class WorkoutIntro extends React.Component {
@@ -62,7 +62,7 @@ class WorkoutIntro extends React.Component {
     let onBackButton = () => props.navigator.pop()
 
     let onDownloadButton = () => props.navigator.push({name: 'premium'})
-    let onLikePress = (like) => props.updateWorkout({like: like, id: props.player.workoutId})
+    let onLikePress = (like) => props.WorkoutDispatchers.likeWorkout({like: like, workoutId: props.player.workoutId})
     const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
 
     const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
@@ -163,7 +163,7 @@ export default connect(
   (dispatch) => {
     return {
       playerActions: bindActionCreators(PlayerActionCreators, dispatch),
-      updateWorkout: bindActionCreators(updateWorkout, dispatch)
+      WorkoutDispatchers: bindActionCreators(WorkoutActionCreators, dispatch)
     }
   }
 )(WorkoutIntro)

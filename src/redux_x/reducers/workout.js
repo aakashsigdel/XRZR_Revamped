@@ -7,7 +7,8 @@ import {
   UPDATE_WORKOUT_LOCAL,
   POPULATE_WORKOUT,
   DELETE_WORKOUT,
-  POPULATE_WORKOUT_EXERCISES
+  POPULATE_WORKOUT_EXERCISES,
+  LIKE_WORKOUT
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -72,6 +73,17 @@ const workout = (state = defaultWorkout, action) => {
           [action.workoutId]: {
             ...state.data[action.workoutId],
             exercises: action.exercises
+          }
+        }
+      }
+    case LIKE_WORKOUT:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.workoutId]: {
+            ...state.data[action.workoutId],
+            like: action.like
           }
         }
       }

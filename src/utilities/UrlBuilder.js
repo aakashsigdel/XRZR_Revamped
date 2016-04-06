@@ -98,19 +98,19 @@ export class Filter {
   }
 }
 // tests
-const queryFilter = (
-  new AndFilter(
-    new Filter('hello', 'hello'),
-    new AndFilter(
-      new Filter('truth', true),
-      new OrFilter(
-        new Filter('he', 'sing'),
-        new Filter('neat', 1)
-      )
-    )
-  ))
-console.log(
-  new UrlBuilder('http://hello.com')
-    .addWithClause(['cat', 'dog', 'dog'])
-    .addFilter(queryFilter)
-    .toString())
+//const queryFilter = (
+//  new AndFilter(
+//    new Filter('hello', 'hello'),
+//    new AndFilter(
+//      new Filter('truth', true),
+//      new OrFilter(
+//        new Filter('he', 'sing'),
+//        new Filter('neat', 1)
+//      )
+//    )
+//  ))
+//console.log(
+//  new UrlBuilder('http://hello.com')
+//    .addWithClause(['cat', 'dog', 'dog'])
+//    .addFilter(queryFilter)
+//    .toString())
