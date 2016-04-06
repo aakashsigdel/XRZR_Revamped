@@ -11,7 +11,8 @@ import {
 import { loadWorkout } from './videoActionCreators'
 import {
   BASE_URL,
-  WORKOUT_LIKE_URL_FUNC
+  WORKOUT_LIKE_URL_FUNC,
+  WORKOUT_VIEW_URL_FUNC
 } from '../../constants/appConstants'
 import ApiUtils from '../ApiUtilities'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
@@ -173,7 +174,6 @@ const updateLikeWorkoutLocal = (workoutId, like) => {
   }
 }
 export const likeWorkout = ({workoutId, like}) => {
-  console.log(WORKOUT_LIKE_URL_FUNC(workoutId))
   return (dispatch) => {
     const params = {
       method: 'POST',
@@ -198,6 +198,30 @@ export const likeWorkout = ({workoutId, like}) => {
       })
   }
 }
+
+export const viewWorkout = (workoutId) => {
+  return ((dispatch) => {
+    const params = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({viewed: true})
+    }
+    return fetch(WORKOUT_VIEW_URL_FUNC(workoutId), params)
+      .then(ApiUtils.logger)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        //console.log('success', jsonResponse)
+      })
+      .catch((ex) => {
+        console.log('error', ex)
+      })
+  })
+}
+
 export const populateWorkouts = (workouts) => {
   return {
     type: POPULATE_WORKOUT,

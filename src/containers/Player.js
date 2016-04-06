@@ -8,6 +8,7 @@ import PlayerIndex from '../components/Player/PlayerIndex'
 import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
+import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 
 class Player extends React.Component {
   constructor (props) {
@@ -146,6 +147,9 @@ class Player extends React.Component {
   }
   componentWillMount () {
     this.startTimer()
+  }
+  componentDidMount () {
+    this.props.workoutActions.viewWorkout(this.props.player.workoutId)
   }
   componentWillUnmount () {
     this.props.lockToPortrait()
@@ -320,7 +324,8 @@ function getExercisesOfWorkout (workout, exercises, nowPlayingIndex) {
 function _bindActionCreators (dispatch) {
   return {
     playerActions: bindActionCreators(VideoActionCreators, dispatch),
-    exerciseActions: bindActionCreators(ExerciseActionCreators, dispatch)
+    exerciseActions: bindActionCreators(ExerciseActionCreators, dispatch),
+    workoutActions: bindActionCreators(WorkoutActionCreators, dispatch)
   }
 }
 
