@@ -8,6 +8,11 @@ import {
 
 const initialState = {
   access_token: null,
+  expires_at: null,
+  id: null,
+  is_instructor: null,
+  name: null,
+  profile_pic: null,
   error: null
 }
 
@@ -16,7 +21,7 @@ const login = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        access_token: action.authData.access_token
+        ...action.authData
       }
     case LOGIN_FAILURE:
       return {
