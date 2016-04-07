@@ -11,34 +11,17 @@ import WorkoutSettingsIndex from '../components/WorkoutSettings/WorkoutSettingsI
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 
 class WorkoutSettings extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      isFetching: false
-    }
-  }
   componentDidUpdate (prevProps) {
-    if (!prevProps.workouts.isFetching && this.props.workouts.isFetching) {
-      this.setState({
-        isFetching: true
-      })
-    } else if (prevProps.workouts.isFetching && !this.props.workouts.isFetching) {
-      setTimeout(() => {
-        this.setState({
-          isFetching: false
-        }, () => {
-          Alert.alert(
-            'XRZR',
-            'Workout Updated!'
-          )
-        })
-
-      }, 1000)
+    if (prevProps.workouts.isFetching && !this.props.workouts.isFetching) {
+      Alert.alert(
+        'XRZR',
+        'Workout Updated!'
+      )
     }
   }
 
   render (props = this.props) {
-    if (this.state.isFetching) {
+    if (this.props.workouts.isFetching) {
       return(
         <Loader
           loadingText={'Updating Workout...'}

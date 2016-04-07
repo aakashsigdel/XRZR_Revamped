@@ -8,6 +8,8 @@ import { FBSDKLoginManager } from 'react-native-fbsdklogin'
 import { FBSDKAccessToken } from 'react-native-fbsdkcore'
 import { LOGIN_URL } from '../../constants/appConstants'
 import { LOGIN_STORAGE_KEY } from '../../constants/appConstants'
+import { awesomeFetchWrapper } from '../../utilities/utility'
+import { BASE_URL } from '../../constants/appConstants'
 
 // login fuction to login with facebook
 export const login = () => {
@@ -41,10 +43,28 @@ const loginIntoXRZR = (dispatch, token) => {
   fetch(URL_WITH_TOKEN)
   .then((response) => response.json())
   .then(responseData => {
-    console.warn(responseData, 'access token from server')
-    setLoginDetailsToAsyncStorage(dispatch, responseData)
+    getUserDetails(dispatch, responseData)
   })
-  .catch((error) => {
+}
+
+const getUserDetails = (dispatch, responseData) => {
+  const params = {
+    url: BASE_URL + '/me',
+    headers: {
+      'access-token': responseData.access_token,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }
+  awesomeFetchWrapper(params)
+  .then(data => {
+    const userData = {
+      ...data.entities[0].entity,
+      ...responseData,
+      id: data.entities[0].id
+    }
+    console.log(userData)
+    setLoginDetailsToAsyncStorage(dispatch, userData)
   })
 }
 
@@ -54,7 +74,6 @@ const setLoginDetailsToAsyncStorage = (dispatch, loginDetails) => {
   .then(() => {
     dispatch(loginSuccess(loginDetails))
   })
-  
 }
 
 // action creator loginFailure
