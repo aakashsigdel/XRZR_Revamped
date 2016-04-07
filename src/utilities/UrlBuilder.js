@@ -2,22 +2,9 @@ export default class UrlBuilder {
   constructor (baseUrl) {
     this.baseUrl = baseUrl
     this.withFieldList = []
+    this.withMetaFieldList = []
     this.queryFilter = null
-  }
-
-  getWithClause () {
-    this.withFieldList = Array.from(new Set(this.withFieldList))
-    if (this.withFieldList.length === 0) {
-      return ''
-    }
-    return 'with=' + this.withFieldList.reduce((a, b) => a + ',' + b)
-  }
-
-  getFilerClause () {
-    if (this.queryFilter === null) {
-      return ''
-    }
-    return 'filter=' + this.queryFilter.toString()
+    this.sortField = {field: undefined, order: 'asc'}
   }
 
   addFilter (filter) {
@@ -30,17 +17,70 @@ export default class UrlBuilder {
     return this
   }
 
+  addWithMetaDataClause(fieldList) {
+    this.withMetaFieldList = Array.from(new Set([...this.withMetaFieldList, ...fieldList]))
+    return this
+  }
+
+  sortBy (fieldName, order = 'asc') {
+    this.sortField['field'] = fieldName
+
+    if (order !== 'desc') {
+      order = 'asc'
+    }
+
+    this.sortField['order'] = order
+    return this
+  }
+
   toString () {
     let withClause = this.getWithClause()
     let filterClause = this.getFilerClause()
+    let withMetaClause = this.getWithMetaDataClause()
+    let sortClause = this.getSortClause()
     let url = this.baseUrl
-    if (withClause) {
-      url += '?' + withClause
-    }
-    if (filterClause) {
-      url += '&' + filterClause
+
+    let urlSnippet = [
+      withClause,
+      filterClause,
+      withMetaClause,
+      sortClause,
+    ].filter((item) => item)
+
+    if (urlSnippet.length !== 0) {
+      url += '?' + urlSnippet.reduce((a, b) => a + '&' + b)
     }
     return url
+  }
+
+  getWithClause () {
+    this.withFieldList = Array.from(new Set(this.withFieldList))
+    if (this.withFieldList.length === 0) {
+      return ''
+    }
+    return 'with=' + this.withFieldList.reduce((a, b) => a + ',' + b)
+  }
+
+  getWithMetaDataClause () {
+    this.withMetaFieldList = Array.from(new Set(this.withMetaFieldList))
+    if (this.withMetaFieldList.length === 0) {
+      return ''
+    }
+    return 'with-metadata=' + this.withMetaFieldList.reduce((a, b) => a + ',' + b)
+  }
+
+  getFilerClause () {
+    if (this.queryFilter === null) {
+      return ''
+    }
+    return 'filter=' + this.queryFilter.toString()
+  }
+
+  getSortClause () {
+    if (this.sortField.field) {
+      return `sort=${this.sortField.field}&order=${this.sortField.order}`
+    }
+    return ''
   }
 
   isEmpty (obj) {
@@ -97,7 +137,7 @@ export class Filter {
     return `${this.field}:${this.getValueString()}`
   }
 }
-// tests
+//tests
 //const queryFilter = (
 //  new AndFilter(
 //    new Filter('hello', 'hello'),
@@ -113,4 +153,5 @@ export class Filter {
 //  new UrlBuilder('http://hello.com')
 //    .addWithClause(['cat', 'dog', 'dog'])
 //    .addFilter(queryFilter)
+//    .sortby("hello", 'ascending')
 //    .toString())

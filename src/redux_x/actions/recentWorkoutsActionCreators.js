@@ -2,11 +2,16 @@ import {
   POPULATE_RECENT_WORKOUTS,
   FETCH_RECENT_WORKOUTS
 } from './actionTypes'
+
 import {
-  RECENT_WORKOUT_URL_FUNC
+  RECENT_WORKOUT_URL_FUNC,
+  VIEW_BASE_URL
 } from '../../constants/appConstants'
 
-import UrlBuilder from '../../utilities/UrlBuilder'
+import UrlBuilder, {Filter, AndFilter} from '../../utilities/UrlBuilder'
+import ApiUtils from '../ApiUtilities'
+import {populateWorkouts} from './workoutActionCreators'
+import {fetchCategoriesIfNeeded} from './categoryActionCreators'
 
 export function populateRecentWorkouts (workoutIds) {
   return {
@@ -16,7 +21,37 @@ export function populateRecentWorkouts (workoutIds) {
 }
 
 export function fetchRecentWorkouts () {
-  console.log("yet to implement")
+  const view_url = new UrlBuilder(VIEW_BASE_URL)
+    .addWithMetaDataClause(['asset'])
+    .addWithClause(['category'])
+    .addFilter(new Filter('sys_asset_type', 'workout'))
+    //.sortBy('sys_created', 'desc')
+    .toString()
+  console.log(view_url)
+  return (dispatch) => {
+    fetchRecentWorkoutRequest()
+    return fetch(view_url)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then(ApiUtils.convertEntitiesAndAssets)
+      .then((jsonResponse) => {
+        let workouts = jsonResponse.asset
+        workouts = ApiUtils.hydrateWorkouts(workouts)
+        let workoutIds = Object.keys(workouts)
+
+        dispatch(populateWorkouts(workouts))
+        dispatch(populateRecentWorkouts(workoutIds))
+
+        let categoryIds = Object.keys(workouts).map((workout) => workout.category)
+        dispatch(fetchCategoriesIfNeeded(categoryIds))
+
+        dispatch(fetchRecentWorkoutSuccess(new Date().getTime()))
+      })
+      .catch((error) => {
+        console.error('Recent Workout Dispatcher', error)
+        dispatch(fetchRecentWorkoutError(error.response, new Date().getTime()))
+      })
+  }
 }
 
 function fetchRecentWorkoutRequest () {

@@ -7,6 +7,7 @@ import * as CategoryActionCreators from '../redux_x/actions/categoryActionCreato
 import * as FeaturedWorkoutsActionCreators from '../redux_x/actions/featuredWorkoutsActionCreators'
 import * as TrendingWorkoutsActionCreators from '../redux_x/actions/trendingActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+import * as RecentWorkoutCreators from '../redux_x/actions/recentWorkoutsActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 
@@ -17,6 +18,7 @@ class Browse extends React.Component {
     this.props.featuredDispatchers.fetchFeaturedWorkouts()
     this.props.trendingsDispatchers.fetchTrendingWorkouts()
     this.props.categoryDispatchers.fetchCategories()
+    this.props.recentWorkoutDispatchers.fetchRecentWorkouts()
   }
   render (props = this.props) {
     let featured = workoutsManager(props.featuredWorkouts.data, props.workouts, props.instructor)
@@ -158,6 +160,7 @@ export default connect(
       categoryDispatchers: bindActionCreators(CategoryActionCreators, dispatch),
       featuredDispatchers: bindActionCreators(FeaturedWorkoutsActionCreators, dispatch),
       trendingsDispatchers: bindActionCreators(TrendingWorkoutsActionCreators, dispatch),
+      recentWorkoutDispatchers: bindActionCreators(RecentWorkoutCreators, dispatch),
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
       uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
       asyncDispatchers: bindActionCreators(AsyncActionCreators, dispatch)

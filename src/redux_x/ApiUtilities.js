@@ -53,6 +53,20 @@ let ApiUtils = {
     return response
   },
 
+  convertEntitiesAndAssets: (jsonResponse) => {
+    let response = {data:{}, asset: {}}
+    jsonResponse.entities.map(
+      (entity) => {
+        let entityData = entity.entity
+        response.data[entity.id] = entityData
+
+        let asset = entity.asset
+        response.asset[asset.id] = asset.entity
+      }
+    )
+    return response
+  },
+
   convertWorkoutsToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
