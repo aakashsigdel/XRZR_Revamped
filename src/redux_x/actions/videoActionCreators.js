@@ -12,7 +12,7 @@ import {
 import * as ExerciseActions from '../actions/exerciseActionCreators'
 import * as WorkoutActions from '../actions/workoutActionCreators'
 import {WORKOUT_EXERCISES_URL} from '../../constants/appConstants'
-import UrlBuilder from '../../utilities/UrlBuilder'
+import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
 
 export const pauseVideo = () => {
@@ -81,7 +81,7 @@ const workoutExercisesFetchError = (errorMessage, receivedTime) => {
 export const fetchWorkoutExercises = (workoutId) => {
   let workout_exercise_url = new UrlBuilder(WORKOUT_EXERCISES_URL)
     .addWithClause(['exercise'])
-    .addAndFilter('workout', workoutId)
+    .addFilter(new Filter('workout', workoutId))
     .toString()
 
   return (dispatch) => {

@@ -7,7 +7,7 @@ import {
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 import ApiUtils from '../ApiUtilities'
-import UrlBuilder from '../../utilities/UrlBuilder'
+import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
 
@@ -43,7 +43,7 @@ export function fetchFeaturedWorkouts () {
 
   let featured_api_uri = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
-    .addAndFilter('featured', true)
+    .addFilter(new Filter('featured', true))
     .toString()
 
   return (dispatch) => {

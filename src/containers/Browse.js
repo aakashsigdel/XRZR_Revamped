@@ -7,6 +7,7 @@ import * as CategoryActionCreators from '../redux_x/actions/categoryActionCreato
 import * as FeaturedWorkoutsActionCreators from '../redux_x/actions/featuredWorkoutsActionCreators'
 import * as TrendingWorkoutsActionCreators from '../redux_x/actions/trendingActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+import * as RecentWorkoutCreators from '../redux_x/actions/recentWorkoutsActionCreators'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 
@@ -17,6 +18,7 @@ class Browse extends React.Component {
     this.props.featuredDispatchers.fetchFeaturedWorkouts()
     this.props.trendingsDispatchers.fetchTrendingWorkouts()
     this.props.categoryDispatchers.fetchCategories()
+    this.props.recentWorkoutDispatchers.fetchRecentWorkouts()
   }
   render (props = this.props) {
     let featured = workoutsManager(props.featuredWorkouts.data, props.workouts, props.instructor)
@@ -40,8 +42,7 @@ class Browse extends React.Component {
     }
 
     let onSearch = () => {
-      props.asyncDispatchers.fetchCategories()
-      // props.navigator.push({name: 'search'})
+      props.navigator.push({name: 'search'})
     }
     const goToProfile = (userId) => props.navigator.push({ name: 'profile', userId: userId })
     const onTabChanged = (tabName) => props.uiDispatchers.switchBrowseTab(tabName)
@@ -149,7 +150,7 @@ export default connect(
       trendings: state.trending,
       categories: state.category.data,
       featuredWorkouts: state.featuredWorkout,
-      recentWorkouts: state.recentWorkout,
+      recentWorkouts: state.recentWorkout.data,
       uiStates: state.uiStates
 
     }
@@ -159,6 +160,7 @@ export default connect(
       categoryDispatchers: bindActionCreators(CategoryActionCreators, dispatch),
       featuredDispatchers: bindActionCreators(FeaturedWorkoutsActionCreators, dispatch),
       trendingsDispatchers: bindActionCreators(TrendingWorkoutsActionCreators, dispatch),
+      recentWorkoutDispatchers: bindActionCreators(RecentWorkoutCreators, dispatch),
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
       uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
       asyncDispatchers: bindActionCreators(AsyncActionCreators, dispatch)

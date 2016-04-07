@@ -9,6 +9,11 @@ let ApiUtils = {
     throw error
   },
 
+  logger: (response) => {
+    console.log(response)
+    return response
+  },
+
   convertEntitiesToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
@@ -48,6 +53,20 @@ let ApiUtils = {
     return response
   },
 
+  convertEntitiesAndAssets: (jsonResponse) => {
+    let response = {data:{}, asset: {}}
+    jsonResponse.entities.map(
+      (entity) => {
+        let entityData = entity.entity
+        response.data[entity.id] = entityData
+
+        let asset = entity.asset
+        response.asset[asset.id] = asset.entity
+      }
+    )
+    return response
+  },
+
   convertWorkoutsToKeyBasedDict: (jsonResponse) => {
     let response = {}
     jsonResponse.entities.map(
@@ -76,7 +95,8 @@ let ApiUtils = {
           videoUri: exercise.video,
           tags: exercise.tags,
           sound: exercise.sound,
-          order: relation.order
+          order: relation.order,
+          exerciseId: exerciseEntity.id
         }
       }
     )

@@ -2,8 +2,55 @@ export default class UrlBuilder {
   constructor (baseUrl) {
     this.baseUrl = baseUrl
     this.withFieldList = []
-    this.andFilters = {}
-    //this.orFilters = {}
+    this.withMetaFieldList = []
+    this.queryFilter = null
+    this.sortField = {field: undefined, order: 'asc'}
+  }
+
+  addFilter (filter) {
+    this.queryFilter = filter
+    return this
+  }
+
+  addWithClause (fieldList) {
+    this.withFieldList = Array.from(new Set([...this.withFieldList, ...fieldList]))
+    return this
+  }
+
+  addWithMetaDataClause(fieldList) {
+    this.withMetaFieldList = Array.from(new Set([...this.withMetaFieldList, ...fieldList]))
+    return this
+  }
+
+  sortBy (fieldName, order = 'asc') {
+    this.sortField['field'] = fieldName
+
+    if (order !== 'desc') {
+      order = 'asc'
+    }
+
+    this.sortField['order'] = order
+    return this
+  }
+
+  toString () {
+    let withClause = this.getWithClause()
+    let filterClause = this.getFilerClause()
+    let withMetaClause = this.getWithMetaDataClause()
+    let sortClause = this.getSortClause()
+    let url = this.baseUrl
+
+    let urlSnippet = [
+      withClause,
+      filterClause,
+      withMetaClause,
+      sortClause,
+    ].filter((item) => item)
+
+    if (urlSnippet.length !== 0) {
+      url += '?' + urlSnippet.reduce((a, b) => a + '&' + b)
+    }
+    return url
   }
 
   getWithClause () {
@@ -14,62 +61,26 @@ export default class UrlBuilder {
     return 'with=' + this.withFieldList.reduce((a, b) => a + ',' + b)
   }
 
-  getFilerClause () {
-    let andFilters = ''
-    if (!this.isEmpty(this.andFilters)) {
-      andFilters = Object.keys(this.andFilters).map(
-        (field) => {
-          let value = this.andFilters[ field ]
-          if (typeof value === 'string') {
-            return field + ':"' + value + '"'
-          }
-          return field + ':' + value
-        }
-      ).reduce(
-        (a, b) => a + ' and ' + b
-      )
+  getWithMetaDataClause () {
+    this.withMetaFieldList = Array.from(new Set(this.withMetaFieldList))
+    if (this.withMetaFieldList.length === 0) {
+      return ''
     }
+    return 'with-metadata=' + this.withMetaFieldList.reduce((a, b) => a + ',' + b)
+  }
 
-    //let orFilters = ''
-    //if (!this.isEmpty(this.orFilters)) {
-    //  orFilters = Object.keys(this.orFilters).map(
-    //    (field) => field + ':' + this.orFilters[ field ]
-    //  ).reduce(
-    //    (a, b) => a + ' or ' + b
-    //  )
-    //}
-    if (andFilters) {
-      return 'filter=' + andFilters
+  getFilerClause () {
+    if (this.queryFilter === null) {
+      return ''
+    }
+    return 'filter=' + this.queryFilter.toString()
+  }
+
+  getSortClause () {
+    if (this.sortField.field) {
+      return `sort=${this.sortField.field}&order=${this.sortField.order}`
     }
     return ''
-  }
-
-  addAndFilter (field, value) {
-    this.andFilters[field] = value
-    return this
-  }
-
-  addOrFilter (field, value) {
-    this.orFilters[field] = value
-    return this
-  }
-
-  addWithClause (fieldList) {
-    this.withFieldList = Array.from(new Set([...this.withFieldList, ...fieldList]))
-    return this
-  }
-
-  toString () {
-    let withClause = this.getWithClause()
-    let filterClause = this.getFilerClause()
-    let url = this.baseUrl
-    if (withClause) {
-      url += '?' + withClause
-    }
-    if (filterClause) {
-      url += '&' + filterClause
-    }
-    return url
   }
 
   isEmpty (obj) {
@@ -92,11 +103,55 @@ export default class UrlBuilder {
   }
 }
 
-// tests
+export class OrFilter {
+  constructor (filter1, filter2) {
+    this.filter1 = filter1
+    this.filter2 = filter2
+  }
+  toString () {
+    return `${this.filter1.toString()} or ${this.filter2.toString()}`
+  }
+}
+
+export class AndFilter {
+  constructor (filter1, filter2) {
+    this.filter1 = filter1
+    this.filter2 = filter2
+  }
+  toString () {
+    return `${this.filter1.toString()} and ${this.filter2.toString()}`
+  }
+}
+export class Filter {
+  constructor (field, value) {
+    this.field = field
+    this.value = value
+  }
+  getValueString () {
+    if (typeof this.value === 'string'){
+      return `"${this.value}"`
+    }
+    return this.value
+  }
+  toString () {
+    return `${this.field}:${this.getValueString()}`
+  }
+}
+//tests
+//const queryFilter = (
+//  new AndFilter(
+//    new Filter('hello', 'hello'),
+//    new AndFilter(
+//      new Filter('truth', true),
+//      new OrFilter(
+//        new Filter('he', 'sing'),
+//        new Filter('neat', 1)
+//      )
+//    )
+//  ))
 //console.log(
-  //new UrlBuilder("http://hello.com")
-  //  .addWithClause(['cat', 'dog', 'dog'])
-    //.addAndFilter('field', true)
-    //.addAndFilter('fi', 'hello')
-    //.addOrFilter()
-    //.toString())
+//  new UrlBuilder('http://hello.com')
+//    .addWithClause(['cat', 'dog', 'dog'])
+//    .addFilter(queryFilter)
+//    .sortby("hello", 'ascending')
+//    .toString())

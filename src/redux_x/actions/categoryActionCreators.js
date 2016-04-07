@@ -76,6 +76,20 @@ export function fetchCategories () {
   }
 }
 
+export function fetchCategory (categoryId) {
+  return (dispatch) => {
+    dispatch(requestCategories())
+    return fetch(CATEGORY_BASE_URL)
+  }
+}
+
+export function fetchCategoriesIfNeeded (categoryIds) {
+  console.log('fetchCategoriesIfNeeded Yet to be implemented')
+  return {
+    type: 'nothing'
+  }
+}
+
 function requestCategoryDetails () {
   return {
     type: FETCH_CATEGORY_DETAILS,

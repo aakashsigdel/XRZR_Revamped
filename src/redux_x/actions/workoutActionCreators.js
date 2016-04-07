@@ -5,10 +5,16 @@ import {
   POPULATE_WORKOUT,
   DELETE_WORKOUT,
   POST_WORKOUT,
+  LIKE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES
 } from './actionTypes'
 import { loadWorkout } from './videoActionCreators'
-import { BASE_URL } from '../../constants/appConstants'
+import {
+  BASE_URL,
+  WORKOUT_LIKE_URL_FUNC,
+  WORKOUT_VIEW_URL_FUNC
+} from '../../constants/appConstants'
+import ApiUtils from '../ApiUtilities'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 import { hydrateWorkout } from '../ApiUtilities.js'
 
@@ -158,6 +164,62 @@ export const updateWorkout = ({id, workout}) => {
       dispatch(updateWorkoutFailure(error))
     })
   }
+}
+
+const updateLikeWorkoutLocal = (workoutId, like) => {
+  return {
+    type: LIKE_WORKOUT,
+    workoutId,
+    like
+  }
+}
+export const likeWorkout = ({workoutId, like}) => {
+  return (dispatch) => {
+    const params = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({favorited: !!like})
+    }
+    return fetch(WORKOUT_LIKE_URL_FUNC(workoutId), params)
+      .then(ApiUtils.logger)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        console.log('succes', jsonResponse)
+        dispatch(updateLikeWorkoutLocal(workoutId, like))
+        alert('You have recently liked workout.')
+      })
+      .catch((ex) => {
+        console.log('error', ex)
+        alert('Cannot Like Workout!! Please try again later.')
+      })
+  }
+}
+
+export const viewWorkout = (workoutId) => {
+  return ((dispatch) => {
+    const params = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({viewed: true})
+    }
+    return fetch(WORKOUT_VIEW_URL_FUNC(workoutId), params)
+      .then(ApiUtils.logger)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        //console.log('success', jsonResponse)
+      })
+      .catch((ex) => {
+        console.log('error', ex)
+      })
+  })
 }
 
 export const populateWorkouts = (workouts) => {
