@@ -67,6 +67,7 @@ export default class TabView extends Component {
       <WorkoutListing
         loadWorkout={this.props.loadWorkout}
         mostPopularWorkout={this.props.workouts}
+        style={{flex: 1}}
       />
     )
     return (

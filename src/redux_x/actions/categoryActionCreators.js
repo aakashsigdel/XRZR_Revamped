@@ -110,7 +110,7 @@ export function fetchCategoriesIfNeeded (categoryIds) {
     let categoryState = getState().category.data
 
     let promices = categoryIds.map((categoryId) => {
-      if (categoryState[categoryId] !== undefined) {
+      if (categoryState[categoryId] === undefined) {
         return dispatch(fetchCategory(categoryId))
       }
     })

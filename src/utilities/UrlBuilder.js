@@ -4,6 +4,7 @@ export default class UrlBuilder {
     this.withFieldList = []
     this.withMetaFieldList = []
     this.queryFilter = null
+    this.searchQueryString = null
     this.sortField = {field: undefined, order: 'asc'}
   }
 
@@ -22,6 +23,11 @@ export default class UrlBuilder {
     return this
   }
 
+  addSearchQueryString (queryString) {
+    this.searchQueryString = queryString
+    return this
+  }
+
   sortBy (fieldName, order = 'asc') {
     this.sortField['field'] = fieldName
 
@@ -37,6 +43,7 @@ export default class UrlBuilder {
     let withClause = this.getWithClause()
     let filterClause = this.getFilerClause()
     let withMetaClause = this.getWithMetaDataClause()
+    let searchQueryString = this.getSearchQueryString()
     let sortClause = this.getSortClause()
     let url = this.baseUrl
 
@@ -44,7 +51,8 @@ export default class UrlBuilder {
       withClause,
       filterClause,
       withMetaClause,
-      sortClause,
+      searchQueryString,
+      sortClause
     ].filter((item) => item)
 
     if (urlSnippet.length !== 0) {
@@ -74,6 +82,13 @@ export default class UrlBuilder {
       return ''
     }
     return 'filter=' + this.queryFilter.toString()
+  }
+
+  getSearchQueryString () {
+    if (this.searchQueryString === null) {
+      return ''
+    }
+    return 'query=' + this.searchQueryString
   }
 
   getSortClause () {
@@ -153,5 +168,6 @@ export class Filter {
 //  new UrlBuilder('http://hello.com')
 //    .addWithClause(['cat', 'dog', 'dog'])
 //    .addFilter(queryFilter)
-//    .sortby("hello", 'ascending')
+//    .addSearchQueryString("hello")
+//    .sortBy("hello", 'asc')
 //    .toString())

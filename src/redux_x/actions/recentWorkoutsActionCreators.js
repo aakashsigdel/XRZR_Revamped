@@ -23,8 +23,8 @@ export function populateRecentWorkouts (workoutIds) {
 export function fetchRecentWorkouts () {
   const view_url = new UrlBuilder(VIEW_BASE_URL)
     .addWithMetaDataClause(['asset'])
-    .addFilter(new Filter('sys_asset_type', 'workout'))
-    //.sortBy('sys_created', 'desc')
+    //.addFilter(new Filter('sys_asset_type', 'workout'))
+    .sortBy('sys_created', 'asc')
     .toString()
 
   return (dispatch) => {

@@ -5,7 +5,10 @@ import { LOGIN_STORAGE_KEY } from '../constants/appConstants'
 
 export const getAccessTokenFromAsyncStorage = () => {
   // AsyncStorage.removeItem(LOGIN_STORAGE_KEY)
-  return AsyncStorage.getItem(LOGIN_STORAGE_KEY)
+  return AsyncStorage.getItem(LOGIN_STORAGE_KEY).then(response => {
+    console.log(response)
+    return response
+  })
 }
 
 export const awesomeFetchWrapper = ({url, method, headers, body}) => {

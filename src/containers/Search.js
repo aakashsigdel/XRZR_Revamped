@@ -6,35 +6,57 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
+import * as SearchActionCreators from '../redux_x/actions/searchActionCreators'
 import SearchIndex from '../components/Search/SearchIndex'
 import { loadWorkout } from '../redux_x/actions/videoActionCreators'
 
-const Search = (props) => {
-  let onCategorySelect = (categoryId) => {
-    props.uiDispatchers.switchCategory(categoryId)
-    props.navigator.push({name: 'category'})
+class Search extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      searchText: ''
+    }
   }
 
-  const loadWorkout = (workoutId) => {
-    props.loadWorkout(workoutId)
-    props.navigator.push({
-      name: 'workoutIntro'
-    })
-  }
+  render (props = this.props) {
+    let onCategorySelect = (categoryId) => {
+      props.uiDispatchers.switchCategory(categoryId)
+      props.navigator.push({ name: 'category' })
+    }
 
-  let onClosePressed = () => {
-    props.navigator.pop()
-  }
+    const loadWorkout = (workoutId) => {
+      props.loadWorkout(workoutId)
+      props.navigator.push({
+        name: 'workoutIntro'
+      })
+    }
 
-  return (
-    <SearchIndex
-      categories={denormalizeCategories(props.categories)}
-      loadWorkout={loadWorkout}
-      onCategorySelect={onCategorySelect}
-      onClosePressed={onClosePressed}
-      workouts={denormalizeInstructor(props.workouts, props.instructors)}
-    />
-  )
+    let onClosePressed = () => {
+      props.navigator.pop()
+    }
+
+    let onSearchPressed = () => {
+      props.searchDispatchers.fetchSearchResult(this.state.searchText)
+    }
+    let onSearchInput = (text) => {
+      this.setState({
+        searchText: text
+      })
+    }
+
+    return (
+      <SearchIndex
+        categories={denormalizeCategories(props.categories)}
+        loadWorkout={loadWorkout}
+        onCategorySelect={onCategorySelect}
+        onClosePressed={onClosePressed}
+        onSearchButton={onSearchPressed}
+        onSearchInput={onSearchInput}
+        searchText={this.state.searchText}
+        workouts={denormalizeInstructor(props.workouts, props.instructors)}
+      />
+    )
+  }
 }
 
 function denormalizeInstructor(workouts, instructors){
@@ -63,7 +85,8 @@ export default connect(
   (dispatch) => {
     return {
       uiDispatchers: bindActionCreators(UiStateActionCreators, dispatch),
-      loadWorkout: bindActionCreators(loadWorkout, dispatch)
+      loadWorkout: bindActionCreators(loadWorkout, dispatch),
+      searchDispatchers: bindActionCreators(SearchActionCreators, dispatch)
     }
   }
 )(Search)
