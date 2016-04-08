@@ -37,6 +37,7 @@ class Category extends React.Component {
     return (
       <CategoryIndex catItem={catItem}
                      catData={ denormalizedData }
+                     isFetching={props.categoryIsFetching}
                      onWorkoutSelect={ onWorkoutSelect }
                      onBackButton={onBackButton}
                      onSearch={onSearch}
@@ -70,6 +71,7 @@ export default connect(
       workouts: state.workout.data,
       exercises: state.exercise,
       categories: state.category.data,
+      categoryIsFetching: state.category.isFetching,
       instructors: state.instructor,
       uiStates: state.uiStates,
     }

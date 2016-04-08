@@ -129,14 +129,14 @@ export function fetchCategoriesDetails (categoryID) {
             pause_between_exercises: workout.entity.pause_interval,
             duration: workout.entity.duration,
             instructor: 2,
-            exercises: [45, 46, 25, 19, 22, 46, 25, 19, 22, 2, 4, 42, 52, 16, 48, 47, 32, 36],
+            exercises: [],
             like: false
           }
         })
 
-        //dispatch(populateWorkouts(workouts))
+        dispatch(populateWorkouts(workouts))
 
-        workoutIds = [3, 2, 4, 6]
+        // workoutIds = [3, 2, 4, 6]
         dispatch(updateCategory(categoryID, {workouts: workoutIds}))
         dispatch(fetchCategoryDetailsSuccess())
       })
