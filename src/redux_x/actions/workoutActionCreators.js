@@ -8,15 +8,18 @@ import {
   LIKE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES
 } from './actionTypes'
-import { loadWorkout } from './videoActionCreators'
+
 import {
   BASE_URL,
   WORKOUT_LIKE_URL_FUNC,
   WORKOUT_VIEW_URL_FUNC
 } from '../../constants/appConstants'
-import ApiUtils from '../ApiUtilities'
+
+import { loadWorkout } from './videoActionCreators'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 import { hydrateWorkout } from '../ApiUtilities.js'
+
+import ApiUtils from '../ApiUtilities'
 
 export const addWorkout = (workout) => {
   return {
@@ -174,12 +177,16 @@ const updateLikeWorkoutLocal = (workoutId, like) => {
   }
 }
 export const likeWorkout = ({workoutId, like}) => {
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
     const params = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'access-token': access_token
       },
       body: JSON.stringify({favorited: !!like})
     }
@@ -200,12 +207,16 @@ export const likeWorkout = ({workoutId, like}) => {
 }
 
 export const viewWorkout = (workoutId) => {
-  return ((dispatch) => {
+  return ((dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
     const params = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'access-token': access_token
       },
       body: JSON.stringify({viewed: true})
     }

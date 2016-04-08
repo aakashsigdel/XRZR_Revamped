@@ -39,8 +39,11 @@ export const likeExerciseLocal = (exerciseId, like) => {
 }
 
 export const likeExercise = (exerciseId, like, workoutExerciseId) => {
-  return (dispatch) => {
-    if (!exerciseId){
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
+    if (!exerciseId) {
       alert('Can\'t like this exercise!!')
       return
     }
@@ -49,7 +52,8 @@ export const likeExercise = (exerciseId, like, workoutExerciseId) => {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'access-token': access_token
       },
       body: JSON.stringify({favorited: !!like})
     }
