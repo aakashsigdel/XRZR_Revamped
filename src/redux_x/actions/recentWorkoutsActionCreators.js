@@ -26,7 +26,7 @@ export function fetchRecentWorkouts () {
     .addFilter(new Filter('sys_asset_type', 'workout'))
     //.sortBy('sys_created', 'desc')
     .toString()
-  console.log(view_url)
+
   return (dispatch) => {
     fetchRecentWorkoutRequest()
     return fetch(view_url)
