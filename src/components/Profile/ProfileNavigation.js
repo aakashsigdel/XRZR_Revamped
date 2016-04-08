@@ -1,6 +1,10 @@
 'use strict'
 
-import React, { Image, TouchableOpacity } from 'react-native'
+import React, {
+  Image,
+  TouchableOpacity,
+  View
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 import Navigation from '../Navigation/Navigation'
@@ -53,11 +57,25 @@ const ProfileNavigation = (props) => {
     )
   }
 
+  const _renderRightButton = ({currentUserId, userId, isInstructor}) => {
+    console.log('current and user', currentUserId, userId)
+    if (currentUserId === userId || isInstructor) {
+      return navRight
+    }
+    return {custom: (<View></View>)}
+  }
+
+  const rightParams = {
+    currentUserId: props.currentUserId,
+    userId: props.user.userId,
+    isInstructor: props.user.isInstructor
+  }
+
   return (
     <Navigation
       left={navLeft}
       mid={{}}
-      right={navRight}
+      right={_renderRightButton(rightParams)}
       position='absolute'
     />
   )

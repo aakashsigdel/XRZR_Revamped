@@ -3,8 +3,11 @@
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  CLEAR_ERROR
+  CLEAR_ERROR,
+  UPDATE_USER,
+  UPDATE_USER_LOCAL
 } from '../actions/actionTypes'
+import networkSwitches from './networkSwitches'
 
 const initialState = {
   access_token: null,
@@ -32,6 +35,16 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         error: null
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        ...networkSwitches(state, action)
+      }
+    case UPDATE_USER_LOCAL:
+      return {
+        ...state,
+        ...action.user
       }
     default:
       return state

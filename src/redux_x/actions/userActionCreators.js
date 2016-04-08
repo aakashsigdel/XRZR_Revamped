@@ -48,8 +48,13 @@ export const fetchUser = (id) => {
       const USER_URL_WITH_USERID = USER_URL + '/' + tempUserId
       fetch(USER_URL_WITH_USERID)
       .then((response) => response.json())
-      .then((userData) => {
-        dispatch(setUser(userData.entities[0].entity))
+      .then((responseData) => {
+        console.log(userData, 'userData')
+        const userData = {
+          ...responseData.entities[0].entity,
+          id: responseData.entities[0].id
+        }
+        dispatch(setUser(userData))
         dispatch(receiveUser())
       })
       .catch((error) => dispatch(fetchUserFailure(error)))

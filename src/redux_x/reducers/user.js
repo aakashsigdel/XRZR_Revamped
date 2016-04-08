@@ -4,6 +4,7 @@ import {
   FETCH_USER
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
+import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
 
 const initialState = {
   isFetching: false,
@@ -49,11 +50,14 @@ const initialState = {
 const user = (state = initialState , action) => {
   switch (action.type) {
     case SET_USER:
+      const user = mapUserApiKeysToAppKeys(action.user)
       return {
         ...state,
         data: {
           ...state.data,
-          ...action.user
+          [user.id]: {
+            ...user
+          }
         }
       }
     case FETCH_USER:

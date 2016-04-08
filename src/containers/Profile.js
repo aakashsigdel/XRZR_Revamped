@@ -13,16 +13,18 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 import { fetchUser } from '../redux_x/actions/userActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
+import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 
 const goToWorkoutIntro = (props, workoutId) => {
   props.playerDispatchers.loadWorkout(workoutId)
   props.navigator.push({name: 'workoutIntro'})
 }
 
-const handleProfileSettingPress = (props) => {
+const handleProfileSettingPress = (props, userId) => {
   return () => {
     props.navigator.push({
-      name: 'profileSettings'
+      name: 'profileSettings',
+      userId
     })
   }
 }
@@ -45,6 +47,9 @@ const handleCreateNewExercise = (props) => {
 }
 
 const handlePressOptions = (props, buttonType) => {
+  if (buttonType === 'heart') {
+    return
+  }
   let actionElements = {}
   if (props.user[props.userId].isInstructor) {
     actionElements = [
@@ -60,7 +65,7 @@ const handlePressOptions = (props, buttonType) => {
       },
       {
         name: 'PROFILE SETTINGS',
-        action: handleProfileSettingPress(props),
+        action: handleProfileSettingPress(props, props.userId),
         icon: <Icon name='gear-b' color='rgba(255, 255, 255, 0.5)' size={25} />
       }
     ]
@@ -76,17 +81,31 @@ const handlePressOptions = (props, buttonType) => {
 }
 
 class Profile extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isFetching: true
+    }
+  }
   componentDidMount () {
-    console.log('tero baje', this.props)
     this.props.fetchUser()
+    getAccessTokenFromAsyncStorage()
+    .then(userData => {
+        this.currentUserId = userData.id
+    })
   }
 
   componentDidUpdate (prevProps) {
+    if(prevProps.isFetching && !this.props.isFetching) {
+      this.setState({
+        isFetching: false
+      })
+      // this.forceUpdate()
+    }
   }
 
   render () {
-    console.warn('corw', this.props.isFetching)
-    if (this.props.isFetching)
+    if (this.state.isFetching)
       return <Loader />
     return (
       <ProfileIndex
@@ -95,6 +114,7 @@ class Profile extends Component {
         navigator={this.props.navigator}
         goToWorkoutIntro={(workoutId) => goToWorkoutIntro(this.props, workoutId)}
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
+        currentUserId={this.currentUserId}
       />
     )
   }

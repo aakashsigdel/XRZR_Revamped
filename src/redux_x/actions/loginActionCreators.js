@@ -1,14 +1,19 @@
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  CLEAR_ERROR
+  CLEAR_ERROR,
+  UPDATE_USER,
+  UPDATE_USER_LOCAL
 } from './actionTypes'
 import { AsyncStorage } from 'react-native'
 import { FBSDKLoginManager } from 'react-native-fbsdklogin'
 import { FBSDKAccessToken } from 'react-native-fbsdkcore'
 import { LOGIN_URL } from '../../constants/appConstants'
 import { LOGIN_STORAGE_KEY } from '../../constants/appConstants'
-import { awesomeFetchWrapper } from '../../utilities/utility'
+import {
+  awesomeFetchWrapper,
+  getAccessTokenFromAsyncStorage
+} from '../../utilities/utility'
 import { BASE_URL } from '../../constants/appConstants'
 
 // login fuction to login with facebook
@@ -63,7 +68,6 @@ const getUserDetails = (dispatch, responseData) => {
       ...responseData,
       id: data.entities[0].id
     }
-    console.log(userData)
     setLoginDetailsToAsyncStorage(dispatch, userData)
   })
 }
@@ -96,5 +100,62 @@ export const loginSuccess = (authData) => {
 export const clearError = () => {
   return {
     type: CLEAR_ERROR
+  }
+}
+
+export const updateUser = (user) => {
+  return (dispatch) => {
+    dispatch(updateUserStart())
+    getAccessTokenFromAsyncStorage()
+    .then((response) => {
+      const userData = JSON.parse(response) 
+      const data = {
+        url: BASE_URL + '/appuser' + '/' + userData.id,
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'access-token': userData.access_token
+        },
+        body: JSON.stringify(user)
+      }
+      console.log(data, 'mero payro data')
+      awesomeFetchWrapper(data)
+      .then(responseData => {
+        console.log(responseData, 'aakai ho ta data')
+        dispatch(updateUserLocal(user))
+        dispatch(updateUserSuccess())
+      })
+      .catch(error => dispatch(updateUserFailure(error)))
+    })
+  }
+}
+
+const updateUserSuccess = () => {
+  return {
+    type: UPDATE_USER,
+    status: 'success'
+  }
+}
+
+const updateUserStart = () => {
+  return {
+    type: UPDATE_USER,
+    status: 'fetch'
+  }
+}
+
+const updateUserFailure = (error) => {
+  return {
+    type: UPDATE_USER,
+    status: 'error',
+    errorMessage: error
+  }
+}
+
+const updateUserLocal = (user) => {
+  return {
+    type: UPDATE_USER_LOCAL,
+    user
   }
 }

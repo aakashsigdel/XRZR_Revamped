@@ -8,6 +8,7 @@ import React, {
 import Cover from '../Common/Cover'
 import Navigation from './Navigation'
 import Settings from './Settings'
+import Button from './Button'
 import { VIEWPORT } from '../../constants/appConstants'
 
 export default class ProfileSettingsIndex extends Component {
@@ -20,7 +21,14 @@ export default class ProfileSettingsIndex extends Component {
           />
         </View>
         <View style={styles.settings}>
-          <Settings />
+          <Settings
+            setSound={this.props.setSound}
+            setDescription={this.props.setDescription}
+            onInstagramConnect={this.props.onInstagramConnect}
+          />
+          <Button
+            onSaveButton={this.props.onSaveButton}
+          />
         </View>
         <Navigation
           navigator={this.props.navigator}

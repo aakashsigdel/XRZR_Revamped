@@ -27,10 +27,15 @@ const Settings = (props) => {
           activeBackgroundColor='#197461'
           switchHeight={15}
           switchWidth={33}
+          onActivate={() => props.setSound(true)}
+          onDeactivate={() => props.setSound(false)}
         />
       </View>
       <Hr />
-      <TouchableOpacity style={styles.instagramContainer}>
+      <TouchableOpacity
+        onPress={props.onInstagramConnect}
+        style={styles.instagramContainer}
+      >
         <Text style={styles.text}>
           INSTAGRAM
         </Text>
@@ -47,6 +52,7 @@ const Settings = (props) => {
           multiline
           placeholder={'A few words about the exercises or guidelines.'}
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
+          onChangeText={(text) => props.setDescription(text)}
           style={styles.textInput}
         />
         <Hr />
