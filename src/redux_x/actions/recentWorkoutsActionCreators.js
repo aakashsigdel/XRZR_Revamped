@@ -23,11 +23,10 @@ export function populateRecentWorkouts (workoutIds) {
 export function fetchRecentWorkouts () {
   const view_url = new UrlBuilder(VIEW_BASE_URL)
     .addWithMetaDataClause(['asset'])
-    .addWithClause(['category'])
     .addFilter(new Filter('sys_asset_type', 'workout'))
     //.sortBy('sys_created', 'desc')
     .toString()
-  console.log(view_url)
+
   return (dispatch) => {
     fetchRecentWorkoutRequest()
     return fetch(view_url)
@@ -42,7 +41,7 @@ export function fetchRecentWorkouts () {
         dispatch(populateWorkouts(workouts))
         dispatch(populateRecentWorkouts(workoutIds))
 
-        let categoryIds = Object.keys(workouts).map((workout) => workout.category)
+        let categoryIds = Object.keys(workouts).map((workoutId) => workouts[workoutId].category)
         dispatch(fetchCategoriesIfNeeded(categoryIds))
 
         dispatch(fetchRecentWorkoutSuccess(new Date().getTime()))

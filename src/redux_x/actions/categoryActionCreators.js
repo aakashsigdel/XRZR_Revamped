@@ -7,6 +7,7 @@ import {
 } from './actionTypes'
 import {
   CATEGORY_BASE_URL,
+  CATEGORY_URL_FUNC,
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 import {populateWorkouts} from './workoutActionCreators'
@@ -48,6 +49,14 @@ export function categoriesFetchSuccess () {
     receivedTime: Date.now()
   }
 }
+export function categoriesFetchError(errorMessage, receivedTime) {
+  return {
+    type: FETCH_CATEGORIES,
+    status: 'error',
+    errorMessage,
+    receivedTime
+  }
+}
 
 export function fetchCategories () {
   return (dispatch) => {
@@ -79,14 +88,32 @@ export function fetchCategories () {
 export function fetchCategory (categoryId) {
   return (dispatch) => {
     dispatch(requestCategories())
-    return fetch(CATEGORY_BASE_URL)
+    return fetch(CATEGORY_URL_FUNC(categoryId))
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then(ApiUtils.convertEntitiesToKeyBasedDict)
+      .then((category) => {
+        dispatch(addCategory(category))
+        dispatch(categoriesFetchSuccess())
+      })
+      .catch((error) => {
+        console.error('error encountered in fetching')
+        dispatch(categoriesFetchError(error.response, new Date().getTime()))
+      })
   }
 }
 
 export function fetchCategoriesIfNeeded (categoryIds) {
-  console.log('fetchCategoriesIfNeeded Yet to be implemented')
-  return {
-    type: 'nothing'
+  categoryIds = Array.from(new Set(categoryIds))
+
+  return (dispatch, getState) => {
+    let categoryState = getState().category.data
+
+    let promices = categoryIds.map((categoryId) => {
+      if (categoryState[categoryId] !== undefined) {
+        return dispatch(fetchCategory(categoryId))
+      }
+    })
   }
 }
 
@@ -129,14 +156,14 @@ export function fetchCategoriesDetails (categoryID) {
             pause_between_exercises: workout.entity.pause_interval,
             duration: workout.entity.duration,
             instructor: 2,
-            exercises: [45, 46, 25, 19, 22, 46, 25, 19, 22, 2, 4, 42, 52, 16, 48, 47, 32, 36],
+            exercises: [],
             like: false
           }
         })
 
-        //dispatch(populateWorkouts(workouts))
+        dispatch(populateWorkouts(workouts))
 
-        workoutIds = [3, 2, 4, 6]
+        // workoutIds = [3, 2, 4, 6]
         dispatch(updateCategory(categoryID, {workouts: workoutIds}))
         dispatch(fetchCategoryDetailsSuccess())
       })

@@ -13,7 +13,7 @@ export const ORIENTATION = {
   LANDSCAPE: 'LANDSCAPE'
 }
 
-const URL = 'https://xrzr.backlect.com/api/xrzr'
+const URL = 'https://xrzr.backlect.com/api/XRZRApp'
 const VERSION = '/v1.0'
 const LOGIN_PATH = '/auth/facebook/convert-token'
 export const BASE_URL = URL + VERSION
@@ -26,6 +26,7 @@ export const WORKOUT_BASE_URL = URL + '/v1.0/workout'
 export const WORKOUT_EXERCISES_URL = URL + '/v1.0/workout_exercise'
 export const EXERCISE_BASE_URL = URL + '/v1.0/exercise'
 export const VIEW_BASE_URL = URL + '/v1.0/view'
+export const FAVOURITE_BASE_URL = URL + '/v1.0/favorite'
 
 export const WORKOUT_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_BASE_URL}/${WORKOUT_ID}`
 export const WORKOUT_LIKE_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_URL_FUNC(WORKOUT_ID)}/favorite`
@@ -33,3 +34,5 @@ export const WORKOUT_VIEW_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_BASE_URL}/${WORK
 
 export const EXERCISE_URL_FUNC = (EXERCISE_ID) => `${EXERCISE_BASE_URL}/${EXERCISE_ID}`
 export const EXERCISE_LIKE_URL_FUNC = (EXERCISE_ID) => `${EXERCISE_URL_FUNC(EXERCISE_ID)}/favorite`
+
+export const CATEGORY_URL_FUNC = (CATEGORY_ID) => `${CATEGORY_BASE_URL}/${CATEGORY_ID}`

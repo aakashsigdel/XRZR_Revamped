@@ -8,8 +8,18 @@ import React, {
 import CategoryNavigationBar from './CategoryNavigationBar'
 import ExerciseListing from './ExerciseListing'
 import { VIEWPORT } from '../../constants/appConstants'
+import LoadingSign from '../Common/LoadingSign'
 
 const CategoryIndex = (props) => {
+  let listings = (
+    <ExerciseListing
+      data={props.catData}
+      onWorkoutSelect={props.onWorkoutSelect}
+    />
+  )
+  if (props.isFetching) {
+    listings = <LoadingSign />
+  }
   return (
     <View
       style={styles.container}
@@ -30,10 +40,7 @@ const CategoryIndex = (props) => {
         </View>
         <View style={styles.listings} >
 
-          <ExerciseListing
-            data={props.catData}
-            onWorkoutSelect={props.onWorkoutSelect}
-          />
+          {listings}
 
         </View>
       </View>
