@@ -9,37 +9,43 @@ import {bindActionCreators} from 'redux'
 import FavouriteWorkoutIndex from '../components/FavouriteWorkouts/FavouriteWorkoutIndex'
 import * as UiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
+import * as UserDataActionCreators from '../redux_x/actions/userDataActionCreators'
 
-const FavouriteWorkouts = (props) => {
-  const favWorkouts = favouriteWorkoutsManager(props.favWorkouts, props.workouts, props.instructors)
-
-  let onWorkoutSelect = (workoutId) => {
-    props.playerDispatchers.loadWorkout(workoutId)
-    props.navigator.push({name: 'workoutIntro'})
+class FavouriteWorkouts extends React.Component {
+  componentWillMount () {
+    this.props.userDataDispatchers.fetchFavouriteWorkouts()
   }
+  render (props = this.props) {
+    const favWorkouts = favouriteWorkoutsManager(props.favWorkouts.data, props.workouts, props.instructors)
 
-  let onBackButton = props.navigator.pop
-  const onBrowseTabSelect = () => {
-    props.uiDispatchers.switchBrowseTab('browse')
-    props.navigator.replace({name: 'browse'})
+    let onWorkoutSelect = (workoutId) => {
+      props.playerDispatchers.loadWorkout(workoutId)
+      props.navigator.push({ name: 'workoutIntro' })
+    }
+
+    let onBackButton = props.navigator.pop
+    const onBrowseTabSelect = () => {
+      props.uiDispatchers.switchBrowseTab('browse')
+      props.navigator.replace({ name: 'browse' })
+    }
+    const onFavouriteTabSelect = () => undefined
+    const onSearch = () => props.navigator.push({ name: 'search' })
+
+    const goToProfile = (userId) => props.navigator.push({ name: 'profile', userId: userId })
+
+    return (
+      <FavouriteWorkoutIndex
+        favouriteWorkouts={favWorkouts}
+        goToProfile={goToProfile}
+        loadWorkout={onWorkoutSelect}
+
+        onBackButton={onBackButton}
+        onBrowseTabSelect={onBrowseTabSelect}
+        onFavouriteTabSelect={onFavouriteTabSelect}
+        onSearch={onSearch}
+      />
+    )
   }
-  const onFavouriteTabSelect = () => undefined
-  const onSearch = () => props.navigator.push({name: 'search'})
-
-  const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
-
-  return (
-    <FavouriteWorkoutIndex
-      favouriteWorkouts={favWorkouts}
-      goToProfile={goToProfile}
-      loadWorkout={onWorkoutSelect}
-
-      onBackButton={onBackButton}
-      onBrowseTabSelect={onBrowseTabSelect}
-      onFavouriteTabSelect={onFavouriteTabSelect}
-      onSearch={onSearch}
-    />
-  )
 }
 
 function favouriteWorkoutsManager (workoutIds, workouts, instructors) {
@@ -67,7 +73,8 @@ export default connect(
   (dispatch) => {
     return {
       uiDispatchers: bindActionCreators(UiActionCreators, dispatch),
-      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch)
+      playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
+      userDataDispatchers: bindActionCreators(UserDataActionCreators, dispatch)
     }
   }
 )(FavouriteWorkouts)
