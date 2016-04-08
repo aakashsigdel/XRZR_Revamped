@@ -12,6 +12,7 @@
 #import "RCTRootView.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RCTLinkingManager.h"
 
 @implementation AppDelegate
 
@@ -66,9 +67,12 @@
                                                                 openURL:url
                                                       sourceApplication:sourceApplication
                                                              annotation:annotation
+                  
                   ];
+  BOOL instaHandled = [RCTLinkingManager application:application openURL:url
+               sourceApplication:sourceApplication annotation:annotation];
   // Add any custom logic here.
-  return handled;
+  return handled && instaHandled;
 }
 
 @end

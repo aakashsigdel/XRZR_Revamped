@@ -24,6 +24,7 @@ export const LOGIN_STORAGE_KEY = '@XRZR_LOGIN_STORAGE_KEY'
 export const CATEGORY_BASE_URL = URL + '/v1.0/category'
 export const WORKOUT_BASE_URL = URL + '/v1.0/workout'
 export const WORKOUT_EXERCISES_URL = URL + '/v1.0/workout_exercise'
+
 export const EXERCISE_BASE_URL = URL + '/v1.0/exercise'
 export const VIEW_BASE_URL = URL + '/v1.0/view'
 export const FAVOURITE_BASE_URL = URL + '/v1.0/favorite'
@@ -38,3 +39,8 @@ export const EXERCISE_URL_FUNC = (EXERCISE_ID) => `${EXERCISE_BASE_URL}/${EXERCI
 export const EXERCISE_LIKE_URL_FUNC = (EXERCISE_ID) => `${EXERCISE_URL_FUNC(EXERCISE_ID)}/favorite`
 
 export const CATEGORY_URL_FUNC = (CATEGORY_ID) => `${CATEGORY_BASE_URL}/${CATEGORY_ID}`
+
+export const INSTAGRAM_DETAILS = {
+  clientId: '2c2edf9c955345f59513d0b4fa697aff',
+  redirectURL: 'ig2c2edf9c955345f59513d0b4fa697aff://authorize'
+}

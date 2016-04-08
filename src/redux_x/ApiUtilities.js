@@ -146,4 +146,19 @@ export function hydrateWorkout (workoutId, workout) {
   return validWorkout
 }
 
+export function mapUserApiKeysToAppKeys (user) {
+  let validUser = {}
+  if (!user) {
+    return user
+  }
+
+  validUser.id = user.id
+  validUser.name = user.name
+  validUser.image = user.profile_pic
+  validUser.isInstructor = user.is_instructor
+  validUser.workout = user.favorite_workouts || []
+
+  return validUser
+}
+
 export default ApiUtils

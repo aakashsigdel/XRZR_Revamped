@@ -14,6 +14,7 @@ import Orientation from 'react-native-orientation'
 import * as workoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as categoryActionCreators from '../redux_x/actions/categoryActionCreators'
+import { loginSuccess } from '../redux_x/actions/loginActionCreators'
 
 import Login from './Login'
 import Player from './Player'
@@ -46,6 +47,8 @@ class XRZRApp extends Component {
     getAccessTokenFromAsyncStorage()
     .then(response => {
       if(JSON.parse(response).access_token) {
+        console.log(this.props)
+        this.props.actions.loginSuccess(JSON.parse(response))
         this.navigator.replace({name: 'browse'})
       }
     })
@@ -121,7 +124,10 @@ class XRZRApp extends Component {
           workoutId={route.workoutId}
         />
       case 'profileSettings':
-        return <ProfileSettings navigator={navigator} />
+        return <ProfileSettings
+          navigator={navigator}
+          userId={route.userId}
+        />
       case 'newWorkout':
         return <NewWorkout navigator={navigator} />
       case 'deleteWorkout':
@@ -191,6 +197,7 @@ const _mapDispatchToProps = (dispatch) => {
   actions.workoutActions = bindActionCreators(workoutActionCreators, dispatch)
   actions.exerciseActions = bindActionCreators(exerciseActionCreators, dispatch)
   actions.categoryActions = bindActionCreators(categoryActionCreators, dispatch)
+  actions.loginSuccess = bindActionCreators(loginSuccess, dispatch)
 
   return { actions }
 }

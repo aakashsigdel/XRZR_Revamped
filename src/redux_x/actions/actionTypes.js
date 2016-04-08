@@ -26,8 +26,10 @@ export const LOAD_WORKOUT = 'LOAD_WORKOUT'
 export const TOGGLE_PAUSE_MODAL = 'TOGGLE_PAUSE_MODAL'
 
 // USER STATE
-export const GET_USER = 'GET_USER'
+export const SET_USER = 'SET_USER'
 export const FETCH_USER = 'FETCH_USER'
+export const UPDATE_USER = 'UPDATE_USER'
+export const UPDATE_USER_LOCAL = 'UPDATE_USER_LOCAL'
 
 // UI STATE
 export const CHANGE_BROWSE_TAB = 'CHANGE_BROWSE_TAB'

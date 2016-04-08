@@ -54,6 +54,7 @@ const ProfileIndex = (props) => {
           user={props.user}
           handlePressOptions={props.handlePressOptions}
           navigator={props.navigator}
+          currentUserId={props.currentUserId}
         />
       </ScrollView>
     </View>
