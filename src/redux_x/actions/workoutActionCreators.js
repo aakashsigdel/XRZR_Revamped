@@ -41,7 +41,7 @@ export const postWorkoutEnd = (workout) => {
 
 export const postWorkoutFailure = (errorMessage) => {
   return {
-    type: POST_WORKOUT_FAILURE,
+    type: POST_WORKOUT,
     status: 'error',
     errorMessage
   }

@@ -28,6 +28,8 @@ export const EXERCISE_BASE_URL = URL + '/v1.0/exercise'
 export const VIEW_BASE_URL = URL + '/v1.0/view'
 export const FAVOURITE_BASE_URL = URL + '/v1.0/favorite'
 
+export const WORKOUT_SEARCH_URL = WORKOUT_BASE_URL + '/search'
+
 export const WORKOUT_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_BASE_URL}/${WORKOUT_ID}`
 export const WORKOUT_LIKE_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_URL_FUNC(WORKOUT_ID)}/favorite`
 export const WORKOUT_VIEW_URL_FUNC = (WORKOUT_ID) => `${WORKOUT_BASE_URL}/${WORKOUT_ID}/view`

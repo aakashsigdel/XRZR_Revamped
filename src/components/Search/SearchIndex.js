@@ -12,12 +12,18 @@ const SearchIndex = (props) => {
     <View
       style={styles.container}
     >
-      <SearchNavigationBar onClosePressed={props.onClosePressed} />
+      <SearchNavigationBar
+        onClosePressed={props.onClosePressed}
+        onSearchButton={props.onSearchButton}
+        onSearchInput={props.onSearchInput}
+        searchText={props.searchText}
+      />
       <TabView
         categories={props.categories}
         onCategorySelect={props.onCategorySelect}
         loadWorkout={props.loadWorkout}
         workouts={props.workouts}
+        style={{flex: 1}}
       />
     </View>
   )
@@ -32,7 +38,8 @@ SearchIndex.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    flex: 1
   }
 })
 

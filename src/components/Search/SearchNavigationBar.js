@@ -32,13 +32,19 @@ const SearchNavigationBar = (props) => {
           placeholder='Search'
           placeholderTextColor='rgba(255,255,255,0.5)'
           style={[styles.searcher, styles.textInput]}
+          value={props.searchText}
+          onChangeText={props.onSearchInput}
         />
-        <Icon
-          color='rgba(255,255,255, 0.5)'
-          name='ios-search'
-          size={17}
-          style={[styles.searcher, styles.icon]}
-        />
+        <TouchableOpacity
+          onPress={props.onSearchButton}
+        >
+          <Icon
+            color='rgba(255,255,255, 0.5)'
+            name='ios-search'
+            size={17}
+            style={[styles.searcher, styles.icon]}
+          />
+        </TouchableOpacity>
       </View>
     )
   }
