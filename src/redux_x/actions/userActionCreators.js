@@ -2,7 +2,8 @@
 
 import {
   FETCH_USER,
-  SET_USER
+  SET_USER,
+  POPULATE_USERS
 } from './actionTypes'
 import { BASE_URL } from '../../constants/appConstants'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
@@ -11,6 +12,13 @@ export const setUser = (user) => {
   return {
     type: SET_USER,
     user
+  }
+}
+
+export const populateUsers = (users) => {
+  return {
+    type: POPULATE_USERS,
+    users
   }
 }
 

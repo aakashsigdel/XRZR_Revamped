@@ -10,6 +10,7 @@ import ApiUtils from '../ApiUtilities'
 import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
 
 export function addMostPopularWorkouts (workoutIds) {
   return {
@@ -42,6 +43,7 @@ function mostPopularFetchError (errorMessage, receivedTime) {
 export function fetchMostPopularWorkouts () {
   const mostPopularWorkout_url = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
+    .addWithMetaDataClause(['created_by'])
     .toString()
 
   return (dispatch) => {
@@ -50,11 +52,15 @@ export function fetchMostPopularWorkouts () {
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'])
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
 
         let categories = keyBasedData['category']
         categories = ApiUtils.hydrateCategories(categories)
-        CategoryActions.addCategory(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
 
         return keyBasedData.data
       })

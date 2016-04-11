@@ -24,9 +24,11 @@ let ApiUtils = {
     return response
   },
 
-  convertEntitiesToKeyBasedDictDenormalizedBy: (jsonResponse, groups) => {
+  convertEntitiesToKeyBasedDictDenormalizedBy: (jsonResponse, groups, metaFields = []) => {
     let response = {data: {}}
     groups.map((group) => { response[group] = {} })
+    metaFields.map((metaField) => { response[metaField] = {} })
+
     jsonResponse.entities.map(
       (entity) => {
         let entityData = entity.entity
@@ -43,6 +45,17 @@ let ApiUtils = {
           response.data[entity.id][group] = groupData.id
 
           return true
+        })
+
+        let metaCollection = metaFields.map((metaField) => {
+          if (!entity[metaField]) {
+            return
+          }
+
+          let metaData = entity[metaField].entity
+          metaData['id'] = entity[metaField].id
+          response[metaField][metaData.id] = metaData
+          response.data[entity.id][metaField] = entity[metaField].id
         })
 
         if (!backpropagate.every((item) => item)) {
@@ -121,6 +134,19 @@ let ApiUtils = {
       newData[workoutId] = hydrateWorkout(workoutId, workouts[workoutId])
     })
     return newData
+  },
+
+  hydrateInstructors: (instructors) => {
+    let newData = {}
+    Object.keys(instructors).map((instructorId) => {
+      newData[instructorId] = {
+        id: instructors[instructorId].id,
+        name: instructors[instructorId].name,
+        image: instructors[instructorId].profile_pic,
+        isInstructor: !!instructors[instructorId].is_instructor
+      }
+    })
+    return newData
   }
 }
 
@@ -136,7 +162,7 @@ export function hydrateWorkout (workoutId, workout) {
   validWorkout['image_16x9'] = workout.image || 'http://aakashsigdel.github.io/XRZR_Files/others/workoutPlaceholder.png'
   validWorkout['duration'] = workout.duration || 'NA'
   validWorkout['pause_between_exercises'] = workout.pause_interval || 2
-  validWorkout['instructor'] = workout.instructor || 2
+  validWorkout['instructor'] = workout.created_by || 2
   validWorkout['like'] = workout.like || false
   validWorkout['workout_set'] = workout.workout_set || 4
   validWorkout['category'] = workout.category

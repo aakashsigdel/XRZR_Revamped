@@ -30,6 +30,7 @@ export const SET_USER = 'SET_USER'
 export const FETCH_USER = 'FETCH_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const UPDATE_USER_LOCAL = 'UPDATE_USER_LOCAL'
+export const POPULATE_USERS = 'POPULATE_USERS'
 
 // UI STATE
 export const CHANGE_BROWSE_TAB = 'CHANGE_BROWSE_TAB'
