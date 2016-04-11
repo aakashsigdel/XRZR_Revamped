@@ -77,10 +77,17 @@ function workoutsManager (featuredWorkouts, workouts, instructors) {
       if (!(instructorId || workouts[featuredId].image_16x9)) {
         return null
       }
+      let instructor = instructors[instructorId] || {
+        name: 'Default Instructor',
+        image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg',
+        isInstructor: false
+      }
+
       return {
         ...workouts[featuredId],
-        instructor: instructors[instructorId]
+        instructor: instructor
       }
+
     }
   )
   return featureds.filter((a) => a)
@@ -145,7 +152,7 @@ Browse.propTypes = {
 export default connect(
   (state) => {
     return {
-      instructor: state.instructor,
+      instructor: state.user.data,
       workouts: state.workout.data,
       trendings: state.trending,
       categories: state.category.data,

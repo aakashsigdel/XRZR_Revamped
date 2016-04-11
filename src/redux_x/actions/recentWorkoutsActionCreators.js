@@ -13,6 +13,8 @@ import ApiUtils from '../ApiUtilities'
 import {populateWorkouts} from './workoutActionCreators'
 import {fetchCategoriesIfNeeded} from './categoryActionCreators'
 
+import * as UserActions from './userActionCreators'
+
 export function populateRecentWorkouts (workoutIds) {
   return {
     type: POPULATE_RECENT_WORKOUTS,
@@ -22,7 +24,7 @@ export function populateRecentWorkouts (workoutIds) {
 
 export function fetchRecentWorkouts () {
   const view_url = new UrlBuilder(VIEW_BASE_URL)
-    .addWithMetaDataClause(['asset'])
+    .addWithMetaDataClause(['asset', 'created_by'])
     //.addFilter(new Filter('sys_asset_type', 'workout'))
     .sortBy('sys_created', 'asc')
     .toString()
@@ -32,9 +34,10 @@ export function fetchRecentWorkouts () {
     return fetch(view_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertEntitiesAndAssets)
       .then((jsonResponse) => {
-        let workouts = jsonResponse.asset
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, [], ['asset', 'created_by'])
+
+        let workouts = keyBasedData.asset
         workouts = ApiUtils.hydrateWorkouts(workouts)
         let workoutIds = Object.keys(workouts)
 
@@ -43,6 +46,10 @@ export function fetchRecentWorkouts () {
 
         let categoryIds = Object.keys(workouts).map((workoutId) => workouts[workoutId].category)
         dispatch(fetchCategoriesIfNeeded(categoryIds))
+
+        let instructors = keyBasedData.created_by
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
 
         dispatch(fetchRecentWorkoutSuccess(new Date().getTime()))
       })

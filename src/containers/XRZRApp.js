@@ -47,7 +47,6 @@ class XRZRApp extends Component {
     getAccessTokenFromAsyncStorage()
     .then(response => {
       if(JSON.parse(response).access_token) {
-        console.log(this.props)
         this.props.actions.loginSuccess(JSON.parse(response))
         this.navigator.replace({name: 'browse'})
       }

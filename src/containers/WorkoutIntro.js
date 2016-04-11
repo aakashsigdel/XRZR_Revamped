@@ -156,7 +156,7 @@ export default connect(
     return {
       workouts: state.workout.data,
       exercises: state.exercise,
-      instructors: state.instructor,
+      instructors: state.user.data,
       player: state.player
     }
   },

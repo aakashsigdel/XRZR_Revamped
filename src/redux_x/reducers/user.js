@@ -1,7 +1,8 @@
 'use strict'
 import {
   SET_USER,
-  FETCH_USER
+  FETCH_USER,
+  POPULATE_USERS
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
@@ -58,6 +59,14 @@ const user = (state = initialState , action) => {
           [user.id]: {
             ...user
           }
+        }
+      }
+    case POPULATE_USERS:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          ...action.users
         }
       }
     case FETCH_USER:

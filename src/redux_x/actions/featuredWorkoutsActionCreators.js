@@ -10,6 +10,7 @@ import ApiUtils from '../ApiUtilities'
 import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
 
 export function addFeaturedWorkouts (workoutIds) {
   return {
@@ -44,6 +45,7 @@ export function fetchFeaturedWorkouts () {
   let featured_api_uri = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
     .addFilter(new Filter('featured', true))
+    .addWithMetaDataClause(['created_by'])
     .toString()
 
   return (dispatch) => {
@@ -52,11 +54,15 @@ export function fetchFeaturedWorkouts () {
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((response) => {
-        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'])
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'], ['created_by'])
 
         let categories = keyBasedData['category']
         categories = ApiUtils.hydrateCategories(categories)
-        CategoryActions.addCategory(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
 
         return keyBasedData.data
       })

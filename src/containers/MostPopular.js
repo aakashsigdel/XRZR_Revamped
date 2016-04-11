@@ -69,7 +69,7 @@ export default connect(
   (state) => ({
     mostPopularWorkout: state.mostPopularWorkout,
     workouts: state.workout.data,
-    instructors: state.instructor
+    instructors: state.user.data
   }),
   (dispatch) => {
     return {

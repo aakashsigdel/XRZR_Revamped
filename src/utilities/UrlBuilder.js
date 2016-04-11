@@ -74,7 +74,7 @@ export default class UrlBuilder {
     if (this.withMetaFieldList.length === 0) {
       return ''
     }
-    return 'with-metadata=' + this.withMetaFieldList.reduce((a, b) => a + ',' + b)
+    return 'with-metadata=' + this.withMetaFieldList.reduce((a, b) => a + '&with-metadata=' + b)
   }
 
   getFilerClause () {
@@ -168,6 +168,7 @@ export class Filter {
 //  new UrlBuilder('http://hello.com')
 //    .addWithClause(['cat', 'dog', 'dog'])
 //    .addFilter(queryFilter)
+//    .addWithMetaDataClause(['helohelo', 'jslo'])
 //    .addSearchQueryString("hello")
 //    .sortBy("hello", 'asc')
 //    .toString())
