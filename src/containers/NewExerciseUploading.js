@@ -5,6 +5,7 @@ import React, {
 } from 'react-native'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {EXERCISE_BASE_URL} from '../constants/appConstants'
 
 import {sendAjax} from '../utilities/SendAjax'
 import NewExerciseUploadingIndex from '../components/NewExerciseUploading/NewExerciseUploadingIndex'
@@ -30,12 +31,14 @@ class NewExerciseUploading extends Component {
     a.append('video', {uri: this.props.exercise.videoUri, name: 'hello.mov', type: 'video/mov'})
 
     sendAjax({
-      type: 'post',
-      url: 'https://xrzr.backlect.com/api/xrzr/v1.0/exercise',
+      type: 'POST',
+      url: EXERCISE_BASE_URL,
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Accept', 'application/json, text/javascript')
-      },
+        xhr.setRequestHeader('access-token', this.props.userCredentials.access_token)
+      }.bind(this),
       success: function (res) {
+        console.log('success')
         console.log(res)
       },
       error: function (a) {
@@ -66,7 +69,7 @@ class NewExerciseUploading extends Component {
 
     return (
       <NewExerciseUploadingIndex
-        user={props.user}
+        user={props.userCredentials}
         completed={this.state.completed}
         exercise={props.exercise}
         navigator={props.navigator}
@@ -81,7 +84,9 @@ class NewExerciseUploading extends Component {
 NewExerciseUploading.propTypes = {}
 export default connect(
   (state) => {
-    return {}
+    return {
+      userCredentials: state.login
+    }
   },
   (dispatch) => {
     return {}

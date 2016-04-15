@@ -11,7 +11,7 @@ import { BlurView } from 'react-native-blur'
 const Header = (props) => {
   return (
     <Image
-      source={{uri: props.user.image}}
+      source={{uri: props.user.profile_pic}}
       style={styles.headerImage}
     >
       <BlurView
@@ -19,7 +19,7 @@ const Header = (props) => {
         style={styles.blur}
       >
         <Image
-          source={{uri: props.user.image}}
+          source={{uri: props.user.profile_pic}}
           style={styles.profileImage}
         />
         <Text style={styles.text}>

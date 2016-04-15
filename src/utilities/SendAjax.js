@@ -9,6 +9,16 @@ export var sendAjax = function (params) {
       params.complete && params.complete();
     }, MAX_XHR_WAITING_TIME);
   xhr.open(params.type, url);
+  if (params.headers) {
+    let headers = Object.keys(params.headers)
+    let header = ''
+    let value = ''
+    for (let i = 0; i < headers.length; i++) {
+      header = headers[i]
+      value = params.headers[header]
+      xhr.setRequestHeader(header, value)
+    }
+  }
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       clearTimeout(timer);
