@@ -65,7 +65,7 @@ FavouriteWorkouts.propTypes = {}
 export default connect(
   (state) => {
     return {
-      instructors: state.instructor,
+      instructors: state.user.data,
       workouts: state.workout.data,
       favWorkouts: state.userData.favouriteWorkouts
     }

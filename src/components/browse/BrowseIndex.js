@@ -25,15 +25,11 @@ const BrowseIndex = (props) => {
         return (
           <BrowseScreen
             {...props}
-            onBrowseTabSelect={onBrowseTabSelect}
-            onFavouriteTabSelect={onFavouriteTabSelect}
           />)
       case 'favourite':
         return (
           <FavouriteScreen
             {...props}
-            onBrowseTabSelect={onBrowseTabSelect}
-            onFavouriteTabSelect={onFavouriteTabSelect}
             recentWorkouts={props.recentWorkouts}
           />
         )
