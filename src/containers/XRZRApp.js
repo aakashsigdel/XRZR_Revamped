@@ -104,6 +104,7 @@ class XRZRApp extends Component {
         return <ExerciseProperties
           navigator={navigator}
           isNewExercise={route.isNewExercise}
+          exerciseId={route.exerciseId}
         />
       case 'workoutSettings':
         return <WorkoutSettings

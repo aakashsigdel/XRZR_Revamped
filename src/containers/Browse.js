@@ -42,7 +42,7 @@ class Browse extends React.Component {
     let onSearch = () => {
       props.navigator.push({name: 'search'})
     }
-    const goToProfile = (userId) => props.navigator.push({ name: 'profile', userId: userId })
+    const goToProfile = () => props.navigator.push({ name: 'profile', userId: props.login.id })
     const onTabChanged = (tabName) => props.uiDispatchers.switchBrowseTab(tabName)
 
     return (
@@ -156,8 +156,8 @@ export default connect(
       categories: state.category.data,
       featuredWorkouts: state.featuredWorkout,
       recentWorkouts: state.recentWorkout.data,
-      uiStates: state.uiStates
-
+      uiStates: state.uiStates,
+      login: state.login
     }
   },
   (dispatch) => {

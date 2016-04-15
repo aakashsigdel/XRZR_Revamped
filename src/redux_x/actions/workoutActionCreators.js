@@ -135,16 +135,24 @@ const _validateCategory = (categoryList, category) => {
 
 export const updateWorkout = ({id, workout}) => {
   return (dispatch, getState) => {
-    let category = _validateCategory(getState().category.data, workout.category)
-    if(!category) {
-      alert('Invalid Category')
-      return
-    }
+    let category = null
+    if (workout.category)
+      category = _validateCategory(getState().category.data, workout.category)
+    // if(!category) {
+    //   alert('Invalid Category')
+    //   return
+    // }
     dispatch(requestUpdateWorkout())
 
-    const data = {
-      ...workout,
-      category
+    let data = null
+    console.log(workout, 'mero okhuldunga')
+    if (category) {
+      data = {
+        ...workout,
+        category
+      }
+    } else {
+      data = workout
     }
     fetch(BASE_URL + '/workout/' + id, {
       headers: {
@@ -154,7 +162,10 @@ export const updateWorkout = ({id, workout}) => {
       method: 'post',
       body: JSON.stringify(data)
     })
-    .then((response) => response.json())
+    .then((response) => {
+      console.log('un parsed', response)
+      return response.json()
+    })
     .then((responseData) => {
       dispatch(
         updateWorkoutLocal(
@@ -164,6 +175,7 @@ export const updateWorkout = ({id, workout}) => {
       dispatch(updateWorkoutSuccess())
     })
     .catch((error) => {
+      console.log('full failure', error)
       dispatch(updateWorkoutFailure(error))
     })
   }

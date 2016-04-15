@@ -2,7 +2,8 @@
 import {
   SET_USER,
   FETCH_USER,
-  POPULATE_USERS
+  POPULATE_USERS,
+  LOGIN_SUCCESS
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
@@ -73,6 +74,17 @@ const user = (state = initialState , action) => {
       return {
         ...state,
         ...networkSwitches(state, action)
+      }
+    case LOGIN_SUCCESS:
+      const loginUser = mapUserApiKeysToAppKeys(action.authData)
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [loginUser.id]: {
+            ...loginUser
+          }
+        }
       }
     default:
       return state

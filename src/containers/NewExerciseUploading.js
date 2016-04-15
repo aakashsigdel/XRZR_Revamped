@@ -27,8 +27,11 @@ class NewExerciseUploading extends Component {
     a.append('tags', this.props.exercise.tags)
     a.append('sound', this.props.exercise.sound)
 
-    console.log(this.props.exercise)
-    a.append('video', {uri: this.props.exercise.videoUri, name: 'hello.mov', type: 'video/mov'})
+    if (this.props.update === false) {
+      console.log(this.props.exercise)
+    } else {
+      a.append('video', {uri: this.props.exercise.videoUri, name: 'hello.mov', type: 'video/mov'})
+    }
 
     sendAjax({
       type: 'POST',
