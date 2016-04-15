@@ -63,7 +63,8 @@ class Player extends React.Component {
           this.props.lockToPortrait()
           this.props.navigator.push({
             name: 'exerciseProperties',
-            isNewExercise: false
+            isNewExercise: false,
+            exerciseId: exercise.id
           })
         }
       },
@@ -82,12 +83,18 @@ class Player extends React.Component {
           this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
         }
       },
-      { name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/> }
+      {
+        name: 'GO TO ' + this.props.instructor[exercise.instructor].name.toUpperCase(),
+        icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/>,
+        action: (_) => {
+          this.props.navigator.push({ name: 'profile', userId: this.props.instructor[exercise.instructor].id})
+        }
+      }
     ]
     const actionTitle = {
-      title: 'SUN SALUTATION A',
-      subText: 'RACHEL GREY',
-      image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg'
+      title: exercise.title,
+      subText: this.props.instructor[exercise.instructor].name,
+      image: this.props.instructor[exercise.instructor].image
     }
 
     this.props.lockToPortrait()
@@ -149,6 +156,7 @@ class Player extends React.Component {
     this.startTimer()
   }
   componentDidMount () {
+    console.log('ramilo state', this.props)
     this.props.workoutActions.viewWorkout(this.props.player.workoutId)
   }
   componentWillUnmount () {
@@ -333,7 +341,8 @@ export default connect(
   (state) => ({
     player: state.player,
     exercises: state.exercise,
-    workouts: state.workout.data
+    workouts: state.workout.data,
+    instructor: state.instructor
   }),
   _bindActionCreators
 )(Player)

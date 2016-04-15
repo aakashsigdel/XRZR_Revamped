@@ -14,16 +14,17 @@ import * as uiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 let { ImagePickerManager } = NativeModules
 
 class ExerciseProperties extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
+    const exercise = props.isNewExercise ? null : props.exercises[props.exerciseId]
     this.state = {
       isModalVisible: false,
       videoSource: '',
 
-      exercise_title: undefined,
-      tags: undefined,
-      description: undefined,
-      sound: undefined
+      exercise_title: props.isNewExercise ? undefined : exercise.title,
+      tags: props.isNewExercise ? undefined : exercise.tags,
+      description: props.isNewExercise ? undefined : exercise.description,
+      sound: props.isNewExercise ? undefined : exercise.sound
     }
     this.onChooseVideo = this.onChooseVideo.bind(this)
     this.onExerciseDescriptionChange = this.onExerciseDescriptionChange.bind(this)
@@ -39,13 +40,14 @@ class ExerciseProperties extends Component {
   //}
 
   render (props = this.props) {
-    const exerciseId = 27 // @todo
+    const exerciseId = this.props.exerciseId
     const exercise = exerciseManager(exerciseId, this.props.exercises)
 
     const onCloseButton = () => props.navigator.pop()
     const onDeleteConfirm = () => undefined // @todo props.exerciseDispatchers.deleteExercise(exercise.id)
     const onNopeConfirm = () => props.uiDispatchers.changeDeleteExerciseModal(false)
     const onDeleteButton = () => props.uiDispatchers.changeDeleteExerciseModal(true)
+    console.log(this.state, 'katti dherai props')
     const onSaveButton = () => {
       let newExercise = {
         title: this.state.exercise_title,
@@ -54,10 +56,12 @@ class ExerciseProperties extends Component {
         sound: this.state.sound,
         videoUri: this.state.videoSource
       }
+      console.log('hello user', props.user)
       props.navigator.push({
         name: 'newExerciseUploading',
         newExercise: newExercise,
-        user: props.user
+        user: props.user,
+        update: this.state.videoSource === '' ? false : true
       })
     }
 
@@ -179,7 +183,7 @@ export default connect(
     return {
       exercises: state.exercise,
       uiStates: state.uiStates,
-      user: state.user[1]
+      user: state.login
     }
   },
   (dispatch) => {

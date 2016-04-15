@@ -91,7 +91,8 @@ class Profile extends Component {
     this.props.fetchUser()
     getAccessTokenFromAsyncStorage()
     .then(userData => {
-        this.currentUserId = userData.id
+        this.currentUserId = JSON.parse(userData).id
+        console.log(this.currentUserId, this.props.userId, 'current n user')
     })
   }
 
@@ -107,6 +108,9 @@ class Profile extends Component {
   render () {
     if (this.state.isFetching)
       return <Loader />
+    let rightIcon = 'dot'
+    if (this.currentUserId === this.props.userId)
+      rightIcon = 'heart'
     return (
       <ProfileIndex
         user={this.props.user[this.props.userId]}
@@ -115,6 +119,7 @@ class Profile extends Component {
         goToWorkoutIntro={(workoutId) => goToWorkoutIntro(this.props, workoutId)}
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
         currentUserId={this.currentUserId}
+        rightIcon={rightIcon}
       />
     )
   }

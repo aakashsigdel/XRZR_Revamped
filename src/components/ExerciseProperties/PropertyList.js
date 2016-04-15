@@ -10,6 +10,7 @@ import Switch from 'react-native-material-switch'
 import Hr from '../Common/Hr'
 
 const PropertyListItem = (props) => {
+  console.log('props ani props', props)
   return (
     <ScrollView style={styles.container}>
       <Hr />
@@ -17,7 +18,6 @@ const PropertyListItem = (props) => {
         <Text style={styles.titleText}>EXERCISE NAME</Text>
         <TextInput
           defaultValue={props.isNewExercise ? '' : props.exercise.title}
-          editable={props.isNewExercise}
           onChangeText={props.onExerciseTitleChange}
           style={styles.valueText}
         />
@@ -26,8 +26,7 @@ const PropertyListItem = (props) => {
       <View style={styles.itemContainer}>
         <Text style={styles.titleText}>TAGS</Text>
         <TextInput
-          defaultValue={props.isNewExercise ? '' : props.exercise.tag}
-          editable={props.isNewExercise}
+          defaultValue={props.isNewExercise ? '' : props.exercise.tags}
           onChangeText={props.onExerciseTagsChange}
           style={styles.valueText}
         />
@@ -51,10 +50,9 @@ const PropertyListItem = (props) => {
       <View style={styles.descContainer}>
         <Text style={styles.titleText}>DESCRIPTION</Text>
         <TextInput
-          editable={props.isNewExercise}
           multiline
           onChangeText={props.onExerciseDescriptionChange}
-          placeholder={props.exercise.description}
+          defaultValue={props.isNewExercise ? '' : props.exercise.description}
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
           style={styles.multilineValueText}
         />

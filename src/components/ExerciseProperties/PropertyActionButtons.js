@@ -24,7 +24,10 @@ const PropertyActionButtons = (props) => {
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.editText}>EDIT VIDEO</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.saveButton}>
+      <TouchableOpacity
+        onPress={props.onSaveButton}
+        style={styles.saveButton}
+      >
         <Text style={styles.saveText}>SAVE</Text>
       </TouchableOpacity>
     </View>

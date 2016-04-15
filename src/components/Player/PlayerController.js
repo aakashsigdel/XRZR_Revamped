@@ -92,7 +92,9 @@ const portraitStyles = {
   details: {
     width: VIEWPORT.width - 100
   },
-  counter: {},
+  counter: {
+    fontFamily: 'HelveticaNeue'
+  },
   seenVideoLength: {}
 }
 const landscapeStyles = {
@@ -130,11 +132,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontFamily: 'SFUIText-Regular',
+    fontFamily: 'HelveticaNeue',
     fontSize: 13
   },
   counter: {
-    fontFamily: 'SFCompactText-Regular',
+    fontFamily: 'HelveticaNeue',
     fontSize: 0.145 * VIEWPORT.height 
   },
   seeker: {

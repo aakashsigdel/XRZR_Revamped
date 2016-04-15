@@ -23,7 +23,7 @@ const ProfileNavigation = (props) => {
     )
   }
 
-  const customIcon = !props.user.isInstructor
+  const customIcon = props.currentUserId === props.user.id
     ? <Icon
       name='android-more-vertical'
       size={35}
@@ -49,7 +49,7 @@ const ProfileNavigation = (props) => {
     custom: (
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={props.user.isInstructor ? handleHeartPress : handleDotsPress}
+        onPress={props.currentUserId === props.user.id? handleDotsPress : handleHeartPress}
         style={{ marginBottom: 5, marginRight: 5 }}
       >
         {customIcon}
@@ -58,7 +58,6 @@ const ProfileNavigation = (props) => {
   }
 
   const _renderRightButton = ({currentUserId, userId, isInstructor}) => {
-    console.log('current and user', currentUserId, userId)
     if (currentUserId === userId || isInstructor) {
       return navRight
     }
@@ -67,7 +66,7 @@ const ProfileNavigation = (props) => {
 
   const rightParams = {
     currentUserId: props.currentUserId,
-    userId: props.user.userId,
+    userId: props.user.id,
     isInstructor: props.user.isInstructor
   }
 

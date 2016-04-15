@@ -17,7 +17,7 @@ const updateWorkout = (exerciseId, workout, props) => {
     id: workout.id,
     exercises
   }
-  props.updateWorkout(updateObject)
+  props.updateWorkout({id: workout.id, workout})
   props.popRoute()
 }
 
