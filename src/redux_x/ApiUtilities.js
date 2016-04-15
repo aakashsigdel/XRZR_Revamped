@@ -162,7 +162,7 @@ export function hydrateWorkout (workoutId, workout) {
   validWorkout['image_16x9'] = workout.image || 'http://aakashsigdel.github.io/XRZR_Files/others/workoutPlaceholder.png'
   validWorkout['duration'] = workout.duration || 'NA'
   validWorkout['pause_between_exercises'] = workout.pause_interval || 2
-  validWorkout['instructor'] = workout.created_by || 2
+  validWorkout['instructor'] = workout.created_by
   validWorkout['like'] = workout.like || false
   validWorkout['workout_set'] = workout.workout_set || 4
   validWorkout['category'] = workout.category

@@ -11,14 +11,16 @@ import { VIEWPORT } from '../../constants/appConstants'
 import LoadingSign from '../Common/LoadingSign'
 
 const CategoryIndex = (props) => {
-  let listings = (
-    <ExerciseListing
-      data={props.catData}
-      onWorkoutSelect={props.onWorkoutSelect}
-    />
-  )
+  let listings = null
   if (props.isFetching) {
     listings = <LoadingSign />
+  } else {
+    listings = (
+      <ExerciseListing
+        data={props.catData}
+        onWorkoutSelect={props.onWorkoutSelect}
+      />
+    )
   }
   return (
     <View

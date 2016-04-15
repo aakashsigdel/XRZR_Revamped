@@ -10,8 +10,13 @@ import {
   CATEGORY_URL_FUNC,
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
+
 import {populateWorkouts} from './workoutActionCreators'
+import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
+
+import * as UserActions from './userActionCreators'
+import * as WorkoutActions from './workoutActionCreators'
 
 export const addCategory = (category) => {
   return {
@@ -138,40 +143,35 @@ function fetchCategoryDetailsError (errorMessage) {
 }
 
 export function fetchCategoriesDetails (categoryID) {
+  let category_detail_url = new UrlBuilder(WORKOUT_BASE_URL)
+    .addFilter(new Filter('category', categoryID))
+    .addWithMetaDataClause(['created_by'])
+    .toString()
+
   return (dispatch) => {
     dispatch(requestCategoryDetails())
-    return fetch(WORKOUT_BASE_URL + '?filter=category:"' + categoryID + '"')
+    return fetch(category_detail_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        let workouts = {}
-        let workoutIds = []
-        jsonResponse.entities.map((workout) => {
-          workoutIds[workoutIds.length] = workout.id
-          workouts[workout.id] = {
-            id: workout.id,
-            title: workout.entity.title,
-            description: workout.entity.description,
-            image_16x9: workout.entity.image,
-            pause_between_exercises: workout.entity.pause_interval,
-            duration: workout.entity.duration,
-            instructor: 2,
-            exercises: [],
-            like: false
-          }
-        })
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, [], ['created_by'])
 
-        dispatch(populateWorkouts(workouts))
-
-        // workoutIds = [3, 2, 4, 6]
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
+      .then((workouts) => {
+        console.log(workouts)
+        dispatch(WorkoutActions.populateWorkouts(workouts))
+        let workoutIds = Object.keys(workouts)
         dispatch(updateCategory(categoryID, {workouts: workoutIds}))
         dispatch(fetchCategoryDetailsSuccess())
       })
       .catch((ex) => {
-        console.log(ex)
+        console.error(ex)
         dispatch(fetchCategoryDetailsError(ex.response))
       })
   }
 }
-
-

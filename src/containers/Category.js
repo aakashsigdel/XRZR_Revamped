@@ -14,24 +14,28 @@ class Category extends React.Component {
   }
 
   render (props = this.props) {
+
     let category = props.uiStates.selectedCategory
-    let denormalizedData = denormalizeExerciseItems(
-      category,
-      props.categories,
-      props.workouts,
-      props.instructors
-    )
     let catItem = props.categories[ category ]
+    let onBackButton = props.navigator.pop
+    const onSearch = (_) => {
+      props.navigator.push({ name: 'search' })
+    }
+
+    let denormalizedData = []
+
+    if (! props.categoryIsFetching) {
+      denormalizedData = denormalizeExerciseItems(
+        category,
+        props.categories,
+        props.workouts,
+        props.instructors
+      )
+    }
 
     let onWorkoutSelect = (workoutId) => {
       props.PlayerDispatchers.loadWorkout(workoutId)
       props.navigator.push({ name: 'workoutIntro' })
-    }
-
-    let onBackButton = props.navigator.pop
-
-    const onSearch = (_) => {
-      props.navigator.push({ name: 'search' })
     }
 
     return (
@@ -48,7 +52,7 @@ class Category extends React.Component {
 
 function denormalizeExerciseItems (category, categories, workouts, instructors){
   let categoryItem = categories[category]
-  if (!categoryItem)
+  if (!categoryItem || !categoryItem.workouts )
     return {}
   
   let workoutItems = categoryItem.workouts.map(
@@ -58,7 +62,7 @@ function denormalizeExerciseItems (category, categories, workouts, instructors){
       let instructor = instructors[instructorId]
       return {
         ...workout,
-        instructor,
+        instructor
       }
     }
   )
@@ -72,8 +76,8 @@ export default connect(
       exercises: state.exercise,
       categories: state.category.data,
       categoryIsFetching: state.category.isFetching,
-      instructors: state.instructor,
-      uiStates: state.uiStates,
+      instructors: state.user.data,
+      uiStates: state.uiStates
     }
   },
   (dispatch) => {
