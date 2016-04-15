@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { FBSDKLoginManager } from 'react-native-fbsdklogin'
 import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
+import { loginSuccess } from '../redux_x/actions/loginActionCreators'
+import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 
 import LoginIndex from '../components/Login/LoginIndex'
 import {
@@ -23,6 +25,16 @@ class Login extends Component {
   onButtonPress () {
     this.props.dispatch(login())
     this.setState({ isLoading: true })
+  }
+
+  componentDidMount () {
+    getAccessTokenFromAsyncStorage()
+    .then(response => {
+      if(JSON.parse(response).access_token) {
+        this.props.dispatch(loginSuccess(JSON.parse(response)))
+        this.navigator.replace({name: 'browse'})
+      }
+    })
   }
 
   componentDidUpdate () {

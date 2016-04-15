@@ -44,13 +44,6 @@ import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 class XRZRApp extends Component {
   componentDidMount () {
     this.lockToPortrait()
-    getAccessTokenFromAsyncStorage()
-    .then(response => {
-      if(JSON.parse(response).access_token) {
-        this.props.actions.loginSuccess(JSON.parse(response))
-        this.navigator.replace({name: 'browse'})
-      }
-    })
   }
 
   lockToPortrait () {
