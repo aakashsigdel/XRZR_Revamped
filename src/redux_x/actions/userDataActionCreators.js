@@ -103,7 +103,7 @@ export const fetchFavouriteWorkouts = () => {
     .addWithMetaDataClause(['asset'])
     .addFilter(new Filter('sys_asset_type', 'workout'))
     .toString()
-  console.log("fetching favorite workouts")
+
   return (dispatch) => {
     dispatch(fetchFavouriteWorkoutsRequest())
     return fetch(favWorkoutUrl)

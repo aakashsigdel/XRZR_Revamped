@@ -111,6 +111,10 @@ export function fetchCategory (categoryId) {
 export function fetchCategoriesIfNeeded (categoryIds) {
   categoryIds = Array.from(new Set(categoryIds))
 
+  if (categoryIds.length === 0) {
+    return {type: 'DO_NOTHING'}
+  }
+
   return (dispatch, getState) => {
     let categoryState = getState().category.data
 

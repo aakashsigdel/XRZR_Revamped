@@ -39,9 +39,7 @@ BrowserScreen.propTypes = {
   browseListingItems: PropTypes.array,
   categories: PropTypes.array,
   featured: PropTypes.array,
-  onBrowseTabSelect: PropTypes.func,
   onCategorySelect: PropTypes.func,
-  onFavouriteTabSelect: PropTypes.func,
   onSearch: PropTypes.func,
   onWorkoutSelect: PropTypes.func,
   trendings: PropTypes.array

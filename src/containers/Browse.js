@@ -14,9 +14,7 @@ import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 class Browse extends React.Component {
   componentDidMount (nextProps, nextState) {
     this.props.categoryDispatchers.fetchCategories()
-    this.props.categoryDispatchers.fetchCategoriesIfNeeded(['ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgJnSxQgMogEMeHJ6ci5YUlpSQXBw'])
     this.props.trendingsDispatchers.fetchTrendingWorkouts()
-    this.props.categoryDispatchers.fetchCategories()
     this.props.recentWorkoutDispatchers.fetchRecentWorkouts()
     this.props.featuredDispatchers.fetchFeaturedWorkouts()
   }

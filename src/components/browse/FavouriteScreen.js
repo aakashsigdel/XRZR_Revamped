@@ -28,8 +28,6 @@ const FavouriteScreen = (props) => {
 FavouriteScreen.propTypes = {
   favouriteListingItems: PropTypes.array,
   loadWorkout: PropTypes.func,
-  onBrowseTabSelect: PropTypes.func,
-  onFavouriteTabSelect: PropTypes.func,
   onSearch: PropTypes.func
 }
 

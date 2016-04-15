@@ -49,12 +49,15 @@ const BrowseNavigationBar = (props) => {
     </Text>
   )
 
+  const onBrowseTabSelect = (props.selectedTab === 'browse') ? () => undefined : props.onBrowseTabSelect
+  const onFavouriteTabSelect = (props.selectedTab === 'browse') ? props.onFavouriteTabSelect : () => undefined
+
   let midIcon = (
     <View style={styles.midContainer}>
-      <TouchableOpacity onPress={props.onBrowseTabSelect} style={[styles.touchLeft, browseStyle]}>
+      <TouchableOpacity onPress={onBrowseTabSelect} style={[styles.touchLeft, browseStyle]}>
         {browse}
       </TouchableOpacity>
-      <TouchableOpacity onPress={props.onFavouriteTabSelect} style={[styles.touchRight, favStyle]}>
+      <TouchableOpacity onPress={onFavouriteTabSelect} style={[styles.touchRight, favStyle]}>
         {favourite}
       </TouchableOpacity>
     </View>
