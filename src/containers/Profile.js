@@ -95,8 +95,8 @@ class Profile extends Component {
   }
   componentDidMount () {
     this.props.fetchUser(this.props.userId)
-      if (this.props.login.instagram_token) {
-        this.fetchInstagramPhotos(this.props.login.instagram_token)
+      if (this.props.user[this.props.userId].instagramToken) {
+        this.fetchInstagramPhotos(this.props.user[this.props.userId].instagramToken)
       }
   }
 
@@ -110,16 +110,16 @@ class Profile extends Component {
   }
 
   fetchInstagramPhotos (instagramToken) {
-    if (instagramToken) {
+    console.log(instagramToken, this.props.user[this.props.userId], 'final test')
+    if (instagramToken && this.props.user[this.props.userId].instagramId) {
       const fetchParams = {
         url: 'https://api.instagram.com/v1/users/'
-        + this.props.login.instagram_id
+        + this.props.user[this.props.userId].instagramId
         + '/media/recent/?access_token=' + instagramToken + '&count=10',
         method: 'get'
       }
       awesomeFetchWrapper(fetchParams)
       .then(response => {
-        console.log(response)
         this.setState({
           isFetchingInstagram: false,
           instagramPhotos: response.data

@@ -144,7 +144,13 @@ let ApiUtils = {
         id: instructors[instructorId].id,
         name: instructors[instructorId].name,
         image: instructors[instructorId].profile_pic,
-        isInstructor: !!instructors[instructorId].is_instructor
+        isInstructor: !!instructors[instructorId].is_instructor,
+        access_token: instructors[instructorId].access_token,
+        instagramId: instructors[instructorId].instagram_id,
+        instagramUsername: instructors[instructorId].instagram_username,
+        instagramToken: instructors[instructorId].instagram_token,
+        email: instructors[instructorId].email,
+        description: instructors[instructorId].description
       }
     })
     return newData
@@ -191,6 +197,12 @@ export function mapUserApiKeysToAppKeys (user) {
   validUser.image = user.profile_pic
   validUser.isInstructor = user.is_instructor
   validUser.workout = user.favorite_workouts || []
+  validUser.access_token = user.access_token
+  validUser.instagramId = user.instagram_id
+  validUser.instagramUsername = user.instagram_username
+  validUser.instagramToken = user.instagram_token
+  validUser.email = user.email
+  validUser.description = user.description
 
   return validUser
 }

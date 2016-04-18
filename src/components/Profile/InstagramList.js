@@ -9,7 +9,10 @@ import React, {
 } from 'react-native'
 import { VIEWPORT } from '../../constants/appConstants'
 
-const _renderPhotos = (instagramPhotos) => {
+const _renderPhotos = (instagramPhotos, isFetchingInstagram) => {
+  if (instagramPhotos.length === 0) {
+    return <Text style={{color: 'grey'}}>No Instagram Photos To Display</Text>
+  }
   return instagramPhotos.map((photo, index) => {
     return (
       <Image
