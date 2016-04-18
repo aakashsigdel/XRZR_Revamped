@@ -19,7 +19,9 @@ import { BASE_URL } from '../../constants/appConstants'
 // login fuction to login with facebook
 export const login = () => {
   return (dispatch) => {
+    FBSDKLoginManager.logOut()
     FBSDKLoginManager.logInWithReadPermissions(['email'], (error, result) => {
+      console.log(error, result, 'from login hello')
       if (error) {
         dispatch(loginFailure(error))
       } else {
