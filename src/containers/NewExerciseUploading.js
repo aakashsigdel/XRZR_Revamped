@@ -27,15 +27,20 @@ class NewExerciseUploading extends Component {
     a.append('tags', this.props.exercise.tags)
     a.append('sound', this.props.exercise.sound)
 
+    console.log(this.props.update, 'updateeeee')
     if (this.props.update === false) {
       console.log(this.props.exercise)
     } else {
       a.append('video', {uri: this.props.exercise.videoUri, name: 'hello.mov', type: 'video/mov'})
     }
 
+    console.log(a, 'this is being sent')
+    const url = this.props.isNewExercise ? EXERCISE_BASE_URL : EXERCISE_BASE_URL + '/' + this.props.exerciseUpdateId
+    console.log(url, 'my new brand url')
+
     sendAjax({
       type: 'POST',
-      url: EXERCISE_BASE_URL,
+      url: url,
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Accept', 'application/json, text/javascript')
         xhr.setRequestHeader('access-token', this.props.userCredentials.access_token)

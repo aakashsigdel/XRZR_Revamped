@@ -64,7 +64,8 @@ class Player extends React.Component {
           this.props.navigator.push({
             name: 'exerciseProperties',
             isNewExercise: false,
-            exerciseId: exercise.id
+            exerciseId: exercise.id,
+            exerciseUpdateId: exercise.exerciseId
           })
         }
       },

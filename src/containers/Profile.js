@@ -51,7 +51,7 @@ const handlePressOptions = (props, buttonType) => {
     return
   }
   let actionElements = {}
-  if (props.user[props.userId].isInstructor) {
+  if (!props.user[props.userId].isInstructor) {
     actionElements = [
       {
         name: 'CREATE NEW WORKOUT',

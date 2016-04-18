@@ -32,6 +32,7 @@ const ExercisePropertiesIndex = (props) => {
       <ActionButtons
         isNewExercise={props.isNewExercise}
         onSaveButton={props.onSaveButton}
+        onChooseVideo={props.onChooseVideo}
       />
       <DeleteExercise
         exercise={props.exercise}

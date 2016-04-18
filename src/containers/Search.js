@@ -79,7 +79,7 @@ export default connect(
     return {
       workouts: state.workout.data,
       categories: state.category,
-      instructors: state.instructor
+      instructors: state.user.data
     }
   },
   (dispatch) => {

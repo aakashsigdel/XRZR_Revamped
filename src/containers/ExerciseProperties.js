@@ -19,12 +19,13 @@ class ExerciseProperties extends Component {
     const exercise = props.isNewExercise ? null : props.exercises[props.exerciseId]
     this.state = {
       isModalVisible: false,
-      videoSource: '',
+      videoSource: props.isNewExercise ? '' : exercise.videoUri,
 
       exercise_title: props.isNewExercise ? undefined : exercise.title,
       tags: props.isNewExercise ? undefined : exercise.tags,
       description: props.isNewExercise ? undefined : exercise.description,
-      sound: props.isNewExercise ? undefined : exercise.sound
+      sound: props.isNewExercise ? undefined : exercise.sound,
+      update: false
     }
     this.onChooseVideo = this.onChooseVideo.bind(this)
     this.onExerciseDescriptionChange = this.onExerciseDescriptionChange.bind(this)
@@ -61,14 +62,18 @@ class ExerciseProperties extends Component {
         name: 'newExerciseUploading',
         newExercise: newExercise,
         user: props.user,
-        update: this.state.videoSource === '' ? false : true
+        update: this.state.update,
+        exerciseUpdateId: this.props.exerciseUpdateId,
+        isNewExercise: this.props.isNewExercise
       })
     }
 
-    let videoUri = exercise.videoUri
-    if (props.isNewExercise && this.state.videoSource) {
-      videoUri = this.state.videoSource
-    }
+    console.log('mai ho mai')
+    // let videoUri = exercise.videoUri
+    // if (props.isNewExercise && this.state.videoSource) {
+    //   videoUri = this.state.videoSource
+    // }
+    console.log('stash garnu hunna')
 
     //if (this.state.isModalVisible) {
     //  let newExercise = {
@@ -106,7 +111,7 @@ class ExerciseProperties extends Component {
         onNopeConfirm={onNopeConfirm}
         onSaveButton={onSaveButton}
         videoIsNotSelected={ !this.state.videoSource }
-        videoUri={videoUri}
+        videoUri={this.state.videoSource}
       />
     )
   }
@@ -166,7 +171,8 @@ class ExerciseProperties extends Component {
         const source = response.uri.replace('file://', '')
 
         this.setState({
-          videoSource: source
+          videoSource: source,
+          update: true
         })
       }
     })

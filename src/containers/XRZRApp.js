@@ -105,6 +105,7 @@ class XRZRApp extends Component {
           navigator={navigator}
           isNewExercise={route.isNewExercise}
           exerciseId={route.exerciseId}
+          exerciseUpdateId={route.exerciseUpdateId}
         />
       case 'workoutSettings':
         return <WorkoutSettings
@@ -147,6 +148,9 @@ class XRZRApp extends Component {
           navigator={navigator}
           exercise={route.newExercise}
           user={route.user}
+          update={route.update}
+          exerciseUpdateId={route.exerciseUpdateId}
+          isNewExercise={route.isNewExercise}
         />
       default:
         return <Login

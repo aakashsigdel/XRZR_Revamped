@@ -21,7 +21,10 @@ const PropertyActionButtons = (props) => {
   }
   return (
     <View style={ styles.container }>
-      <TouchableOpacity style={styles.editButton}>
+      <TouchableOpacity
+        style={styles.editButton}
+        onPress={props.onChooseVideo}
+      >
         <Text style={styles.editText}>EDIT VIDEO</Text>
       </TouchableOpacity>
       <TouchableOpacity

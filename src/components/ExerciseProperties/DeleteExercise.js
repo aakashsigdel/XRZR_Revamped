@@ -17,7 +17,7 @@ const DeleteExercises = (props) => {
       <View style={styles.container}>
         <View style={styles.messageContainer}>
           <Text style={styles.messageText}>
-            Are you sure you want to delete “{props.exercise.title}” ?
+            Are you sure you want to delete the exercise?
           </Text>
           <View style={styles.buttons}>
             <TouchableOpacity
