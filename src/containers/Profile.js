@@ -14,6 +14,7 @@ import FIcon from 'react-native-vector-icons/FontAwesome'
 import { fetchUser } from '../redux_x/actions/userActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
+import { awesomeFetchWrapper } from '../utilities/utility'
 
 const goToWorkoutIntro = (props, workoutId) => {
   props.playerDispatchers.loadWorkout(workoutId)
@@ -71,7 +72,11 @@ const handlePressOptions = (props, buttonType) => {
     ]
   } else {
     actionElements = [
-      {name: 'PROFILE SETTINGS', icon: <Icon name='gear-b' color='rgba(255, 255, 255, 0.5)' size={25} />}
+      {
+        name: 'PROFILE SETTINGS',
+        action: handleProfileSettingPress(props, props.userId),
+        icon: <Icon name='gear-b' color='rgba(255, 255, 255, 0.5)' size={25} />
+      }
     ]
   }
   props.navigator.push({
@@ -84,24 +89,42 @@ class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isFetching: true
+      isFetching: true,
+      instagramPhotos: []
     }
   }
   componentDidMount () {
-    this.props.fetchUser()
-    getAccessTokenFromAsyncStorage()
-    .then(userData => {
-        this.currentUserId = JSON.parse(userData).id
-        console.log(this.currentUserId, this.props.userId, 'current n user')
-    })
+    this.props.fetchUser(this.props.userId)
+      if (this.props.login.instagram_token) {
+        this.fetchInstagramPhotos(this.props.login.instagram_token)
+      }
   }
 
   componentDidUpdate (prevProps) {
     if(prevProps.isFetching && !this.props.isFetching) {
       this.setState({
-        isFetching: false
+        isFetching: false,
+        isFetchingInstagram: true
       })
-      // this.forceUpdate()
+    }
+  }
+
+  fetchInstagramPhotos (instagramToken) {
+    if (instagramToken) {
+      const fetchParams = {
+        url: 'https://api.instagram.com/v1/users/'
+        + this.props.login.instagram_id
+        + '/media/recent/?access_token=' + instagramToken + '&count=10',
+        method: 'get'
+      }
+      awesomeFetchWrapper(fetchParams)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          isFetchingInstagram: false,
+          instagramPhotos: response.data
+        })
+      })
     }
   }
 
@@ -120,6 +143,8 @@ class Profile extends Component {
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
         currentUserId={this.currentUserId}
         rightIcon={rightIcon}
+        instagramPhotos={this.state.instagramPhotos}
+        isFetchingInstagram={this.state.isFetchingInstagram}
       />
     )
   }
@@ -129,7 +154,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.data,
     isFetching: state.user.isFetching,
-    workouts: state.workout.data
+    workouts: state.workout.data,
+    login: state.login
   }
 }
 export default connect(

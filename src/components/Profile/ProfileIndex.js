@@ -47,6 +47,7 @@ const ProfileIndex = (props) => {
           </Text>
           <InstagramList
             user={props.user}
+            instagramPhotos={props.instagramPhotos}
             navigator={props.navigator}
           />
         </View>

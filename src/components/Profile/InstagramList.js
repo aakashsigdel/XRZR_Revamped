@@ -9,13 +9,12 @@ import React, {
 } from 'react-native'
 import { VIEWPORT } from '../../constants/appConstants'
 
-const _renderPhotos = () => {
-  const list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  return list.map((photo, index) => {
+const _renderPhotos = (instagramPhotos) => {
+  return instagramPhotos.map((photo, index) => {
     return (
       <Image
         key={index}
-        source={{uri: 'http://aakashsigdel.github.io/XRZR_Files/Workout/stina%20troest%201.png'}}
+        source={{uri: photo.images.low_resolution.url}}
         style={styles.image}
       />
     )
@@ -25,7 +24,7 @@ const _renderPhotos = () => {
 const InstagramList = (props) => {
   return (
     <View style={styles.container}>
-      {_renderPhotos()}
+      {_renderPhotos(props.instagramPhotos)}
     </View>
   )
 }
