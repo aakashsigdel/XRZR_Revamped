@@ -25,6 +25,7 @@ export default class ProfileSettingsIndex extends Component {
             setSound={this.props.setSound}
             setDescription={this.props.setDescription}
             onInstagramConnect={this.props.onInstagramConnect}
+            user={this.props.user}
           />
           <Button
             onSaveButton={this.props.onSaveButton}

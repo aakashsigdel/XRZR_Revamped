@@ -12,6 +12,7 @@ import Switch from 'react-native-material-switch'
 import Hr from '../Common/Hr'
 
 const Settings = (props) => {
+  console.log(props, 'pack')
   return (
     <View style={styles.container}>
       <View style={styles.soundContainer}>
@@ -19,6 +20,7 @@ const Settings = (props) => {
           SOUND
         </Text>
         <Switch
+          active={props.user.sound}
           buttonRadius={10}
           inactiveButtonColor='#B0B0B4'
           inactiveButtonPressedColor='#B0B0B4'
@@ -40,7 +42,7 @@ const Settings = (props) => {
           INSTAGRAM
         </Text>
         <Text style={styles.text}>
-          CONNECT
+          {props.user.instagramUsername ? props.user.instagramUsername : 'CONNECT'}
         </Text>
       </TouchableOpacity>
       <Hr />
@@ -53,6 +55,7 @@ const Settings = (props) => {
           placeholder={'A few words about the exercises or guidelines.'}
           placeholderTextColor='rgba(255, 255, 255, 0.5)'
           onChangeText={(text) => props.setDescription(text)}
+          value={props.user.description}
           style={styles.textInput}
         />
         <Hr />

@@ -132,7 +132,7 @@ class Profile extends Component {
     if (this.state.isFetching)
       return <Loader />
     let rightIcon = 'dot'
-    if (this.currentUserId === this.props.userId)
+    if (this.props.login.id === this.props.userId)
       rightIcon = 'heart'
     return (
       <ProfileIndex
@@ -141,10 +141,11 @@ class Profile extends Component {
         navigator={this.props.navigator}
         goToWorkoutIntro={(workoutId) => goToWorkoutIntro(this.props, workoutId)}
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
-        currentUserId={this.currentUserId}
+        currentUserId={this.props.login.id}
         rightIcon={rightIcon}
         instagramPhotos={this.state.instagramPhotos}
         isFetchingInstagram={this.state.isFetchingInstagram}
+        onExitStatusPage={() => this.onExitStatusPage()}
       />
     )
   }

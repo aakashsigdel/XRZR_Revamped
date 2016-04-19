@@ -14,6 +14,7 @@ const StatusMessage = (props) => {
     <Modal
       animated
       visible={props.visible}
+      transparent={props.transparent}
     >
       <View style={styles.container}>
         <TouchableOpacity
@@ -35,10 +36,15 @@ const StatusMessage = (props) => {
   )
 }
 
+StatusMessage.default = {
+  visible: true
+}
+
 StatusMessage.propTypes = {
   onExit: PropTypes.func,
   statusMessage: PropTypes.string,
-  visible: PropTypes.bool
+  visible: PropTypes.bool,
+  transparent: PropTypes.bool
 }
 const styles = StyleSheet.create({
   container: {

@@ -10,6 +10,7 @@ import ProfileSettingsIndex from '../components/ProfileSettings/ProfileSettingsI
 import { updateUser } from '../redux_x/actions/loginActionCreators'
 import RNInstagramOAuth from 'react-native-instagram-oauth'
 import { INSTAGRAM_DETAILS } from '../constants/appConstants'
+import StatusMessage from '../components/Common/StatusMessage'
 
 class ProfileSettings extends Component {
   constructor () {
@@ -17,8 +18,18 @@ class ProfileSettings extends Component {
     this.state = {
       sound: false,
       description: '',
+      showUpdateSuccessModal: false
     }
     this.instagramAccessToken = null
+  }
+
+  componentDidUpdate (prevProps) {
+    console.log(prevProps.login.isFetching, this.props.login.isFetching, 'duality test')
+    if (prevProps.login.isFetching && !this.props.login.isFetching) {
+      this.setState({
+        showUpdateSuccessModal: true
+      })
+    }
   }
 
   setSound (sound) {
@@ -58,6 +69,12 @@ class ProfileSettings extends Component {
     }
   }
 
+  onExitStatusPage () {
+    this.setState({
+      showUpdateSuccessModal: false
+    })
+  }
+
   render () {
     return (
       <View style={{flex: 1, backgroundColor: 'black'}}>
@@ -69,6 +86,12 @@ class ProfileSettings extends Component {
           onSaveButton={this.onSaveButton.bind(this)}
           onInstagramConnect={this.onInstagramConnect.bind(this)}
         />
+        <StatusMessage
+          visible={this.state.showUpdateSuccessModal}
+          message={'Updated'}
+          transparent
+          onExit={() => this.onExitStatusPage()}
+        />
       </View>
     )
   }
@@ -77,7 +100,8 @@ class ProfileSettings extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user.data,
-    workouts: state.workout.data
+    workouts: state.workout.data,
+    login: state.login
   }
 }
 
