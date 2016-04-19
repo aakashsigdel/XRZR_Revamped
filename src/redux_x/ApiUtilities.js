@@ -128,6 +128,24 @@ let ApiUtils = {
     return {data: response, instructors: instructors}
   },
 
+  handleFavoriteActionFromResponse: (jsonResponse) => {
+    jsonResponse.entities.map(
+      (entity, index) => {
+        let like = false
+        let likeId = null
+
+        if (jsonResponse.entities[index].actions &&
+          jsonResponse.entities[index].actions.favorite &&
+          jsonResponse.entities[index].actions.favorite.entities.length) {
+
+          jsonResponse.entities[index].entity.like = jsonResponse.entities[index].actions.favorite.entities[0].entity.favorited
+          jsonResponse.entities[index].entity.likeId = jsonResponse.entities[index].actions.favorite.entities[0].id
+        }
+      }
+    )
+    return jsonResponse
+  },
+
   hydrateCategories: (categories) => {
     let newData = {}
     Object.keys(categories).map((categoryId) => {
