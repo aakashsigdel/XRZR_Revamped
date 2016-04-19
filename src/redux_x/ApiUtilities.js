@@ -93,18 +93,28 @@ let ApiUtils = {
 
   convertExercisesFromWorkoutExercises: (jsonResponse) => {
     let response = {}
+    let instructors = {}
+
     jsonResponse.entities.map(
       (relationEntity) => {
         let relation = relationEntity.entity
         let exerciseEntity = relation.exercise
         let exercise = exerciseEntity.entity
+        let instructor = relationEntity.created_by
+        if (instructor) {
+          const instructorId = instructor.id
+          instructor = instructor.entity
+          instructor.id = instructorId
+        } else {
+          instructor = {id: -1}
+        }
 
         response[relationEntity.id] = {
           id: relationEntity.id,
           title: exercise.title,
           description: exercise.description,
           mode: relation.mode,
-          instructor: 2,
+          instructor: instructor.id,
           duration: relation.duration,
           videoUri: exercise.video,
           tags: exercise.tags,
@@ -112,9 +122,10 @@ let ApiUtils = {
           order: relation.order,
           exerciseId: exerciseEntity.id
         }
+        instructors[instructor.id] = instructor
       }
     )
-    return response
+    return {data: response, instructors: instructors}
   },
 
   hydrateCategories: (categories) => {
@@ -155,6 +166,7 @@ let ApiUtils = {
     })
     return newData
   }
+
 }
 
 export function hydrateWorkout (workoutId, workout) {

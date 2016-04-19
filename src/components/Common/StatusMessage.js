@@ -3,7 +3,8 @@ import React, {
   View,
   StyleSheet,
   PropTypes,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -15,7 +16,10 @@ const StatusMessage = (props) => {
       visible={props.visible}
     >
       <View style={styles.container}>
-        <View style={styles.box}>
+        <TouchableOpacity
+          onPress={props.onExit}
+          style={styles.box}
+        >
           <Icon
             color='white'
             name='ios-checkmark-empty'
@@ -23,15 +27,17 @@ const StatusMessage = (props) => {
             style={styles.icon}
           />
           <Text style={styles.statusText}>
-            EXERCISE SAVED TO WORKOUT
+            {props.statusMessage}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </Modal>
   )
 }
 
 StatusMessage.propTypes = {
+  onExit: PropTypes.func,
+  statusMessage: PropTypes.string,
   visible: PropTypes.bool
 }
 const styles = StyleSheet.create({

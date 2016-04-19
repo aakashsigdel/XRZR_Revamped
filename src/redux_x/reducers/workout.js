@@ -8,7 +8,8 @@ import {
   POPULATE_WORKOUT,
   DELETE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES,
-  LIKE_WORKOUT
+  LIKE_WORKOUT,
+  WORKOUT_STATUS_MODAL
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -87,6 +88,12 @@ const workout = (state = defaultWorkout, action) => {
           }
         }
       }
+    case WORKOUT_STATUS_MODAL:
+      return {
+        ...state,
+        statusModal: action.state,
+        statusMessage: action.statusMessage
+      }
     default:
       return state
   }
@@ -106,6 +113,9 @@ const defaultWorkoutSkeleton = {
 
 const defaultWorkout = {
   isFetching: false,
+  statusModal: false,
+  statusMessage: '',
+
   data: {
     1: {
       id: 1,

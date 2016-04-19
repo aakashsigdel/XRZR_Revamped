@@ -11,6 +11,7 @@ import {
 
 import * as ExerciseActions from '../actions/exerciseActionCreators'
 import * as WorkoutActions from '../actions/workoutActionCreators'
+import * as UserActions from '../actions/userActionCreators'
 import {WORKOUT_EXERCISES_URL} from '../../constants/appConstants'
 import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
@@ -82,6 +83,7 @@ export const fetchWorkoutExercises = (workoutId) => {
   let workout_exercise_url = new UrlBuilder(WORKOUT_EXERCISES_URL)
     .addWithClause(['exercise'])
     .addFilter(new Filter('workout', workoutId))
+    .addWithMetaDataClause(['created_by'])
     .toString()
 
   return (dispatch) => {
@@ -90,6 +92,14 @@ export const fetchWorkoutExercises = (workoutId) => {
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.convertExercisesFromWorkoutExercises)
+      .then((decomposedResponse) => {
+
+        const instructors = decomposedResponse.instructors
+        const hydratedInstructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(hydratedInstructors))
+
+        return decomposedResponse.data
+      })
       .then((exercises) => {
         let exerciseIds = Object.keys(exercises)
         dispatch(ExerciseActions.addExercise(exercises))

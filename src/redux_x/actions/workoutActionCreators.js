@@ -6,7 +6,8 @@ import {
   DELETE_WORKOUT,
   POST_WORKOUT,
   LIKE_WORKOUT,
-  POPULATE_WORKOUT_EXERCISES
+  POPULATE_WORKOUT_EXERCISES,
+  WORKOUT_STATUS_MODAL
 } from './actionTypes'
 
 import {
@@ -209,11 +210,11 @@ export const likeWorkout = ({workoutId, like}) => {
       .then((jsonResponse) => {
         console.log('succes', jsonResponse)
         dispatch(updateLikeWorkoutLocal(workoutId, like))
-        alert('You have recently liked workout.')
+        dispatch(showWorkoutLikedStatus('You have recently liked workout.'))
       })
       .catch((ex) => {
         console.log('error', ex)
-        alert('Cannot Like Workout!! Please try again later.')
+        dispatch(showWorkoutLikedStatus('Cannot Like Workout!! Please try again later.'))
       })
   }
 }
@@ -264,5 +265,21 @@ export const populateWorkoutExercises = (workoutId, exercises) => {
     type: POPULATE_WORKOUT_EXERCISES,
     workoutId,
     exercises
+  }
+}
+
+export const showWorkoutLikedStatus = (statusMessage) => {
+  return {
+    type: WORKOUT_STATUS_MODAL,
+    state: true,
+    statusMessage
+  }
+}
+
+export const hideWorkoutLikedStatus = () => {
+  return {
+    type: WORKOUT_STATUS_MODAL,
+    state: false,
+    statusMessage: ''
   }
 }

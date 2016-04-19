@@ -43,6 +43,8 @@
 		CD423D011C895F8B000441B8 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFB1C895F8B000441B8 /* SF-UI-Display-Regular.otf */; };
 		CD423D021C895F8B000441B8 /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFC1C895F8B000441B8 /* SF-UI-Text-Light.otf */; };
 		CD423D031C895F8B000441B8 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFD1C895F8B000441B8 /* SF-UI-Text-Regular.otf */; };
+		CD439CFA1CC4F3B000F7D5D9 /* KDSocialShare.m in Sources */ = {isa = PBXBuildFile; fileRef = CD439CF91CC4F3B000F7D5D9 /* KDSocialShare.m */; };
+		CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD439CFB1CC4F3F500F7D5D9 /* Social.framework */; };
 		CD47B8F01CA4F87300C31F47 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */; };
 		CDE6D7E31C8EB362009EB1B2 /* SF-UI-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDE6D7E21C8EB362009EB1B2 /* SF-UI-Display-Medium.otf */; };
 /* End PBXBuildFile section */
@@ -227,6 +229,9 @@
 		CD423CFB1C895F8B000441B8 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Regular.otf"; path = "../assets/fonts/SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		CD423CFC1C895F8B000441B8 /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Light.otf"; path = "../assets/fonts/SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
 		CD423CFD1C895F8B000441B8 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Regular.otf"; path = "../assets/fonts/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		CD439CF81CC4F3B000F7D5D9 /* KDSocialShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KDSocialShare.h; path = "../node_modules/react-native-social-share/iOS/KDSocialShare.h"; sourceTree = "<group>"; };
+		CD439CF91CC4F3B000F7D5D9 /* KDSocialShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KDSocialShare.m; path = "../node_modules/react-native-social-share/iOS/KDSocialShare.m"; sourceTree = "<group>"; };
+		CD439CFB1CC4F3F500F7D5D9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		CDE6D7E21C8EB362009EB1B2 /* SF-UI-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Medium.otf"; path = "../assets/fonts/SF-UI-Display-Medium.otf"; sourceTree = "<group>"; };
 		CFE4FD9E64EE47A9BF0A398F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -246,6 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */,
 				308A0E011CA8FD3400264D7C /* libRCTFBSDKCore.a in Frameworks */,
 				308A0E001CA8FD2E00264D7C /* libRCTFBSDKLogin.a in Frameworks */,
 				308A0E4D1CA90A3900264D7C /* FBSDKLoginKit.framework in Frameworks */,
@@ -378,6 +384,7 @@
 		308A0DDF1CA8FA2600264D7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD439CFB1CC4F3F500F7D5D9 /* Social.framework */,
 				308A0E4C1CA90A3900264D7C /* FBSDKLoginKit.framework */,
 				308A0DF21CA8FB1200264D7C /* FBSDKCoreKit.framework */,
 			);
@@ -462,6 +469,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CD439CF81CC4F3B000F7D5D9 /* KDSocialShare.h */,
+				CD439CF91CC4F3B000F7D5D9 /* KDSocialShare.m */,
 				308A0DFA1CA8FD1B00264D7C /* RCTFBSDKLogin.xcodeproj */,
 				308A0DF41CA8FD0C00264D7C /* RCTFBSDKCore.xcodeproj */,
 				CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */,
@@ -877,6 +886,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				CD24458C1C9152A4004AF2D3 /* Orientation.m in Sources */,
+				CD439CFA1CC4F3B000F7D5D9 /* KDSocialShare.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

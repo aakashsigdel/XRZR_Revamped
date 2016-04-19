@@ -15,12 +15,17 @@ class WorkoutIntro extends React.Component {
   componentWillMount () {
     this.props.playerActions.fetchWorkoutExercises(this.props.player.workoutId)
   }
+
   render (props = this.props) {
-    let workout = _getWorkoutInfo(props.player.workoutId, props.workouts)
-    let exercises = _getExercises(props.player.workoutId, props.workouts, props.exercises)
-    let instructor = _getInstructor(props.player.workoutId, props.workouts, props.instructors)
+    let workout = _getWorkoutInfo(props.player.workoutId, props.workouts.data)
+    let exercises = _getExercises(props.player.workoutId, props.workouts.data, props.exercises, props.instructors)
+    let instructor = _getInstructor(props.player.workoutId, props.workouts.data, props.instructors)
 
     const isLoading = props.player.isFetching
+
+    const statusMessage = props.workouts.statusMessage
+    const modalVisibility = props.workouts.statusModal
+    const dismissStatusModal = props.WorkoutDispatchers.hideWorkoutLikedStatus
 
     let onCountCompletion = () => {
       props.navigator.replace({name: 'player'})
@@ -91,6 +96,7 @@ class WorkoutIntro extends React.Component {
 
     return (
       <WorkoutIntroIndex
+        dismissStatusModal={dismissStatusModal}
         exercises={exercises}
         goToProfile={goToProfile}
         handlePressOptions={handlePressOptions}
@@ -101,6 +107,8 @@ class WorkoutIntro extends React.Component {
         onExerciseSelect={onExerciseSelect}
         onLikePress={onLikePress}
         onStartWorkout={onStartWorkout}
+        statusModalVisibility={modalVisibility}
+        statusMessage={statusMessage}
         workout={workout}
       />
     )
@@ -120,11 +128,15 @@ function _getWorkoutInfo (workoutId, workouts) {
   return workout || {}
 }
 
-function _getExercises (workoutId, workouts, exercises) {
+function _getExercises (workoutId, workouts, exercises, instructors) {
   let workout = _getWorkoutInfo(workoutId, workouts)
   let exercisesList = workout.exercises || []
   return exercisesList.map((exerciseId, index) => {
-    return {...exercises[exerciseId], index: index}
+    return {
+      ...exercises[exerciseId],
+      index: index,
+      instructor: instructors[exercises[exerciseId].instructor]
+    }
   })
 }
 
@@ -154,7 +166,7 @@ WorkoutIntro.propTypes = {
 export default connect(
   (state) => {
     return {
-      workouts: state.workout.data,
+      workouts: state.workout,
       exercises: state.exercise,
       instructors: state.user.data,
       player: state.player

@@ -45,12 +45,24 @@ export function fetchTrendingWorkouts () {
   const trending_api_url = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
     .addWithMetaDataClause(['created_by'])
+    .addWithActions(['favorite'])
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+    const params = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'access-token': access_token
+      }
+    }
+
     dispatch(trendingWorkoutRequest())
-    return fetch(trending_api_url)
+    return fetch(trending_api_url, params)
       .then(ApiUtils.checkStatus2xx)
+      .then(ApiUtils.logger)
       .then((response) => response.json())
       .then((jsonResponse) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])

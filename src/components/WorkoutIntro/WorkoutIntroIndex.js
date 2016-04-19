@@ -4,6 +4,7 @@ import WorkoutDescription from './WorkoutDescription'
 import ExerciseList from './ExerciseList'
 import { VIEWPORT } from '../../constants/appConstants'
 import StartButton from './StartButton'
+import StatusMessage from '../../components/Common/StatusMessage'
 
 const WorkoutIntroIndex = (props) => {
   return (
@@ -32,6 +33,11 @@ const WorkoutIntroIndex = (props) => {
       </ScrollView>
       <StartButton
         onStartWorkout={props.onStartWorkout}
+      />
+      <StatusMessage
+        onExit={props.dismissStatusModal}
+        statusMessage={props.statusMessage}
+        visible={props.statusModalVisibility}
       />
     </View>
   )
