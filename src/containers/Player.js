@@ -82,17 +82,37 @@ class Player extends React.Component {
           this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
         }
       },
-      { name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/> }
+      {
+        name: 'GO TO ' + exercise.instructor.name.toUpperCase(),
+        icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/>,
+        action: () => this.props.navigator.push({name: 'profile', userId: exercise.instructor.id})
+      }
     ]
+
     const actionTitle = {
-      title: 'SUN SALUTATION A',
-      subText: 'RACHEL GREY',
-      image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg'
+      title: exercise.title.toUpperCase(),
+      subText: exercise.instructor.name.toUpperCase(),
+      image: exercise.instructor.image
     }
 
     this.props.lockToPortrait()
-    this.props.navigator.push({ name: route, actionElements: actionElements, actionTitle })
+
+    this.pauseTimer()
+    this.props.playerActions.pauseVideo()
+
+    this.props.navigator.push({
+      name: route,
+      actionElements: actionElements,
+      actionTitle,
+      onClose: () => this.onActionClosed(this.props)
+    })
     // props.navigator.push({name: route, exerciseId: exerciseId})
+  }
+
+  onActionClosed (props) {
+    props.navigator.pop()
+    this.startTimer()
+    props.playerActions.pauseVideo()
   }
 
   onVideoProgress (data) {
@@ -107,7 +127,7 @@ class Player extends React.Component {
   }
 
   componentWillUpdate (newProps, newState) {
-    const workout = getWorkoutExpanded(newProps.player, newProps.workouts, newProps.exercises)
+    const workout = getWorkoutExpanded(newProps.player, newProps.workouts, newProps.exercises, newProps.instructors)
     const nowPlayingExercise = getNowPlayingExercise(newProps.player, workout)
     const remainingTime = getTicker(newState.currentTime, nowPlayingExercise)
 
@@ -125,7 +145,8 @@ class Player extends React.Component {
       const nextVideoTitle = getNextVideoTitle(
         this.props.player,
         this.props.workouts,
-        this.props.exercises
+        this.props.exercises,
+        this.props.instructors
       )
 
       newProps.navigator.push({
@@ -175,7 +196,7 @@ class Player extends React.Component {
     const onVideoTouch = props.playerActions.pauseVideo
     const onChangeVideo = this.onExerciseSelect
 
-    const workout = getWorkoutExpanded(props.player, props.workouts, props.exercises)
+    const workout = getWorkoutExpanded(props.player, props.workouts, props.exercises, props.instructors)
     const nowPlayingExercise = getNowPlayingExercise(props.player, workout)
 
     const seekbarCompletion = getSeekbarCompletion(props.player, workout.exercises)
@@ -268,9 +289,9 @@ function getNextVideoId (player, workouts) {
   return nextItem
 }
 
-function getNextVideoTitle (player, workouts, exercises) {
+function getNextVideoTitle (player, workouts, exercises, instructors) {
   const nextVideoId = getNextVideoId(player, workouts)
-  const workout = getWorkoutExpanded(player, workouts, exercises)
+  const workout = getWorkoutExpanded(player, workouts, exercises, instructors)
   if (!workout){
     return ''
   }
@@ -300,21 +321,22 @@ function getWorkout (player, workouts) {
   return workout
 }
 
-function getWorkoutExpanded (player, workouts, exercises) {
+function getWorkoutExpanded (player, workouts, exercises, instructors) {
   const workout = getWorkout(player, workouts)
-  const denormalizedExercises = getExercisesOfWorkout(workout, exercises, player.nowPlaying)
+  const denormalizedExercises = getExercisesOfWorkout(workout, exercises, player.nowPlaying, instructors)
   return {
     ...workout,
     exercises: denormalizedExercises
   }
 }
 
-function getExercisesOfWorkout (workout, exercises, nowPlayingIndex) {
+function getExercisesOfWorkout (workout, exercises, nowPlayingIndex, instructors) {
   return workout.exercises.map(
     (exerciseId, index) => {
       return {
         ...exercises[exerciseId],
         index: index,
+        instructor: instructors[exercises[exerciseId].instructor],
         nowPlaying: nowPlayingIndex
       }
     }
@@ -333,7 +355,8 @@ export default connect(
   (state) => ({
     player: state.player,
     exercises: state.exercise,
-    workouts: state.workout.data
+    workouts: state.workout.data,
+    instructors: state.user.data
   }),
   _bindActionCreators
 )(Player)

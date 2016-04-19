@@ -65,11 +65,16 @@ const PremiumIndex = (props) => {
           </View>
 
         </View>
-        <View style={styles.upgradeButton}>
+        <TouchableOpacity style={styles.upgradeButton}>
             <Text style={styles.upgradeButtonText}>
-              UPGRADE $6.99/mo
+              UPGRADE $9/mo
             </Text>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.upgradeButton}>
+          <Text style={styles.upgradeButtonText}>
+            UPGRADE $84 / year
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
   upgradeButton: {
     margin: 12.5,
     marginTop: 1,
+    marginBottom: 1,
     backgroundColor: 'rgba(213, 10, 177, 1)'
   },
   upgradeButtonText: {

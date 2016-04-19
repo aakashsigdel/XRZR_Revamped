@@ -18,7 +18,7 @@ class WorkoutIntro extends React.Component {
 
   render (props = this.props) {
     let workout = _getWorkoutInfo(props.player.workoutId, props.workouts.data)
-    let exercises = _getExercises(props.player.workoutId, props.workouts.data, props.exercises)
+    let exercises = _getExercises(props.player.workoutId, props.workouts.data, props.exercises, props.instructors)
     let instructor = _getInstructor(props.player.workoutId, props.workouts.data, props.instructors)
 
     const isLoading = props.player.isFetching
@@ -128,11 +128,15 @@ function _getWorkoutInfo (workoutId, workouts) {
   return workout || {}
 }
 
-function _getExercises (workoutId, workouts, exercises) {
+function _getExercises (workoutId, workouts, exercises, instructors) {
   let workout = _getWorkoutInfo(workoutId, workouts)
   let exercisesList = workout.exercises || []
   return exercisesList.map((exerciseId, index) => {
-    return {...exercises[exerciseId], index: index}
+    return {
+      ...exercises[exerciseId],
+      index: index,
+      instructor: instructors[exercises[exerciseId].instructor]
+    }
   })
 }
 

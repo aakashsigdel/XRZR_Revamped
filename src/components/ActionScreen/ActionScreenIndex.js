@@ -62,6 +62,8 @@ const ActionScreen = (props) => {
     )
   }
 
+  const onClose = props.onClose || props.navigator.pop
+
   return (
     <View
       style={styles.superContainer}
@@ -72,7 +74,7 @@ const ActionScreen = (props) => {
       </View>
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={props.navigator.pop}
+        onPress={onClose}
         style={styles.cancel}
       >
         <Text style={styles.cancelText}>

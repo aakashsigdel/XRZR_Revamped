@@ -3,6 +3,7 @@ export default class UrlBuilder {
     this.baseUrl = baseUrl
     this.withFieldList = []
     this.withMetaFieldList = []
+    this.withActionsFieldList = []
     this.queryFilter = null
     this.searchQueryString = null
     this.sortField = {field: undefined, order: 'asc'}
@@ -18,8 +19,13 @@ export default class UrlBuilder {
     return this
   }
 
-  addWithMetaDataClause(fieldList) {
+  addWithMetaDataClause (fieldList) {
     this.withMetaFieldList = Array.from(new Set([...this.withMetaFieldList, ...fieldList]))
+    return this
+  }
+
+  addWithActions (fieldList) {
+    this.withActionsFieldList = Array.from(new Set([...this.withActionsFieldList, ...fieldList]))
     return this
   }
 
@@ -43,6 +49,7 @@ export default class UrlBuilder {
     let withClause = this.getWithClause()
     let filterClause = this.getFilerClause()
     let withMetaClause = this.getWithMetaDataClause()
+    let withActionsClause = this.getWithActionsClause()
     let searchQueryString = this.getSearchQueryString()
     let sortClause = this.getSortClause()
     let url = this.baseUrl
@@ -51,6 +58,7 @@ export default class UrlBuilder {
       withClause,
       filterClause,
       withMetaClause,
+      withActionsClause,
       searchQueryString,
       sortClause
     ].filter((item) => item)
@@ -75,6 +83,14 @@ export default class UrlBuilder {
       return ''
     }
     return 'with-metadata=' + this.withMetaFieldList.reduce((a, b) => a + '&with-metadata=' + b)
+  }
+
+  getWithActionsClause () {
+    this.withActionsFieldList = Array.from(new Set(this.withActionsFieldList))
+    if (this.withActionsFieldList.length === 0) {
+      return ''
+    }
+    return 'with-actions=' + this.withActionsFieldList.reduce((a, b) => a + '&with-actions=' + b)
   }
 
   getFilerClause () {

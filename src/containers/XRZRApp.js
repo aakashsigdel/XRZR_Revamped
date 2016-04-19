@@ -77,6 +77,7 @@ class XRZRApp extends Component {
           actionElements={route.actionElements}
           actionTitle={route.actionTitle}
           navigator={navigator}
+          onClose={route.onClose}
         />
       case 'addExerciseToWorkout':
         return <AddExerciseToWorkout
