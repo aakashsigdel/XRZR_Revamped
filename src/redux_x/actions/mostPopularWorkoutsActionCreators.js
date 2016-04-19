@@ -44,6 +44,7 @@ export function fetchMostPopularWorkouts () {
   const mostPopularWorkout_url = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithClause(['category'])
     .addWithMetaDataClause(['created_by'])
+    .addWithActions(['favorite'])
     .toString()
 
   return (dispatch) => {
@@ -51,6 +52,7 @@ export function fetchMostPopularWorkouts () {
     return fetch(mostPopularWorkout_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
+      .then(ApiUtils.handleFavoriteActionFromResponse)
       .then((jsonResponse) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
 

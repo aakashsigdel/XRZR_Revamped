@@ -46,6 +46,7 @@ export function fetchFeaturedWorkouts () {
     .addWithClause(['category'])
     .addFilter(new Filter('featured', true))
     .addWithMetaDataClause(['created_by'])
+    .addWithActions(['favorite'])
     .toString()
 
   return (dispatch) => {
@@ -53,6 +54,7 @@ export function fetchFeaturedWorkouts () {
     return fetch(featured_api_uri)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
+      .then(ApiUtils.handleFavoriteActionFromResponse)
       .then((response) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'], ['created_by'])
 

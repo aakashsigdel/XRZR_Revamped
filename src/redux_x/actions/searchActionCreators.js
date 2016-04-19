@@ -41,6 +41,7 @@ export const getSearchResult = (result) => {
 export const fetchSearchResult = (queryString) => {
   const searchUrl = new UrlBuilder(WORKOUT_SEARCH_URL)
     .addSearchQueryString(queryString)
+    .addWithActions(['favorite'])
     .toString()
 
   return (dispatch) => {
@@ -48,6 +49,7 @@ export const fetchSearchResult = (queryString) => {
     return fetch(searchUrl)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
+      .then(ApiUtils.handleFavoriteActionFromResponse)
       .then(ApiUtils.convertEntitiesToKeyBasedDict)
       .then(ApiUtils.hydrateWorkouts)
       .then((workouts) => {

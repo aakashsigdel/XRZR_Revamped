@@ -90,7 +90,7 @@ export default class UrlBuilder {
     if (this.withActionsFieldList.length === 0) {
       return ''
     }
-    return 'with-actions=' + this.withActionsFieldList.reduce((a, b) => a + '&with-actions=' + b)
+    return 'with-action=' + this.withActionsFieldList.reduce((a, b) => a + '&with-action=' + b)
   }
 
   getFilerClause () {

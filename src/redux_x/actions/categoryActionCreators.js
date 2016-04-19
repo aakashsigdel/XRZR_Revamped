@@ -150,6 +150,7 @@ export function fetchCategoriesDetails (categoryID) {
   let category_detail_url = new UrlBuilder(WORKOUT_BASE_URL)
     .addFilter(new Filter('category', categoryID))
     .addWithMetaDataClause(['created_by'])
+    .addWithActions(['favorite'])
     .toString()
 
   return (dispatch) => {
@@ -157,6 +158,7 @@ export function fetchCategoriesDetails (categoryID) {
     return fetch(category_detail_url)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
+      .then(ApiUtils.handleFavoriteActionFromResponse)
       .then((jsonResponse) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, [], ['created_by'])
 
