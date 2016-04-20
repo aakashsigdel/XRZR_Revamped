@@ -40,7 +40,7 @@ import Advertisement from './Advertisement'
 import PausePlay from './PausePlay'
 import NewExerciseUploading from './NewExerciseUploading'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
-
+import Test from './Test'
 class XRZRApp extends Component {
   componentDidMount () {
     this.lockToPortrait()
@@ -153,6 +153,8 @@ class XRZRApp extends Component {
           exerciseUpdateId={route.exerciseUpdateId}
           isNewExercise={route.isNewExercise}
         />
+      case 'test':
+        return <Test />
       default:
         return <Login
           navigator={navigator}

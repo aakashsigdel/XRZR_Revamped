@@ -14,7 +14,7 @@ const EditExerciseListItem = (props) => {
   let deleteButton = null
   const onRemoveButton = () => props.onRemoveButton(props.index)
   deleteButton = (
-    <TouchableOpacity onPress={onRemoveButton}>
+    <TouchableOpacity onPress={onRemoveButton} >
       <Icon name='minus-circled' size={20} color='#fe3f7b' style={styles.deleteIcon}/>
     </TouchableOpacity>
   )
@@ -25,7 +25,10 @@ const EditExerciseListItem = (props) => {
       <View style={styles.itemContainer}>
         <View style={styles.textContainer}>
           {deleteButton}
-          <TouchableOpacity>
+          <TouchableOpacity
+            onLongPress={props.onLongPress}
+            onPressOut={props.onPressOut}
+          >
             <Text style={styles.exerciseTitle}>{props.item.title}</Text>
           </TouchableOpacity>
         </View>
