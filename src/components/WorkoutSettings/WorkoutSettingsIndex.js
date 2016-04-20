@@ -1,13 +1,15 @@
 import React, {
   View,
   StyleSheet,
-  PropTypes
+  PropTypes,
+  NativeModules
 } from 'react-native'
 
 import NavigationBar from './WSNavbar'
 import WorkoutDetails from './WorkoutDetails'
 import ActionButtons from './ActionButtons'
 import CategoryDropDown from '../Common/CategoryDropDown'
+let { ImagePickerManager } = NativeModules
 
 class WorkoutSettingsIndex extends React.Component {
   constructor (props) {
@@ -16,9 +18,48 @@ class WorkoutSettingsIndex extends React.Component {
       title: props.workout.title,
       workout_set: 3,
       pause_between_exercises: 10,
-      category: props.workout.category.tag,
-      isModalVisible: false
+      category: props.workout.category.tag || 'Yoga',
+      isModalVisible: false,
+      image: props.workout.image_16x9 || '',
+      update: false
     }
+  }
+
+  onChoosePhoto () {
+    var options = {
+      title: 'Select Workout Cover',
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Start Recording from camera',
+      chooseFromLibraryButtonTitle: 'Choose from Library',
+      cameraType: 'back', // 'front' or 'back'
+      mediaType: 'photo', // 'photo' or 'video'
+      storageOptions: { // if this key is provided, the image will get saved in the documents directory on ios, and the pictures directory on android (rather than a temporary directory)
+        skipBackup: true, // ios only - image will NOT be backed up to icloud
+        path: 'images' // ios only - will save image at /Documents/images rather than the root
+      }
+    }
+
+    ImagePickerManager.showImagePicker(options, (response) => {
+      console.log('Response = ', response)
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker')
+
+      } else if (response.error) {
+        console.log('ImagePickerManager Error: ', response.error);
+
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+
+      } else {
+        const source = response.uri.replace('file://', '')
+
+        this.setState({
+          image: source,
+          update: true
+        })
+      }
+    })
   }
 
   onWorkoutSetChange (workout_set) {
@@ -65,6 +106,8 @@ class WorkoutSettingsIndex extends React.Component {
           onWorkoutSetChange={this.onWorkoutSetChange.bind(this)}
           workout={props.workout}
           toggleCategoryModal={this.toggleCategoryModal.bind(this)}
+          onChoosePhoto={this.onChoosePhoto.bind(this)}
+          coverImage={this.state.image}
         />
         <ActionButtons
           onEditExercises={props.onEditExercises}

@@ -1,5 +1,6 @@
 import React, {
   View,
+  Image,
   ScrollView,
   StyleSheet,
   PropTypes,
@@ -14,7 +15,11 @@ import {VIEWPORT} from '../../constants/appConstants'
 
 const WorkoutDetails = (props) => {
   const poster = (
-    <View style={[styles.noImagePoster, styles.poster]}>
+    <TouchableOpacity
+      activeOpacity={0.6}
+      style={[styles.noImagePoster, styles.poster]}
+      onPress={props.onChoosePhoto}
+    >
       <MaterialIcon
         color='white'
         name='image'
@@ -23,12 +28,24 @@ const WorkoutDetails = (props) => {
       <Text style={styles.posterText}>
         Add Workout cover Image
       </Text>
-    </View>
+    </TouchableOpacity>
+  )
+  const actualPoster = (
+    <TouchableOpacity
+      activeOpacity={0.6}
+      style={styles.poster}
+      onPress={props.onChoosePhoto}
+    >
+      <Image
+        source={{uri: props.coverImage}}
+        style={styles.actualPoster}
+      />
+    </TouchableOpacity>
   )
 
   return (
     <View style={ styles.container }>
-      {poster}
+      {props.coverImage ? actualPoster : poster}
       <ScrollView>
         <Hr />
         <View style={[styles.rowItem]}>
@@ -99,6 +116,10 @@ const styles = StyleSheet.create({
   },
   poster: {
     height: 211
+  },
+  actualPoster: {
+    height: 211,
+    width: VIEWPORT.width - 25
   },
   rowItem: {
     flexDirection: 'row',

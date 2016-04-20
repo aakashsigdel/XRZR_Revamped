@@ -155,13 +155,20 @@ export const updateWorkout = ({id, workout}) => {
     } else {
       data = workout
     }
+    let dataSend = new FormData()
+    dataSend.append('title', data.title)
+    dataSend.append('workout_set', data.workout_set)
+    dataSend.append('pause_interval', data.pause_between_exercises)
+    dataSend.append('category', data.category)
+    dataSend.append('image', {uri: workout.image, name: 'hello.jpg', type: 'image/jpg'})
+
+    console.log(dataSend, 'purse')
     fetch(BASE_URL + '/workout/' + id, {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json'
       },
       method: 'post',
-      body: JSON.stringify(data)
+      body: dataSend
     })
     .then((response) => {
       console.log('un parsed', response)
