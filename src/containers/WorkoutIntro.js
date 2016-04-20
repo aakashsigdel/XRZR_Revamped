@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 class WorkoutIntro extends React.Component {
   componentWillMount () {
     this.props.playerActions.fetchWorkoutExercises(this.props.player.workoutId)
+    this.props.WorkoutDispatchers.fetchWorkout(this.props.player.workoutId)
   }
 
   render (props = this.props) {

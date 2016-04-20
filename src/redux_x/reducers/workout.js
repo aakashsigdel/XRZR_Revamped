@@ -9,7 +9,8 @@ import {
   DELETE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES,
   LIKE_WORKOUT,
-  WORKOUT_STATUS_MODAL
+  WORKOUT_STATUS_MODAL,
+  FETCH_WORKOUT
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -40,13 +41,22 @@ const workout = (state = defaultWorkout, action) => {
         ...networkSwitches(state, action)
       }
     case UPDATE_WORKOUT_LOCAL:
+      const workout = state[action.workout.id]
+      let exercises = []
+      if (workout) {
+        exercises = workout.exercises
+      }
+      if (action.workout.exercises.length !== 0) {
+        exercises = action.workout.exercises
+      }
       return {
         ...state,
         data: {
           ...state.data,
           [action.workout.id]: {
             ...state[action.workout.id],
-            ...action.workout
+            ...action.workout,
+            exercises: exercises
           }
         }
       }
@@ -93,6 +103,11 @@ const workout = (state = defaultWorkout, action) => {
         ...state,
         statusModal: action.state,
         statusMessage: action.statusMessage
+      }
+    case FETCH_WORKOUT:
+      return {
+        ...state,
+        ...networkSwitches(state, action)
       }
     default:
       return state

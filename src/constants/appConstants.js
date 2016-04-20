@@ -40,6 +40,8 @@ export const EXERCISE_LIKE_URL_FUNC = (EXERCISE_ID) => `${EXERCISE_URL_FUNC(EXER
 
 export const CATEGORY_URL_FUNC = (CATEGORY_ID) => `${CATEGORY_BASE_URL}/${CATEGORY_ID}`
 
+export const FAVOURITE_URL_FUNC = (FAVOURITE_ID) => `${FAVOURITE_BASE_URL}/${FAVOURITE_ID}`
+
 export const INSTAGRAM_DETAILS = {
   clientId: '2c2edf9c955345f59513d0b4fa697aff',
   redirectURL: 'ig2c2edf9c955345f59513d0b4fa697aff://authorize'

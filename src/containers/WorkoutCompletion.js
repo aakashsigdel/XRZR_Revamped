@@ -7,7 +7,6 @@ import React, {
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import {shareText} from '../utilities/Linking'
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 
 import WorkoutCompletionIndex from '../components/WorkoutCompletion/WorkoutCompletionIndex'

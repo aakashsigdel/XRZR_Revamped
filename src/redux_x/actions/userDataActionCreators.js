@@ -12,7 +12,7 @@ import {
   FAVOURITE_BASE_URL
 } from '../../constants/appConstants'
 
-import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
+import UrlBuilder, {Filter, AndFilter} from '../../utilities/UrlBuilder'
 import {populateWorkouts} from './workoutActionCreators'
 import {fetchCategoriesIfNeeded} from './categoryActionCreators'
 import {populatePureExercise} from './pureExerciseActionCreators'
@@ -101,7 +101,12 @@ const fetchFavouriteExercisesError = (errorMessage, receivedTime) => {
 export const fetchFavouriteWorkouts = () => {
   const favWorkoutUrl = new UrlBuilder(FAVOURITE_BASE_URL)
     .addWithMetaDataClause(['asset'])
-    .addFilter(new Filter('sys_asset_type', 'workout'))
+    .addFilter(
+      new AndFilter(
+        new Filter('sys_asset_type', 'workout'),
+        new Filter('sys_asset_type', 'workout')
+      )
+    )
     .toString()
 
   return (dispatch) => {

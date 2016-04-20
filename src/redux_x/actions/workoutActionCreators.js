@@ -7,20 +7,27 @@ import {
   POST_WORKOUT,
   LIKE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES,
-  WORKOUT_STATUS_MODAL
+  WORKOUT_STATUS_MODAL,
+  FETCH_WORKOUT
 } from './actionTypes'
 
 import {
   BASE_URL,
   WORKOUT_LIKE_URL_FUNC,
-  WORKOUT_VIEW_URL_FUNC
+  WORKOUT_VIEW_URL_FUNC,
+  FAVOURITE_URL_FUNC
 } from '../../constants/appConstants'
 
 import { loadWorkout } from './videoActionCreators'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 import { hydrateWorkout } from '../ApiUtilities.js'
 
+import {WORKOUT_URL_FUNC} from '../../constants/appConstants'
+import UrlBuilder from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
+
+import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
 
 export const addWorkout = (workout) => {
   return {
@@ -193,6 +200,11 @@ export const likeWorkout = ({workoutId, like}) => {
   return (dispatch, getStore) => {
     const store = getStore()
     const access_token = store.login.access_token
+    const likeId = store.workout.data[workoutId].likeId
+    let likeUrl = WORKOUT_LIKE_URL_FUNC(workoutId)
+    if (likeId) {
+      likeUrl = FAVOURITE_URL_FUNC(likeId)
+    }
 
     const params = {
       method: 'POST',
@@ -203,12 +215,12 @@ export const likeWorkout = ({workoutId, like}) => {
       },
       body: JSON.stringify({favorited: !!like})
     }
-    return fetch(WORKOUT_LIKE_URL_FUNC(workoutId), params)
+
+    return fetch(likeUrl, params)
       .then(ApiUtils.logger)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        console.log('succes', jsonResponse)
         dispatch(updateLikeWorkoutLocal(workoutId, like))
         dispatch(showWorkoutLikedStatus('You have recently liked workout.'))
       })
@@ -281,5 +293,77 @@ export const hideWorkoutLikedStatus = () => {
     type: WORKOUT_STATUS_MODAL,
     state: false,
     statusMessage: ''
+  }
+}
+
+export const fetchWorkoutStart = () => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'fetch'
+  }
+}
+export const fetchWorkoutSuccess = () => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'success',
+    receivedTime: new Date().getTime()
+  }
+}
+export const fetchWorkoutFailure = (errorMessage) => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'error',
+    errorMessage,
+    receivedTime: new Date().getTime()
+  }
+}
+
+export const fetchWorkout = (workoutId) => {
+  const workoutUrl = new UrlBuilder(WORKOUT_URL_FUNC(workoutId))
+    .addWithClause(['category'])
+    .addWithMetaDataClause(['created_by'])
+    .addWithMyActions(['favorite'])
+    .toString()
+
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
+    const params = {
+      headers: {
+        'access-token': access_token
+      }
+    }
+
+    dispatch(fetchWorkoutStart())
+    return fetch(workoutUrl, params)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then(ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils))
+      .then((response) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'], ['created_by'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
+      .then((workouts) => {
+        // Non Destructive loading of workouts
+        let workout = workouts[Object.keys(workouts)[0]]
+        dispatch(updateWorkoutLocal(workout))
+        dispatch(fetchWorkoutSuccess())
+      })
+      .catch((e) => {
+        dispatch(fetchWorkoutFailure(e.response))
+        console.error(e)
+
+      })
   }
 }
