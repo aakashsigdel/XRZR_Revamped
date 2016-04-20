@@ -59,6 +59,7 @@ const WorkoutDetails = (props) => {
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={props.toggleCategoryModal}
+            style={{width: 80, alignItems: 'flex-end'}}
           >
             <Text style={styles.rowText}>{props.category}</Text>
           </TouchableOpacity>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     height: 20,
-    width: 50,
+    width: 80,
     color: 'rgba(255,255,255,0.5)',
     textAlign: 'right'
   },

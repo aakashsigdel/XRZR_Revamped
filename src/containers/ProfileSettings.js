@@ -13,14 +13,15 @@ import { INSTAGRAM_DETAILS } from '../constants/appConstants'
 import StatusMessage from '../components/Common/StatusMessage'
 
 class ProfileSettings extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
+    console.log(props.user[props.userId].description, 'description')
     this.state = {
       sound: false,
-      description: '',
-      showUpdateSuccessModal: false
+      description: props.user[props.userId].description,
+      showUpdateSuccessModal: false,
+      instagramAccessToken: props.user[props.userId].instagramToken
     }
-    this.instagramAccessToken = null
   }
 
   componentDidUpdate (prevProps) {
@@ -41,10 +42,11 @@ class ProfileSettings extends Component {
   }
 
   onSaveButton () {
+    console.log(this.state.instagramAccessToken, 'instagram_access_token')
     const userData = {
       sound: this.state.sound,
       description: this.state.description,
-      instagram_token: this.instagramAccessToken
+      instagram_token: this.state.instagramAccessToken
     }
     this.props.updateUser(userData)
   }
@@ -65,7 +67,10 @@ class ProfileSettings extends Component {
 
     if (access_token !== undefined) {
       console.log(access_token, 'instagram access_token')
-      this.instagramAccessToken = access_token
+      // this.instagramAccessToken = access_token
+      this.setState({
+        instagramAccessToken: access_token
+      })
     }
   }
 

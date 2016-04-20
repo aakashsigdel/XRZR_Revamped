@@ -21,7 +21,6 @@ export const login = () => {
   return (dispatch) => {
     FBSDKLoginManager.logOut()
     FBSDKLoginManager.logInWithReadPermissions(['email'], (error, result) => {
-      console.log(error, result, 'from login hello')
       if (error) {
         dispatch(loginFailure(error))
       } else {
@@ -121,10 +120,9 @@ export const updateUser = (user) => {
         },
         body: JSON.stringify(user)
       }
-      console.log(data, 'mero payro data')
       awesomeFetchWrapper(data)
       .then(responseData => {
-        console.log(responseData, 'aakai ho ta data')
+        console.log(responseData, 'propetrty ko joparti')
         dispatch(updateUserLocal(user))
         dispatch(updateUserSuccess())
       })

@@ -221,13 +221,13 @@ export function mapUserApiKeysToAppKeys (user) {
   if (!user) {
     return user
   }
+  console.log(user, ' my test')
 
   validUser.id = user.id
   validUser.name = user.name
   validUser.image = user.profile_pic
   validUser.isInstructor = user.is_instructor
   validUser.workout = user.favorite_workouts || []
-  validUser.access_token = user.access_token
   validUser.instagramId = user.instagram_id
   validUser.instagramUsername = user.instagram_username
   validUser.instagramToken = user.instagram_token

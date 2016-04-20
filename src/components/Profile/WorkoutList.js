@@ -15,6 +15,15 @@ const ds = new ListView.DataSource({
 })
 const WorkoutList = (props) => {
   const _renderRow = (rowData) => {
+    if (rowData.error) {
+      return (
+        <View style={styles.row}>
+          <Text style={styles.workoutTitle}>
+            {rowData.error}
+          </Text>
+        </View>
+      )
+    }
     const workoutTitle = rowData.title.length > 15
       ? rowData.title.slice(0, 30) + '...'
       : rowData.title
@@ -33,7 +42,9 @@ const WorkoutList = (props) => {
     )
   }
 
-  const dataSource = ds.cloneWithRows(props.workouts)
+  const dataSource = props.favouriteWorkouts.length === 0
+    ? ds.cloneWithRows([{error: 'NO WORKOUT TO DISPLAY'}])
+    : ds.cloneWithRows(props.favouriteWorkouts)
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>

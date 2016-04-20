@@ -11,20 +11,23 @@ const networkSwitches = (state = defaultState, action={}) => {
     case 'fetch':
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        fetchingCompelete: false
       }
     case 'success':
       return {
         ...state,
         isFetching: false,
-        lastUpdated: action.receivedTime
+        lastUpdated: action.receivedTime,
+        fetchingCompelete: true
       }
     case 'error':
       return {
         ...state,
         isFetching: false,
         lastUpdated: action.receivedTime,
-        errorMessage: action.errorMessage
+        errorMessage: action.errorMessage,
+        fetchingCompelete: true
       }
   }
 }

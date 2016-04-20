@@ -1,36 +1,27 @@
 'use strict'
 
 import React, {
-  ScrollView,
   StyleSheet,
-  Text
+  Text,
+  View
 } from 'react-native'
 import { VIEWPORT } from '../../constants/appConstants'
 
 const Description = (props) => {
   return (
-    <ScrollView
-      contentContainerStyle={styles.scrollView}
+    <View
       style={styles.container}
     >
       <Text style={styles.text}>
-        {
-          'I don’t train. live in bali. love sit amet, consectetur adipiscing' +
-          'elit. Donec nec viverra arcu. Vestibulum in dolor eget justo' +
-          'ultricies porta nec nec eros. Donec id diam sapien. Nam eu tincidunt nibh.'
-        }
+        { props.user.description }
       </Text>
-    </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)'
-  },
-  scrollView: {
-    flex: 1,
-    padding: 10,
   },
   text: {
     fontFamily: 'SFUIText-Regular',

@@ -7,7 +7,6 @@ import React, {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ProfileIndex from '../components/Profile/ProfileIndex'
-// import { getUser } from '../redux_x/actions/userActionCreators'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
@@ -15,6 +14,7 @@ import { fetchUser } from '../redux_x/actions/userActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 import { awesomeFetchWrapper } from '../utilities/utility'
+import { fetchFavouriteWorkouts } from '../redux_x/actions/userDataActionCreators'
 
 const goToWorkoutIntro = (props, workoutId) => {
   props.playerDispatchers.loadWorkout(workoutId)
@@ -89,28 +89,35 @@ class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isFetching: true,
-      instagramPhotos: []
+      isFetchingInstagram: false,
+      instagramPhotos: [],
+      isFetching: false
     }
   }
   componentDidMount () {
     this.props.fetchUser(this.props.userId)
-      if (this.props.user[this.props.userId].instagramToken) {
-        this.fetchInstagramPhotos(this.props.user[this.props.userId].instagramToken)
-      }
+    this.props.fetchFavouriteWorkouts()
+    this.setState({
+      isFetching: true
+    })
   }
 
   componentDidUpdate (prevProps) {
-    if(prevProps.isFetching && !this.props.isFetching) {
+    if( this.props.fetchingCompeleteUser && this.props.fetchingCompeleteWorkouts && this.state.isFetching) {
       this.setState({
-        isFetching: false,
-        isFetchingInstagram: true
+        isFetching: false
       })
+      if (this.props.user[this.props.userId].instagramToken) {
+        this.fetchInstagramPhotos(this.props.user[this.props.userId].instagramToken)
+      }
     }
   }
 
   fetchInstagramPhotos (instagramToken) {
-    console.log(instagramToken, this.props.user[this.props.userId], 'final test')
+    this.setState({
+      isFetchingInstagram: true
+    })
+
     if (instagramToken && this.props.user[this.props.userId].instagramId) {
       const fetchParams = {
         url: 'https://api.instagram.com/v1/users/'
@@ -125,19 +132,29 @@ class Profile extends Component {
           instagramPhotos: response.data
         })
       })
+      .catch((error) => {
+        this.setState({
+          isFetchingInstagram: false
+        })
+      })
     }
   }
 
   render () {
-    if (this.state.isFetching)
+    if (!this.props.fetchingCompeleteUser, !this.props.fetchingCompeleteWorkouts)
       return <Loader />
     let rightIcon = 'dot'
     if (this.props.login.id === this.props.userId)
       rightIcon = 'heart'
+    const favouriteWorkouts = favouriteWorkoutsManager(
+      this.props.favouriteWorkouts,
+      this.props.workouts,
+      this.props.user
+    )
     return (
       <ProfileIndex
         user={this.props.user[this.props.userId]}
-        workouts={this.props.workouts}
+        favouriteWorkouts={favouriteWorkouts}
         navigator={this.props.navigator}
         goToWorkoutIntro={(workoutId) => goToWorkoutIntro(this.props, workoutId)}
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
@@ -151,18 +168,33 @@ class Profile extends Component {
   }
 }
 
+const favouriteWorkoutsManager = (workoutIds, workouts, instructors)  =>{
+  return workoutIds.map(
+    (workoutId) => {
+      const instructor = workouts[workoutId].instructor
+      return {
+        ...workouts[workoutId],
+        instructor: instructors[instructor]
+      }
+    }
+  )
+}
+
 const mapStateToProps = (state) => {
   return {
     user: state.user.data,
-    isFetching: state.user.isFetching,
+    fetchingCompeleteUser: state.user.fetchingCompelete,
     workouts: state.workout.data,
-    login: state.login
+    login: state.login,
+    fetchingCompeleteWorkouts: state.userData.favouriteWorkouts.fetchingCompelete,
+    favouriteWorkouts: state.userData.favouriteWorkouts.data
   }
 }
 export default connect(
   (state) => mapStateToProps(state),
     (dispatch) => ({
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
-      fetchUser: bindActionCreators(fetchUser, dispatch)
+      fetchUser: bindActionCreators(fetchUser, dispatch),
+      fetchFavouriteWorkouts: bindActionCreators(fetchFavouriteWorkouts, dispatch)
     })
 )(Profile)

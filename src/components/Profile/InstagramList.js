@@ -10,6 +10,10 @@ import React, {
 import { VIEWPORT } from '../../constants/appConstants'
 
 const _renderPhotos = (instagramPhotos, isFetchingInstagram) => {
+  if (isFetchingInstagram) {
+    return <Text style={{color: 'grey'}}>Loading photos from instagram...</Text>
+  }
+
   if (instagramPhotos.length === 0) {
     return <Text style={{color: 'grey'}}>No Instagram Photos To Display</Text>
   }
@@ -27,7 +31,7 @@ const _renderPhotos = (instagramPhotos, isFetchingInstagram) => {
 const InstagramList = (props) => {
   return (
     <View style={styles.container}>
-      {_renderPhotos(props.instagramPhotos)}
+      {_renderPhotos(props.instagramPhotos, props.isFetchingInstagram)}
     </View>
   )
 }

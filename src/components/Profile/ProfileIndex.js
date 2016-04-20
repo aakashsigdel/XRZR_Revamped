@@ -36,7 +36,7 @@ const ProfileIndex = (props) => {
         <View style={styles.workout}>
           <WorkoutList
             user={props.user}
-            workouts={props.workouts}
+            favouriteWorkouts={props.favouriteWorkouts}
             goToWorkoutIntro={props.goToWorkoutIntro}
             navigator={props.navigator}
           />
@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     height: 251.5 * VIEWPORT.height / 667
   },
   description: {
-    height: 94.5 * VIEWPORT.height / 667
+    padding: 10,
+    justifyContent: 'center'
   },
   workout: {
     height: 144.5 * VIEWPORT.height / 667
