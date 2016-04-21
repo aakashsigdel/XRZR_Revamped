@@ -26,7 +26,7 @@ class WorkoutIntro extends React.Component {
 
     const statusMessage = props.workouts.statusMessage
     const modalVisibility = props.workouts.statusModal
-    const dismissStatusModal = props.WorkoutDispatchers.hideWorkoutLikedStatus
+    const dismissStatusModal = props.WorkoutDispatchers.hideWorkoutStatusModal
 
     let onCountCompletion = () => {
       props.navigator.replace({name: 'player'})
@@ -72,6 +72,7 @@ class WorkoutIntro extends React.Component {
     const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
 
     const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
+    const onPublishWorkout = () => props.WorkoutDispatchers.publishWorkout(props.player.workoutId, !workout.published)
 
     const handlePressOptions = () => {
       props.navigator.push({
@@ -82,9 +83,10 @@ class WorkoutIntro extends React.Component {
             icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />
           },
           {
-            name: 'UNPUBLISH WORKOUT',
+            name: (workout.published) ? 'UNPUBLISH WORKOUT' : 'PUBLISH WORKOUT',
             icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />,
-            border: true
+            border: true,
+            action: onPublishWorkout
           },
           {
             name: 'EDIT WORKOUT',

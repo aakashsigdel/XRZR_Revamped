@@ -10,7 +10,8 @@ import {
   POPULATE_WORKOUT_EXERCISES,
   LIKE_WORKOUT,
   WORKOUT_STATUS_MODAL,
-  FETCH_WORKOUT
+  FETCH_WORKOUT,
+  PUBLISH_WORKOUT_LOCAL
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -109,6 +110,18 @@ const workout = (state = defaultWorkout, action) => {
         ...state,
         ...networkSwitches(state, action)
       }
+    case PUBLISH_WORKOUT_LOCAL:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.workoutId]: {
+            ...state.data[action.workoutId],
+            published: action.published
+          }
+        }
+
+      }
     default:
       return state
   }
@@ -123,7 +136,8 @@ const defaultWorkoutSkeleton = {
   workout_set: 4,
   pause_between_exercises: 10,
   category: 'Yoga',
-  like: false
+  like: false,
+  published: true
 }
 
 const defaultWorkout = {
@@ -143,7 +157,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     },
     2: {
       id: 2,
@@ -156,7 +171,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     },
     3: {
       id: 3,
@@ -169,7 +185,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'Bodyweight',
-      like: false
+      like: false,
+      published: true
     },
     4: {
       id: 4,
@@ -182,7 +199,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     },
     5: {
       id: 5,
@@ -195,7 +213,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     },
     6: {
       id: 6,
@@ -208,7 +227,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     },
     7: {
       id: 7,
@@ -221,7 +241,8 @@ const defaultWorkout = {
       workout_set: 4,
       pause_between_exercises: 20,
       category: 'ag5zfmJhY2tsZWN0LWFwcHIVCxIIY2F0ZWdvcnkYgICAgO2xgwoMogEJeHJ6ci54cnpy',
-      like: false
+      like: false,
+      published: true
     }
   }
 }

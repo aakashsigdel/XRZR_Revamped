@@ -55,6 +55,8 @@ class WorkoutSettingsIndex extends React.Component {
         <NavigationBar
           onCloseButton={props.onCloseButton}
           onDeleteButton={props.onDeleteButton}
+          onPublishIcon={props.onPublishIcon}
+          published={props.workout.published}
           title={props.workout.title}
         />
         <WorkoutDetails

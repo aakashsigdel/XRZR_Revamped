@@ -8,7 +8,9 @@ import {
   LIKE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES,
   WORKOUT_STATUS_MODAL,
-  FETCH_WORKOUT
+  FETCH_WORKOUT,
+  PUBLISH_WORKOUT,
+  PUBLISH_WORKOUT_LOCAL
 } from './actionTypes'
 
 import {
@@ -222,11 +224,12 @@ export const likeWorkout = ({workoutId, like}) => {
       .then((response) => response.json())
       .then((jsonResponse) => {
         dispatch(updateLikeWorkoutLocal(workoutId, like))
-        dispatch(showWorkoutLikedStatus('You have recently liked workout.'))
+        let likeMessage = like ? 'You have recently liked workout.' : 'You have recently unliked workout.'
+        dispatch(showWorkoutStatusModal(likeMessage))
       })
       .catch((ex) => {
         console.log('error', ex)
-        dispatch(showWorkoutLikedStatus('Cannot Like Workout!! Please try again later.'))
+        dispatch(showWorkoutStatusModal('Cannot Like Workout!! Please try again later.'))
       })
   }
 }
@@ -280,7 +283,7 @@ export const populateWorkoutExercises = (workoutId, exercises) => {
   }
 }
 
-export const showWorkoutLikedStatus = (statusMessage) => {
+export const showWorkoutStatusModal = (statusMessage) => {
   return {
     type: WORKOUT_STATUS_MODAL,
     state: true,
@@ -288,7 +291,7 @@ export const showWorkoutLikedStatus = (statusMessage) => {
   }
 }
 
-export const hideWorkoutLikedStatus = () => {
+export const hideWorkoutStatusModal = () => {
   return {
     type: WORKOUT_STATUS_MODAL,
     state: false,
@@ -364,6 +367,69 @@ export const fetchWorkout = (workoutId) => {
         dispatch(fetchWorkoutFailure(e.response))
         console.error(e)
 
+      })
+  }
+}
+
+export const publishWorkoutStart = () => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'fetch'
+  }
+}
+export const publishWorkoutSuccess = () => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'success'
+  }
+}
+export const publishWorkoutFailure = (errorMessage) => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'error',
+    errorMessage
+  }
+}
+export const publishWorkoutLocal = (workoutId, published) => {
+  return {
+    type: PUBLISH_WORKOUT_LOCAL,
+    workoutId,
+    published
+  }
+}
+
+export const publishWorkout = (workoutId, published) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
+    const workout_url = WORKOUT_URL_FUNC(workoutId)
+    const config = {
+      method: 'post',
+      headers: {
+        'access-token': access_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({published: !!published})
+    }
+
+    dispatch(publishWorkoutStart())
+    return fetch(workout_url, config)
+      .then(ApiUtils.logger)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => {
+        const statusMessage = (published)
+          ? 'Your Workout has been published.'
+          : 'Your Workout has been unpublished.'
+
+        dispatch(showWorkoutStatusModal(statusMessage))
+        dispatch(publishWorkoutLocal(workoutId, published))
+        dispatch(publishWorkoutSuccess())
+      })
+      .catch((exc) => {
+        dispatch(publishWorkoutFailure(exc.response))
+        dispatch(showWorkoutStatusModal('Something went terribly wrong!! Please try again later.'))
+        console.error(exc)
       })
   }
 }

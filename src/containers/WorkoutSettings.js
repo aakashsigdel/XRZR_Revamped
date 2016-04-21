@@ -38,6 +38,7 @@ class WorkoutSettings extends React.Component {
         workout
       })
     }
+    const onPublishIcon = () => props.workoutDispatchers.publishWorkout(workoutId, !workout.published)
     const onEditExercises = () => props.navigator.push({name: 'editWorkoutExercises', workoutId: workoutId})
     const onDeleteButton = () => props.navigator.push({name: 'deleteWorkout', workoutId: workoutId})
 
@@ -46,6 +47,7 @@ class WorkoutSettings extends React.Component {
         onCloseButton={onCloseButton}
         onDeleteButton={onDeleteButton}
         onEditExercises={onEditExercises}
+        onPublishIcon={onPublishIcon}
         onSaveButton={onSaveButton}
         workout={workout}
         categories={props.categories}
