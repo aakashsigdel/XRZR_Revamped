@@ -240,6 +240,8 @@ export function mapUserApiKeysToAppKeys (user) {
   validUser.instagramToken = user.instagram_token
   validUser.email = user.email
   validUser.description = user.description
+  validUser.like = user.like
+  validUser.likeId = user.likeId
 
   return validUser
 }

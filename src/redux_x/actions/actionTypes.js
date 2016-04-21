@@ -37,6 +37,7 @@ export const FETCH_USER = 'FETCH_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const UPDATE_USER_LOCAL = 'UPDATE_USER_LOCAL'
 export const POPULATE_USERS = 'POPULATE_USERS'
+export const LIKE_USER = 'LIKE_USER'
 
 // UI STATE
 export const CHANGE_BROWSE_TAB = 'CHANGE_BROWSE_TAB'

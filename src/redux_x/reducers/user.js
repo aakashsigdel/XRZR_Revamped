@@ -3,7 +3,8 @@ import {
   SET_USER,
   FETCH_USER,
   POPULATE_USERS,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LIKE_USER
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
@@ -16,7 +17,9 @@ const initialState = {
     //  name: 'Kalle Fit',
     //  image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg',
     //  isInstructor: true,
-    //  workout: [1, 2, 3]
+    //  workout: [1, 2, 3],
+    //  like: false,
+    //  likeId: null
     //},
     //1: {
     //  id: 1,
@@ -83,6 +86,17 @@ const user = (state = initialState , action) => {
           ...state.data,
           [loginUser.id]: {
             ...loginUser
+          }
+        }
+      }
+    case LIKE_USER:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.userId]: {
+            ...state.data[action.userId],
+            like: action.like
           }
         }
       }
