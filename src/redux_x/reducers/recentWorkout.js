@@ -23,7 +23,7 @@ const recentWorkout = (state = defaultState, action) => {
 
 const defaultState = {
   ...networkSwitches(),
-  data: [2, 6, 4, 3]
+  data: []                // list of workoutIds
 }
 
 export default recentWorkout

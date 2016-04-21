@@ -3,15 +3,15 @@ import {
   SET_USER,
   FETCH_USER,
   POPULATE_USERS,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LIKE_USER
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
 
 const initialState = {
   isFetching: false,
-  data: {
-  }
+  data: {}
 }
 
 const user = (state = initialState , action) => {
@@ -48,6 +48,17 @@ const user = (state = initialState , action) => {
           ...state.data,
           [loginUser.id]: {
             ...loginUser
+          }
+        }
+      }
+    case LIKE_USER:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.userId]: {
+            ...state.data[action.userId],
+            like: action.like
           }
         }
       }

@@ -31,7 +31,7 @@ const ProfileNavigation = (props) => {
       backgroundColor='transparent'
     />
       : <FIcon
-        name='heart-o'
+        name={(props.user.like) ? 'heart' : 'heart-o'}
         size={25}
         color='rgba(255, 255, 255, 0.5)'
         backgroundColor='transparent'

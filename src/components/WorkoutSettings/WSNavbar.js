@@ -41,14 +41,26 @@ const WSNavbar = (props) => {
       style={styles.rightContainer}
     >
       <TouchableOpacity
-        style={styles.lockContainer}
+        onPress={props.onPublishIcon}
       >
-        <Icon
-          color='rgba(255,255,255,0.5)'
-          name='locked'
-          size={10}
-          style={styles.lockedIcon}
-        />
+        {
+          (props.published)
+            ? <View style={styles.lockContainer}>
+                <Icon
+                  color='rgba(255,255,255,0.5)'
+                  name='locked'
+                  size={10}
+                />
+              </View>
+            : <View style={styles.checkmarkContainer}>
+                <Icon
+                  color='rgba(255,255,255,0.5)'
+                  name='android-checkmark-circle'
+                  size={20}
+                  style={styles.lockedIcon}
+                />
+              </View>
+        }
       </TouchableOpacity>
       <TouchableOpacity
         onPress={props.onDeleteButton}
@@ -105,6 +117,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: 'rgba(255,255,255,0.5)',
     borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 15
+  },
+  checkmarkContainer: {
+    width: 20,
+    height: 20,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 15

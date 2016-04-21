@@ -172,7 +172,6 @@ class Player extends React.Component {
     this.startTimer()
   }
   componentDidMount () {
-    console.log('ramilo state', this.props)
     this.props.workoutActions.viewWorkout(this.props.player.workoutId)
   }
   componentWillUnmount () {
@@ -205,6 +204,10 @@ class Player extends React.Component {
     const seekbarCompletion = getSeekbarCompletion(props.player, workout.exercises)
     const remainingTime = getTicker(this.state.currentTime, nowPlayingExercise)
 
+    const statusMessage = props.player.statusMessage
+    const modalVisibility = props.player.statusModalVisibility
+    const dismissStatusModal = props.playerActions.hideStatusModal
+
     return (
       <View>
         <PlayerIndex
@@ -226,6 +229,10 @@ class Player extends React.Component {
           workout={workout}
           seekbarCompletion={seekbarCompletion}
           remainingTime={remainingTime}
+
+          dismissStatusModal={dismissStatusModal}
+          statusModalVisibility={modalVisibility}
+          statusMessage={statusMessage}
         />
       </View>
     )

@@ -24,7 +24,7 @@ const featuredWorkout = (state = defaultState, action) => {
 
 const defaultState = {
   ...networkSwitches(),
-  data: [1, 5, 3, 7]
+  data: []              // list of workoutIds
 }
 
 export default featuredWorkout

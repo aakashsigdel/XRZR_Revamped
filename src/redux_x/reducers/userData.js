@@ -73,7 +73,7 @@ const defaultState = {
   },
   favouriteWorkouts: {
     ...networkSwitches(),
-    data: [5, 3]
+    data: []
   }
 }
 

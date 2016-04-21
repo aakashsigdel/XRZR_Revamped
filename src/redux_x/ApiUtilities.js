@@ -128,22 +128,29 @@ let ApiUtils = {
     return {data: response, instructors: instructors}
   },
 
-  handleFavoriteActionFromResponse: (jsonResponse) => {
+  handleFavoriteActionFromResponse: (jsonResponse, myActions = true) => {
     jsonResponse.entities.map(
       (entity, index) => {
-        let like = false
-        let likeId = null
+        let actions = null
+        if (myActions) {
+          actions = jsonResponse.entities[index].my_actions
+        } else {
+          actions = jsonResponse.entities[index].actions
+        }
 
-        if (jsonResponse.entities[index].actions &&
-          jsonResponse.entities[index].actions.favorite &&
-          jsonResponse.entities[index].actions.favorite.entities.length) {
-
-          jsonResponse.entities[index].entity.like = jsonResponse.entities[index].actions.favorite.entities[0].entity.favorited
-          jsonResponse.entities[index].entity.likeId = jsonResponse.entities[index].actions.favorite.entities[0].id
+        if (actions &&
+          actions.favorite &&
+          actions.favorite.entities.length) {
+          jsonResponse.entities[index].entity.like = actions.favorite.entities[0].entity.favorited
+          jsonResponse.entities[index].entity.likeId = actions.favorite.entities[0].id
         }
       }
     )
     return jsonResponse
+  },
+
+  handleMyFavoriteActionFromResponse: function (jsonResponse) {
+    return this.handleFavoriteActionFromResponse(jsonResponse, true)
   },
 
   hydrateCategories: (categories) => {
@@ -233,6 +240,8 @@ export function mapUserApiKeysToAppKeys (user) {
   validUser.instagramToken = user.instagram_token
   validUser.email = user.email
   validUser.description = user.description
+  validUser.like = user.like
+  validUser.likeId = user.likeId
 
   return validUser
 }

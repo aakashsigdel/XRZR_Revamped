@@ -10,7 +10,7 @@ import ProfileIndex from '../components/Profile/ProfileIndex'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
-import { fetchUser } from '../redux_x/actions/userActionCreators'
+import * as UserActions from '../redux_x/actions/userActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 import { awesomeFetchWrapper } from '../utilities/utility'
@@ -49,6 +49,7 @@ const handleCreateNewExercise = (props) => {
 
 const handlePressOptions = (props, buttonType) => {
   if (buttonType === 'heart') {
+    props.userActionDispatchers.likeUser(props.userId, !props.user[props.userId].like)
     return
   }
   let actionElements = {}
@@ -95,7 +96,7 @@ class Profile extends Component {
     }
   }
   componentDidMount () {
-    this.props.fetchUser(this.props.userId)
+    this.props.userActionDispatchers.fetchUser(this.props.userId)
     this.props.fetchFavouriteWorkouts()
     this.setState({
       isFetching: true
@@ -194,7 +195,7 @@ export default connect(
   (state) => mapStateToProps(state),
     (dispatch) => ({
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
-      fetchUser: bindActionCreators(fetchUser, dispatch),
-      fetchFavouriteWorkouts: bindActionCreators(fetchFavouriteWorkouts, dispatch)
+      fetchFavouriteWorkouts: bindActionCreators(fetchFavouriteWorkouts, dispatch),
+      userActionDispatchers: bindActionCreators(UserActions, dispatch)
     })
 )(Profile)

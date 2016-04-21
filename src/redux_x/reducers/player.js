@@ -5,18 +5,23 @@ import {
   VIDEO_PROGRESS,
   LOAD_WORKOUT,
   TOGGLE_PAUSE_MODAL,
-  FETCH_WORKOUT_EXERCISES
+  FETCH_WORKOUT_EXERCISES,
+  EXERCISE_STATUS_MODAL
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 
 const defaultState = {
-  workoutId: 1,
+  workoutId: null,
   nowPlaying: undefined,      // this is the index thing
   paused: false,
   lastKnownTime: 0,
   currentTime: 0,
   duration: 0.0,
   pauseModalVisibility: false,
+
+  statusModalVisibility: false,
+  statusMessage: '',
+
   ...networkSwitches()
 }
 
@@ -72,6 +77,12 @@ const player = (state = defaultState, action) => {
       return {
         ...state,
         ...networkSwitches(state, action)
+      }
+    case EXERCISE_STATUS_MODAL:
+      return {
+        ...state,
+        statusModalVisibility: action.visible,
+        statusMessage: action.statusMessage
       }
   }
   return state

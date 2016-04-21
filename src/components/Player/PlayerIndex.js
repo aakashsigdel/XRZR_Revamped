@@ -15,6 +15,7 @@ import {
 import Player from './VideoScreen'
 import ExerciseList from './ExerciseList'
 import PlayerController from './PlayerController'
+import StatusMessage from '../../components/Common/StatusMessage'
 
 class VideoScreen extends Component {
   constructor () {
@@ -74,6 +75,11 @@ class VideoScreen extends Component {
 
           />
         </View>
+        <StatusMessage
+          onExit={props.dismissStatusModal}
+          statusMessage={props.statusMessage}
+          visible={props.statusModalVisibility}
+        />
       </View>
     )
   }
@@ -106,6 +112,11 @@ class VideoScreen extends Component {
           title={props.nowPlayingExercise.title}
           remainingTime={props.remainingTime}
           seekbarCompletion={props.seekbarCompletion}
+        />
+        <StatusMessage
+          onExit={props.dismissStatusModal}
+          statusMessage={props.statusMessage}
+          visible={props.statusModalVisibility}
         />
       </View>
     )

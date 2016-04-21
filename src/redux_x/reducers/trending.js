@@ -24,7 +24,7 @@ const trendingWorkout = (state = defaultState, action) => {
 
 let defaultState = {
   ...networkSwitches(),
-  data: [2, 4, 5, 1, 7]
+  data: []        // list of workoutIds
 }
 
 export default trendingWorkout

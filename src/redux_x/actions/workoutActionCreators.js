@@ -7,20 +7,29 @@ import {
   POST_WORKOUT,
   LIKE_WORKOUT,
   POPULATE_WORKOUT_EXERCISES,
-  WORKOUT_STATUS_MODAL
+  WORKOUT_STATUS_MODAL,
+  FETCH_WORKOUT,
+  PUBLISH_WORKOUT,
+  PUBLISH_WORKOUT_LOCAL
 } from './actionTypes'
 
 import {
   BASE_URL,
   WORKOUT_LIKE_URL_FUNC,
-  WORKOUT_VIEW_URL_FUNC
+  WORKOUT_VIEW_URL_FUNC,
+  FAVOURITE_URL_FUNC
 } from '../../constants/appConstants'
 
 import { loadWorkout } from './videoActionCreators'
 import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
 import { hydrateWorkout } from '../ApiUtilities.js'
 
+import {WORKOUT_URL_FUNC} from '../../constants/appConstants'
+import UrlBuilder from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
+
+import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
 
 export const addWorkout = (workout) => {
   return {
@@ -200,6 +209,11 @@ export const likeWorkout = ({workoutId, like}) => {
   return (dispatch, getStore) => {
     const store = getStore()
     const access_token = store.login.access_token
+    const likeId = store.workout.data[workoutId].likeId
+    let likeUrl = WORKOUT_LIKE_URL_FUNC(workoutId)
+    if (likeId) {
+      likeUrl = FAVOURITE_URL_FUNC(likeId)
+    }
 
     const params = {
       method: 'POST',
@@ -210,18 +224,19 @@ export const likeWorkout = ({workoutId, like}) => {
       },
       body: JSON.stringify({favorited: !!like})
     }
-    return fetch(WORKOUT_LIKE_URL_FUNC(workoutId), params)
+
+    return fetch(likeUrl, params)
       .then(ApiUtils.logger)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        console.log('succes', jsonResponse)
         dispatch(updateLikeWorkoutLocal(workoutId, like))
-        dispatch(showWorkoutLikedStatus('You have recently liked workout.'))
+        let likeMessage = like ? 'You have recently liked workout.' : 'You have recently unliked workout.'
+        dispatch(showWorkoutStatusModal(likeMessage))
       })
       .catch((ex) => {
         console.log('error', ex)
-        dispatch(showWorkoutLikedStatus('Cannot Like Workout!! Please try again later.'))
+        dispatch(showWorkoutStatusModal('Cannot Like Workout!! Please try again later.'))
       })
   }
 }
@@ -275,7 +290,7 @@ export const populateWorkoutExercises = (workoutId, exercises) => {
   }
 }
 
-export const showWorkoutLikedStatus = (statusMessage) => {
+export const showWorkoutStatusModal = (statusMessage) => {
   return {
     type: WORKOUT_STATUS_MODAL,
     state: true,
@@ -283,10 +298,145 @@ export const showWorkoutLikedStatus = (statusMessage) => {
   }
 }
 
-export const hideWorkoutLikedStatus = () => {
+export const hideWorkoutStatusModal = () => {
   return {
     type: WORKOUT_STATUS_MODAL,
     state: false,
     statusMessage: ''
+  }
+}
+
+export const fetchWorkoutStart = () => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'fetch'
+  }
+}
+export const fetchWorkoutSuccess = () => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'success',
+    receivedTime: new Date().getTime()
+  }
+}
+export const fetchWorkoutFailure = (errorMessage) => {
+  return {
+    type: FETCH_WORKOUT,
+    status: 'error',
+    errorMessage,
+    receivedTime: new Date().getTime()
+  }
+}
+
+export const fetchWorkout = (workoutId) => {
+  const workoutUrl = new UrlBuilder(WORKOUT_URL_FUNC(workoutId))
+    .addWithClause(['category'])
+    .addWithMetaDataClause(['created_by'])
+    .addWithMyActions(['favorite'])
+    .toString()
+
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
+    const params = {
+      headers: {
+        'access-token': access_token
+      }
+    }
+
+    dispatch(fetchWorkoutStart())
+    return fetch(workoutUrl, params)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then(ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils))
+      .then((response) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'], ['created_by'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.hydrateWorkouts)
+      .then((workouts) => {
+        // Non Destructive loading of workouts
+        let workout = workouts[Object.keys(workouts)[0]]
+        dispatch(updateWorkoutLocal(workout))
+        dispatch(fetchWorkoutSuccess())
+      })
+      .catch((e) => {
+        dispatch(fetchWorkoutFailure(e.response))
+        console.error(e)
+
+      })
+  }
+}
+
+export const publishWorkoutStart = () => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'fetch'
+  }
+}
+export const publishWorkoutSuccess = () => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'success'
+  }
+}
+export const publishWorkoutFailure = (errorMessage) => {
+  return {
+    type: PUBLISH_WORKOUT,
+    status: 'error',
+    errorMessage
+  }
+}
+export const publishWorkoutLocal = (workoutId, published) => {
+  return {
+    type: PUBLISH_WORKOUT_LOCAL,
+    workoutId,
+    published
+  }
+}
+
+export const publishWorkout = (workoutId, published) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const access_token = store.login.access_token
+
+    const workout_url = WORKOUT_URL_FUNC(workoutId)
+    const config = {
+      method: 'post',
+      headers: {
+        'access-token': access_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({published: !!published})
+    }
+
+    dispatch(publishWorkoutStart())
+    return fetch(workout_url, config)
+      .then(ApiUtils.logger)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => {
+        const statusMessage = (published)
+          ? 'Your Workout has been published.'
+          : 'Your Workout has been unpublished.'
+
+        dispatch(showWorkoutStatusModal(statusMessage))
+        dispatch(publishWorkoutLocal(workoutId, published))
+        dispatch(publishWorkoutSuccess())
+      })
+      .catch((exc) => {
+        dispatch(publishWorkoutFailure(exc.response))
+        dispatch(showWorkoutStatusModal('Something went terribly wrong!! Please try again later.'))
+        console.error(exc)
+      })
   }
 }
