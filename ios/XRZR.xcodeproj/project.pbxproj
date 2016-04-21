@@ -47,6 +47,7 @@
 		CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD439CFB1CC4F3F500F7D5D9 /* Social.framework */; };
 		CD47B8F01CA4F87300C31F47 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */; };
 		CDE6D7E31C8EB362009EB1B2 /* SF-UI-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDE6D7E21C8EB362009EB1B2 /* SF-UI-Display-Medium.otf */; };
+		EE7FEC56D9C745F387C8539D /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FBB7F73AEB477AA0B7FECF /* libRNShare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		30460E921CC8DF3100F9F4CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB6E74E5D29F459D880617D1 /* RNShare.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNShare;
 		};
 		305FDB961C92912300811B83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -214,11 +222,13 @@
 		30C050981C87F85000BBC886 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		30C050991C87F85000BBC886 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		30C050A51C87FA4900BBC886 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		36FBB7F73AEB477AA0B7FECF /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
 		4047FE49C4F4423499FC2896 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		73C5FAB48A56453D99A501A1 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		A22E745FFD0C4161A91767CF /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
+		CB6E74E5D29F459D880617D1 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		CD07C9051C90236000750CB0 /* SF-Compact-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Semibold.otf"; path = "../assets/fonts/SF-Compact-Display-Semibold.otf"; sourceTree = "<group>"; };
 		CD07C9071C90277F00750CB0 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Display-Light.otf"; path = "../assets/fonts/SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
 		CD24458A1C9152A4004AF2D3 /* Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orientation.h; sourceTree = "<group>"; };
@@ -272,6 +282,7 @@
 				CD07C9041C900F2800750CB0 /* libBVLinearGradient.a in Frameworks */,
 				4028070DE52047569E41EE01 /* libRNVectorIcons.a in Frameworks */,
 				7475C4052F7B4B878E4EABD2 /* libRCTVideo.a in Frameworks */,
+				EE7FEC56D9C745F387C8539D /* libRNShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +380,14 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30460E7E1CC8DF3100F9F4CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30460E931CC8DF3100F9F4CF /* libRNShare.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,6 +508,7 @@
 				D754F2DE5C8D44868197F0FF /* BVLinearGradient.xcodeproj */,
 				CFE4FD9E64EE47A9BF0A398F /* RNVectorIcons.xcodeproj */,
 				73C5FAB48A56453D99A501A1 /* RCTVideo.xcodeproj */,
+				CB6E74E5D29F459D880617D1 /* RNShare.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -681,6 +701,10 @@
 					ProjectRef = CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */;
 				},
 				{
+					ProductGroup = 30460E7E1CC8DF3100F9F4CF /* Products */;
+					ProjectRef = CB6E74E5D29F459D880617D1 /* RNShare.xcodeproj */;
+				},
+				{
 					ProductGroup = 30C050CF1C87FB9700BBC886 /* Products */;
 					ProjectRef = CFE4FD9E64EE47A9BF0A398F /* RNVectorIcons.xcodeproj */;
 				},
@@ -748,6 +772,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		30460E931CC8DF3100F9F4CF /* libRNShare.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNShare.a;
+			remoteRef = 30460E921CC8DF3100F9F4CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		305FDB971C92912300811B83 /* libART.a */ = {
@@ -934,6 +965,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XRZR.app/XRZR";
@@ -954,6 +986,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -981,6 +1014,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				INFOPLIST_FILE = XRZR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1007,6 +1041,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-video",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				INFOPLIST_FILE = XRZR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1059,6 +1094,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1103,6 +1139,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-video",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
