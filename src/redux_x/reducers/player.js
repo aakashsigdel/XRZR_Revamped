@@ -10,7 +10,7 @@ import {
 import networkSwitches from './networkSwitches'
 
 const defaultState = {
-  workoutId: 1,
+  workoutId: null,
   nowPlaying: undefined,      // this is the index thing
   paused: false,
   lastKnownTime: 0,

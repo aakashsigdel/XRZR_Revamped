@@ -41,7 +41,7 @@ const uiStates = (state = defaultState, action) => {
 
 const defaultState = {
   selectedBrowseTab: 'browse',
-  selectedCategory: 'Yoga',
+  selectedCategory: null,
   editFavouriteExercises: false,
   editWorkoutExercisesList: false,
   showModalDeleteExercise: false,

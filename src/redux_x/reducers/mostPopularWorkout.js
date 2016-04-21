@@ -8,7 +8,7 @@ import networkSwitches from './networkSwitches'
 
 const initialState = {
   ...networkSwitches(),
-  data: [1, 2, 3, 4]
+  data: []      // list of workoutIds
 }
 
 const getMostPopularWorkout = (state = initialState, action) => {
