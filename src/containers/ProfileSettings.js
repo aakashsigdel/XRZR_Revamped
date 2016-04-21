@@ -11,21 +11,23 @@ import { updateUser } from '../redux_x/actions/loginActionCreators'
 import RNInstagramOAuth from 'react-native-instagram-oauth'
 import { INSTAGRAM_DETAILS } from '../constants/appConstants'
 import StatusMessage from '../components/Common/StatusMessage'
+import Loader from '../components/Common/Loader'
 
 class ProfileSettings extends Component {
   constructor (props) {
     super(props)
-    console.log(props.user[props.userId].description, 'description')
     this.state = {
       sound: false,
       description: props.user[props.userId].description,
       showUpdateSuccessModal: false,
-      instagramAccessToken: props.user[props.userId].instagramToken
+      instagramAccessToken: props.user[props.userId].instagramToken,
+      instagramId: props.user[props.userId].instagramId,
+      instagramUsername: props.user[props.userId].instagramUsername,
+      isFetching: false
     }
   }
 
   componentDidUpdate (prevProps) {
-    console.log(prevProps.login.isFetching, this.props.login.isFetching, 'duality test')
     if (prevProps.login.isFetching && !this.props.login.isFetching) {
       this.setState({
         showUpdateSuccessModal: true
@@ -46,12 +48,19 @@ class ProfileSettings extends Component {
     const userData = {
       sound: this.state.sound,
       description: this.state.description,
-      instagram_token: this.state.instagramAccessToken
+      instagram_token: this.state.instagramAccessToken,
+      instagram_username: this.state.instagramUsername,
+      instagram_id: this.state.instagramId
     }
+    console.log(userData, 'instagram userDAta')
     this.props.updateUser(userData)
   }
 
   onInstagramConnect () {
+    this.setState({
+      isFetching: true
+    })
+
     RNInstagramOAuth(
       INSTAGRAM_DETAILS.clientId,
       INSTAGRAM_DETAILS.redirectURL,
@@ -71,6 +80,17 @@ class ProfileSettings extends Component {
       this.setState({
         instagramAccessToken: access_token
       })
+      const instagramUrl = 'https://api.instagram.com/v1/users/self/?access_token=' + access_token
+      fetch(instagramUrl)
+      .then(response => response.json())
+      .then(responseData => {
+        console.log('data from instagram', responseData)
+        this.setState({
+          instagramUsername: responseData.data.username,
+          instagramId: responseData.data.id,
+          isFetching: false
+        })
+      })
     }
   }
 
@@ -81,6 +101,9 @@ class ProfileSettings extends Component {
   }
 
   render () {
+    if (this.state.isFetching) {
+      return <Loader message={'Fetching Instagram Details'} />
+        }
     return (
       <View style={{flex: 1, backgroundColor: 'black'}}>
         <ProfileSettingsIndex
