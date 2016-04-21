@@ -1,64 +1,67 @@
 import React, {
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  Component
 } from 'react-native'
 import Switch from 'react-native-material-switch'
 
 import Hr from '../Common/Hr'
 
-const PropertyListItem = (props) => {
-  console.log('props ani props', props)
-  return (
-    <ScrollView style={styles.container}>
-      <Hr />
-      <View style={styles.itemContainer}>
-        <Text style={styles.titleText}>EXERCISE NAME</Text>
-        <TextInput
-          defaultValue={props.isNewExercise ? '' : props.exercise.title}
-          onChangeText={props.onExerciseTitleChange}
-          style={styles.valueText}
-        />
+export default class PropertyListItem extends Component {
+  render (props = this.props) {
+    return (
+      <View style={styles.container}>
+        <Hr />
+        <View style={styles.itemContainer}>
+          <Text style={styles.titleText}>EXERCISE NAME</Text>
+          <TextInput
+            defaultValue={props.isNewExercise ? '' : props.exercise.title}
+            onChangeText={props.onExerciseTitleChange}
+            style={styles.valueText}
+          />
+        </View>
+        <Hr />
+        <View style={styles.itemContainer}>
+          <Text style={styles.titleText}>TAGS</Text>
+          <TextInput
+            defaultValue={props.isNewExercise ? '' : props.exercise.tags}
+            onChangeText={props.onExerciseTagsChange}
+            style={styles.valueText}
+          />
+        </View>
+        <Hr />
+        <View style={[styles.itemContainer, styles.additionalPadding]}>
+          <Text style={styles.titleText}>SOUND</Text>
+          <Switch
+            activeBackgroundColor='#197461'
+            activeButtonColor='#1DD7AB'
+            activeButtonPressedColor='#1DD7AB'
+            buttonRadius={10}
+            inactiveButtonColor='#B0B0B4'
+            inactiveButtonPressedColor='#B0B0B4'
+            onChangeState={props.onExerciseSoundSwitchChange}
+            switchHeight={15}
+            switchWidth={33}
+          />
+        </View>
+        <Hr />
+        <View style={styles.descContainer}>
+          <Text style={styles.titleText}>DESCRIPTION</Text>
+          <TextInput
+            ref={this.props.setChildTextInputRef}
+            onFocus={this.props.scrollToInput}
+            multiline
+            onChangeText={props.onExerciseDescriptionChange}
+            defaultValue={props.isNewExercise ? '' : props.exercise.description}
+            placeholderTextColor='rgba(255, 255, 255, 0.5)'
+            style={styles.multilineValueText}
+          />
+        </View>
       </View>
-      <Hr />
-      <View style={styles.itemContainer}>
-        <Text style={styles.titleText}>TAGS</Text>
-        <TextInput
-          defaultValue={props.isNewExercise ? '' : props.exercise.tags}
-          onChangeText={props.onExerciseTagsChange}
-          style={styles.valueText}
-        />
-      </View>
-      <Hr />
-      <View style={[styles.itemContainer, styles.additionalPadding]}>
-        <Text style={styles.titleText}>SOUND</Text>
-        <Switch
-          activeBackgroundColor='#197461'
-          activeButtonColor='#1DD7AB'
-          activeButtonPressedColor='#1DD7AB'
-          buttonRadius={10}
-          inactiveButtonColor='#B0B0B4'
-          inactiveButtonPressedColor='#B0B0B4'
-          onChangeState={props.onExerciseSoundSwitchChange}
-          switchHeight={15}
-          switchWidth={33}
-        />
-      </View>
-      <Hr />
-      <View style={styles.descContainer}>
-        <Text style={styles.titleText}>DESCRIPTION</Text>
-        <TextInput
-          multiline
-          onChangeText={props.onExerciseDescriptionChange}
-          defaultValue={props.isNewExercise ? '' : props.exercise.description}
-          placeholderTextColor='rgba(255, 255, 255, 0.5)'
-          style={styles.multilineValueText}
-        />
-      </View>
-    </ScrollView>
-  )
+    )
+  }
 }
 
 PropertyListItem.propTypes = {}

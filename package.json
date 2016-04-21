@@ -16,6 +16,7 @@
     "react-native-fbsdklogin": "0.0.8",
     "react-native-image-picker": "^0.18.3",
     "react-native-instagram-oauth": "0.0.6",
+    "react-native-keyboard-aware-scroll-view": "0.0.6",
     "react-native-linear-gradient": "^1.5.2",
     "react-native-looped-carousel": "0.0.8",
     "react-native-material-switch": "0.0.4",
