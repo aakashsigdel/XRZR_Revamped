@@ -6,94 +6,104 @@ import React, {
   PropTypes,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Component
 } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import Hr from '../Common/Hr'
 import {VIEWPORT} from '../../constants/appConstants'
 
-const WorkoutDetails = (props) => {
-  const poster = (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      style={[styles.noImagePoster, styles.poster]}
-      onPress={props.onChoosePhoto}
-    >
-      <MaterialIcon
-        color='white'
-        name='image'
-        size={40}
-      />
-      <Text style={styles.posterText}>
-        Add Workout cover Image
-      </Text>
-    </TouchableOpacity>
-  )
-  const actualPoster = (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      style={styles.poster}
-      onPress={props.onChoosePhoto}
-    >
-      <Image
-        source={{uri: props.coverImage}}
-        style={styles.actualPoster}
-      />
-    </TouchableOpacity>
-  )
+export default class WorkoutDetails extends Component {
+  _scrollToInput (event) {
+    this.refs.scroll.scrollToFocusedInput(event, this.refs.descriptionInput)
+  }
 
-  return (
-    <View style={ styles.container }>
-      {props.coverImage ? actualPoster : poster}
-      <ScrollView>
-        <Hr />
-        <View style={[styles.rowItem]}>
-          <Text style={[styles.rowText]}>WORKOUT SETS</Text>
-          <TextInput
-            defaultValue={'' + props.workout.workout_set}
-            keyboardType='number-pad'
-            onChangeText={props.onWorkoutSetChange}
-            style={[styles.rowText, styles.inputBox]}
-          />
-        </View>
-        <Hr/>
-        <View style={[styles.rowItem]}>
-          <Text style={[styles.rowText]}>PAUSE BETWEEN EXERCISES</Text>
-          <View style={styles.pauseOption}>
+  render (props = this.props) {
+    const poster = (
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={[styles.noImagePoster, styles.poster]}
+        onPress={props.onChoosePhoto}
+      >
+        <MaterialIcon
+          color='white'
+          name='image'
+          size={40}
+        />
+        <Text style={styles.posterText}>
+          Add Workout cover Image
+        </Text>
+      </TouchableOpacity>
+    )
+    const actualPoster = (
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={styles.poster}
+        onPress={props.onChoosePhoto}
+      >
+        <Image
+          source={{uri: props.coverImage}}
+          style={styles.actualPoster}
+        />
+      </TouchableOpacity>
+    )
+
+    return (
+      <View style={ styles.container }>
+        <KeyboardAwareScrollView ref='scroll'>
+          {props.coverImage ? actualPoster : poster}
+          <Hr />
+          <View style={[styles.rowItem]}>
+            <Text style={[styles.rowText]}>WORKOUT SETS</Text>
             <TextInput
-              defaultValue={'' + props.workout.pause_between_exercises}
+              defaultValue={'' + props.workout.workout_set}
               keyboardType='number-pad'
-              onChangeText={props.onPBEChange}
+              onChangeText={props.onWorkoutSetChange}
               style={[styles.rowText, styles.inputBox]}
             />
-            <Text style={styles.rowText}> sec</Text>
           </View>
-        </View>
-        <Hr/>
-        <View style={[styles.rowItem]}>
-          <Text style={[styles.rowText]}>CATEGORY</Text>
-          <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={props.toggleCategoryModal}
-            style={{width: 80, alignItems: 'flex-end'}}
-          >
-            <Text style={styles.rowText}>{props.category}</Text>
-          </TouchableOpacity>
-        </View>
-        <Hr/>
-        <View style={[styles.descItem]}>
-          <Text style={[styles.rowText, styles.descTitle]}>DESCRIPTION</Text>
-          <TextInput
-            defaultValue={props.workout.description}
-            multiline
-            onChangeText={props.onDescriptionChange}
-            style={[styles.rowText, styles.descInputBox]}
-          />
-        </View>
-      </ScrollView>
-    </View>
-  )
+          <Hr/>
+          <View style={[styles.rowItem]}>
+            <Text style={[styles.rowText]}>PAUSE BETWEEN EXERCISES</Text>
+            <View style={styles.pauseOption}>
+              <TextInput
+                defaultValue={'' + props.workout.pause_between_exercises}
+                keyboardType='number-pad'
+                onChangeText={props.onPBEChange}
+                style={[styles.rowText, styles.inputBox]}
+              />
+              <Text style={styles.rowText}> sec</Text>
+            </View>
+          </View>
+          <Hr/>
+          <View style={[styles.rowItem]}>
+            <Text style={[styles.rowText]}>CATEGORY</Text>
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={props.toggleCategoryModal}
+              style={{width: 80, alignItems: 'flex-end'}}
+            >
+              <Text style={styles.rowText}>{props.category}</Text>
+            </TouchableOpacity>
+          </View>
+          <Hr/>
+          <View style={[styles.descItem]}>
+            <Text style={[styles.rowText, styles.descTitle]}>DESCRIPTION</Text>
+            <TextInput
+              ref={'descriptionInput'}
+              onFocus={this._scrollToInput.bind(this)}
+              defaultValue={props.workout.description}
+              multiline
+              onChangeText={props.onDescriptionChange}
+              style={[styles.rowText, styles.descInputBox]}
+            />
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
+    )
+  }
 }
 
 WorkoutDetails.propTypes = {}
@@ -156,5 +166,3 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.5)'
   }
 })
-
-export default WorkoutDetails
