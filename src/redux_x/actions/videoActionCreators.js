@@ -5,7 +5,7 @@ import {
   VIDEO_LOADED,
   VIDEO_PROGRESS,
   LOAD_WORKOUT,
-
+  EXERCISE_STATUS_MODAL,
   FETCH_WORKOUT_EXERCISES
 } from './actionTypes'
 
@@ -78,6 +78,22 @@ const workoutExercisesFetchError = (errorMessage, receivedTime) => {
     errorMessage
   }
 }
+
+export const showStatusModal = (statusMessage) => {
+  return {
+    type: EXERCISE_STATUS_MODAL,
+    visible: true,
+    statusMessage
+  }
+}
+export const hideStatusModal = () => {
+  return {
+    type: EXERCISE_STATUS_MODAL,
+    visible: false,
+    statusMessage: ''
+  }
+}
+
 
 export const fetchWorkoutExercises = (workoutId) => {
   let workout_exercise_url = new UrlBuilder(WORKOUT_EXERCISES_URL)

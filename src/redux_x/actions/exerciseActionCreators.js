@@ -9,6 +9,9 @@ import {
 } from '../../constants/appConstants'
 
 import ApiUtils from '../ApiUtilities'
+
+import * as PlayerActions from './videoActionCreators'
+
 export const addExercise = (exercise) => {
   return {
     type: ADD_EXERCISE,
@@ -61,11 +64,14 @@ export const likeExercise = (exerciseId, like, workoutExerciseId) => {
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
-        alert('Exercise Liked')
-        likeExerciseLocal(workoutExerciseId, like)
+        const statusMessage = (like) ? 'Exercise saved to favorite exercises' : 'Exercise removed from favorite exercises.'
+        console.log(statusMessage)
+        dispatch(PlayerActions.showStatusModal(statusMessage))
+        dispatch(likeExerciseLocal(workoutExerciseId, like))
       })
       .catch((error) => {
-        alert('Failed to send like to server!! Please try again later.')
+        dispatch(PlayerActions.showStatusModal('Unable to Save exercise!! Please try again later.'))
+        console.error(error)
         //console.log(EXERCISE_LIKE_URL_FUNC(exerciseId))
         //console.log(error)
       })
