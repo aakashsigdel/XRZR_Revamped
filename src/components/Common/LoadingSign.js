@@ -2,7 +2,8 @@ import React, {
   ActivityIndicatorIOS,
   StyleSheet,
   Text,
-  View
+  View,
+  PropTypes
 } from 'react-native'
 
 const LoadingSign = (props) => {
@@ -20,6 +21,9 @@ const LoadingSign = (props) => {
   )
 }
 
+LoadingSign.propTypes = {
+  loadingText: PropTypes.string
+}
 const styles = StyleSheet.create({
   container: {
     //position: 'absolute',

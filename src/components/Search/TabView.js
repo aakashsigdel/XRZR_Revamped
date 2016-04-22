@@ -10,11 +10,13 @@ import {
   View
 } from 'react-native'
 
+import LoadingSign from '../Common/LoadingSign'
+
 import CategoryListing from './CategoryListing'
 import WorkoutListing from '../MostPopular/Listing'
 
 import {VIEWPORT} from '../../constants/appConstants'
-const styles = StyleSheet.create(require('./TabStyles.json'));
+const styles = StyleSheet.create(require('./TabStyles.json'))
 
 export default class TabView extends Component {
   constructor () {
@@ -63,6 +65,9 @@ export default class TabView extends Component {
   }
 
   render () {
+    if (this.props.searchOnProgress) {
+      return <LoadingSign loadingText='Searching'/>
+    }
     return (
       <WorkoutListing
         loadWorkout={this.props.loadWorkout}

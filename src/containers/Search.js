@@ -44,6 +44,16 @@ class Search extends React.Component {
       })
     }
 
+    let searchResults = props.searchResults.workouts[props.searchResults.latestSearchQuery]
+    let workouts = []
+    if (searchResults) {
+      workouts = searchResults.data
+      workouts = workoutIdsToWorkouts(workouts, props.workouts)
+      workouts = denormalizeInstructor(workouts, props.instructors)
+    }
+
+    let searchOnProgress = props.searchResults.isFetching
+
     return (
       <SearchIndex
         categories={denormalizeCategories(props.categories)}
@@ -53,25 +63,36 @@ class Search extends React.Component {
         onSearchButton={onSearchPressed}
         onSearchInput={onSearchInput}
         searchText={this.state.searchText}
-        workouts={denormalizeInstructor(props.workouts, props.instructors)}
+        searchOnProgress={searchOnProgress}
+        workouts={workouts}
       />
     )
   }
 }
 
-function denormalizeInstructor(workouts, instructors){
+function workoutIdsToWorkouts (workoutIds, workouts) {
+  return workoutIds.map((workoutId) => {
+    return workouts[workoutId]
+  })
+}
+
+function denormalizeInstructor (workouts, instructors) {
   return Object.keys(workouts).map(
     (workoutId) => {
       let workout = workouts[workoutId]
+      let instructor = instructors[workout.instructor]
+      if (!instructor || !workout) {
+        return false
+      }
       return {
         ...workout,
-        instructor: instructors[workout.instructor]
+        instructor: instructor
       }
     }
-  )
+  ).filter((workout) => workout)
 }
-function denormalizeCategories(categories){
-  return Object.keys(categories).map((categoryId)=>categories[categoryId])
+function denormalizeCategories (categories) {
+  return Object.keys(categories).map((categoryId) => categories[categoryId])
 }
 
 export default connect(
@@ -79,7 +100,8 @@ export default connect(
     return {
       workouts: state.workout.data,
       categories: state.category,
-      instructors: state.user.data
+      instructors: state.user.data,
+      searchResults: state.search
     }
   },
   (dispatch) => {

@@ -85,3 +85,4 @@ export const CLEAR_ERROR = 'CLEAR_ERROR'
 // search actions types
 export const FETCH_SEARCH_RESULT = 'FETCH_SEARCH_RESULT'
 export const GET_SEARCH_RESULT = 'GET_SEARCH_RESULT'
+export const POPULATE_SEARCH_RESULT = 'POPULATE_SEARCH_RESULT'

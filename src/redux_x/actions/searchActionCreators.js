@@ -1,11 +1,23 @@
 import {
   FETCH_SEARCH_RESULT,
-  GET_SEARCH_RESULT
+  GET_SEARCH_RESULT,
+  POPULATE_SEARCH_RESULT
 } from './actionTypes'
 
 import { WORKOUT_SEARCH_URL } from '../../constants/appConstants'
 import UrlBuilder from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
+import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
+
+export const populateSearchData = (searchQuery, workouts) => {
+  return {
+    type: POPULATE_SEARCH_RESULT,
+    searchQuery,
+    workouts
+  }
+}
 
 export const requestSearch = () => {
   return {
@@ -41,23 +53,41 @@ export const getSearchResult = (result) => {
 export const fetchSearchResult = (queryString) => {
   const searchUrl = new UrlBuilder(WORKOUT_SEARCH_URL)
     .addSearchQueryString(queryString)
-    .addWithActions(['favorite'])
+    .addWithMetaDataClause(['created_by'])
+    .addWithClause(['category'])
     .toString()
 
   return (dispatch) => {
+
     dispatch(requestSearch())
     return fetch(searchUrl)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.handleFavoriteActionFromResponse)
-      .then(ApiUtils.convertEntitiesToKeyBasedDict)
+      .then((jsonResponse) => {
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+
+        return keyBasedData.data
+      })
+      .then(ApiUtils.logger)
       .then(ApiUtils.hydrateWorkouts)
       .then((workouts) => {
-        console.log('search results')
-        console.log(workouts)
+        let workoutIds = Object.keys(workouts)
+        
+        dispatch(populateSearchData(queryString, workoutIds))
+        dispatch(WorkoutActions.populateWorkouts(workouts))
+        dispatch(receiveSearchResult(new Date().getTime()))
       })
       .catch((error) => {
         dispatch(requestSearchFailure(error.response, new Date().getTime()))
+        console.error(error)
       })
   }
 }

@@ -194,6 +194,9 @@ let ApiUtils = {
 
 }
 
+// Because javascript is very crazy about not doing this
+ApiUtils.handleMyFavoriteActionFromResponse = ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils)
+
 export function hydrateWorkout (workoutId, workout) {
   let validWorkout = {...workout}
   if (!(workout && workoutId)) {

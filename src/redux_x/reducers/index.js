@@ -15,6 +15,7 @@ import userData from './userData'
 import asyncStates from './asyncStates'
 import login from './login'
 import pureExercise from './pureExercise'
+import search from './search'
 
 const XRZRReducer = combineReducers({
   category,
@@ -31,7 +32,8 @@ const XRZRReducer = combineReducers({
   userData,
   asyncStates,
   login,
-  pureExercise
+  pureExercise,
+  search
 })
 
 export default XRZRReducer

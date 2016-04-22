@@ -20,9 +20,10 @@ const SearchIndex = (props) => {
       />
       <TabView
         categories={props.categories}
-        onCategorySelect={props.onCategorySelect}
         loadWorkout={props.loadWorkout}
+        onCategorySelect={props.onCategorySelect}
         workouts={props.workouts}
+        searchOnProgress={props.searchOnProgress}
         style={{flex: 1}}
       />
     </View>

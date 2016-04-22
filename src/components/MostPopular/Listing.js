@@ -28,7 +28,7 @@ const _renderRow = (rowData, props) => {
         <View style={ styles.overlay }>
           <View style={ styles.imageAndDescWrapper }>
             <Image
-              source={{ uri: rowData.instructor.image }}
+              source={{ uri: rowData.instructor && rowData.instructor.image }}
               style={ styles.titleImage }
             />
             <View style={ styles.description }>
