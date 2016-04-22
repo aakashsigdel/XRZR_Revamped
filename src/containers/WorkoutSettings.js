@@ -1,22 +1,29 @@
 import React, {
-  Alert,
-  PropTypes
+  PropTypes,
+  View
 } from 'react-native'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Loader from '../components/Common/Loader.ios.js'
+import StatusMessage from '../components/Common/StatusMessage'
 
 import WorkoutSettingsIndex from '../components/WorkoutSettings/WorkoutSettingsIndex'
 
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 
 class WorkoutSettings extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      showModal: false
+    }
+  }
+
   componentDidUpdate (prevProps) {
     if (prevProps.workouts.isFetching && !this.props.workouts.isFetching) {
-      Alert.alert(
-        'XRZR',
-        'Workout Updated!'
-      )
+      this.setState({
+        showModal: true
+      })
     }
   }
 
@@ -43,15 +50,23 @@ class WorkoutSettings extends React.Component {
     const onDeleteButton = () => props.navigator.push({name: 'deleteWorkout', workoutId: workoutId})
 
     return (
-      <WorkoutSettingsIndex
-        onCloseButton={onCloseButton}
-        onDeleteButton={onDeleteButton}
-        onEditExercises={onEditExercises}
-        onPublishIcon={onPublishIcon}
-        onSaveButton={onSaveButton}
-        workout={workout}
-        categories={props.categories}
-      />
+      <View style={{flex: 1}}>
+        <WorkoutSettingsIndex
+          onCloseButton={onCloseButton}
+          onDeleteButton={onDeleteButton}
+          onEditExercises={onEditExercises}
+          onPublishIcon={onPublishIcon}
+          onSaveButton={onSaveButton}
+          workout={workout}
+          categories={props.categories}
+        />
+        <StatusMessage
+          onExit={() => this.setState({ showModal: false })}
+          statusMessage={'Workout Updated'}
+          transparent
+          visible={this.state.showModal}
+        />
+      </View>
     )
   }
 }
