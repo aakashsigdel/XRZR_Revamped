@@ -14,6 +14,11 @@ import {VIEWPORT} from '../../constants/appConstants'
 
 const WorkoutCompletionIndex = (props) => {
   const onLikeButton = () => props.onLikeButton(props.workout.id)
+  const shareOptions = {
+    share_URL: props.workout.image_16x9,
+    title: 'Share Workout',
+    share_text: 'Share Workout'
+  }
   return (
     <View
       style={ styles.container }
@@ -44,7 +49,7 @@ const WorkoutCompletionIndex = (props) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={props.onShareButton}
+          onPress={() => props.onShareButton(shareOptions)}
           style={styles.shareButton}
         >
           <Icon
