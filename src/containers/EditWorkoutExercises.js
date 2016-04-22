@@ -8,27 +8,30 @@ import EditWorkoutExercisesIndex from '../components/EditWorkoutExercises/EditWo
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 
-const EditWorkoutExercises = (props) => {
-  const workoutId = props.workoutId
-  const workout = workoutManager(workoutId, props.workouts, props.exercises)
-  const workoutIds = props.workouts[workoutId].exercises
+class EditWorkoutExercises extends React.Component{
+  render (props = this.props) {
+    const workoutId = props.workoutId
+    const workout = workoutManager(workoutId, props.workouts, props.exercises)
+    const workoutIds = props.workouts[workoutId].exercises
 
-  const editOnProgress = true
+    const editOnProgress = true
 
-  const onCloseButton = props.navigator.pop
-  const onSaveButton = (order) => props.exerciseDispatchers.publishExerciseOrder(workoutIds, order)
-  const onEditButton = () => console.warn("edit")
-  const onDoneButton = () => console.warn('done')
-  return (
-    <EditWorkoutExercisesIndex
-      editOnProgress={editOnProgress}
-      onCloseButton={onCloseButton}
-      onDoneButton={onDoneButton}
-      onEditButton={onEditButton}
-      onSaveButton={onSaveButton}
-      workout={workout}
-    />
-  )
+    const onCloseButton = props.navigator.pop
+    const onSaveButton = (order) => props.exerciseDispatchers.publishExerciseOrder(workoutIds, order)
+    const onEditButton = () => console.warn("edit")
+    const onDoneButton = () => console.warn('done')
+    return (
+      <EditWorkoutExercisesIndex
+        editOnProgress={editOnProgress}
+        onCloseButton={onCloseButton}
+        onDoneButton={onDoneButton}
+        onEditButton={onEditButton}
+        onSaveButton={onSaveButton}
+        workout={workout}
+        uiStates={props.uiStates}
+      />
+    )
+  }
 }
 
 function workoutManager (workoutId, workouts, exercises) {
@@ -44,7 +47,8 @@ export default connect(
   (state) => {
     return {
       workouts: state.workout.data,
-      exercises: state.exercise
+      exercises: state.exercise,
+      uiStates: state.uiStates
     }
   },
   (dispatch) => {
