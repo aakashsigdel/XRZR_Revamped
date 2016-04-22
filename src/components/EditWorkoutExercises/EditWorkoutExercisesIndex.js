@@ -4,8 +4,6 @@ import React, {
   PropTypes
 } from 'react-native'
 
-import SortableListView from 'react-native-sortable-listview'
-
 import NavBar from './NavBar'
 import ExerciseList from './ExerciseList'
 
@@ -41,11 +39,8 @@ class EditWorkoutExercisesIndex extends React.Component {
   }
 
   render (props = this.props) {
-    const onSaveButton = () => {
-      props.onSaveButton({
-        id: props.workout.id,
-        exercises: this.state.exercises.map((exercise) => exercise.id)
-      })
+    const onSaveButton = (exerciseOrder) => {
+      props.onSaveButton(exerciseOrder)
       this.setState({
         editOnProgress: false
       })

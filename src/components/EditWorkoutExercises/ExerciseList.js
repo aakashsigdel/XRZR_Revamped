@@ -5,46 +5,64 @@ import React, {
   Text,
   TouchableOpacity
 } from 'react-native'
+import SortableListView from 'react-native-sortable-listview'
 
 import ListWrapper from '../Common/ListWrapper'
 import ExerciseListItem from './ExerciseListItem'
 import EditExerciseListItem from './EditExerciseListItem'
 
-const ExerciseList = (props) => {
-  let indexCounter = -1
-  const _populateList = (item) => {
-    indexCounter += 1
-    if (props.editOnProgress) {
-      return (<EditExerciseListItem
+class ExerciseList extends React.Component {
+  constructor (props) {
+    super(props)
+    this.order = Object.keys(props.exercises)
+  }
+  render (props = this.props) {
+    let indexCounter = -1
+
+    let onSaveButton = () => props.onSaveButton(this.order)
+
+    const _populateList = (item) => {
+      indexCounter += 1
+      if (props.editOnProgress) {
+        return (<EditExerciseListItem
+          index={indexCounter}
+          item={item}
+          onRemoveButton={props.onRemoveButton}
+          onLongPress={this.props.onLongPress} onPressOut={this.props.onPressOut}
+        />)
+      }
+      return (<ExerciseListItem
         index={indexCounter}
         item={item}
-        onRemoveButton={props.onRemoveButton}
       />)
     }
-    return (<ExerciseListItem
-      index={indexCounter}
-      item={item}
-    />)
-  }
-  return (
-    <View style={styles.container}>
-      <View style={styles.listings} >
-        <Text style={styles.header}>WORKOUT EXERCISES</Text>
-        <ListWrapper
-          _populateList={_populateList}
-          data={props.exercises}
-        />
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.listings}>
+          <Text style={styles.header}>WORKOUT EXERCISES</Text>
+          <SortableListView
+            style={{flex: 1}}
+            renderRow={_populateList}
+            data={props.exercises}
+            order={this.order}
+            onRowMoved={e => {
+              this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
+              this.forceUpdate();
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={onSaveButton}
+          style={styles.saveButton}
+        >
+          <Text style={styles.saveText}>
+            SAVE
+          </Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={props.onSaveButton}
-        style={styles.saveButton}
-      >
-        <Text style={styles.saveText}>
-          SAVE
-        </Text>
-      </TouchableOpacity>
-    </View>
-  )
+    )
+  }
 }
 
 ExerciseList.propTypes = {}
