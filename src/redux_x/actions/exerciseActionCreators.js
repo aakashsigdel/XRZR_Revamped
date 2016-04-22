@@ -12,6 +12,7 @@ import {
 import ApiUtils from '../ApiUtilities'
 
 import * as PlayerActions from './videoActionCreators'
+import * as UiActions from './uiStatesActionCreators'
 
 export const addExercise = (exercise) => {
   return {
@@ -84,6 +85,8 @@ export const publishExerciseOrder = (exerciseIds, order) => {
     const store = getStore()
     const accessToken = store.login.access_token
 
+    dispatch(UiActions.setEditWorkoutExercisesOnProgress(true))
+
     let promisesThatYouMade = order.map(
       (exerciseIndex, index) => {
         const exerciseId = exerciseIds[exerciseIndex]
@@ -100,9 +103,11 @@ export const publishExerciseOrder = (exerciseIds, order) => {
           .then(ApiUtils.checkStatus2xx)
           .then((response) => {
             //console.log(response.json())
+            dispatch(UiActions.setEditWorkoutExercisesOnProgress(false))
             console.log("success")
           })
           .catch((error) => {
+            dispatch(UiActions.setEditWorkoutExercisesOnProgress(false))
             console.error(error)
           })
       }
@@ -110,9 +115,11 @@ export const publishExerciseOrder = (exerciseIds, order) => {
 
     return Promise.all(promisesThatYouMade)
       .then((response) => {
+        dispatch(UiActions.setEditWorkoutExercisesOnProgress(false))
         console.log('success')
       })
       .catch((error) => {
+        dispatch(UiActions.setEditWorkoutExercisesOnProgress(false))
         console.error(error)
       })
   }

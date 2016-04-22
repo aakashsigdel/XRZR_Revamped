@@ -37,7 +37,7 @@ const StatusMessage = (props) => {
 }
 
 StatusMessage.default = {
-  visible: true
+  visible: true,
 }
 
 StatusMessage.propTypes = {

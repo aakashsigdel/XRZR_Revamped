@@ -6,6 +6,7 @@ import React, {
 
 import NavBar from './NavBar'
 import ExerciseList from './ExerciseList'
+import StatusMessage from '../../components/Common/StatusMessage'
 
 class EditWorkoutExercisesIndex extends React.Component {
   constructor (props) {
@@ -13,7 +14,17 @@ class EditWorkoutExercisesIndex extends React.Component {
     this.state = {
       editOnProgress: props.editOnProgress,
       order: props.workout.exercises.map((value, index) => index),
-      exercises: props.workout.exercises
+      exercises: props.workout.exercises,
+
+      showModal: false
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.uiStates.editWorkoutExercisesOnProgress && !this.props.uiStates.editWorkoutExercisesOnProgress){
+      this.setState({
+        showModal: true
+      })
     }
   }
 
@@ -45,6 +56,7 @@ class EditWorkoutExercisesIndex extends React.Component {
         editOnProgress: false
       })
     }
+    const onModalExit = () => this.setState({showModal: false})
 
     return (
       <View style={ styles.container }>
@@ -62,6 +74,12 @@ class EditWorkoutExercisesIndex extends React.Component {
            onRemoveButton={this.onExerciseRemove.bind(this)}
            onSaveButton={onSaveButton}
          />
+        <StatusMessage
+          onExit={onModalExit}
+          statusMessage='Exercises reordered.'
+          transparent
+          visible={this.state.showModal}
+        />
       </View>
     )
   }

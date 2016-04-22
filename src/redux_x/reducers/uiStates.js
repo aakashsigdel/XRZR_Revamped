@@ -5,7 +5,8 @@ import {
   SWITCH_CATEGORY,
   EDIT_FAVOURITE_EXERCISES_DONE,
   EDIT_FAVOURITE_EXERCISES_FLAG,
-  MODAL_DELETE_EXERCISE
+  MODAL_DELETE_EXERCISE,
+  EDIT_WORKOUT_EXERCISES_ON_PROGRESS
 } from '../actions/actionTypes'
 
 const uiStates = (state = defaultState, action) => {
@@ -35,6 +36,11 @@ const uiStates = (state = defaultState, action) => {
         ...state,
         showModalDeleteExercise: action.showModal
       }
+    case EDIT_WORKOUT_EXERCISES_ON_PROGRESS:
+      return {
+        ...state,
+        editWorkoutExercisesOnProgress: action.onProgress
+      }
   }
   return state
 }
@@ -46,7 +52,7 @@ const defaultState = {
   editWorkoutExercisesList: false,
   showModalDeleteExercise: false,
   newWorkoutId: null,
-
+  editWorkoutExercisesOnProgress: false              // network request for edit workout exercises
 }
 
 export default uiStates

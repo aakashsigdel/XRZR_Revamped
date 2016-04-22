@@ -4,7 +4,8 @@ import {
   EDIT_FAVOURITE_EXERCISES_FLAG,
   EDIT_FAVOURITE_EXERCISES_DONE,
   MODAL_DELETE_EXERCISE,
-  SET_NEW_WORKOUT_ID
+  SET_NEW_WORKOUT_ID,
+  EDIT_WORKOUT_EXERCISES_ON_PROGRESS
 } from './actionTypes'
 
 export const switchBrowseTab = (selectedBrowseTab) => {
@@ -43,5 +44,12 @@ export const setNewWorkoutId = (id) => {
   return {
     type: SET_NEW_WORKOUT_ID,
     id
+  }
+}
+
+export const setEditWorkoutExercisesOnProgress = (onProgress) => {
+  return {
+    type: EDIT_WORKOUT_EXERCISES_ON_PROGRESS,
+    onProgress
   }
 }
