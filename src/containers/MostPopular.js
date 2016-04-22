@@ -34,17 +34,17 @@ class MostPopular extends React.Component {
     const handlePressOnSearch = () => {
       props.navigator.push({ name: 'search' })
     }
-    
+
+    const mostPopularWorkout = _mapMostPopularWorkout(
+      props.mostPopularWorkout.data,
+      props.workouts,
+      props.instructors
+    )
+
     return (
       <MostPopularIndex
         navigator={props.navigator}
-        mostPopularWorkout={
-          _mapMostPopularWorkout(
-            props.mostPopularWorkout.data,
-            props.workouts,
-            props.instructors
-          )
-        }
+        mostPopularWorkout={mostPopularWorkout}
         loadWorkout={_loadWorkout}
         handlePressOnSearch={handlePressOnSearch}
         isLoading={isLoading}
