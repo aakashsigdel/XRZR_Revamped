@@ -17,7 +17,7 @@ const WorkoutCompletionIndex = (props) => {
   const shareOptions = {
     share_URL: props.workout.image_16x9,
     title: 'Share Workout',
-    share_text: 'holla'
+    share_text: 'Share Workout'
   }
   return (
     <View

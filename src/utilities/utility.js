@@ -8,6 +8,7 @@ import { LOGIN_STORAGE_KEY } from '../constants/appConstants'
 import Share from 'react-native-share'
 
 export const getAccessTokenFromAsyncStorage = () => {
+  // AsyncStorage.removeItem(LOGIN_STORAGE_KEY)
   return AsyncStorage.getItem(LOGIN_STORAGE_KEY).then(response => {
     console.log(response)
     return response

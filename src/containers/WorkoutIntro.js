@@ -10,6 +10,7 @@ import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { shareOnFacebook } from '../utilities/utility'
 
 class WorkoutIntro extends React.Component {
   componentWillMount () {
@@ -75,12 +76,18 @@ class WorkoutIntro extends React.Component {
     const onPublishWorkout = () => props.WorkoutDispatchers.publishWorkout(props.player.workoutId, !workout.published)
 
     const handlePressOptions = () => {
+      const shareOptions = {
+        share_URL: workout.image_16x9,
+        share_text: 'Share Workout',
+        title: 'Share Workout'
+      }
       props.navigator.push({
         name: 'action',
         actionElements: [
           {
             name: 'SHARE WORKOUT',
-            icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />
+            icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />,
+            action: () => shareOnFacebook(shareOptions, () => console.log('shared')),
           },
           {
             name: (workout.published) ? 'UNPUBLISH WORKOUT' : 'PUBLISH WORKOUT',

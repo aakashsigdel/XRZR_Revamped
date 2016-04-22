@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react-native'
 import { connect } from 'react-redux'
-import { FBSDKLoginManager } from 'react-native-fbsdklogin'
 import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { loginSuccess } from '../redux_x/actions/loginActionCreators'
