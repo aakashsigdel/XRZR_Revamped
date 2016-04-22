@@ -25,10 +25,7 @@ const EditExerciseListItem = (props) => {
       <View style={styles.itemContainer}>
         <View style={styles.textContainer}>
           {deleteButton}
-          <TouchableOpacity
-            onLongPress={props.onLongPress}
-            onPressOut={props.onPressOut}
-          >
+          <TouchableOpacity>
             <Text style={styles.exerciseTitle}>{props.item.title}</Text>
           </TouchableOpacity>
         </View>

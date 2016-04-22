@@ -97,10 +97,9 @@ export const publishExerciseOrder = (exerciseIds, order) => {
           body: JSON.stringify({order: index + 1})
         }
         return fetch(url, config)
-          .then(ApiUtils.logger)
           .then(ApiUtils.checkStatus2xx)
           .then((response) => {
-            console.log(response.json())
+            //console.log(response.json())
             console.log("success")
           })
           .catch((error) => {

@@ -17,7 +17,7 @@ class ExerciseList extends React.Component {
     this.order = Object.keys(props.exercises)
   }
   render (props = this.props) {
-    let indexCounter = -1
+    let indexCounter = 0
 
     let onSaveButton = () => props.onSaveButton(this.order)
 
@@ -41,16 +41,23 @@ class ExerciseList extends React.Component {
       <View style={styles.container}>
         <View style={styles.listings}>
           <Text style={styles.header}>WORKOUT EXERCISES</Text>
-          <SortableListView
-            style={{flex: 1}}
-            renderRow={_populateList}
-            data={props.exercises}
-            order={this.order}
-            onRowMoved={e => {
-              this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
-              this.forceUpdate();
-            }}
-          />
+          {
+            (this.props.editOnProgress)
+              ? <SortableListView
+                  style={{flex: 1}}
+                  renderRow={_populateList}
+                  data={props.exercises}
+                  order={this.order}
+                  onRowMoved={e => {
+                    this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
+                    this.forceUpdate();
+                  }}
+                />
+              : <ListWrapper
+                  _populateList={_populateList}
+                  data={props.exercises}
+                />
+          }
         </View>
         <TouchableOpacity
           onPress={onSaveButton}
