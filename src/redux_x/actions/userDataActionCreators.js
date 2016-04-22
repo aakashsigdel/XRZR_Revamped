@@ -5,11 +5,14 @@ import {
   POPULATE_FAVOURITE_EXERCISES,
   POPULATE_FAVOURITE_WORKOUTS,
   FETCH_FAVOURITE_EXERCISES,
-  FETCH_FAVOURITE_WORKOUTS
+  FETCH_FAVOURITE_WORKOUTS,
+  FETCH_USER_WORKOUTS,
+  FETCH_USER_WORKOUTS_LOCAL
 } from './actionTypes'
 
 import {
-  FAVOURITE_BASE_URL
+  FAVOURITE_BASE_URL,
+  WORKOUT_BASE_URL
 } from '../../constants/appConstants'
 
 import UrlBuilder, {Filter, AndFilter} from '../../utilities/UrlBuilder'
@@ -160,5 +163,55 @@ export const fetchFavouriteExercises = () => {
         console.error(error)
         dispatch(fetchFavouriteExercisesError(error.response, new Date.getTime()))
       })
+  }
+}
+
+export const fetchUserWorkouts = (userId) => {
+  const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
+  // .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
+    .toString()
+  console.log('fetching user\'s workout', 'userid = ', userId, userWorkoutsUrl)
+  return (dispatch) => {
+    dispatch(userWorkoutsRequest())
+
+    return fetch(userWorkoutsUrl)
+      .then(ApiUtils.checkStatus2xx)
+      .then((response) => response.json())
+      .then(ApiUtils.convertEntitiesToKeyBasedDict)
+      .then((jsonResponse) => {
+        console.log(jsonResponse)
+        dispatch(userWorkoutsReceive())
+        dispatch(userWorkoutsLocal(jsonResponse))
+      })
+      .catch(error => console.error(error))
+  }
+}
+
+export const userWorkoutsRequest = () => {
+  return {
+    type: FETCH_USER_WORKOUTS,
+    status: 'fetch'
+  }
+}
+
+export const userWorkoutsReceive = () => {
+  return {
+    type: FETCH_USER_WORKOUTS,
+    status: 'success'
+  }
+}
+
+export const userWorkoutsFailure = (errorMessage) => {
+  return {
+    type: FETCH_USER_WORKOUTS,
+    status: 'error',
+    errorMessage
+  }
+}
+
+export const userWorkoutsLocal = (workouts) => {
+  return {
+    type: FETCH_USER_WORKOUTS_LOCAL,
+    workouts
   }
 }
