@@ -18,7 +18,7 @@ let ApiUtils = {
     let response = {}
     jsonResponse.entities.map(
       (entity) => {
-        response[entity.id] = entity.entity
+        response[entity.id] = {...entity.entity, id: entity.id}
       }
     )
     return response

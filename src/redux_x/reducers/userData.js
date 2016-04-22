@@ -5,7 +5,9 @@ import {
   POPULATE_FAVOURITE_EXERCISES,
   POPULATE_FAVOURITE_WORKOUTS,
   REMOVE_FAVOURITE_EXERCISE,
-  FETCH_FAVOURITE_WORKOUTS
+  FETCH_FAVOURITE_WORKOUTS,
+  FETCH_USER_WORKOUTS,
+  FETCH_USER_WORKOUTS_LOCAL
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 
@@ -62,6 +64,22 @@ const userData = (state = defaultState, action) => {
           ...networkSwitches(state.favouriteWorkouts, action)
         }
       }
+    case FETCH_USER_WORKOUTS:
+      return {
+        ...state,
+        userWorkouts: {
+          ...state.userWorkouts,
+          ...networkSwitches(state.userWorkouts, action)
+        }
+      }
+    case FETCH_USER_WORKOUTS_LOCAL:
+      return {
+        ...state,
+        userWorkouts: {
+          ...state.userWorkouts,
+          data: action.workouts
+        }
+      }
   }
   return state
 }
@@ -72,6 +90,10 @@ const defaultState = {
     data: []
   },
   favouriteWorkouts: {
+    ...networkSwitches(),
+    data: []
+  },
+  userWorkouts: {
     ...networkSwitches(),
     data: []
   }

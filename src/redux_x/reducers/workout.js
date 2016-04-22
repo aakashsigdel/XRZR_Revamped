@@ -11,7 +11,9 @@ import {
   LIKE_WORKOUT,
   WORKOUT_STATUS_MODAL,
   FETCH_WORKOUT,
-  PUBLISH_WORKOUT_LOCAL
+  PUBLISH_WORKOUT_LOCAL,
+  UPDATE_WORKOUT_EXERCISES,
+  UPDATE_WORKOUT_EXERCISES_LOCAL
 } from '../actions/actionTypes'
 import { setNewWorkoutId } from '../actions/uiStatesActionCreators'
 import networkSwitches from './networkSwitches'
@@ -121,6 +123,11 @@ const workout = (state = defaultWorkout, action) => {
           }
         }
 
+      }
+    case UPDATE_WORKOUT_EXERCISES:
+      return {
+        ...state,
+        ...networkSwitches(state, action)
       }
     default:
       return state

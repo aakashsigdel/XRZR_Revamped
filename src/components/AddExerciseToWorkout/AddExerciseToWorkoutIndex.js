@@ -34,17 +34,18 @@ const AddExerciseToWorkoutIndex = (props) => {
           workouts={props.workouts}
           exercise={props.exercise}
           updateWorkout={props.updateWorkout}
-          popRoute={props.popRoute}
+          handleNewWorkoutPress={props.handleNewWorkoutPress}
+          setWorkoutId={props.setWorkoutId}
         />
       </View>
-      <TouchableOpacity
-        onPress={props.handleNewWorkoutPress}
-        style={styles.newWorkoutButton}
-      >
-        <Text style={styles.newWorkoutText}>
-          {'NEW WORKOUT'}
-        </Text>
-      </TouchableOpacity>
+      {/* <TouchableOpacity */}
+      {/*   onPress={props.handleNewWorkoutPress} */}
+      {/*   style={styles.newWorkoutButton} */}
+      {/* > */}
+      {/*   <Text style={styles.newWorkoutText}> */}
+      {/*     {'NEW WORKOUT'} */}
+      {/*   </Text> */}
+      {/* </TouchableOpacity> */}
     </View>
   )
 }

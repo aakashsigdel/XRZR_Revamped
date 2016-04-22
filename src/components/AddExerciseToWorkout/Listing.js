@@ -10,15 +10,14 @@ import React, {
 
 import Hr from '../Common/Hr'
 
-const updateWorkout = (exerciseId, workout, props) => {
-  let exercises = workout.exercises
-  workout.exercises.indexOf(exerciseId) === -1 ? exercises.push(exerciseId) : null
+const updateWorkout = (exerciseId, workoutId, props) => {
   const updateObject = {
-    id: workout.id,
-    exercises
+    workoutId,
+    exerciseId
   }
-  props.updateWorkout({id: workout.id, workout})
-  props.popRoute()
+  props.setWorkoutId(workoutId)
+  props.updateWorkout(updateObject)
+  props.handleNewWorkoutPress(workoutId)
 }
 
 const _renderRow = (rowData, props) => {
@@ -26,7 +25,7 @@ const _renderRow = (rowData, props) => {
     <View>
       <TouchableOpacity
         style={styles.rowContainer}
-        onPress={() => updateWorkout(props.exercise.id, rowData, props)}
+        onPress={() => updateWorkout(props.exercise.exerciseId, rowData.id, props)}
       >
         <Text style={styles.text}>
           {rowData.title.toUpperCase()}

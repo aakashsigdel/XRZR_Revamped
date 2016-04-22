@@ -13,15 +13,12 @@ class NewWorkout extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    console.warn('ladi')
     if (prevProps.state.workout.isFetching && !this.props.state.workout.isFetching) {
-      console.log('padi')
       this.props.navigator.push({name: 'workoutIntro'})
     }
   }
 
   render () {
-    console.warn('aatma ma', this.props.state)
     const { dispatch } = this.props
     return (
       <NewWorkoutIndex

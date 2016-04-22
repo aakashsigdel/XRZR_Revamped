@@ -10,14 +10,17 @@ import {
   WORKOUT_STATUS_MODAL,
   FETCH_WORKOUT,
   PUBLISH_WORKOUT,
-  PUBLISH_WORKOUT_LOCAL
+  PUBLISH_WORKOUT_LOCAL,
+  UPDATE_WORKOUT_EXERCISES,
+  UPDATE_WORKOUT_EXERCISES_LOCAL
 } from './actionTypes'
 
 import {
   BASE_URL,
   WORKOUT_LIKE_URL_FUNC,
   WORKOUT_VIEW_URL_FUNC,
-  FAVOURITE_URL_FUNC
+  FAVOURITE_URL_FUNC,
+  WORKOUT_EXERCISES_URL
 } from '../../constants/appConstants'
 
 import { loadWorkout } from './videoActionCreators'
@@ -441,3 +444,62 @@ export const publishWorkout = (workoutId, published) => {
   }
 }
 
+export const updateWorkoutExercises = ({workoutId, exerciseId}) => {
+  const params = {
+    duration: 10,
+    order: 900,
+    mode: 'loop',
+    workout: workoutId,
+    exercise: exerciseId,
+  }
+  return (dispatch, getState) => {
+    dispatch(updateWorkoutExercisesRequest())
+
+    fetch(WORKOUT_EXERCISES_URL, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'access-token': getState().login.access_token
+      },
+      body: JSON.stringify(params)
+    })
+    .then(ApiUtils.checkStatus2xx)
+    .then(response => response.json())
+    .then(responseData => {
+      console.log(responseData, 'yo ho coke ko bottle')
+      dispatch(updateWorkoutExercisesSuccess())
+      // dispatch(updateWorkoutExercisesLocal(params))
+    })
+    .catch(error => console.error(error))
+  }
+}
+
+export const updateWorkoutExercisesRequest = () => {
+  return {
+    type: UPDATE_WORKOUT_EXERCISES,
+    status: 'fetch'
+  }
+}
+
+export const updateWorkoutExercisesSuccess = () => {
+  return {
+    type: UPDATE_WORKOUT_EXERCISES,
+    status: 'success'
+  }
+}
+
+export const updateWorkoutExercisesFailure = (errorMessage) => {
+  return {
+    type: UPDATE_WORKOUT_EXERCISES,
+    status: 'error',
+    errorMessage
+  }
+}
+
+export const updateWorkoutExercisesLocal = (data) => {
+  return {
+    type: UPDATE_WORKOUT_EXERCISES_LOCAL,
+    data
+  }
+}
