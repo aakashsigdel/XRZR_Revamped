@@ -5,7 +5,8 @@ import {
   LIKE_EXERCISE
 } from './actionTypes'
 import {
-  EXERCISE_LIKE_URL_FUNC
+  EXERCISE_LIKE_URL_FUNC,
+  WORKOUT_EXERCISE_URL_FUNC
 } from '../../constants/appConstants'
 
 import ApiUtils from '../ApiUtilities'
@@ -74,6 +75,46 @@ export const likeExercise = (exerciseId, like, workoutExerciseId) => {
         console.error(error)
         //console.log(EXERCISE_LIKE_URL_FUNC(exerciseId))
         //console.log(error)
+      })
+  }
+}
+
+export const publishExerciseOrder = (exerciseIds, order) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+
+    let promisesThatYouMade = order.map(
+      (exerciseIndex, index) => {
+        const exerciseId = exerciseIds[exerciseIndex]
+        const url = WORKOUT_EXERCISE_URL_FUNC(exerciseId)
+        const config = {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            'access-token': accessToken
+          },
+          body: JSON.stringify({order: index + 1})
+        }
+        return fetch(url, config)
+          .then(ApiUtils.logger)
+          .then(ApiUtils.checkStatus2xx)
+          .then((response) => {
+            console.log(response.json())
+            console.log("success")
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }
+    )
+
+    return Promise.all(promisesThatYouMade)
+      .then((response) => {
+        console.log('success')
+      })
+      .catch((error) => {
+        console.error(error)
       })
   }
 }

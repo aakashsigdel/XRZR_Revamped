@@ -18,6 +18,9 @@ class ExerciseList extends React.Component {
   }
   render (props = this.props) {
     let indexCounter = -1
+
+    let onSaveButton = () => props.onSaveButton(this.order)
+
     const _populateList = (item) => {
       indexCounter += 1
       if (props.editOnProgress) {
@@ -50,7 +53,7 @@ class ExerciseList extends React.Component {
           />
         </View>
         <TouchableOpacity
-          onPress={props.onSaveButton}
+          onPress={onSaveButton}
           style={styles.saveButton}
         >
           <Text style={styles.saveText}>

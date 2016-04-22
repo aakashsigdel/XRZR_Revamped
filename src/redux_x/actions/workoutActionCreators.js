@@ -440,3 +440,4 @@ export const publishWorkout = (workoutId, published) => {
       })
   }
 }
+

@@ -117,7 +117,8 @@ export const fetchWorkoutExercises = (workoutId) => {
         return decomposedResponse.data
       })
       .then((exercises) => {
-        let exerciseIds = Object.keys(exercises)
+        let exerciseIds = Object.keys(exercises).sort((aId, bId) => exercises[aId].order - exercises[bId].order)
+
         dispatch(ExerciseActions.addExercise(exercises))
         dispatch(WorkoutActions.populateWorkoutExercises(workoutId, exerciseIds))
         dispatch(workoutExercisesFetchSuccess(new Date().getTime()))
