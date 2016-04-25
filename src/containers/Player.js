@@ -206,7 +206,10 @@ class Player extends React.Component {
 
     const statusMessage = props.player.statusMessage
     const modalVisibility = props.player.statusModalVisibility
-    const dismissStatusModal = props.playerActions.hideStatusModal
+    const dismissStatusModal = () => {
+      props.navigator.pop()
+      props.playerActions.hideStatusModal()
+    }
 
     return (
       <View>
