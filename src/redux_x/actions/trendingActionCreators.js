@@ -62,12 +62,10 @@ export function fetchTrendingWorkouts () {
     dispatch(trendingWorkoutRequest())
     return fetch(trending_api_url, params)
       .then(ApiUtils.checkStatus2xx)
-      .then(ApiUtils.logger)
       .then((response) => response.json())
       .then(ApiUtils.handleFavoriteActionFromResponse)
       .then((jsonResponse) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
-
         let categories = keyBasedData['category']
         categories = ApiUtils.hydrateCategories(categories)
         CategoryActions.addCategory(categories)

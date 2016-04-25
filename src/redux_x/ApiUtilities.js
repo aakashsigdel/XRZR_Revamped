@@ -10,7 +10,7 @@ let ApiUtils = {
   },
 
   logger: (response) => {
-    console.log(response)
+    console.log('Logger bogger : ', response)
     return response
   },
 
@@ -58,9 +58,10 @@ let ApiUtils = {
           response.data[entity.id][metaField] = entity[metaField].id
         })
 
-        if (!backpropagate.every((item) => item)) {
-          response.data[entity.id] = undefined
-        }
+        //if (!backpropagate.every((item) => item)) {
+        //  response.data[entity.id] = undefined
+        //}
+
       }
     )
     return response
@@ -213,7 +214,7 @@ export function hydrateWorkout (workoutId, workout) {
   validWorkout['workout_set'] = workout.workout_set || 4
 
   validWorkout['category'] = workout.category
-  if (workout.category.split('/').length === 1) {} else {
+  if (workout.category && workout.category.split('/').length !== 1) {
     validWorkout[ 'category' ] = workout.category.split('/')[ 1 ]
   }
 

@@ -44,7 +44,7 @@ const workout = (state = defaultWorkout, action) => {
         ...networkSwitches(state, action)
       }
     case UPDATE_WORKOUT_LOCAL:
-      const workout = state[action.workout.id]
+      const workout = state.data[action.workout.id]
       let exercises = []
       if (workout) {
         exercises = workout.exercises
