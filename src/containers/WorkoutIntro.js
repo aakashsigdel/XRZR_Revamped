@@ -27,7 +27,10 @@ class WorkoutIntro extends React.Component {
 
     const statusMessage = props.workouts.statusMessage
     const modalVisibility = props.workouts.statusModal
-    const dismissStatusModal = props.WorkoutDispatchers.hideWorkoutStatusModal
+    const dismissStatusModal = () => {
+      props.navigator.pop()
+      props.WorkoutDispatchers.hideWorkoutStatusModal()
+    }
 
     let onCountCompletion = () => {
       props.navigator.replace({name: 'player'})
