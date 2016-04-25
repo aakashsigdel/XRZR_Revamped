@@ -62,12 +62,14 @@ const MostPopularIndex = (props) => {
     )
   }
 
+  const coverImage = (props.mostPopularWorkout[0] && props.mostPopularWorkout[0].image_16x9)
+
   return (
     <View
       style={styles.container}
     >
       <Image
-        source={{uri: props.mostPopularWorkout[0].image_16x9}}
+        source={{uri: coverImage}}
         style={styles.coverImage}
       >
         <Text style={styles.text}>Most</Text>
