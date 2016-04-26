@@ -18,7 +18,7 @@ export default class StatusMessage extends Component {
         return
       }
       this.props.onExit()
-    }, 3000)
+    }, 5000)
   }
 
   componentWillReceiveProps (nextProps) {

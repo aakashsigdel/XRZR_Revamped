@@ -131,7 +131,7 @@ class ProfileSettings extends Component {
         />
         <StatusMessage
           visible={this.state.showUpdateSuccessModal}
-          message={'Updated'}
+          statusMessage={'Profile detais updated'}
           transparent
           onExit={() => this.onExitStatusPage()}
         />

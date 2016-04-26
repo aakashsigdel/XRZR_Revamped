@@ -42,7 +42,7 @@ class FavouriteExercises extends React.Component {
         },
         {name: 'ADD EXERCISE TO A WORKOUT',
           icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
-          action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exerciseId: exercise.id})
+          action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exercise: exercise})
         },
         {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />},
         {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />}
@@ -75,7 +75,10 @@ class FavouriteExercises extends React.Component {
 
 function favouriteExercisesManager (favouriteIds, exercises){
   return favouriteIds.map((itemId) => {
-    return exercises[itemId]
+    return {
+      ...exercises[itemId],
+      exerciseId: itemId
+    }
   })
 }
 

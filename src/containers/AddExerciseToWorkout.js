@@ -52,7 +52,6 @@ export default class AddExerciseToWorkout extends Component {
   }
 
   handleNewWorkoutPress (workoutId) {
-    console.log(workoutId, 'iphone wrokoutid')
     this.setState({
       isPosting: true
     })
@@ -78,7 +77,7 @@ export default class AddExerciseToWorkout extends Component {
       <View>
         <AddExerciseToWorkoutIndex
           workouts={workouts}
-          exercise={props.exercises[props.exerciseId]}
+          exercise={props.exercise}
           navigator={props.navigator}
           updateWorkout={(params) => props.updateWorkoutExercises(params)}
           popRoute={() => popRoute(props.navigator)}
