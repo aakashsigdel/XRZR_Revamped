@@ -29,7 +29,7 @@ class Login extends Component {
   componentDidMount () {
     getAccessTokenFromAsyncStorage()
     .then(response => {
-      if(JSON.parse(response).access_token) {
+      if(response && JSON.parse(response).access_token) {
         this.props.dispatch(loginSuccess(JSON.parse(response)))
         this.navigator.replace({name: 'browse'})
       }
@@ -40,6 +40,7 @@ class Login extends Component {
     if (this.props.access_token) {
       this._navigateToBrowse.call(this)
     }  else if (this.props.error) {
+      this.setState({ isLoading: false })
       alert('LOGIN ERROR: Please try again!')
       this.props.dispatch(clearError())
     }

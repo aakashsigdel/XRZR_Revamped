@@ -4,11 +4,16 @@ import {
   FETCH_USER,
   SET_USER,
   POPULATE_USERS,
-  LIKE_USER
+  LIKE_USER,
+  FETCH_INSTAGRAM_PHOTOS,
+  SET_INSTAGRAM_PHOTOS
 } from './actionTypes'
 import UrlBuilder from '../../utilities/UrlBuilder'
 import { BASE_URL, APPUSER_LIKE_URL_FUNC, FAVOURITE_URL_FUNC } from '../../constants/appConstants'
-import { getAccessTokenFromAsyncStorage } from '../../utilities/utility'
+import {
+  awesomeFetchWrapper,
+  getAccessTokenFromAsyncStorage
+} from '../../utilities/utility'
 import ApiUtils from '../ApiUtilities'
 
 export const setUser = (user) => {
@@ -137,3 +142,54 @@ export const likeUser = (userId, like) => {
   }
 }
 
+export const fetchInstagramPhotos = (instagramId, userId) => {
+  return (dispatch, getState) => {
+    dispatch(fetchInstagramPhotosRequest())
+    debugger
+    const fetchParams = {
+      url: 'https://api.instagram.com/v1/users/'
+      + instagramId
+      + '/media/recent/?access_token=' + getState().login.instagram_token + '&count=10',
+      method: 'get'
+    }
+    return awesomeFetchWrapper(fetchParams)
+    .then(response => {
+      dispatch(setInstagramPhotos(response.data, userId))
+      dispatch(fetchInstagramPhotosSuccess())
+      console.log('get out')
+    })
+    .catch((error) => {
+      dispatch(fetchInstagramPhotosFailure())
+    })
+  }
+}
+
+const fetchInstagramPhotosRequest = () => {
+  return {
+    type: FETCH_INSTAGRAM_PHOTOS,
+    status: 'fetch'
+  }
+}
+
+const fetchInstagramPhotosSuccess = () => {
+  return {
+    type: FETCH_INSTAGRAM_PHOTOS,
+    status: 'success'
+  }
+}
+
+const fetchInstagramPhotosFailure = (errorMessage) => {
+  return {
+    type: FETCH_INSTAGRAM_PHOTOS,
+    status: 'error',
+    errorMessage
+  }
+}
+
+const setInstagramPhotos = (data, userId) => {
+  return {
+    type: SET_INSTAGRAM_PHOTOS,
+    data,
+    userId
+  }
+}

@@ -12,6 +12,7 @@ import RNInstagramOAuth from 'react-native-instagram-oauth'
 import { INSTAGRAM_DETAILS } from '../constants/appConstants'
 import StatusMessage from '../components/Common/StatusMessage'
 import Loader from '../components/Common/Loader'
+import { fetchInstagramPhotos } from '../redux_x/actions/userActionCreators'
 
 class ProfileSettings extends Component {
   constructor (props) {
@@ -44,7 +45,6 @@ class ProfileSettings extends Component {
   }
 
   onSaveButton () {
-    console.log(this.state.instagramAccessToken, 'instagram_access_token')
     const userData = {
       sound: this.state.sound,
       description: this.state.description,
@@ -52,7 +52,6 @@ class ProfileSettings extends Component {
       instagram_username: this.state.instagramUsername,
       instagram_id: this.state.instagramId
     }
-    console.log(userData, 'instagram userDAta')
     this.props.updateUser(userData)
   }
 
@@ -70,28 +69,44 @@ class ProfileSettings extends Component {
 
   _instagramLoginCallback (error, access_token) {
     if (error) {
-      console.warn(error)
-      return
+      this.setState({
+        isFetching: false
+      })
+      alert('Couldn\'t get instagram details')
     }
 
     if (access_token !== undefined) {
-      console.log(access_token, 'instagram access_token')
       // this.instagramAccessToken = access_token
       this.setState({
         instagramAccessToken: access_token
       })
-      const instagramUrl = 'https://api.instagram.com/v1/users/self/?access_token=' + access_token
-      fetch(instagramUrl)
-      .then(response => response.json())
-      .then(responseData => {
-        console.log('data from instagram', responseData)
+      let promiseArray = []
+      promiseArray[0] = this._fetchInstagramUserDetail(access_token)
+      promiseArray[1] = this.props.fetchInstagramPhotos(this.props.login.id)
+      Promise.all(promiseArray)
+      .then(() => {
         this.setState({
-          instagramUsername: responseData.data.username,
-          instagramId: responseData.data.id,
           isFetching: false
         })
+      }, () => {
+        Alert.alert(
+          'Cannot fetch data',
+          'Make sure you are connected to the internet'
+        )
       })
     }
+  }
+
+  _fetchInstagramUserDetail (accessToken) {
+    const instagramUrl = 'https://api.instagram.com/v1/users/self/?access_token=' + accessToken
+    return fetch(instagramUrl)
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({
+        instagramUsername: responseData.data.username,
+        instagramId: responseData.data.id
+      })
+    })
   }
 
   onExitStatusPage () {
@@ -103,7 +118,7 @@ class ProfileSettings extends Component {
   render () {
     if (this.state.isFetching) {
       return <Loader message={'Fetching Instagram Details'} />
-        }
+    }
     return (
       <View style={{flex: 1, backgroundColor: 'black'}}>
         <ProfileSettingsIndex
@@ -135,7 +150,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUser: bindActionCreators(updateUser, dispatch)
+    updateUser: bindActionCreators(updateUser, dispatch),
+    fetchInstagramPhotos: bindActionCreators(fetchInstagramPhotos, dispatch)
   }
 }
 

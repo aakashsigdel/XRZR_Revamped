@@ -4,7 +4,9 @@ import {
   FETCH_USER,
   POPULATE_USERS,
   LOGIN_SUCCESS,
-  LIKE_USER
+  LIKE_USER,
+  FETCH_INSTAGRAM_PHOTOS,
+  SET_INSTAGRAM_PHOTOS
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
@@ -59,6 +61,22 @@ const user = (state = initialState , action) => {
           [action.userId]: {
             ...state.data[action.userId],
             like: action.like
+          }
+        }
+      }
+    case FETCH_INSTAGRAM_PHOTOS:
+      return {
+        ...state,
+        ...networkSwitches(state, action)
+      }
+    case SET_INSTAGRAM_PHOTOS:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.userId]: {
+            ...state.data[action.userId],
+            instagramPhotos: action.data
           }
         }
       }

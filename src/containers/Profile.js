@@ -1,6 +1,7 @@
 'use strict'
 
 import React, {
+  Alert,
   Component,
   Text
 } from 'react-native'
@@ -90,59 +91,51 @@ class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isFetchingInstagram: false,
       instagramPhotos: [],
-      isFetching: false
+      isFetching: true
     }
   }
   componentDidMount () {
-    this.props.userActionDispatchers.fetchUser(this.props.userId)
-    this.props.fetchFavouriteWorkouts()
-    this.setState({
-      isFetching: true
-    })
-  }
-
-  componentDidUpdate (prevProps) {
-    if( this.props.fetchingCompeleteUser && this.props.fetchingCompeleteWorkouts && this.state.isFetching) {
-      this.setState({
-        isFetching: false
-      })
+    let promiseArray = []
+    promiseArray[0] = this.props.userActionDispatchers.fetchUser(this.props.userId)
+    promiseArray[1] = this.props.fetchFavouriteWorkouts()
+    Promise.all(promiseArray)
+    .then(() => {
       if (this.props.user[this.props.userId].instagramToken) {
         this.fetchInstagramPhotos(this.props.user[this.props.userId].instagramToken)
+      } else {
+        this.setState({
+          isFetching: false
+        })
       }
-    }
+    }, () => {
+      Alert.alert(
+        'Error Fetching Data',
+        'Please make sure you are connected to the internet'
+      )
+    })
   }
 
   fetchInstagramPhotos (instagramToken) {
-    this.setState({
-      isFetchingInstagram: true
+    this.props.userActionDispatchers.fetchInstagramPhotos(
+      this.props.user[this.props.userId].instagramId,
+      this.props.userId
+    )
+    .then(() => {
+      this.setState({
+        isFetching: false
+      })
     })
-
-    if (instagramToken && this.props.user[this.props.userId].instagramId) {
-      const fetchParams = {
-        url: 'https://api.instagram.com/v1/users/'
-        + this.props.user[this.props.userId].instagramId
-        + '/media/recent/?access_token=' + instagramToken + '&count=10',
-        method: 'get'
-      }
-      awesomeFetchWrapper(fetchParams)
-      .then(response => {
-        this.setState({
-          isFetchingInstagram: false,
-          instagramPhotos: response.data
-        })
+    .catch(error => {
+      this.setState({
+        isFetching: false
       })
-      .catch((error) => {
-        this.setState({
-          isFetchingInstagram: false
-        })
-      })
-    }
+      alert('Couldn\'t fetch instagram photos')
+    })
   }
 
   render () {
-    if (!this.props.fetchingCompeleteUser, !this.props.fetchingCompeleteWorkouts)
+    if (this.state.isFetching)
       return <Loader />
     let rightIcon = 'dot'
     if (this.props.login.id === this.props.userId)
@@ -161,8 +154,8 @@ class Profile extends Component {
         handlePressOptions={(buttonType) => handlePressOptions(this.props, buttonType)}
         currentUserId={this.props.login.id}
         rightIcon={rightIcon}
-        instagramPhotos={this.state.instagramPhotos}
-        isFetchingInstagram={this.state.isFetchingInstagram}
+        instagramPhotos={this.props.user[this.props.userId].instagramPhotos}
+        isFetchingInstagram={this.state.isFetching}
         onExitStatusPage={() => this.onExitStatusPage()}
       />
     )
