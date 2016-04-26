@@ -6,8 +6,10 @@ import {
 import {
   WORKOUT_BASE_URL
 } from '../../constants/appConstants'
+
+import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
+
 import ApiUtils from '../ApiUtilities'
-import UrlBuilder from '../../utilities/UrlBuilder'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
 import * as UserActions from './userActionCreators'
@@ -42,6 +44,7 @@ function mostPopularFetchError (errorMessage, receivedTime) {
 }
 export function fetchMostPopularWorkouts () {
   const mostPopularWorkout_url = new UrlBuilder(WORKOUT_BASE_URL)
+    .addFilter(new Filter('published', true))
     .addWithClause(['category'])
     .addWithMetaDataClause(['created_by'])
     .addWithActions(['favorite'])

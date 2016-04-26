@@ -5,7 +5,7 @@ import {
 } from './actionTypes'
 
 import { WORKOUT_SEARCH_URL } from '../../constants/appConstants'
-import UrlBuilder from '../../utilities/UrlBuilder'
+import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
 import * as WorkoutActions from './workoutActionCreators'
 import * as CategoryActions from './categoryActionCreators'
@@ -53,6 +53,7 @@ export const getSearchResult = (result) => {
 export const fetchSearchResult = (queryString) => {
   const searchUrl = new UrlBuilder(WORKOUT_SEARCH_URL)
     .addSearchQueryString(queryString)
+    .addFilter(new Filter('published', true))
     .addWithMetaDataClause(['created_by'])
     .addWithClause(['category'])
     .toString()
