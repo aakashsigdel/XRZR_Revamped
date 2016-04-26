@@ -6,7 +6,8 @@ import {
   LOGIN_SUCCESS,
   LIKE_USER,
   FETCH_INSTAGRAM_PHOTOS,
-  SET_INSTAGRAM_PHOTOS
+  SET_INSTAGRAM_PHOTOS,
+  UPDATE_USER_LOCAL
 } from '../actions/actionTypes'
 import networkSwitches from './networkSwitches'
 import { mapUserApiKeysToAppKeys } from '../ApiUtilities'
@@ -77,6 +78,17 @@ const user = (state = initialState , action) => {
           [action.userId]: {
             ...state.data[action.userId],
             instagramPhotos: action.data
+          }
+        }
+      }
+    case UPDATE_USER_LOCAL:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.user.id]: {
+            ...state.data[action.user.id],
+            ...action.user
           }
         }
       }
