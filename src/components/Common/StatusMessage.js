@@ -4,40 +4,70 @@ import React, {
   StyleSheet,
   PropTypes,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Component
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const StatusMessage = (props) => {
-  return (
-    <Modal
-      animated
-      visible={props.visible}
-      transparent={props.transparent}
-    >
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={props.onExit}
-          style={styles.box}
-        >
-          <Icon
-            color='white'
-            name='ios-checkmark-empty'
-            size={55}
-            style={styles.icon}
-          />
-          <Text style={styles.statusText}>
-            {props.statusMessage}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </Modal>
-  )
+export default class StatusMessage extends Component {
+  dismisModalAfterTimeout () {
+    this.timeout = setTimeout(() => {
+      if (this._called) {
+        clearTimeout(this.timeout)
+        return
+      }
+      this.props.onExit()
+    }, 3000)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.visible) {
+      this.dismisModalAfterTimeout()
+    }
+  }
+  onExit () {
+    this._called = true
+    this.props.onExit()
+  }
+
+  render (props = this.props) {
+    return (
+      <Modal
+        animated
+        visible={props.visible}
+        transparent={props.transparent}
+      >
+        <View style={styles.container}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={props.onExit}
+            style={styles.areaExceptButton}
+          >
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={props.onExit}
+            style={styles.box}
+          >
+            <Icon
+              color='white'
+              name='ios-checkmark-empty'
+              size={55}
+              style={styles.icon}
+            />
+            <Text style={styles.statusText}>
+              {props.statusMessage}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    )
+  }
 }
 
-StatusMessage.default = {
+StatusMessage.defaultProps = {
   visible: true,
+  transparent: true
 }
 
 StatusMessage.propTypes = {
@@ -66,8 +96,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginTop: 5
+  },
+  areaExceptButton: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)'
   }
-
 })
-
-export default StatusMessage
