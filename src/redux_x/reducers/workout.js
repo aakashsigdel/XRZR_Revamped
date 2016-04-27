@@ -21,14 +21,13 @@ import networkSwitches from './networkSwitches'
 const workout = (state = defaultWorkout, action) => {
   switch (action.type) {
     case ADD_WORKOUT:
-      console.warn(action, 'addwrokout')
       return {
         ...state,
         data: {
           ...state.data,
           [action.workout.id]: {
             ...defaultWorkoutSkeleton,
-            title: action.workout.title,
+            ...action.workout,
             id: action.workout.id
           }
         }
@@ -135,16 +134,16 @@ const workout = (state = defaultWorkout, action) => {
 }
 
 const defaultWorkoutSkeleton = {
-  exercises: [1, 3, 48, 52, 49, 2, 61, 63, 43, 44],
+  title: '',
+  exercises: [],
   description: 'Add a description from settings',
   image_16x9: 'http://aakashsigdel.github.io/XRZR_Files/others/workoutPlaceholder.png',
   duration: '20 mins',
-  instructor: 0,
   workout_set: 4,
   pause_between_exercises: 10,
-  category: 'Yoga',
+  category: '',
   like: false,
-  published: true
+  published: false
 }
 
 const defaultWorkout = {

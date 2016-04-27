@@ -124,7 +124,6 @@ export const fetchWorkoutExercises = (workoutId) => {
         dispatch(workoutExercisesFetchSuccess(new Date().getTime()))
       })
       .catch((ex) => {
-        console.log(ex)
         console.error('Maintainance Please')
         dispatch(workoutExercisesFetchError(ex.response, new Date().getTime()))
       }

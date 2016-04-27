@@ -22,9 +22,8 @@ export default class NewWorkoutIndex extends Component {
   }
 
   _handleCreateWorkout (props) {
-    return () => {
-      props.addWorkout(this.state.workoutName)
-    }
+    console.log(this.state.workoutName)
+    props.addWorkout(this.state.workoutName)
   }
 
   _setWorkoutName (workoutName) {
@@ -44,7 +43,7 @@ export default class NewWorkoutIndex extends Component {
           setWorkoutName={(workoutName) => this._setWorkoutName(workoutName)}
         />
         <CreateWorkoutButton
-          handleCreateWorkout={this._handleCreateWorkout(this.props)}
+          handleCreateWorkout={() => this._handleCreateWorkout(this.props)}
         />
       </View>
     )

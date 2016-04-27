@@ -70,8 +70,7 @@ const defaultWorkoutOptions = {
   description: 'Go To Settings To Add Description'
 }
 export const postWorkout = (title) => {
-  console.warn('me postworkout', title)
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(postWorkoutStart())
     const POST_WORKOUT_URL = BASE_URL + '/workout'
     const data = {
@@ -87,14 +86,20 @@ export const postWorkout = (title) => {
           method: 'post',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'access-token': getState().login.access_token
           },
           body: JSON.stringify(data)
         }
       )
       .then((response) => response.json())
       .then((responseData) => {
-        dispatch(addWorkout({id: responseData.entities[0].id, title}))
+        const workout = {
+          id: responseData.entities[0].id,
+          title,
+          instructor: responseData.entities[0].created_by.split('/')[1]
+        }
+        dispatch(addWorkout(workout))
         dispatch(loadWorkout(responseData.entities[0].id))
         dispatch(postWorkoutEnd(responseData.entities))
       })
@@ -158,7 +163,6 @@ export const updateWorkout = ({id, workout}) => {
     dispatch(requestUpdateWorkout())
 
     let data = null
-    console.log(workout, 'mero okhuldunga')
     if (category) {
       data = {
         ...workout,
@@ -174,7 +178,6 @@ export const updateWorkout = ({id, workout}) => {
     dataSend.append('category', data.category)
     dataSend.append('image', {uri: workout.image, name: 'hello.jpg', type: 'image/jpg'})
 
-    console.log(dataSend, 'purse')
     fetch(BASE_URL + '/workout/' + id, {
       headers: {
         'Accept': 'application/json'
@@ -183,7 +186,6 @@ export const updateWorkout = ({id, workout}) => {
       body: dataSend
     })
     .then((response) => {
-      console.log('un parsed', response)
       return response.json()
     })
     .then((responseData) => {

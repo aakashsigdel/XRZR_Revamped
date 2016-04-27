@@ -15,6 +15,7 @@ class NewWorkout extends Component {
   componentDidUpdate (prevProps) {
     if (prevProps.state.workout.isFetching && !this.props.state.workout.isFetching) {
       this.props.navigator.push({name: 'workoutIntro'})
+      // alert('hello')
     }
   }
 
