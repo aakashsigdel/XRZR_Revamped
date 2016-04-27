@@ -20,6 +20,10 @@ import {populateWorkouts} from './workoutActionCreators'
 import {fetchCategoriesIfNeeded} from './categoryActionCreators'
 import {populatePureExercise} from './pureExerciseActionCreators'
 
+import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
+
 import ApiUtils from '../ApiUtilities'
 
 export const removeFavouriteExercises = (exerciseId) => {
@@ -169,24 +173,38 @@ export const fetchUserWorkouts = (userId) => {
   userId = 'ag5zfmJhY2tsZWN0LWFwcHIUCxIHYXBwdXNlchiAgICA_veZCgyiAQx4cnpyLlhSWlJBcHA'
   const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithMetaDataClause(['created_by'])
+    .addWithClause(['category'])
     .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
     .toString()
+
   return (dispatch) => {
     dispatch(userWorkoutsRequest())
 
     return fetch(userWorkoutsUrl)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertEntitiesToKeyBasedDict)
       .then((jsonResponse) => {
-        console.log(jsonResponse, 'hello hello sushil')
-        dispatch(userWorkoutsReceive())
-        dispatch(userWorkoutsLocal(Object.keys(jsonResponse)))
-        const workouts = ApiUtils.hydrateWorkouts(jsonResponse)
-        console.log('axe axe', workouts)
-        dispatch(populateWorkouts(workouts))
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+
+        return keyBasedData.data
       })
-      .catch(error => console.error(error))
+      .then(ApiUtils.hydrateWorkouts)
+      .then((workouts) => {
+        let workoutIds = Object.keys(workouts)
+
+        dispatch(WorkoutActions.populateWorkouts(workouts))
+        dispatch(userWorkoutsLocal(workoutIds))
+        dispatch(userWorkoutsReceive())
+      })
+      .catch((error) => console.error(error))
   }
 }
 
