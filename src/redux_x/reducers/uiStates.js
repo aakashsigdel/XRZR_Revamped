@@ -6,7 +6,8 @@ import {
   EDIT_FAVOURITE_EXERCISES_DONE,
   EDIT_FAVOURITE_EXERCISES_FLAG,
   MODAL_DELETE_EXERCISE,
-  EDIT_WORKOUT_EXERCISES_ON_PROGRESS
+  EDIT_WORKOUT_EXERCISES_ON_PROGRESS,
+  CHANGE_ORIENTATION
 } from '../actions/actionTypes'
 
 const uiStates = (state = defaultState, action) => {
@@ -41,6 +42,11 @@ const uiStates = (state = defaultState, action) => {
         ...state,
         editWorkoutExercisesOnProgress: action.onProgress
       }
+    case CHANGE_ORIENTATION:
+      return {
+        ...state,
+        orientation: action.orientation
+      }
   }
   return state
 }
@@ -52,7 +58,8 @@ const defaultState = {
   editWorkoutExercisesList: false,
   showModalDeleteExercise: false,
   newWorkoutId: null,
-  editWorkoutExercisesOnProgress: false              // network request for edit workout exercises
+  editWorkoutExercisesOnProgress: false,              // network request for edit workout exercises
+  orientation: null
 }
 
 export default uiStates

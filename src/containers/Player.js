@@ -142,7 +142,7 @@ class Player extends React.Component {
       }
 
       this.pauseTimer()
-      this.props.lockToPortrait()
+      //this.props.lockToPortrait()
 
       const nextVideoTitle = getNextVideoTitle(
         this.props.player,
@@ -211,6 +211,8 @@ class Player extends React.Component {
       props.playerActions.hideStatusModal()
     }
 
+    const orientationStatus = props.uiStates.orientation
+
     return (
       <View>
         <PlayerIndex
@@ -236,6 +238,8 @@ class Player extends React.Component {
           dismissStatusModal={dismissStatusModal}
           statusModalVisibility={modalVisibility}
           statusMessage={statusMessage}
+
+          orientationStatus={orientationStatus}
         />
       </View>
     )
@@ -305,7 +309,7 @@ function getNextVideoId (player, workouts) {
 function getNextVideoTitle (player, workouts, exercises, instructors) {
   const nextVideoId = getNextVideoId(player, workouts)
   const workout = getWorkoutExpanded(player, workouts, exercises, instructors)
-  if (!workout){
+  if (!workout) {
     return ''
   }
 
@@ -369,7 +373,8 @@ export default connect(
     player: state.player,
     exercises: state.exercise,
     workouts: state.workout.data,
-    instructors: state.user.data
+    instructors: state.user.data,
+    uiStates: state.uiStates
   }),
   _bindActionCreators
 )(Player)
