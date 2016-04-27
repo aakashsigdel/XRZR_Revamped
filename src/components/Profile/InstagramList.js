@@ -14,7 +14,7 @@ const _renderPhotos = (instagramPhotos, isFetchingInstagram) => {
     return <Text style={{color: 'grey'}}>Loading photos from instagram...</Text>
   }
 
-  if (instagramPhotos.length === 0) {
+  if (!instagramPhotos || instagramPhotos.length === 0) {
     return <Text style={{color: 'grey'}}>No Instagram Photos To Display</Text>
   }
   return instagramPhotos.map((photo, index) => {

@@ -74,7 +74,7 @@ class Player extends React.Component {
         icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30}/>,
           action: (_) => {
             this.props.lockToPortrait()
-            this.props.navigator.push({ name: 'addExerciseToWorkout', exerciseId: exercise.id })
+            this.props.navigator.push({ name: 'addExerciseToWorkout', exercise: exercise })
           }
       },
       {

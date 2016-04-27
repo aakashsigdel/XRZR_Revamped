@@ -89,7 +89,7 @@ class XRZRApp extends Component {
       case 'addExerciseToWorkout':
         return <AddExerciseToWorkout
           navigator={navigator}
-          exerciseId={route.exerciseId}
+          exercise={route.exercise}
         />
       case 'workoutIntro':
         return <WorkoutIntro navigator={navigator} />

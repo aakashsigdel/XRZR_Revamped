@@ -58,7 +58,6 @@ const ProfileNavigation = (props) => {
   }
 
   const _renderRightButton = ({currentUserId, userId, isInstructor}) => {
-    console.log(currentUserId, userId, isInstructor, 'navi')
     if (currentUserId === userId || isInstructor) {
       return navRight
     }

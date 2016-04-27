@@ -105,7 +105,11 @@ export const clearError = () => {
 }
 
 export const updateUser = (user) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const userWithId =  {
+      ...user,
+      id: getState().login.id
+    }
     dispatch(updateUserStart())
     getAccessTokenFromAsyncStorage()
     .then((response) => {
@@ -122,8 +126,7 @@ export const updateUser = (user) => {
       }
       awesomeFetchWrapper(data)
       .then(responseData => {
-        console.log(responseData, 'propetrty ko joparti')
-        dispatch(updateUserLocal(user))
+        dispatch(updateUserLocal(userWithId))
         dispatch(updateUserSuccess())
       })
       .catch(error => dispatch(updateUserFailure(error)))

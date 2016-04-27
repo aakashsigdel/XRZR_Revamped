@@ -58,7 +58,7 @@ export default class Settings extends Component {
             placeholder={'A few words about the exercises or guidelines.'}
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
             onChangeText={(text) => props.setDescription(text)}
-            value={props.user.description}
+            defaultValue={props.user.description}
             style={styles.textInput}
           />
           <Hr />
