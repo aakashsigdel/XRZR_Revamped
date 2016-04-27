@@ -5,7 +5,8 @@ import {
   EDIT_FAVOURITE_EXERCISES_DONE,
   MODAL_DELETE_EXERCISE,
   SET_NEW_WORKOUT_ID,
-  EDIT_WORKOUT_EXERCISES_ON_PROGRESS
+  EDIT_WORKOUT_EXERCISES_ON_PROGRESS,
+  CHANGE_ORIENTATION
 } from './actionTypes'
 
 export const switchBrowseTab = (selectedBrowseTab) => {
@@ -51,5 +52,12 @@ export const setEditWorkoutExercisesOnProgress = (onProgress) => {
   return {
     type: EDIT_WORKOUT_EXERCISES_ON_PROGRESS,
     onProgress
+  }
+}
+
+export const changeOrientation = (orientation) => {
+  return {
+    type: CHANGE_ORIENTATION,
+    orientation
   }
 }

@@ -20,6 +20,10 @@ import {populateWorkouts} from './workoutActionCreators'
 import {fetchCategoriesIfNeeded} from './categoryActionCreators'
 import {populatePureExercise} from './pureExerciseActionCreators'
 
+import * as WorkoutActions from './workoutActionCreators'
+import * as CategoryActions from './categoryActionCreators'
+import * as UserActions from './userActionCreators'
+
 import ApiUtils from '../ApiUtilities'
 
 export const removeFavouriteExercises = (exerciseId) => {
@@ -143,7 +147,6 @@ export const fetchFavouriteExercises = () => {
     .addWithMetaDataClause(['asset'])
     .addFilter(new Filter('sys_asset_type', 'exercise'))
     .toString()
-  console.log("fetching favorite exercises")
   return (dispatch) => {
     dispatch(fetchFavouriteExercisesRequest())
 
@@ -167,23 +170,41 @@ export const fetchFavouriteExercises = () => {
 }
 
 export const fetchUserWorkouts = (userId) => {
+  userId = 'ag5zfmJhY2tsZWN0LWFwcHIUCxIHYXBwdXNlchiAgICA_veZCgyiAQx4cnpyLlhSWlJBcHA'
   const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
-  // .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
+    .addWithMetaDataClause(['created_by'])
+    .addWithClause(['category'])
+    .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
     .toString()
-  console.log('fetching user\'s workout', 'userid = ', userId, userWorkoutsUrl)
+
   return (dispatch) => {
     dispatch(userWorkoutsRequest())
 
     return fetch(userWorkoutsUrl)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertEntitiesToKeyBasedDict)
       .then((jsonResponse) => {
-        console.log(jsonResponse)
-        dispatch(userWorkoutsReceive())
-        dispatch(userWorkoutsLocal(jsonResponse))
+        let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
+
+        let categories = keyBasedData['category']
+        categories = ApiUtils.hydrateCategories(categories)
+        dispatch(CategoryActions.addCategory(categories))
+
+        let instructors = keyBasedData['created_by']
+        instructors = ApiUtils.hydrateInstructors(instructors)
+        dispatch(UserActions.populateUsers(instructors))
+
+        return keyBasedData.data
       })
-      .catch(error => console.error(error))
+      .then(ApiUtils.hydrateWorkouts)
+      .then((workouts) => {
+        let workoutIds = Object.keys(workouts)
+
+        dispatch(WorkoutActions.populateWorkouts(workouts))
+        dispatch(userWorkoutsLocal(workoutIds))
+        dispatch(userWorkoutsReceive())
+      })
+      .catch((error) => console.error(error))
   }
 }
 

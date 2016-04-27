@@ -55,10 +55,9 @@ class Player extends React.Component {
   }
 
   onNavigate (route, exercise) {
-    const actionElements = [
-      {
-        name: 'EDIT EXERCISE',
-        icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25}/>,
+    const editExerciseElement = {
+      name: 'EDIT EXERCISE',
+      icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25}/>,
         action: () => {
           this.props.lockToPortrait()
           this.props.navigator.push({
@@ -68,7 +67,10 @@ class Player extends React.Component {
             exerciseUpdateId: exercise.exerciseId
           })
         }
-      },
+    }
+    let actionElements = []
+    exercise.instructor.id === this.props.login.id ? actionElements.push(editExerciseElement) : null
+    actionElements = actionElements.concat([
       {
         name: 'ADD EXERCISE TO A WORKOUT',
         icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30}/>,
@@ -80,16 +82,16 @@ class Player extends React.Component {
       {
         name: (exercise.like) ? 'UNSAVE EXERCISE' : 'SAVE EXERCISE',
         icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/>,
-        action: () => {
-          this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
-        }
+          action: () => {
+            this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
+          }
       },
       {
         name: 'GO TO ' + exercise.instructor.name.toUpperCase(),
         icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={40}/>,
-        action: () => this.props.navigator.push({name: 'profile', userId: exercise.instructor.id})
+          action: () => this.props.navigator.push({name: 'profile', userId: exercise.instructor.id})
       }
-    ]
+    ])
 
     const actionTitle = {
       title: exercise.title.toUpperCase(),
@@ -142,7 +144,7 @@ class Player extends React.Component {
       }
 
       this.pauseTimer()
-      this.props.lockToPortrait()
+      //this.props.lockToPortrait()
 
       const nextVideoTitle = getNextVideoTitle(
         this.props.player,
@@ -211,6 +213,8 @@ class Player extends React.Component {
       props.playerActions.hideStatusModal()
     }
 
+    const orientationStatus = props.uiStates.orientation
+
     return (
       <View>
         <PlayerIndex
@@ -236,6 +240,8 @@ class Player extends React.Component {
           dismissStatusModal={dismissStatusModal}
           statusModalVisibility={modalVisibility}
           statusMessage={statusMessage}
+
+          orientationStatus={orientationStatus}
         />
       </View>
     )
@@ -305,7 +311,7 @@ function getNextVideoId (player, workouts) {
 function getNextVideoTitle (player, workouts, exercises, instructors) {
   const nextVideoId = getNextVideoId(player, workouts)
   const workout = getWorkoutExpanded(player, workouts, exercises, instructors)
-  if (!workout){
+  if (!workout) {
     return ''
   }
 
@@ -369,7 +375,9 @@ export default connect(
     player: state.player,
     exercises: state.exercise,
     workouts: state.workout.data,
-    instructors: state.user.data
+    instructors: state.user.data,
+    uiStates: state.uiStates,
+    login: state.login
   }),
   _bindActionCreators
 )(Player)

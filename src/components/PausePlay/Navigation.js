@@ -9,7 +9,7 @@ import CommonNavigation from '../Navigation/Navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const Navigation = (props) => {
-  const leftIcon = (
+  return (
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={props.onCloseButton}
@@ -22,20 +22,13 @@ const Navigation = (props) => {
       />
     </TouchableOpacity>
   )
-
-  return (
-    <CommonNavigation
-      left={{custom: leftIcon}}
-      mid={{}}
-      right={{}}
-    />
-  )
 }
 
 var styles = StyleSheet.create({
   roundIcon: {
-    marginBottom: -10,
-    marginLeft: 5
+    position: 'absolute',
+    left: 10,
+    top: 15
   }
 })
 

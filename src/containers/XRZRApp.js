@@ -15,6 +15,7 @@ import * as workoutActionCreators from '../redux_x/actions/workoutActionCreators
 import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as categoryActionCreators from '../redux_x/actions/categoryActionCreators'
 import { loginSuccess } from '../redux_x/actions/loginActionCreators'
+import {changeOrientation} from '../redux_x/actions/uiStatesActionCreators'
 
 import Login from './Login'
 import Player from './Player'
@@ -29,6 +30,7 @@ import Premium from './Premium'
 import Profile from './Profile'
 import FavouriteExercises from './FavouriteExercises'
 import FavouriteWorkouts from './FavouriteWorkouts'
+import MyWorkouts from './MyWorkouts'
 import WorkoutCompletion from './WorkoutCompletion'
 import ExerciseProperties from './ExerciseProperties'
 import WorkoutSettings from './WorkoutSettings'
@@ -41,9 +43,15 @@ import PausePlay from './PausePlay'
 import NewExerciseUploading from './NewExerciseUploading'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 import Test from './Test'
+
 class XRZRApp extends Component {
   componentDidMount () {
     this.lockToPortrait()
+    Orientation.addOrientationListener(this.props.actions.changeOrientation)
+  }
+
+  componentWillUnmount () {
+    Orientation.removeOrientationListener(this.props.actions.changeOrientation)
   }
 
   lockToPortrait () {
@@ -153,6 +161,10 @@ class XRZRApp extends Component {
           exerciseUpdateId={route.exerciseUpdateId}
           isNewExercise={route.isNewExercise}
         />
+      case 'myWorkouts':
+        return <MyWorkouts
+          navigator={navigator}
+        />
       case 'test':
         return <Test />
       default:
@@ -198,6 +210,7 @@ const _mapDispatchToProps = (dispatch) => {
   actions.exerciseActions = bindActionCreators(exerciseActionCreators, dispatch)
   actions.categoryActions = bindActionCreators(categoryActionCreators, dispatch)
   actions.loginSuccess = bindActionCreators(loginSuccess, dispatch)
+  actions.changeOrientation = bindActionCreators(changeOrientation, dispatch)
 
   return { actions }
 }

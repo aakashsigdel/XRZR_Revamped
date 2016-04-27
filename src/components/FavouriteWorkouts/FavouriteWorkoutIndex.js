@@ -26,6 +26,7 @@ const FavouriteWorkoutIndex = (props) => {
       <FavouriteWorkoutListing
         favouriteWorkouts={props.favouriteWorkouts}
         loadWorkout={props.loadWorkout}
+        titleText={props.titleText}
       />
     </View>
   )

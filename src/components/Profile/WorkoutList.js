@@ -18,7 +18,7 @@ const WorkoutList = (props) => {
     if (rowData.error) {
       return (
         <View style={styles.row}>
-          <Text style={styles.workoutTitle}>
+          <Text style={[styles.workoutTitle, styles.errorText]}>
             {rowData.error}
           </Text>
         </View>
@@ -82,6 +82,9 @@ const styles = StyleSheet.create({
     fontFamily: 'SFUIDisplay-Regular',
     fontSize: 10,
     color: 'white'
+  },
+  errorText: {
+    color: 'grey'
   }
 })
 

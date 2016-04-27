@@ -9,6 +9,20 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Hr from '../Common/Hr'
 
+const renderIcon = (item) => {
+  if (item.iconImage) {
+    return item.iconImage
+  } else {
+    return (
+      <Icon
+        color='rgba(255,255,255,0.6)'
+        name={item.icon}
+        size={20}
+      />
+    )
+  }
+}
+
 export const ListingMenu = (props) => {
   let menuItems = props.items.map(
     (item, index) => (
@@ -18,11 +32,12 @@ export const ListingMenu = (props) => {
       >
         <View style={styles.itemContainer}>
           <View style={[styles.icon, styles.textContainer]}>
-            <Icon
-              color='rgba(255,255,255,0.6)'
-              name={item.icon}
-              size={20}
-            />
+            {renderIcon(item)}
+            {/* <Icon */}
+            {/*   color='rgba(255,255,255,0.6)' */}
+            {/*   name={item.icon} */}
+            {/*   size={20} */}
+            {/* /> */}
           </View>
           <Text style={[styles.titleText, styles.textContainer]}>
             {item.title.toUpperCase()}

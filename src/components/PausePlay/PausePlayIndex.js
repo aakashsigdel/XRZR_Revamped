@@ -22,19 +22,21 @@ export default class PausePlayIndex extends Component {
       countDownSize: 175
     }
     this.pauseTime = props.pauseTime
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   componentDidMount () {
     Orientation.unlockAllOrientations()
+    this._orientationDidChange(this.props.orientation)
     Orientation.addOrientationListener(this._orientationDidChange.bind(this))
   }
 
   componentWillMount () {
-    Orientation.getOrientation((err, orientation) => {
-      this.setState({
-        orientationStatus: orientation
-      })
-    })
+    //Orientation.getOrientation((err, orientation) => {
+    //  this.setState({
+    //    orientationStatus: orientation
+    //  })
+    //})
 
     const delay = () => {
       if (this.state.count >= 100) {
@@ -53,7 +55,7 @@ export default class PausePlayIndex extends Component {
   _orientationDidChange (orientation) {
     if (orientation === ORIENTATION.LANDSCAPE) {
       this.setState({
-        countDownSize: 0.262 * VIEWPORT.width
+        countDownSize: 0.29 * VIEWPORT.width
       })
     } else if (orientation === ORIENTATION.PORTRAIT) {
       this.setState({
@@ -78,6 +80,7 @@ export default class PausePlayIndex extends Component {
 
   componentWillUnmount () {
     this.timeout ? window.clearTimeout(this.timeout) : null
+    Orientation.removeOrientationListener(this._orientationDidChange.bind(this))
   }
 
   render () {
@@ -109,10 +112,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#B61B9F',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: 10
   },
   titleTextContainer: {
-    flex: 2.3,
+    flex: 2.5,
     justifyContent: 'flex-end'
   },
   titleText: {
@@ -128,6 +132,6 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.5)',
     fontSize: 14,
     fontFamily: 'SFUIText-Regular',
-    flex: 3.46
+    flex: 2
   }
 })

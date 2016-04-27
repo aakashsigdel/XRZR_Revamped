@@ -5,8 +5,14 @@ import React, {
   PropTypes
 } from 'react-native'
 import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
+import Orientation from 'react-native-orientation'
+import {connect} from 'react-redux'
 
-export default class PausePlay extends Component {
+class PausePlay extends Component {
+  componentDidMount () {
+    Orientation.unlockAllOrientations()
+  }
+
   render () {
     const onCloseButton = () => {
       this.props.onCloseButton()
@@ -20,6 +26,7 @@ export default class PausePlay extends Component {
         nextExercise={this.props.nextExercise}
         onCloseButton={onCloseButton}
         onCountCompletion={onCountCompletion}
+        orientation={this.props.uiStates.orientation}
         pauseTime={this.props.pauseTime}
         title={this.props.title}
       />
@@ -37,3 +44,11 @@ PausePlay.defaultProps = {
   pauseTime: 10,
   title: 'STARTING IN'
 }
+
+export default connect(
+  (state) => {
+    return {
+      uiStates: state.uiStates
+    }
+  }
+)(PausePlay)

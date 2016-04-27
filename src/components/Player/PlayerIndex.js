@@ -18,36 +18,12 @@ import PlayerController from './PlayerController'
 import StatusMessage from '../../components/Common/StatusMessage'
 
 class VideoScreen extends Component {
-  constructor () {
-    super()
-    this.state = {
-      // TODO get present status
-      orientationStatus: ORIENTATION.PORTRAIT
-    }
-  }
-  componentWillMount () {
-    Orientation.getOrientation((err, orientation) => {
-      this.setState({
-        orientationStatus: orientation
-      })
-    })
+  constructor (props) {
+    super(props)
   }
 
   componentDidMount () {
     Orientation.unlockAllOrientations()
-    Orientation.addOrientationListener(this._orientationDidChange.bind(this))
-  }
-
-  _orientationDidChange (orientation) {
-    if (orientation === ORIENTATION.LANDSCAPE) {
-      this.setState({
-        orientationStatus: ORIENTATION.LANDSCAPE
-      })
-    } else if (orientation === ORIENTATION.PORTRAIT) {
-      this.setState({
-        orientationStatus: ORIENTATION.PORTRAIT
-      })
-    }
   }
 
   renderLandScape (props) {
@@ -123,7 +99,7 @@ class VideoScreen extends Component {
   }
 
   render () {
-    if (this.state.orientationStatus === ORIENTATION.LANDSCAPE) {
+    if (this.props.orientationStatus === ORIENTATION.LANDSCAPE) {
       return this.renderLandScape(this.props)
     }
     return this.renderPortrait(this.props)
