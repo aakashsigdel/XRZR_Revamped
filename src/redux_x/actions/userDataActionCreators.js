@@ -143,7 +143,6 @@ export const fetchFavouriteExercises = () => {
     .addWithMetaDataClause(['asset'])
     .addFilter(new Filter('sys_asset_type', 'exercise'))
     .toString()
-  console.log("fetching favorite exercises")
   return (dispatch) => {
     dispatch(fetchFavouriteExercisesRequest())
 
@@ -167,10 +166,11 @@ export const fetchFavouriteExercises = () => {
 }
 
 export const fetchUserWorkouts = (userId) => {
+  userId = 'ag5zfmJhY2tsZWN0LWFwcHIUCxIHYXBwdXNlchiAgICA_veZCgyiAQx4cnpyLlhSWlJBcHA'
   const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
-  // .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
+    .addWithMetaDataClause(['created_by'])
+    .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
     .toString()
-  console.log('fetching user\'s workout', 'userid = ', userId, userWorkoutsUrl)
   return (dispatch) => {
     dispatch(userWorkoutsRequest())
 
@@ -179,9 +179,12 @@ export const fetchUserWorkouts = (userId) => {
       .then((response) => response.json())
       .then(ApiUtils.convertEntitiesToKeyBasedDict)
       .then((jsonResponse) => {
-        console.log(jsonResponse)
+        console.log(jsonResponse, 'hello hello sushil')
         dispatch(userWorkoutsReceive())
-        dispatch(userWorkoutsLocal(jsonResponse))
+        dispatch(userWorkoutsLocal(Object.keys(jsonResponse)))
+        const workouts = ApiUtils.hydrateWorkouts(jsonResponse)
+        console.log('axe axe', workouts)
+        dispatch(populateWorkouts(workouts))
       })
       .catch(error => console.error(error))
   }

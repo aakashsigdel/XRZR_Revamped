@@ -15,7 +15,7 @@ import * as UserActions from '../redux_x/actions/userActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 import { awesomeFetchWrapper } from '../utilities/utility'
-import { fetchFavouriteWorkouts } from '../redux_x/actions/userDataActionCreators'
+import { fetchUserWorkouts } from '../redux_x/actions/userDataActionCreators'
 
 const goToWorkoutIntro = (props, workoutId) => {
   props.playerDispatchers.loadWorkout(workoutId)
@@ -98,7 +98,7 @@ class Profile extends Component {
   componentDidMount () {
     let promiseArray = []
     promiseArray[0] = this.props.userActionDispatchers.fetchUser(this.props.userId)
-    promiseArray[1] = this.props.fetchFavouriteWorkouts()
+    promiseArray[1] = this.props.fetchUserWorkouts(this.props.userId)
     Promise.all(promiseArray)
     .then(() => {
       if (this.props.user[this.props.userId].instagramToken) {
@@ -177,18 +177,16 @@ const favouriteWorkoutsManager = (workoutIds, workouts, instructors)  =>{
 const mapStateToProps = (state) => {
   return {
     user: state.user.data,
-    fetchingCompeleteUser: state.user.fetchingCompelete,
     workouts: state.workout.data,
     login: state.login,
-    fetchingCompeleteWorkouts: state.userData.favouriteWorkouts.fetchingCompelete,
-    favouriteWorkouts: state.userData.favouriteWorkouts.data
+    favouriteWorkouts: state.userData.userWorkouts.data
   }
 }
 export default connect(
   (state) => mapStateToProps(state),
     (dispatch) => ({
       playerDispatchers: bindActionCreators(VideoActionCreators, dispatch),
-      fetchFavouriteWorkouts: bindActionCreators(fetchFavouriteWorkouts, dispatch),
+      fetchUserWorkouts: bindActionCreators(fetchUserWorkouts, dispatch),
       userActionDispatchers: bindActionCreators(UserActions, dispatch)
     })
 )(Profile)

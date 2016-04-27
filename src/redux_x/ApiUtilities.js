@@ -72,6 +72,7 @@ let ApiUtils = {
     jsonResponse.entities.map(
       (entity) => {
         let entityData = entity.entity
+        console.log(entity, 'entity')
         response.data[entity.id] = entityData
 
         let asset = entity.asset

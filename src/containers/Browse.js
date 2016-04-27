@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react-native'
+import React, {PropTypes, Image} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import BrowseIndex from '../components/browse/BrowseIndex'
@@ -117,7 +117,18 @@ function favouriteListingManager (navigator) {
     icon: 'star',
     title: 'EXERCISES',
     onPress: () => navigator.push({name: 'favouriteExercises'})
+  }, {
+    icon: 'star',
+    iconImage: (
+      <Image
+        source={require('../../assets/images/history.png')}
+        style={{height: 21, width: 21, resizeMode: 'contain'}}
+      />
+    ),
+    title: 'MY WORKOUTS',
+    onPress: () => navigator.push({name: 'myWorkouts'})
   }
+
   ]
   return items
 }
