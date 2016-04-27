@@ -8,14 +8,20 @@ import { loadWorkout } from '../redux_x/actions/videoActionCreators'
 import NewWorkoutIndex from '../components/NewWorkout/NewWorkoutIndex'
 
 class NewWorkout extends Component {
+  constructor () {
+    super()
+    this.count = 0
+  }
   addWorkout (title) {
     this.props.actions.postWorkout(title)
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.state.workout.isFetching && !this.props.state.workout.isFetching) {
-      this.props.navigator.push({name: 'workoutIntro'})
-      // alert('hello')
+      if (this.count === 0) {
+        this.props.navigator.replace({name: 'workoutIntro'})
+        ++this.count
+      }
     }
   }
 
