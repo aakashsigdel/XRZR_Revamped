@@ -11,7 +11,7 @@ const FavouriteWorkoutListing = (props) => {
   return (
     <View style={ styles.container }>
       <Text style={styles.title}>
-        FAVOURITE WORKOUTS
+        {props.titleText}
       </Text>
       <WorkoutList
         data={props.favouriteWorkouts}
@@ -21,6 +21,9 @@ const FavouriteWorkoutListing = (props) => {
   )
 }
 
+FavouriteWorkoutListing.defaultProps = {
+  titleText: 'FAVOURITE WORKOUTS'
+}
 FavouriteWorkoutListing.propTypes = {}
 const styles = StyleSheet.create({
   container: {

@@ -145,7 +145,6 @@ export const likeUser = (userId, like) => {
 export const fetchInstagramPhotos = (instagramId, userId) => {
   return (dispatch, getState) => {
     dispatch(fetchInstagramPhotosRequest())
-    debugger
     const fetchParams = {
       url: 'https://api.instagram.com/v1/users/'
       + instagramId
@@ -156,7 +155,6 @@ export const fetchInstagramPhotos = (instagramId, userId) => {
     .then(response => {
       dispatch(setInstagramPhotos(response.data, userId))
       dispatch(fetchInstagramPhotosSuccess())
-      console.log('get out')
     })
     .catch((error) => {
       dispatch(fetchInstagramPhotosFailure())

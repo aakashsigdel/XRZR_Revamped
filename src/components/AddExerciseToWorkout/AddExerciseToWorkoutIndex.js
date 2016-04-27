@@ -13,6 +13,27 @@ import Listing from './Listing'
 import Hr from '../Common/Hr'
 
 const AddExerciseToWorkoutIndex = (props) => {
+  if (props.workouts.length === 0) {
+    return (
+      <View
+        style={styles.container}>
+        <View style={styles.topBar}>
+          <TouchableOpacity
+            onPress={props.navigator.pop}
+          >
+            <Icon name='close'
+              size={35}
+              backgroundColor='transparent'
+              color='rgba(255,255,255,0.6)'
+            />
+          </TouchableOpacity>
+          <Text style={styles.topBarText}>ADD TO WORKOUT</Text>
+        </View>
+        <Hr />
+        <Text style={styles.errorText}>No workous to display</Text>
+      </View>
+    )
+  }
   return (
     <View
       style={styles.container}>
@@ -38,14 +59,6 @@ const AddExerciseToWorkoutIndex = (props) => {
           setWorkoutId={props.setWorkoutId}
         />
       </View>
-      {/* <TouchableOpacity */}
-      {/*   onPress={props.handleNewWorkoutPress} */}
-      {/*   style={styles.newWorkoutButton} */}
-      {/* > */}
-      {/*   <Text style={styles.newWorkoutText}> */}
-      {/*     {'NEW WORKOUT'} */}
-      {/*   </Text> */}
-      {/* </TouchableOpacity> */}
     </View>
   )
 }
@@ -81,6 +94,11 @@ const styles = StyleSheet.create({
   },
   newWorkoutText: {
     color: 'white'
+  },
+  errorText: {
+    marginLeft: 20,
+    fontSize: 20,
+    color: 'grey'
   }
 })
 

@@ -30,6 +30,7 @@ import Premium from './Premium'
 import Profile from './Profile'
 import FavouriteExercises from './FavouriteExercises'
 import FavouriteWorkouts from './FavouriteWorkouts'
+import MyWorkouts from './MyWorkouts'
 import WorkoutCompletion from './WorkoutCompletion'
 import ExerciseProperties from './ExerciseProperties'
 import WorkoutSettings from './WorkoutSettings'
@@ -159,6 +160,10 @@ class XRZRApp extends Component {
           update={route.update}
           exerciseUpdateId={route.exerciseUpdateId}
           isNewExercise={route.isNewExercise}
+        />
+      case 'myWorkouts':
+        return <MyWorkouts
+          navigator={navigator}
         />
       case 'test':
         return <Test />
