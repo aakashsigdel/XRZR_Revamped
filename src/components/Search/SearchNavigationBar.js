@@ -34,6 +34,10 @@ const SearchNavigationBar = (props) => {
           style={[styles.searcher, styles.textInput]}
           value={props.searchText}
           onChangeText={props.onSearchInput}
+
+          onSubmitEditing={props.onSearchButton}
+          returnKeyType='search'                  // IOS ONlY
+          selectTextOnFocus
         />
         <TouchableOpacity
           onPress={props.onSearchButton}
