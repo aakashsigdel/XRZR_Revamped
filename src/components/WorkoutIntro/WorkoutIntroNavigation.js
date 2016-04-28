@@ -26,29 +26,35 @@ const WorkoutIntroNavigation = (props) => {
   let rightIcon = {
     custom: <View>
       <View style={styles.rightIcons}>
-        <TouchableOpacity onPress={props.onDownloadButton}>
-          <Image
-            source={require('../../../assets/images/download.png')}
-            style={[styles.icon, styles.download]}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.onLikePress(!props.workout.like)}>
+        {/* <TouchableOpacity onPress={props.onDownloadButton}> */}
+        {/*   <Image */}
+        {/*     source={require('../../../assets/images/download.png')} */}
+        {/*     style={[styles.icon, styles.download]} */}
+        {/*   /> */}
+        {/* </TouchableOpacity> */}
+      <TouchableOpacity
+        onPress={() => props.onLikePress(!props.workout.like)}
+        style={{marginRight: 15}}
+      >
           {
             props.workout.like
               ? <FIcon name='heart' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
               : <FIcon name='heart-o' size={25} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.heart]} />
           }
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.handlePressOptions()} style={{marginTop: 3}}>
-          {/* <Icon name='android-more-vertical' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} /> */}
+        <TouchableOpacity
+          onPress={() => props.handlePressOptions()}
+          style={{flexDirection: 'row', marginTop: 3}}
+        >
+          {/* <Icon name='android-more-horizontal' size={30} color='rgba(255,255,255,0.5)' style={[styles.icons, styles.more]} /> */}
           <Text style={styles.dotText} >
-            {'■'}
+            {'•'}
           </Text>
           <Text style={styles.dotText} >
-            {'■'}
+            {'•'}
           </Text>
           <Text style={styles.dotText} >
-            {'■'}
+            {'•'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -65,12 +71,12 @@ const WorkoutIntroNavigation = (props) => {
 const styles = StyleSheet.create({
   container: {},
   dotText: {
-    lineHeight: 8,
-    fontSize: 5,
-    letterSpacing: 1,
     color: 'white',
+    fontSize: 15,
     opacity: 0.7,
-    paddingLeft: 15
+    paddingLeft: 2,
+    paddingTop: 5,
+    paddingBottom: 5
   },
   rightIcons: {
     flexDirection: 'row',
