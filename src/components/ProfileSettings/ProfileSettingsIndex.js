@@ -25,6 +25,9 @@ export default class ProfileSettingsIndex extends Component {
   render () {
     return (
       <View style={styles.container}>
+        <Navigation
+          navigator={this.props.navigator}
+        />
         <KeyboardAwareScrollView ref='scroll'>
         <View style={styles.cover}>
           <Cover
@@ -44,9 +47,6 @@ export default class ProfileSettingsIndex extends Component {
       </KeyboardAwareScrollView>
         <Button
           onSaveButton={this.props.onSaveButton}
-        />
-        <Navigation
-          navigator={this.props.navigator}
         />
       </View>
     )

@@ -23,7 +23,6 @@ const ProfileNavigation = (props) => {
     <Navigation
       left={navLeft}
       mid={{}}
-      position='absolute'
       right={{}}
     />
   )

@@ -27,7 +27,7 @@ const ProfileNavigation = (props) => {
     ? <Icon
       name='android-more-horizontal'
       size={35}
-      color='white'
+      color='grey'
       backgroundColor='transparent'
     />
       : <FIcon
@@ -75,7 +75,6 @@ const ProfileNavigation = (props) => {
       left={navLeft}
       mid={{}}
       right={_renderRightButton(rightParams)}
-      position='absolute'
     />
   )
 }

@@ -17,7 +17,7 @@ const store = createStore(
     applyMiddleware(
       thunkMiddleware
     ),
-    devTools()
+    devTools({name: 'aakash'})
   )
 )
 

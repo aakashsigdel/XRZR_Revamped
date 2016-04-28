@@ -19,6 +19,13 @@ const ProfileIndex = (props) => {
     <View
       style={{height: VIEWPORT.height, width: VIEWPORT.width}}
     >
+      <ProfileNavigation
+        user={props.user}
+        handlePressOptions={props.handlePressOptions}
+        navigator={props.navigator}
+        currentUserId={props.currentUserId}
+        rightIcon={props.rightIcon}
+      />
       <ScrollView
       >
         <View style={styles.cover}>
@@ -52,13 +59,6 @@ const ProfileIndex = (props) => {
             navigator={props.navigator}
           />
         </View>
-        <ProfileNavigation
-          user={props.user}
-          handlePressOptions={props.handlePressOptions}
-          navigator={props.navigator}
-          currentUserId={props.currentUserId}
-          rightIcon={props.rightIcon}
-        />
       </ScrollView>
     </View>
   )
