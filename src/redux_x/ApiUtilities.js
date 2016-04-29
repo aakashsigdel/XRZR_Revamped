@@ -68,16 +68,31 @@ let ApiUtils = {
   },
 
   convertEntitiesAndAssets: (jsonResponse) => {
-    let response = {data:{}, asset: {}}
+    let response = {data: {}, asset: {}}
     jsonResponse.entities.map(
       (entity) => {
         let entityData = entity.entity
-        console.log(entity, 'entity')
         response.data[entity.id] = entityData
 
         let asset = entity.asset
         response.asset[asset.id] = asset.entity
+        response.asset[asset.id]['id'] = asset.id
         response.asset[asset.id]['created_by'] = asset.created_by
+      }
+    )
+    return response
+  },
+
+  convertFavouriteResponseToAssets: (jsonResponse) => {
+    let response = {}
+    jsonResponse.entities.map(
+      (entity) => {
+        let asset = entity.asset
+        response[asset.id] = asset.entity
+        response[asset.id]['id'] = asset.id
+        response[asset.id]['created_by'] = asset.created_by
+        response[asset.id]['favoriteId'] = entity.id
+        response[asset.id]['favorited'] = entity.entity.favorited
       }
     )
     return response
@@ -197,7 +212,8 @@ let ApiUtils = {
 }
 
 // Because javascript is very crazy about not doing this
-ApiUtils.handleMyFavoriteActionFromResponse = ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils)
+//ApiUtils.handleMyFavoriteActionFromResponse = ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils)
+//ApiUtils.convertFavEntitiesAndAssets = ApiUtils.convertFavEntitiesAndAssets.bind(ApiUtils)
 
 export function hydrateWorkout (workoutId, workout) {
   let validWorkout = {...workout}

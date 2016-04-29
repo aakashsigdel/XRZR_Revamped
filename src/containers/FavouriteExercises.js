@@ -7,6 +7,8 @@ import FIcon from 'react-native-vector-icons/FontAwesome'
 
 import * as UiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as UserDataActionCreators from '../redux_x/actions/userDataActionCreators'
+import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
+
 import FavouriteExercisesIndex from '../components/FavouriteExercises/FavouriteExercisesIndex'
 
 class FavouriteExercises extends React.Component {
@@ -22,7 +24,10 @@ class FavouriteExercises extends React.Component {
     const onBackButton = props.navigator.pop
     const onDoneButton = props.uiDispatchers.doneEditFavouriteExercisesFlag
     const onEditButton = props.uiDispatchers.editFavouriteExercisesFlag
-    const onRemoveButton = props.userDataDispatchers.removeFavouriteExercises
+    const onRemoveButton = (exerciseId) => {
+      props.userDataDispatchers.removeFavouriteExercises(exerciseId)
+      props.exerciseDispatchers.likeExercise(exerciseId, false)
+    }
 
     // @ TODO handle this thing later
     const handleEditExercise = (props) => {
@@ -95,7 +100,8 @@ export default connect(
   (dispatch) => {
     return {
       uiDispatchers: bindActionCreators(UiActionCreators, dispatch),
-      userDataDispatchers: bindActionCreators(UserDataActionCreators, dispatch)
+      userDataDispatchers: bindActionCreators(UserDataActionCreators, dispatch),
+      exerciseDispatchers: bindActionCreators(ExerciseActionCreators, dispatch)
     }
   }
 )(FavouriteExercises)

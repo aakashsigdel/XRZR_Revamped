@@ -26,7 +26,7 @@ import * as UserActions from './userActionCreators'
 
 import ApiUtils from '../ApiUtilities'
 
-export const removeFavouriteExercises = (exerciseId) => {
+export const removeFavouriteExercises = (exerciseId, favouriteId) => {
   return {
     type: REMOVE_FAVOURITE_EXERCISE,
     exerciseId
@@ -106,17 +106,23 @@ const fetchFavouriteExercisesError = (errorMessage, receivedTime) => {
 }
 
 export const fetchFavouriteWorkouts = () => {
-  const favWorkoutUrl = new UrlBuilder(FAVOURITE_BASE_URL)
-    .addWithMetaDataClause(['asset'])
-    .addFilter(
-      new AndFilter(
-        new Filter('sys_asset_type', 'workout'),
-        new Filter('sys_asset_type', 'workout')
-      )
-    )
-    .toString()
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const userId = store.login.id
 
-  return (dispatch) => {
+    const favWorkoutUrl = new UrlBuilder(FAVOURITE_BASE_URL)
+      .addWithMetaDataClause(['asset'])
+      .addFilter(
+        new AndFilter(
+          new AndFilter(
+            new Filter('sys_asset_type', 'workout'),
+            new Filter('favorited', true)
+          ),
+          new Filter('sys_created_by', userId)
+        )
+      )
+      .toString()
+
     dispatch(fetchFavouriteWorkoutsRequest())
     return fetch(favWorkoutUrl)
       .then(ApiUtils.checkStatus2xx)
@@ -143,19 +149,30 @@ export const fetchFavouriteWorkouts = () => {
 }
 
 export const fetchFavouriteExercises = () => {
-  const favExerciseUrl = new UrlBuilder(FAVOURITE_BASE_URL)
-    .addWithMetaDataClause(['asset'])
-    .addFilter(new Filter('sys_asset_type', 'exercise'))
-    .toString()
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const userId = store.login.id
+
+    const favExerciseUrl = new UrlBuilder(FAVOURITE_BASE_URL)
+      .addWithMetaDataClause(['asset'])
+      .addFilter(
+        new AndFilter(
+          new AndFilter(
+            new Filter('sys_asset_type', 'exercise'),
+            new Filter('favorited', true)
+          ),
+          new Filter('sys_created_by', userId)
+        )
+      )
+      .toString()
+
     dispatch(fetchFavouriteExercisesRequest())
 
     return (fetch(favExerciseUrl))
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.convertEntitiesAndAssets)
-      .then((jsonResponse) => {
-        let exercises = jsonResponse.asset
+      .then(ApiUtils.convertFavouriteResponseToAssets)
+      .then((exercises) => {
         let exerciseIds = Object.keys(exercises)
 
         dispatch(populatePureExercise(exercises))
@@ -170,7 +187,6 @@ export const fetchFavouriteExercises = () => {
 }
 
 export const fetchUserWorkouts = (userId) => {
-  userId = 'ag5zfmJhY2tsZWN0LWFwcHIUCxIHYXBwdXNlchiAgICA_veZCgyiAQx4cnpyLlhSWlJBcHA'
   const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
     .addWithMetaDataClause(['created_by'])
     .addWithClause(['category'])

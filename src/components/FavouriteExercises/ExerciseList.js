@@ -12,13 +12,14 @@ const ExerciseList = (props) => {
     />
   )
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>
         FAVOURITE EXERCISES
       </Text>
       <ListWrapper
         _populateList={_populateList}
         data={props.data}
+        style={styles.list}
       />
     </View>
   )
@@ -26,7 +27,9 @@ const ExerciseList = (props) => {
 
 ExerciseList.propTypes = {}
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1
+  },
   title: {
     color: 'white',
     fontFamily: 'SFCompactText-Semibold',
@@ -35,6 +38,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 13,
     marginLeft: 14
+  },
+  list: {
+    flex: 1
   }
 })
 

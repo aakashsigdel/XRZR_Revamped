@@ -6,13 +6,15 @@ import {
 } from './actionTypes'
 import {
   EXERCISE_LIKE_URL_FUNC,
-  WORKOUT_EXERCISE_URL_FUNC
+  WORKOUT_EXERCISE_URL_FUNC,
+  FAVOURITE_URL_FUNC
 } from '../../constants/appConstants'
 
 import ApiUtils from '../ApiUtilities'
 
 import * as PlayerActions from './videoActionCreators'
 import * as UiActions from './uiStatesActionCreators'
+import * as UserDataActions from './userDataActionCreators'
 
 export const addExercise = (exercise) => {
   return {
@@ -43,7 +45,7 @@ export const likeExerciseLocal = (exerciseId, like) => {
   }
 }
 
-export const likeExercise = (exerciseId, like, workoutExerciseId) => {
+export const likeExercise = (exerciseId, like, workoutExerciseId = null) => {
   return (dispatch, getStore) => {
     const store = getStore()
     const access_token = store.login.access_token
@@ -51,6 +53,11 @@ export const likeExercise = (exerciseId, like, workoutExerciseId) => {
     if (!exerciseId) {
       alert('Can\'t like this exercise!!')
       return
+    }
+    let likeId = store.pureExercise.data[exerciseId] && store.pureExercise.data[exerciseId].favoriteId
+    let api_url = EXERCISE_LIKE_URL_FUNC(exerciseId)
+    if (likeId) {
+      api_url = FAVOURITE_URL_FUNC(likeId)
     }
 
     const params = {
@@ -62,14 +69,17 @@ export const likeExercise = (exerciseId, like, workoutExerciseId) => {
       },
       body: JSON.stringify({favorited: !!like})
     }
-    return fetch(EXERCISE_LIKE_URL_FUNC(exerciseId), params)
+    return fetch(api_url, params)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
         const statusMessage = (like) ? 'Exercise saved to favorite exercises' : 'Exercise removed from favorite exercises.'
         console.log(statusMessage)
         dispatch(PlayerActions.showStatusModal(statusMessage))
-        dispatch(likeExerciseLocal(workoutExerciseId, like))
+
+        if (workoutExerciseId) {
+          dispatch(likeExerciseLocal(workoutExerciseId, like))
+        }
       })
       .catch((error) => {
         dispatch(PlayerActions.showStatusModal('Unable to Save exercise!! Please try again later.'))

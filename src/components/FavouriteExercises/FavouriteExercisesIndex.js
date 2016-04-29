@@ -22,6 +22,7 @@ const FavouriteExercisesIndex = (props) => {
         editOnProgress={props.favouriteUiStates.editFavouriteExercises}
         onRemoveButton={props.onRemoveButton}
         onMoreButton={props.onMoreButton}
+        style={styles.list}
       />
     </View>
   )
@@ -30,7 +31,11 @@ const FavouriteExercisesIndex = (props) => {
 FavouriteExercisesIndex.propTypes = {}
 const styles = StyleSheet.create({
   container: {
-    width: VIEWPORT.width
+    width: VIEWPORT.width,
+    flex: 1
+  },
+  list: {
+    flex: 1
   }
 })
 

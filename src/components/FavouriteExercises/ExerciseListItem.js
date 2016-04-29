@@ -6,7 +6,7 @@ import Hr from '../Common/Hr'
 const ExerciseListItem = (props) => {
   let deleteButton = null
   if (props.editOnProgress) {
-    const onRemoveButton = () => props.onRemoveButton(props.item.id)
+    const onRemoveButton = () => props.onRemoveButton(props.item.exerciseId)
     deleteButton = (
       <TouchableOpacity onPress={onRemoveButton}>
         <Icon name='minus-circled' size={20} color='rgb(249, 65, 125)' style={styles.deleteIcon}/>
