@@ -68,6 +68,11 @@ const MostPopularIndex = (props) => {
     <View
       style={styles.container}
     >
+      <Navigation
+        left={navLeft}
+        mid={{}}
+        right={navRight}
+      />
       <Image
         source={{uri: coverImage}}
         style={styles.coverImage}
@@ -81,12 +86,6 @@ const MostPopularIndex = (props) => {
           loadWorkout={props.loadWorkout}
         />
       </View>
-      <Navigation
-        left={navLeft}
-        mid={{}}
-        right={navRight}
-        position='absolute'
-      />
     </View>
   )
 }

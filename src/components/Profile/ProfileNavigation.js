@@ -25,9 +25,9 @@ const ProfileNavigation = (props) => {
 
   const customIcon = props.currentUserId === props.user.id
     ? <Icon
-      name='android-more-vertical'
+      name='android-more-horizontal'
       size={35}
-      color='white'
+      color='grey'
       backgroundColor='transparent'
     />
       : <FIcon
@@ -50,7 +50,7 @@ const ProfileNavigation = (props) => {
       <TouchableOpacity
         activeOpacity={0.6}
         onPress={props.currentUserId === props.user.id? handleDotsPress : handleHeartPress}
-        style={{ marginBottom: 5, marginRight: 5 }}
+        style={{ marginBottom: 5, marginRight: 5, paddingLeft: 5, paddingRight: 5 }}
       >
         {customIcon}
       </TouchableOpacity>
@@ -75,7 +75,6 @@ const ProfileNavigation = (props) => {
       left={navLeft}
       mid={{}}
       right={_renderRightButton(rightParams)}
-      position='absolute'
     />
   )
 }

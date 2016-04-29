@@ -27,7 +27,8 @@
     "react-native-video": "^0.7.1",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "react-native-dimmer": "yadi-social/react-native-dimmer"
   },
   "devDependencies": {
     "remote-redux-devtools": "^0.1.2"

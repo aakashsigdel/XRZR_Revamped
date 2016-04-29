@@ -26,6 +26,10 @@ const CategoryIndex = (props) => {
     <View
       style={styles.container}
     >
+      <CategoryNavigationBar
+        onBackButton={props.onBackButton}
+        onSearch={props.onSearch}
+      />
 
       <View style={styles.container}>
         <View style={styles.header}>
@@ -46,10 +50,6 @@ const CategoryIndex = (props) => {
 
         </View>
       </View>
-      <CategoryNavigationBar
-        onBackButton={props.onBackButton}
-        onSearch={props.onSearch}
-      />
     </View>
   )
 }
