@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
+import RNDimmer from 'react-native-dimmer'
 
 import PlayerIndex from '../components/Player/PlayerIndex'
 import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
@@ -170,13 +171,28 @@ class Player extends React.Component {
   startTimer () {
     this.setIntervalRef = setInterval(this.onVideoProgress, 1000)
   }
+
+  async applyDimmer( disabled = true ) {
+    try {
+      await RNDimmer.set( disabled );
+      console.log( disabled ? 'Enabled' : 'Disabled' );
+    } catch ( e ) {
+      console.error( e );
+    }
+  }
+
   componentWillMount () {
+    // disable lock screen
+    console.warn('applying dimmer')
+    this.applyDimmer()
     this.startTimer()
   }
   componentDidMount () {
     this.props.workoutActions.viewWorkout(this.props.player.workoutId)
   }
   componentWillUnmount () {
+    // enable lock screen
+    this.applyDimmer(false)
     this.props.lockToPortrait()
     this.pauseTimer()
   }
