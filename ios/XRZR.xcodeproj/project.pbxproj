@@ -22,6 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		305FDBA61C92913C00811B83 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 305FDB971C92912300811B83 /* libART.a */; };
+		30616EAD1CD2E76200CD4780 /* RNDimmer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30616EAC1CD2E76200CD4780 /* RNDimmer.m */; };
 		308A0DF31CA8FB1200264D7C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A0DF21CA8FB1200264D7C /* FBSDKCoreKit.framework */; };
 		308A0E001CA8FD2E00264D7C /* libRCTFBSDKLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A0DFF1CA8FD1C00264D7C /* libRCTFBSDKLogin.a */; };
 		308A0E011CA8FD3400264D7C /* libRCTFBSDKCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A0DF91CA8FD0C00264D7C /* libRCTFBSDKCore.a */; };
@@ -215,6 +216,8 @@
 		1935459E8E204C0484DCA7E8 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		19ED64E9ECD2493284997E27 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		305FDB921C92912300811B83 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		30616EAB1CD2E76200CD4780 /* RNDimmer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNDimmer.h; path = "../node_modules/react-native-dimmer/ios/RNDimmer.h"; sourceTree = "<group>"; };
+		30616EAC1CD2E76200CD4780 /* RNDimmer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNDimmer.m; path = "../node_modules/react-native-dimmer/ios/RNDimmer.m"; sourceTree = "<group>"; };
 		308A0DF21CA8FB1200264D7C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		308A0DF41CA8FD0C00264D7C /* RCTFBSDKCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDKCore.xcodeproj; path = "../node_modules/react-native-fbsdkcore/RCTFBSDKCore.xcodeproj"; sourceTree = "<group>"; };
 		308A0DFA1CA8FD1B00264D7C /* RCTFBSDKLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDKLogin.xcodeproj; path = "../node_modules/react-native-fbsdklogin/RCTFBSDKLogin.xcodeproj"; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				30616EAB1CD2E76200CD4780 /* RNDimmer.h */,
+				30616EAC1CD2E76200CD4780 /* RNDimmer.m */,
 				308A0DFA1CA8FD1B00264D7C /* RCTFBSDKLogin.xcodeproj */,
 				308A0DF41CA8FD0C00264D7C /* RCTFBSDKCore.xcodeproj */,
 				CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */,
@@ -912,6 +917,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				CD24458C1C9152A4004AF2D3 /* Orientation.m in Sources */,
+				30616EAD1CD2E76200CD4780 /* RNDimmer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
