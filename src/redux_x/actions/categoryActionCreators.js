@@ -153,9 +153,13 @@ export function fetchCategoriesDetails (categoryID) {
     .addWithActions(['favorite'])
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
+
     dispatch(requestCategoryDetails())
-    return fetch(category_detail_url)
+    return fetch(category_detail_url, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.handleFavoriteActionFromResponse)

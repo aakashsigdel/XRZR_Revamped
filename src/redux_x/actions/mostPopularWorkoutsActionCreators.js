@@ -50,9 +50,13 @@ export function fetchMostPopularWorkouts () {
     .addWithActions(['favorite'])
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
+
     dispatch(mostPopularRequest())
-    return fetch(mostPopularWorkout_url)
+    return fetch(mostPopularWorkout_url, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.handleFavoriteActionFromResponse)

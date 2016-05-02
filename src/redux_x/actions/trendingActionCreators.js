@@ -46,7 +46,7 @@ export function fetchTrendingWorkouts () {
     .addFilter(new Filter('published', true))
     .addWithClause(['category'])
     .addWithMetaDataClause(['created_by'])
-    .addWithActions(['favorite'])
+    .addWithMyActions(['favorite'])
     .toString()
 
   return (dispatch, getStore) => {
@@ -64,7 +64,7 @@ export function fetchTrendingWorkouts () {
     return fetch(trending_api_url, params)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.handleFavoriteActionFromResponse)
+      .then(ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils))
       .then((jsonResponse) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(jsonResponse, ['category'], ['created_by'])
         let categories = keyBasedData['category']

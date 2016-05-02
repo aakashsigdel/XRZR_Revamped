@@ -109,6 +109,8 @@ export const fetchFavouriteWorkouts = () => {
   return (dispatch, getStore) => {
     const store = getStore()
     const userId = store.login.id
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
 
     const favWorkoutUrl = new UrlBuilder(FAVOURITE_BASE_URL)
       .addWithMetaDataClause(['asset'])
@@ -124,7 +126,7 @@ export const fetchFavouriteWorkouts = () => {
       .toString()
 
     dispatch(fetchFavouriteWorkoutsRequest())
-    return fetch(favWorkoutUrl)
+    return fetch(favWorkoutUrl, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.convertEntitiesAndAssets)
@@ -152,6 +154,7 @@ export const fetchFavouriteExercises = () => {
   return (dispatch, getStore) => {
     const store = getStore()
     const userId = store.login.id
+    const accessToken = store.login.access_token
 
     const favExerciseUrl = new UrlBuilder(FAVOURITE_BASE_URL)
       .addWithMetaDataClause(['asset'])
@@ -165,10 +168,11 @@ export const fetchFavouriteExercises = () => {
         )
       )
       .toString()
+    const config = {headers: {'access-token': accessToken}}
 
     dispatch(fetchFavouriteExercisesRequest())
 
-    return (fetch(favExerciseUrl))
+    return (fetch(favExerciseUrl, config))
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.convertFavouriteResponseToAssets)
@@ -187,16 +191,22 @@ export const fetchFavouriteExercises = () => {
 }
 
 export const fetchUserWorkouts = (userId) => {
-  const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
-    .addWithMetaDataClause(['created_by'])
-    .addWithClause(['category'])
-    .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
-    .toString()
+  return (dispatch, getStore) => {
+    userId = userId || store.login.id
 
-  return (dispatch) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
+
+    const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
+      .addWithMetaDataClause(['created_by'])
+      .addWithClause(['category'])
+      .addFilter(new Filter('sys_created_by', userId)) // uncomment this aferwards
+      .toString()
+
     dispatch(userWorkoutsRequest())
 
-    return fetch(userWorkoutsUrl)
+    return fetch(userWorkoutsUrl, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {

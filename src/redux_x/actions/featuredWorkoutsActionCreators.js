@@ -49,15 +49,19 @@ export function fetchFeaturedWorkouts () {
         new Filter('featured', true),
         new Filter('published', true)))
     .addWithMetaDataClause(['created_by'])
-    .addWithActions(['favorite'])
+    .addWithMyActions(['favorite'])
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
+
     dispatch(featuredWorkoutsRequest())
-    return fetch(featured_api_uri)
+    return fetch(featured_api_uri, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
-      .then(ApiUtils.handleFavoriteActionFromResponse)
+      .then(ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils))
       .then((response) => {
         let keyBasedData = ApiUtils.convertEntitiesToKeyBasedDictDenormalizedBy(response, ['category'], ['created_by'])
 

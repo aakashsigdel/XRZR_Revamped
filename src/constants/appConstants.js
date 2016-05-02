@@ -13,7 +13,7 @@ export const ORIENTATION = {
   LANDSCAPE: 'LANDSCAPE'
 }
 
-const URL = 'https://xrzr.backlect.com/api/XRZRApp'
+const URL = 'https://xrzr.backlect.com/api/xrzr'
 const VERSION = '/v1.0'
 const LOGIN_PATH = '/auth/facebook/convert-token'
 export const BASE_URL = URL + VERSION

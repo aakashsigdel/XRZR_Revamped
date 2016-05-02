@@ -26,12 +26,16 @@ export function fetchRecentWorkouts () {
   const view_url = new UrlBuilder(VIEW_BASE_URL)
     .addWithMetaDataClause(['asset', 'created_by'])
     //.addFilter(new Filter('sys_asset_type', 'workout'))
-    .sortBy('sys_created', 'asc')
+    //.sortBy('sys_created', 'asc')
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
+
     fetchRecentWorkoutRequest()
-    return fetch(view_url)
+    return fetch(view_url, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {

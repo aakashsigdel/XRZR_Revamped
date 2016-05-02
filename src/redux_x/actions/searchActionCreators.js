@@ -58,10 +58,13 @@ export const fetchSearchResult = (queryString) => {
     .addWithClause(['category'])
     .toString()
 
-  return (dispatch) => {
+  return (dispatch, getStore) => {
+    const store = getStore()
+    const accessToken = store.login.access_token
+    const config = {headers: {'access-token': accessToken}}
 
     dispatch(requestSearch())
-    return fetch(searchUrl)
+    return fetch(searchUrl, config)
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then((jsonResponse) => {
