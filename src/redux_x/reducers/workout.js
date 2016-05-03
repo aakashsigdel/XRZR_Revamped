@@ -63,11 +63,12 @@ const workout = (state = defaultWorkout, action) => {
         }
       }
     case POPULATE_WORKOUT:
+      const workouts = getSmartWorkoutsWithPresistence(action.workouts, state.data)
       return {
         ...state,
         data: {
           ...state.data,
-          ...action.workouts
+          ...workouts
         }
       }
     case DELETE_WORKOUT:
@@ -251,6 +252,22 @@ const defaultWorkout = {
     //  published: true
     //}
   }
+}
+
+const getSmartWorkoutsWithPresistence = (newWorkouts, oldWorkouts) => {
+  let newData = {}
+  Object.keys(newWorkouts).map((newWorkoutId) => {
+    const newWorkout = newWorkouts[newWorkoutId]
+    let oldWorkout = oldWorkouts[newWorkoutId]
+    if (!oldWorkout) {
+      oldWorkout = {}
+    }
+    newData[newWorkoutId] = {...defaultWorkoutSkeleton, ...oldWorkout, ...newWorkout}
+    if (newWorkout.exercises && newWorkout.exercises.length === 0) {
+      newData[newWorkoutId]['exercises'] = oldWorkout['exercises'] || defaultWorkoutSkeleton.exercises
+    }
+  })
+  return newData
 }
 
 export default workout

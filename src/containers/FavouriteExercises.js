@@ -39,21 +39,28 @@ class FavouriteExercises extends React.Component {
       }
     }
     const onNavigate = (route, exercise) => {
-      const actionElements = [
-        {
+      const userId = props.loginCredentials.id
+      const created_by = exercise.created_by
+      const is_author = userId === created_by
+      const actionElements = []
+      if (is_author) {
+        actionElements.push(...[{
           name: 'EDIT EXERCISE',
           action: handleEditExercise(props),
           icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25} />
         },
-        {name: 'ADD EXERCISE TO A WORKOUT',
-          icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
-          action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exercise: exercise})
-        },
-        {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />},
+          {name: 'ADD EXERCISE TO A WORKOUT',
+            icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30} />,
+            action: (_) => props.navigator.push({name: 'addExerciseToWorkout', exercise: exercise})
+          },
+          {name: 'SAVE EXERCISE', icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={30} />}
+        ])
+      }
+      actionElements.push(
         {name: 'GO TO RACHEL GREY', icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />}
-      ]
+      )
       const actionTitle = {
-        title: 'SUN SALUTATION A',
+        title: exercise.title,
         subText: 'RACHEL GREY',
         image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg'
       }
@@ -94,7 +101,8 @@ export default connect(
     return {
       pureExercises: state.pureExercise,
       favouriteExercises: state.userData.favouriteExercises,
-      favouriteUiStates: state.uiStates
+      favouriteUiStates: state.uiStates,
+      loginCredentials: state.login
     }
   },
   (dispatch) => {

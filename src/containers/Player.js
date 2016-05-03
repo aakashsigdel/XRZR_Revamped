@@ -71,15 +71,20 @@ class Player extends React.Component {
     }
     let actionElements = []
     exercise.instructor.id === this.props.login.id ? actionElements.push(editExerciseElement) : null
+
+    const addExerciseToWorkout = {
+      name: 'ADD EXERCISE TO A WORKOUT',
+      icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30}/>,
+      action: (_) => {
+        this.props.lockToPortrait()
+        this.props.navigator.push({ name: 'addExerciseToWorkout', exercise: exercise })
+      }
+    }
+    if (this.props.login.is_instructor) {
+      actionElements.push(addExerciseToWorkout)
+    }
+
     actionElements = actionElements.concat([
-      {
-        name: 'ADD EXERCISE TO A WORKOUT',
-        icon: <Icon name='android-add' color='rgba(255, 255, 255, 0.5)' size={30}/>,
-          action: (_) => {
-            this.props.lockToPortrait()
-            this.props.navigator.push({ name: 'addExerciseToWorkout', exercise: exercise })
-          }
-      },
       {
         name: (exercise.like) ? 'UNSAVE EXERCISE' : 'SAVE EXERCISE',
         icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/>,

@@ -207,8 +207,21 @@ let ApiUtils = {
       }
     })
     return newData
-  }
+  },
 
+  hydrateExercises: (exercises) => {
+    let newData = {}
+    Object.keys(exercises).map((exerciseId) => {
+      newData[exerciseId] = {
+        ...exercises[exerciseId]
+      }
+      //const exercise = exercises[exerciseId]
+      if (exercises[exerciseId].created_by && exercises[exerciseId].created_by.split('/').length !== 1) {
+        newData[exerciseId]['created_by'] = exercises[exerciseId].created_by.split('/')[1]
+      }
+    })
+    return newData
+  }
 }
 
 // Because javascript is very crazy about not doing this

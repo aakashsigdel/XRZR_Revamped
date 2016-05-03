@@ -53,8 +53,8 @@ const handlePressOptions = (props, buttonType) => {
     props.userActionDispatchers.likeUser(props.userId, !props.user[props.userId].like)
     return
   }
-  let actionElements = {}
-  if (!props.user[props.userId].isInstructor) {
+  let actionElements = []
+  if (props.user[props.userId].isInstructor) {
     actionElements = [
       {
         name: 'CREATE NEW WORKOUT',

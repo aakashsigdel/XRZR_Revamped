@@ -176,6 +176,7 @@ export const fetchFavouriteExercises = () => {
       .then(ApiUtils.checkStatus2xx)
       .then((response) => response.json())
       .then(ApiUtils.convertFavouriteResponseToAssets)
+      .then(ApiUtils.hydrateExercises)
       .then((exercises) => {
         let exerciseIds = Object.keys(exercises)
 
@@ -192,11 +193,11 @@ export const fetchFavouriteExercises = () => {
 
 export const fetchUserWorkouts = (userId) => {
   return (dispatch, getStore) => {
-    userId = userId || store.login.id
 
     const store = getStore()
     const accessToken = store.login.access_token
     const config = {headers: {'access-token': accessToken}}
+    userId = userId || store.login.id
 
     const userWorkoutsUrl = new UrlBuilder(WORKOUT_BASE_URL)
       .addWithMetaDataClause(['created_by'])

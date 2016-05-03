@@ -77,10 +77,9 @@ export const fetchUser = (id) => {
       }
 
       fetch(USER_URL_WITH_USERID, config)
-        .then(ApiUtils.logger)
         .then(ApiUtils.checkStatus2xx)
         .then((response) => response.json())
-        .then(ApiUtils.handleFavoriteActionFromResponse)
+        .then(ApiUtils.handleMyFavoriteActionFromResponse.bind(ApiUtils))
         .then((responseData) => {
 
           const userData = {

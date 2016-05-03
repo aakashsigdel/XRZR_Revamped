@@ -17,7 +17,7 @@ const initialState = {
   data: {}
 }
 
-const user = (state = initialState , action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       const user = mapUserApiKeysToAppKeys(action.user)
@@ -31,11 +31,12 @@ const user = (state = initialState , action) => {
         }
       }
     case POPULATE_USERS:
+      const users = usersDataWithPresistence(action.users, state.data)
       return {
         ...state,
         data: {
           ...state.data,
-          ...action.users
+          ...users
         }
       }
     case FETCH_USER:
@@ -95,7 +96,18 @@ const user = (state = initialState , action) => {
     default:
       return state
   }
-  return state
 }
 
+const usersDataWithPresistence = (newUsers, oldUsers) => {
+  let newData = {}
+  Object.keys(newUsers).map((newUserId) => {
+    const newUser = newUsers[newUserId]
+    let oldUser = oldUsers[newUserId]
+    if (!oldUser) {
+      oldUser = {}
+    }
+    newData[newUserId] = {...oldUser, ...newUser}
+  })
+  return newData
+}
 export default user

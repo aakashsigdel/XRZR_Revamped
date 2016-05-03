@@ -23,6 +23,10 @@ class WorkoutIntro extends React.Component {
     let exercises = _getExercises(props.player.workoutId, props.workouts.data, props.exercises, props.instructors)
     let instructor = _getInstructor(props.player.workoutId, props.workouts.data, props.instructors)
 
+    let createdBy = workout.instructor
+    let myId = props.loginCredentials.id
+    const isMyWorkout = createdBy === myId
+
     const isLoading = props.player.isFetching
 
     const statusMessage = props.workouts.statusMessage
@@ -84,14 +88,14 @@ class WorkoutIntro extends React.Component {
         share_text: 'Share Workout',
         title: 'Share Workout'
       }
-      props.navigator.push({
-        name: 'action',
-        actionElements: [
-          {
-            name: 'SHARE WORKOUT',
-            icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />,
-            action: () => shareOnFacebook(shareOptions, () => console.log('shared')),
-          },
+      let actionElements = [
+        {
+          name: 'SHARE WORKOUT',
+          icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />,
+          action: () => shareOnFacebook(shareOptions, () => console.log('shared')),
+        }]
+      if (isMyWorkout) {
+        actionElements.push(...[
           {
             name: (workout.published) ? 'UNPUBLISH WORKOUT' : 'PUBLISH WORKOUT',
             icon: <Icon name='locked' color='rgba(255, 255, 255, 0.5)' size={11} />,
@@ -103,7 +107,11 @@ class WorkoutIntro extends React.Component {
             icon: <Image source={require('../../assets/images/history.png')} style={styles.history} />,
             action: onEditWorkout
           }
-        ]
+        ])
+      }
+      props.navigator.push({
+        name: 'action',
+        actionElements: actionElements
       })
     }
 
@@ -182,7 +190,8 @@ export default connect(
       workouts: state.workout,
       exercises: state.exercise,
       instructors: state.user.data,
-      player: state.player
+      player: state.player,
+      loginCredentials: state.login
     }
   },
   (dispatch) => {
