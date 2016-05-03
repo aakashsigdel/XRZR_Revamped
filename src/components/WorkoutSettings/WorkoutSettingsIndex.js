@@ -18,7 +18,7 @@ class WorkoutSettingsIndex extends React.Component {
       title: props.workout.title,
       workout_set: 3,
       pause_between_exercises: 10,
-      category: props.workout.category.tag || 'Yoga',
+      category: (props.workout.category && props.workout.category.tag) || 'None Selected',
       isModalVisible: false,
       image: props.workout.image_16x9 || '',
       update: false
@@ -91,6 +91,7 @@ class WorkoutSettingsIndex extends React.Component {
 
   render (props = this.props) {
     const onSaveButton = () => props.onSaveButton(this.state)
+
     return (
       <View style={styles.container}>
         <NavigationBar
@@ -120,7 +121,7 @@ class WorkoutSettingsIndex extends React.Component {
           toggleCategoryModal={this.toggleCategoryModal.bind(this)}
           onCategoryChange={this.onCategoryChange.bind(this)}
           categories={this.props.categories}
-          selectedCategory={props.workout.category.tag}
+          selectedCategory={this.state.category}
         />
       </View>
     )

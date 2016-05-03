@@ -12,6 +12,8 @@ import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreator
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 import * as UserDataActionCreators from '../redux_x/actions/userDataActionCreators'
 
+import {removeAccessTokenFromAsyncStorage} from '../utilities/utility'
+
 class Browse extends React.Component {
   componentDidMount (nextProps, nextState) {
     this.props.categoryDispatchers.fetchCategories()
@@ -106,7 +108,7 @@ function browseListingsManager (navigator) {
   }, {
     icon: 'star',
     title: 'XRZR selected',
-    onPress: () => undefined
+    onPress: removeAccessTokenFromAsyncStorage // () => undefined
   }
   ]
   return items

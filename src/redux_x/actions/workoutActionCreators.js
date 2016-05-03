@@ -153,9 +153,12 @@ const _validateCategory = (categoryList, category) => {
 
 export const updateWorkout = ({id, workout}) => {
   return (dispatch, getState) => {
+    const state = getState()
+    const accessToken = state.login.access_token
+
     let category = null
     if (workout.category)
-      category = _validateCategory(getState().category.data, workout.category)
+      category = _validateCategory(state.category.data, workout.category)
     // if(!category) {
     //   alert('Invalid Category')
     //   return
@@ -163,13 +166,13 @@ export const updateWorkout = ({id, workout}) => {
     dispatch(requestUpdateWorkout())
 
     let data = null
-    if (category) {
-      data = {
-        ...workout,
-        category
-      }
-    } else {
-      data = workout
+
+    if (!category) {
+      category = null
+    }
+    data = {
+      ...workout,
+      category
     }
     let dataSend = new FormData()
     dataSend.append('title', data.title)
@@ -180,7 +183,8 @@ export const updateWorkout = ({id, workout}) => {
 
     fetch(BASE_URL + '/workout/' + id, {
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'access-token': accessToken
       },
       method: 'post',
       body: dataSend

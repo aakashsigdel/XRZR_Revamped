@@ -14,6 +14,10 @@ export const getAccessTokenFromAsyncStorage = () => {
   })
 }
 
+export const removeAccessTokenFromAsyncStorage = () => {
+  AsyncStorage.removeItem(LOGIN_STORAGE_KEY)
+}
+
 export const awesomeFetchWrapper = ({url, method, headers, body}) => {
   return fetch(url, {
     method,
