@@ -71,9 +71,10 @@ export default class AddExerciseToWorkout extends Component {
     } else if (this.state.isPosting) {
       return <Loader loadingText='Adding exercise to workout...' />
     }
-    let workouts = Object.keys(props.userWorkouts.data).map((item) => {
-      return props.userWorkouts.data[item]
+    let workouts = props.userWorkouts.data.map((item) => {
+      return props.workouts.data[item]
     })
+
     return (
       <View>
         <AddExerciseToWorkoutIndex

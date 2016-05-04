@@ -14,10 +14,12 @@ export default class StatusMessage extends Component {
   dismisModalAfterTimeout () {
     this.timeout = setTimeout(() => {
       if (this._called) {
+        this._called = false
         clearTimeout(this.timeout)
         return
       }
       this.props.onExit()
+      this._called = false
     }, 5000)
   }
 
@@ -26,7 +28,8 @@ export default class StatusMessage extends Component {
       this.dismisModalAfterTimeout()
     }
   }
-  onExit () {
+
+  _onExit () {
     this._called = true
     this.props.onExit()
   }
@@ -41,12 +44,12 @@ export default class StatusMessage extends Component {
         <View style={styles.container}>
           <TouchableOpacity
             activeOpacity={1}
-            onPress={props.onExit}
+            onPress={() => this._onExit()}
             style={styles.areaExceptButton}
           >
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={props.onExit}
+            onPress={() => this._onExit()}
             style={styles.box}
           >
             <Icon

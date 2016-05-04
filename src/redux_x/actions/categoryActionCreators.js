@@ -12,7 +12,7 @@ import {
 } from '../../constants/appConstants'
 
 import {populateWorkouts} from './workoutActionCreators'
-import UrlBuilder, {Filter} from '../../utilities/UrlBuilder'
+import UrlBuilder, {AndFilter, Filter} from '../../utilities/UrlBuilder'
 import ApiUtils from '../ApiUtilities'
 
 import * as UserActions from './userActionCreators'
@@ -148,7 +148,12 @@ function fetchCategoryDetailsError (errorMessage) {
 
 export function fetchCategoriesDetails (categoryID) {
   let category_detail_url = new UrlBuilder(WORKOUT_BASE_URL)
-    .addFilter(new Filter('category', categoryID))
+    .addFilter(
+      new AndFilter(
+        new Filter('category', categoryID),
+        new Filter('published', true)
+      )
+    )
     .addWithMetaDataClause(['created_by'])
     .addWithActions(['favorite'])
     .toString()

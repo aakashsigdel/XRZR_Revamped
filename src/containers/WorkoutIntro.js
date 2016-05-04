@@ -32,7 +32,7 @@ class WorkoutIntro extends React.Component {
     const statusMessage = props.workouts.statusMessage
     const modalVisibility = props.workouts.statusModal
     const dismissStatusModal = () => {
-      props.navigator.pop()
+      //props.navigator.pop()
       props.WorkoutDispatchers.hideWorkoutStatusModal()
     }
 
