@@ -616,7 +616,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = M968V5HDN9;
+						DevelopmentTeam = W2T4585J9C;
 					};
 				};
 			};
@@ -1021,7 +1021,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlocate.xrzr;
+				PRODUCT_BUNDLE_IDENTIFIER = fit.xrzr;
 				PRODUCT_NAME = XRZR;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1050,7 +1050,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlocate.xrzr;
+				PRODUCT_BUNDLE_IDENTIFIER = fit.xrzr;
 				PRODUCT_NAME = XRZR;
 				PROVISIONING_PROFILE = "";
 			};
