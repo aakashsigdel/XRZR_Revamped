@@ -73,6 +73,24 @@ const getUserDetails = (dispatch, responseData) => {
   })
 }
 
+export const validateAccessToken = (accessToken) => {
+  return (dispatch) => {
+    const url  = BASE_URL + '/me'
+    const config = {
+      headers: {
+        'access-token': accessToken,
+      }
+    }
+    return fetch(url, config)
+      .then((response) => {
+        if (response.status === 200) {
+          return response
+        }
+        throw new Error(response.statusText)
+      })
+  }
+}
+
 // helper function to set xrzr access token to async storage
 const setLoginDetailsToAsyncStorage = (dispatch, loginDetails) => {
   AsyncStorage.setItem(LOGIN_STORAGE_KEY, JSON.stringify(loginDetails))

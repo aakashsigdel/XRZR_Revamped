@@ -4,7 +4,7 @@ import React, { Component } from 'react-native'
 import { connect } from 'react-redux'
 import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
-import { loginSuccess } from '../redux_x/actions/loginActionCreators'
+import { loginSuccess, validateAccessToken } from '../redux_x/actions/loginActionCreators'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
 
 import LoginIndex from '../components/Login/LoginIndex'
@@ -28,10 +28,17 @@ class Login extends Component {
 
   componentDidMount () {
     getAccessTokenFromAsyncStorage()
-    .then(response => {
+    .then((response) => {
       if(response && JSON.parse(response).access_token) {
-        this.props.dispatch(loginSuccess(JSON.parse(response)))
-        this.navigator.replace({name: 'browse'})
+        const accessToken = JSON.parse(response).access_token
+        this.props.dispatch(validateAccessToken(accessToken))
+          .then(() => {
+            this.props.dispatch(loginSuccess(JSON.parse(response)))
+            this.props.navigator.replace({name: 'browse'})
+          })
+          .catch((error) => {
+            console.log("Woah Woah Woah ! you\'ve got wrong access token.", error)
+          })
       }
     })
   }
