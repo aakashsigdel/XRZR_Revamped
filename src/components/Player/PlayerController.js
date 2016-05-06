@@ -48,7 +48,11 @@ class PlayerController extends React.Component {
 
           <View style={[ styles.details, modeStyles.details ]}>
             <Text style={[styles.text, styles.counter, modeStyles.counter]}>{props.remainingTime}</Text>
-            <Text style={[styles.text, styles.title]}>{props.title.toUpperCase()}</Text>
+            <Text style={[styles.text, styles.title]}>{
+              props.title.length <= 29
+              ? props.title.toUpperCase()
+              : props.title.slice(0, 29).toUpperCase() + '...'
+            }</Text>
           </View>
 
           <Icon.Button
@@ -90,7 +94,7 @@ const portraitStyles = {
     backgroundColor: 'rgba(255,255,255,0.1)'
   },
   details: {
-    width: VIEWPORT.width - 100
+    width: VIEWPORT.width - 10
   },
   counter: {
     fontFamily: 'HelveticaNeue'
