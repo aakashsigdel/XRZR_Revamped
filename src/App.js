@@ -23,7 +23,19 @@ const store = createStore(
   autoRehydrate()
 )
 
-persistStore(store, {whitelist: 'category', storage: React.AsyncStorage})
+persistStore(
+  store,
+  {
+    whitelist: [
+      'category',
+      'trending',
+      'workout',
+      'instructor',
+      'featuredWorkout'
+    ],
+    storage: React.AsyncStorage
+  }
+)
 
 const App = () => {
   return (

@@ -12,6 +12,8 @@ import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreator
 import * as AsyncActionCreators from '../redux_x/actions/asyncActionCreators'
 import * as UserDataActionCreators from '../redux_x/actions/userDataActionCreators'
 
+import * as JsUtils from '../utilities/JsUtils'
+
 import {removeAccessTokenFromAsyncStorage} from '../utilities/utility'
 
 class Browse extends React.Component {
@@ -31,8 +33,8 @@ class Browse extends React.Component {
     let favouriteListingItems = favouriteListingManager(props.navigator)
     let categories = categoriesManager(props.categories)
 
-    let isFeaturedLoading = props.featuredWorkouts.isFetching
-    let isTrendingLoading = props.trendings.isFetching
+    let isFeaturedLoading = false//props.featuredWorkouts.isFetching
+    let isTrendingLoading = false//props.trendings.isFetching
 
     let onWorkoutSelect = (workoutId) => {
       props.playerDispatchers.loadWorkout(workoutId)
@@ -76,13 +78,17 @@ class Browse extends React.Component {
 function workoutsManager (featuredWorkouts, workouts, instructors) {
   let featureds = featuredWorkouts.map(
     (featuredId) => {
-      let instructorId = workouts[featuredId].instructor
+      let instructorId = null
+      if (!JsUtils.isObjectEmpty(workouts[featuredId])){
+        instructorId = workouts[featuredId].instructor
+      }
+
       if (!(instructorId || workouts[featuredId].image_16x9)) {
         return null
       }
       let instructor = instructors[instructorId] || {
         name: 'Default Instructor',
-        image: 'http://www.arsenalsite.cz/imgs/soupiska/200/santi-cazorla.jpg',
+        image: null,
         isInstructor: false
       }
 
@@ -98,7 +104,7 @@ function workoutsManager (featuredWorkouts, workouts, instructors) {
 function trendingsManager (trendIds, workouts) {
   return trendIds.map(
     (trendId) => workouts[trendId]
-  )
+  ).filter((trend) => trend)
 }
 function browseListingsManager (navigator) {
   let items = [{
