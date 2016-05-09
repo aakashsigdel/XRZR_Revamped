@@ -22,6 +22,7 @@
     "react-native-linear-gradient": "^1.5.2",
     "react-native-looped-carousel": "0.0.8",
     "react-native-material-switch": "0.0.4",
+    "react-native-mixpanel": "0.0.9",
     "react-native-orientation": "^1.15.0",
     "react-native-share": "^1.0.9",
     "react-native-sortable-listview": "0.0.5",
