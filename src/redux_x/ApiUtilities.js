@@ -203,7 +203,8 @@ let ApiUtils = {
         instagramUsername: instructors[instructorId].instagram_username,
         instagramToken: instructors[instructorId].instagram_token,
         email: instructors[instructorId].email,
-        description: instructors[instructorId].description
+        description: instructors[instructorId].description,
+        sound: instructors[instructorId].sound
       }
     })
     return newData
@@ -276,6 +277,7 @@ export function mapUserApiKeysToAppKeys (user) {
   validUser.description = user.description
   validUser.like = user.like
   validUser.likeId = user.likeId
+  validUser.sound = user.sound
 
   return validUser
 }

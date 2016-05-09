@@ -226,6 +226,7 @@ class Player extends React.Component {
 
     const workout = getWorkoutExpanded(props.player, props.workouts, props.exercises, props.instructors)
     const nowPlayingExercise = getNowPlayingExercise(props.player, workout)
+    const muteVideo = !nowPlayingExercise.instructor.sound
 
     const seekbarCompletion = getSeekbarCompletion(props.player, workout.exercises)
     const remainingTime = getTicker(this.state.currentTime, nowPlayingExercise)
@@ -253,7 +254,7 @@ class Player extends React.Component {
           onChangeVideo={onChangeVideo}
 
           paused={props.player.paused}
-          muted
+          muted={muteVideo}
           nowPlayingExercise={nowPlayingExercise}
           repeat
 
