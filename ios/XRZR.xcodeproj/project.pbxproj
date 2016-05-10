@@ -47,6 +47,7 @@
 		CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD439CFB1CC4F3F500F7D5D9 /* Social.framework */; };
 		CD47B8F01CA4F87300C31F47 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */; };
 		CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD979BF21CE08CF200901EFD /* libicucore.tbd */; };
+		CD979C601CE09F9E00901EFD /* libRNMixpanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD979C5F1CE09F8E00901EFD /* libRNMixpanel.a */; };
 		CDE16C911CE08316007A6C36 /* _MPTweakBindObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE16BF21CE08315007A6C36 /* _MPTweakBindObserver.m */; };
 		CDE16C921CE08316007A6C36 /* MPArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE16BF51CE08315007A6C36 /* MPArrowLeft.png */; };
 		CDE16C931CE08316007A6C36 /* MPArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE16BF61CE08315007A6C36 /* MPArrowLeft@2x.png */; };
@@ -292,6 +293,13 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		CD979C5E1CE09F8E00901EFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD979C5A1CE09F8E00901EFD /* RNMixpanel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FDC64AF01BF1690D0044C1B4;
+			remoteInfo = RNMixpanel;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -345,6 +353,7 @@
 		CD439CFB1CC4F3F500F7D5D9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		CD979BF21CE08CF200901EFD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		CD979C5A1CE09F8E00901EFD /* RNMixpanel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMixpanel.xcodeproj; path = "../node_modules/react-native-mixpanel/RNMixpanel.xcodeproj"; sourceTree = "<group>"; };
 		CDE16BF11CE08315007A6C36 /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MPTweakBindObserver.h; sourceTree = "<group>"; };
 		CDE16BF21CE08315007A6C36 /* _MPTweakBindObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MPTweakBindObserver.m; sourceTree = "<group>"; };
 		CDE16BF31CE08315007A6C36 /* AutomaticEventsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutomaticEventsConstants.h; sourceTree = "<group>"; };
@@ -530,6 +539,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD979C601CE09F9E00901EFD /* libRNMixpanel.a in Frameworks */,
 				CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */,
 				CDE16D0F1CE08458007A6C36 /* QuartzCore.framework in Frameworks */,
 				CDE16D0B1CE0843B007A6C36 /* Accelerate.framework in Frameworks */,
@@ -776,6 +786,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CD979C5A1CE09F8E00901EFD /* RNMixpanel.xcodeproj */,
 				30616EAB1CD2E76200CD4780 /* RNDimmer.h */,
 				30616EAC1CD2E76200CD4780 /* RNDimmer.m */,
 				308A0DFA1CA8FD1B00264D7C /* RCTFBSDKLogin.xcodeproj */,
@@ -847,6 +858,14 @@
 			isa = PBXGroup;
 			children = (
 				CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD979C5B1CE09F8E00901EFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD979C5F1CE09F8E00901EFD /* libRNMixpanel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1164,6 +1183,10 @@
 					ProjectRef = CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */;
 				},
 				{
+					ProductGroup = CD979C5B1CE09F8E00901EFD /* Products */;
+					ProjectRef = CD979C5A1CE09F8E00901EFD /* RNMixpanel.xcodeproj */;
+				},
+				{
 					ProductGroup = 30FD754E1CC9F722009CCAC6 /* Products */;
 					ProjectRef = 1935459E8E204C0484DCA7E8 /* RNShare.xcodeproj */;
 				},
@@ -1312,6 +1335,13 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = CD47B8ED1CA4F85C00C31F47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD979C5F1CE09F8E00901EFD /* libRNMixpanel.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMixpanel.a;
+			remoteRef = CD979C5E1CE09F8E00901EFD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
