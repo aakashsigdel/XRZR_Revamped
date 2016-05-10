@@ -155,8 +155,7 @@ function _getExercises (workoutId, workouts, exercises, instructors) {
   return exercisesList.map((exerciseId, index) => {
     return {
       ...exercises[exerciseId],
-      index: index,
-      instructor: instructors[exercises[exerciseId].instructor]
+      index: index
     }
   })
 }
