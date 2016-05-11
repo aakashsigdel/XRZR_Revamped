@@ -43,8 +43,8 @@ class VideoScreen extends Component {
           <PlayerController
             backgroundColor='transparent'
             landscape
-            onNextPressed={props.onNextVideo}
-            onPreviousPressed={props.onPreviousVideo}
+            onNextPressed={props.onNextButtonPressed}
+            onPreviousPressed={props.onPreviousButtonPressed}
             title={props.nowPlayingExercise.title}
             remainingTime={props.remainingTime}
             seekbarCompletion={props.seekbarCompletion}
@@ -83,8 +83,8 @@ class VideoScreen extends Component {
           onVideoSelect={props.onChangeVideo}
         />
         <PlayerController
-          onNextPressed={props.onNextVideo}
-          onPreviousPressed={props.onPreviousVideo}
+          onNextPressed={props.onNextButtonPressed}
+          onPreviousPressed={props.onPreviousButtonPressed}
           title={props.nowPlayingExercise.title}
           remainingTime={props.remainingTime}
           seekbarCompletion={props.seekbarCompletion}

@@ -6,6 +6,7 @@ import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { loginSuccess, validateAccessToken } from '../redux_x/actions/loginActionCreators'
 import { getAccessTokenFromAsyncStorage } from '../utilities/utility'
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 
 import LoginIndex from '../components/Login/LoginIndex'
 import {
@@ -34,7 +35,6 @@ class Login extends Component {
         this.props.dispatch(validateAccessToken(accessToken))
           .then(() => {
             this.props.dispatch(loginSuccess(JSON.parse(response)))
-            this.props.navigator.replace({name: 'browse'})
           })
           .catch((error) => {
             console.log("Woah Woah Woah ! you\'ve got wrong access token.", error)
@@ -55,6 +55,7 @@ class Login extends Component {
 
   _navigateToBrowse () {
     this.props.navigator.replace({name: 'browse'})
+    Mixpanel.track(MixpanelConfig.SIGNIN)
   }
 
   render () {

@@ -18,7 +18,7 @@
 
 @implementation AppDelegate
 
-#define MIXPANEL_TOKEN @"7be2d9e2b6e6434c7aa4316a47954847"
+#define MIXPANEL_TOKEN @"0b2cb44f917f7ae7305b2d1723ec52a9"
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

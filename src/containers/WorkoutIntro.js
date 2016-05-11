@@ -5,15 +5,19 @@ import React, {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import WorkoutIntroIndex from '../components/WorkoutIntro/WorkoutIntroIndex'
 import * as PlayerActionCreators from '../redux_x/actions/videoActionCreators'
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
-import Icon from 'react-native-vector-icons/Ionicons'
+
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
+
 import { shareOnFacebook } from '../utilities/utility'
 
 class WorkoutIntro extends React.Component {
   componentWillMount () {
+    Mixpanel.track(MixpanelConfig.WORKOUT_VIEW)
     this.props.playerActions.fetchWorkoutExercises(this.props.player.workoutId)
       .then(this.props.WorkoutDispatchers.fetchWorkout(this.props.player.workoutId))
   }
@@ -76,8 +80,11 @@ class WorkoutIntro extends React.Component {
     let onBackButton = () => props.navigator.pop()
 
     let onDownloadButton = () => props.navigator.push({name: 'premium'})
-    let onLikePress = (like) => props.WorkoutDispatchers.likeWorkout({like: like, workoutId: props.player.workoutId})
     const goToProfile = (userId) => props.navigator.push({name: 'profile', userId: userId})
+    let onLikePress = (like) => {
+      Mixpanel.track(MixpanelConfig.WORKOUT_LIKE)
+      props.WorkoutDispatchers.likeWorkout({like: like, workoutId: props.player.workoutId})
+    }
 
     const onEditWorkout = () => props.navigator.push({name: 'workoutSettings', workoutId: props.player.workoutId})
     const onPublishWorkout = () => props.WorkoutDispatchers.publishWorkout(props.player.workoutId, !workout.published)
@@ -92,7 +99,7 @@ class WorkoutIntro extends React.Component {
         {
           name: 'SHARE WORKOUT',
           icon: <Icon name='android-share' color='rgba(255, 255, 255, 0.5)' size={30} />,
-          action: () => shareOnFacebook(shareOptions, () => console.log('shared')),
+          action: () => shareOnFacebook(shareOptions, () => console.log('shared'))
         }]
       if (isMyWorkout) {
         actionElements.push(...[

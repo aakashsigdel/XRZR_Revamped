@@ -9,27 +9,6 @@ import { VIEWPORT } from '../../constants/appConstants'
 
 class PlayerController extends React.Component {
   render (props = this.props) {
-    //let playerPosition = props.totalProgress * 100
-    //let remainingVideo = (1 - props.totalProgress) * 100
-    //let remainingTime = (1 - props.progress) * props.duration
-    //
-    //let remainingMinutes = Math.floor(remainingTime / 60)
-    //let remainingSeconds = remainingTime - (remainingMinutes * 60)
-    //remainingSeconds = Math.floor(remainingSeconds)
-    //
-    //remainingTime = ('00' + remainingMinutes).slice(-2)
-    //remainingTime += ':' + ('00' + remainingSeconds).slice(-2)
-    //
-    //if (!props.showTime) {
-    //  playerPosition = 0
-    //  remainingVideo = 100
-    //  remainingTime = props.duration
-    //}
-    //
-    //if (remainingTime <= 0 && props.showTime) {
-    //  props.onNextPressed()
-    //}
-
     const seekbarCompletion = props.seekbarCompletion
     const remainingVideo = 100 - seekbarCompletion
 
@@ -94,7 +73,7 @@ const portraitStyles = {
     backgroundColor: 'rgba(255,255,255,0.1)'
   },
   details: {
-    width: VIEWPORT.width - 10
+    //width: VIEWPORT.width - 10
   },
   counter: {
     fontFamily: 'HelveticaNeue'
@@ -106,8 +85,8 @@ const landscapeStyles = {
     backgroundColor: 'transparent'
   },
   details: {
-    paddingLeft: 40,
-    paddingRight: 35,
+    paddingLeft: 30,
+    paddingRight: 25,
     paddingBottom: 5
   },
   counter: {

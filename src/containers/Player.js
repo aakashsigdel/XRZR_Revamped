@@ -7,9 +7,11 @@ import RNDimmer from 'react-native-dimmer'
 
 import PlayerIndex from '../components/Player/PlayerIndex'
 import PausePlayIndex from '../components/PausePlay/PausePlayIndex'
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
 import * as WorkoutActionCreators from '../redux_x/actions/workoutActionCreators'
+
 
 class Player extends React.Component {
   constructor (props) {
@@ -56,6 +58,7 @@ class Player extends React.Component {
   }
 
   onNavigate (route, exercise) {
+    Mixpanel.track(MixpanelConfig.WORKOUT_EXERCISE_ACTIONS)
     const editExerciseElement = {
       name: 'EDIT EXERCISE',
       icon: <Icon name='android-walk' color='rgba(255, 255, 255, 0.5)' size={25}/>,
@@ -89,6 +92,7 @@ class Player extends React.Component {
         name: (exercise.like) ? 'UNSAVE EXERCISE' : 'SAVE EXERCISE',
         icon: <FIcon name='heart-o' color='rgba(255, 255, 255, 0.5)' size={23}/>,
           action: () => {
+            Mixpanel.track(MixpanelConfig.EXERCISE_LIKE)
             this.props.exerciseActions.likeExercise(exercise.exerciseId, !exercise.like, exercise.id)
           }
       },
@@ -197,6 +201,7 @@ class Player extends React.Component {
   }
   componentDidMount () {
     this.props.workoutActions.viewWorkout(this.props.player.workoutId)
+    Mixpanel.track(MixpanelConfig.WORKOUT_START)
   }
   componentWillUnmount () {
     // enable lock screen
@@ -217,12 +222,21 @@ class Player extends React.Component {
   }
 
   render (props = this.props) {
-    const closeButtonPressed = () => props.navigator.pop()
+    const closeButtonPressed = () => {
+      Mixpanel.track(MixpanelConfig.WORKOUT_CLOSE)
+      props.navigator.pop()
+    }
 
     const onVideoLoaded = props.playerActions.videoLoaded
     const onVideoProgress = this.onVideoProgress.bind(this) //props.playerActions.videoProgress
-    const onVideoTouch = props.playerActions.pauseVideo
     const onChangeVideo = this.onExerciseSelect
+
+    const onVideoTouch = () => {
+      if (!props.player.paused) {
+        Mixpanel.track(MixpanelConfig.WORKOUT_PAUSE)
+      }
+      props.playerActions.pauseVideo()
+    }
 
     const workout = getWorkoutExpanded(props.player, props.workouts, props.exercises, props.instructors)
     const nowPlayingExercise = getNowPlayingExercise(props.player, workout)
@@ -240,13 +254,22 @@ class Player extends React.Component {
 
     const orientationStatus = props.uiStates.orientation
 
+    const onNextButtonPressed = () => {
+      this.nextVideoDispatcher.bind(this)()
+      Mixpanel.track(MixpanelConfig.WORKOUT_NEXT)
+    }
+    const onPreviousButtonPressed = () => {
+      this.previousVideoDispatcher.bind(this)()
+      Mixpanel.track(MixpanelConfig.WORKOUT_PREV)
+    }
+
     return (
       <View>
         <PlayerIndex
           onClosePressed={closeButtonPressed}
-          onNextVideo={this.nextVideoDispatcher.bind(this)}
+          onNextButtonPressed={onNextButtonPressed}
           onNavigate={this.onNavigate.bind(this)}
-          onPreviousVideo={this.previousVideoDispatcher.bind(this)}
+          onPreviousButtonPressed={onPreviousButtonPressed}
 
           onVideoLoaded={onVideoLoaded}
           onVideoProgress={onVideoProgress}

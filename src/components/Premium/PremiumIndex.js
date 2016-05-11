@@ -65,12 +65,18 @@ const PremiumIndex = (props) => {
           </View>
 
         </View>
-        <TouchableOpacity style={styles.upgradeButton}>
+        <TouchableOpacity
+          onPress={props.onUpgradeMonthly}
+          style={styles.upgradeButton}
+        >
             <Text style={styles.upgradeButtonText}>
               UPGRADE $9/mo
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.upgradeButton}>
+        <TouchableOpacity
+          onPress={props.onUpgradeYearly}
+          style={styles.upgradeButton}
+        >
           <Text style={styles.upgradeButtonText}>
             UPGRADE $84 / year
           </Text>

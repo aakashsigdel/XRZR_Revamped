@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
 
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import * as UiActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as UserDataActionCreators from '../redux_x/actions/userDataActionCreators'
 import * as ExerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
@@ -22,9 +23,16 @@ class FavouriteExercises extends React.Component {
       props.navigator.push({name: 'browse'})
     }
     const onBackButton = props.navigator.pop
-    const onDoneButton = props.uiDispatchers.doneEditFavouriteExercisesFlag
-    const onEditButton = props.uiDispatchers.editFavouriteExercisesFlag
+    const onDoneButton = () => {
+      Mixpanel.track(MixpanelConfig.FAVOURITE_EXERCISE_SAVE)
+      props.uiDispatchers.doneEditFavouriteExercisesFlag()
+    }
+    const onEditButton = () => {
+      Mixpanel.track(MixpanelConfig.FAVOURITE_EXERCISE_EDIT)
+      props.uiDispatchers.editFavouriteExercisesFlag()
+    }
     const onRemoveButton = (exerciseId) => {
+      Mixpanel.track(MixpanelConfig.FAVOURITE_EXERCISE_DELETE)
       props.userDataDispatchers.removeFavouriteExercises(exerciseId)
       props.exerciseDispatchers.likeExercise(exerciseId, false)
     }
