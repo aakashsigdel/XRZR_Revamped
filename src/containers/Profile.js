@@ -8,6 +8,7 @@ import React, {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ProfileIndex from '../components/Profile/ProfileIndex'
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import * as VideoActionCreators from '../redux_x/actions/videoActionCreators'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FIcon from 'react-native-vector-icons/FontAwesome'
@@ -32,6 +33,7 @@ const handleProfileSettingPress = (props, userId) => {
 }
 
 const handleCreateNewWorkout = (props) => {
+  Mixpanel.track(MixpanelConfig.WORKOUT_CREATE)
   return () => {
     props.navigator.push({
       name: 'newWorkout'
@@ -50,6 +52,7 @@ const handleCreateNewExercise = (props) => {
 
 const handlePressOptions = (props, buttonType) => {
   if (buttonType === 'heart') {
+    Mixpanel.track(MixpanelConfig.PROFILE_LIKE)
     props.userActionDispatchers.likeUser(props.userId, !props.user[props.userId].like)
     return
   }

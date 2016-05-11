@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { LOGIN_STORAGE_KEY } from '../constants/appConstants'
 import Share from 'react-native-share'
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 
 export const getAccessTokenFromAsyncStorage = () => {
    //AsyncStorage.removeItem(LOGIN_STORAGE_KEY)
@@ -29,5 +30,6 @@ export const awesomeFetchWrapper = ({url, method, headers, body}) => {
 
 // options ={share_text, share_URL, title}
 export const shareOnFacebook = (options, callback) => {
+  Mixpanel.track(MixpanelConfig.WORKOUT_SHARE)
   Share.open(options, callback)
 }

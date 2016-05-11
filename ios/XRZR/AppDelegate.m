@@ -14,7 +14,11 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "RCTLinkingManager.h"
 
+#import "Mixpanel.h"
+
 @implementation AppDelegate
+
+#define MIXPANEL_TOKEN @"0b2cb44f917f7ae7305b2d1723ec52a9"
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -58,6 +62,10 @@
   
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
+  
+
+  [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+
   
   return YES;
 }

@@ -8,7 +8,7 @@ import React, {
 } from 'react-native'
 
 const HeaderElement = (props) => {
-  const handleWorkoutSelect = () => props.onWorkoutSelect(props.workout.id)
+  const handleWorkoutSelect = () => props.onWorkoutSelect(props.workout.id, 'featured')
   return (
     <TouchableOpacity
       onPress={handleWorkoutSelect}

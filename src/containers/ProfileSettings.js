@@ -7,6 +7,7 @@ import React, {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ProfileSettingsIndex from '../components/ProfileSettings/ProfileSettingsIndex'
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import { updateUser } from '../redux_x/actions/loginActionCreators'
 import RNInstagramOAuth from 'react-native-instagram-oauth'
 import { INSTAGRAM_DETAILS } from '../constants/appConstants'
@@ -26,6 +27,10 @@ class ProfileSettings extends Component {
       instagramUsername: props.user[props.userId].instagramUsername,
       isFetching: false
     }
+  }
+
+  componentDidMount () {
+    Mixpanel.track(MixpanelConfig.PROFILE_SETTINGS)
   }
 
   componentDidUpdate (prevProps) {

@@ -8,7 +8,7 @@ import React, {
 
 export const TrendingItem = (props) => {
   let titleText = props.title.length > 30 ? props.title.slice(0, 30) + '...' : props.title
-  const onWorkoutSelect = () => props.onWorkoutSelect(props.id)
+  const onWorkoutSelect = () => props.onWorkoutSelect(props.id, 'trending')
   return (
     <TouchableOpacity
       onPress={onWorkoutSelect}

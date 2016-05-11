@@ -5,6 +5,7 @@ import React, {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import * as UiStateActionCreators from '../redux_x/actions/uiStatesActionCreators'
 import * as SearchActionCreators from '../redux_x/actions/searchActionCreators'
 import SearchIndex from '../components/Search/SearchIndex'
@@ -17,7 +18,9 @@ class Search extends React.Component {
       searchText: ''
     }
   }
-
+  componentDidMount () {
+    Mixpanel.track(MixpanelConfig.SEARCH_VIEW)
+  }
   render (props = this.props) {
     let onCategorySelect = (categoryId) => {
       props.uiDispatchers.switchCategory(categoryId)
@@ -37,6 +40,7 @@ class Search extends React.Component {
 
     let onSearchPressed = () => {
       props.searchDispatchers.fetchSearchResult(this.state.searchText)
+      Mixpanel.track(MixpanelConfig.SEARCHING)
     }
     let onSearchInput = (text) => {
       this.setState({

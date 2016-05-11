@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import BrowseIndex from '../components/browse/BrowseIndex'
 
+import Mixpanel, * as MixpanelConfig from '../constants/MixPanelConfigs'
 import * as CategoryActionCreators from '../redux_x/actions/categoryActionCreators'
 import * as FeaturedWorkoutsActionCreators from '../redux_x/actions/featuredWorkoutsActionCreators'
 import * as TrendingWorkoutsActionCreators from '../redux_x/actions/trendingActionCreators'
@@ -36,12 +37,22 @@ class Browse extends React.Component {
     let isFeaturedLoading = false//props.featuredWorkouts.isFetching
     let isTrendingLoading = false//props.trendings.isFetching
 
-    let onWorkoutSelect = (workoutId) => {
+    let onWorkoutSelect = (workoutId, source) => {
+      const eventMap = {
+        featured: MixpanelConfig.BROWSE_FEATURED,
+        trending: MixpanelConfig.BROWSE_TRENDING
+      }
+      const event = eventMap[source]
+      if (event) {
+        Mixpanel.track(event)
+      }
+
       props.playerDispatchers.loadWorkout(workoutId)
       props.navigator.push({ name: 'workoutIntro' })
     }
 
     let onCategorySelect = (categoryId) => {
+      Mixpanel.track(MixpanelConfig.BROWSE_CATEGORY)
       props.uiDispatchers.switchCategory(categoryId)
       props.navigator.push({ name: 'category' })
     }
@@ -110,11 +121,17 @@ function browseListingsManager (navigator) {
   let items = [{
     icon: 'whatshot',
     title: 'Most Popular Workouts',
-    onPress: () => navigator.push({name: 'mostPopular'})
+    onPress: () => {
+      Mixpanel.track(MixpanelConfig.BROWSE_POPULAR)
+      navigator.push({name: 'mostPopular'})
+    }
   }, {
     icon: 'star',
     title: 'XRZR selected',
-    onPress: removeAccessTokenFromAsyncStorage // () => undefined
+    onPress: () => {
+      Mixpanel.track(MixpanelConfig.BROWSE_SELECTED)
+      removeAccessTokenFromAsyncStorage()
+    } // () => undefined
   }
   ]
   return items

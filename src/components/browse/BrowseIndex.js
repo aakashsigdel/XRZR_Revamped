@@ -3,6 +3,7 @@ import React, {
   Image,
   Navigator
 } from 'react-native'
+import Mixpanel, * as MixpanelConfig from '../../constants/MixPanelConfigs'
 import BrowseScreen from './BrowseScreen'
 import BrowserNavigationBar from './BrowseNavigationBar'
 import FavouriteScreen from './FavouriteScreen'
@@ -14,6 +15,7 @@ const BrowseIndex = (props) => {
     navigator_ref.pop()
   }
   const onFavouriteTabSelect = () => {
+    Mixpanel.track(MixpanelConfig.BROWSE_FAVOURITE)
     props.onTabChanged('favourite')
     navigator_ref.push({name: 'favourite'})
   }
