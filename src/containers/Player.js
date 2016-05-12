@@ -219,6 +219,9 @@ class Player extends React.Component {
   }
 
   onExerciseSelect (exerciseIndex) {
+    if (this.props.player.paused) {
+      this.props.playerActions.pauseVideo()
+    }
     this.props.playerActions.changeVideo(exerciseIndex)
     this.resetTimeCounter()
   }
@@ -257,10 +260,16 @@ class Player extends React.Component {
     const orientationStatus = props.uiStates.orientation
 
     const onNextButtonPressed = () => {
+      if (props.player.paused) {
+        props.playerActions.pauseVideo()
+      }
       this.nextVideoDispatcher.bind(this)()
       Mixpanel.track(MixpanelConfig.WORKOUT_NEXT)
     }
     const onPreviousButtonPressed = () => {
+      if (props.player.paused) {
+        props.playerActions.pauseVideo()
+      }
       this.previousVideoDispatcher.bind(this)()
       Mixpanel.track(MixpanelConfig.WORKOUT_PREV)
     }
