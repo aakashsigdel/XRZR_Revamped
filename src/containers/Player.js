@@ -111,7 +111,9 @@ class Player extends React.Component {
 
     this.props.lockToPortrait()
 
+    let playOnActionClose = false
     if (!this.props.player.paused){
+      playOnActionClose = true
       this.pauseTimer()
       this.props.playerActions.pauseVideo()
     }
@@ -120,15 +122,17 @@ class Player extends React.Component {
       name: route,
       actionElements: actionElements,
       actionTitle,
-      onClose: () => this.onActionClosed(this.props)
+      onClose: () => this.onActionClosed(this.props, playOnActionClose)
     })
     // props.navigator.push({name: route, exerciseId: exerciseId})
   }
 
-  onActionClosed (props) {
+  onActionClosed (props, playOnActionClose) {
     props.navigator.pop()
-    this.startTimer()
-    props.playerActions.pauseVideo()
+    if (playOnActionClose){
+      this.startTimer()
+      props.playerActions.pauseVideo()
+    }
   }
 
   onVideoProgress (data) {
