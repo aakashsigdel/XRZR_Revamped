@@ -30,6 +30,7 @@ class VideoScreen extends Component {
     return (
       <View style={styles.containerLandscape}>
         <Player
+          landscape
           muted={props.muted}
           onClosePressed={props.onClosePressed}
           onVideoLoaded={props.onVideoLoaded}

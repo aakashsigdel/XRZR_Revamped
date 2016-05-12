@@ -5,6 +5,7 @@ import React, {
 } from 'react-native'
 import Video from 'react-native-video'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {VIEWPORT} from '../../constants/appConstants'
 
 class Player extends React.Component {
   render (props = this.props) {
@@ -24,6 +25,15 @@ class Player extends React.Component {
             source={{uri: props.videoUri}}
             style={{flex: 1}}
           />
+          <View
+            style={props.landscape ? styles.playButtonLandscape : styles.playButton}
+          >
+            {(props.paused) ? <Icon
+              name='play-arrow'
+              color='white'
+              size={props.landscape ? 55 : 35}
+            /> : null}
+          </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={props.onClosePressed}
@@ -36,6 +46,7 @@ class Player extends React.Component {
             size={35}
           />
         </TouchableOpacity>
+
       </View>
 
     )
@@ -58,6 +69,16 @@ const styles = {
     position: 'absolute',
     left: 10,
     top: 15
+  },
+  playButton: {
+    position: 'absolute',
+    left: VIEWPORT.width / 2 - 20,
+    top: 100
+  },
+  playButtonLandscape: {
+    position: 'absolute',
+    left: VIEWPORT.height / 2 - 20,
+    top: VIEWPORT.width / 2 -20
   }
 }
 
