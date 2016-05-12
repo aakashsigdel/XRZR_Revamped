@@ -1,5 +1,6 @@
 import {
   ADD_CATEGORY,
+  RELOAD_CATEGORIES,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
   FETCH_CATEGORIES,
@@ -22,6 +23,12 @@ export const addCategory = (category) => {
   return {
     type: ADD_CATEGORY,
     category
+  }
+}
+export const reloadCategories = (categories) => {
+  return {
+    type: RELOAD_CATEGORIES,
+    categories
   }
 }
 
@@ -80,7 +87,7 @@ export function fetchCategories () {
           }
         })
 
-        dispatch(addCategory(categories))
+        dispatch(reloadCategories(categories))
         dispatch(categoriesFetchSuccess())
       }).catch((ex) => {
         console.log(ex)

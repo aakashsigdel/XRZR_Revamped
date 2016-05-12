@@ -144,6 +144,7 @@ export const updateUser = (user) => {
       }
       awesomeFetchWrapper(data)
       .then(responseData => {
+        console.log("hellohelo", responseData)
         dispatch(updateUserLocal(userWithId))
         dispatch(updateUserSuccess())
       })

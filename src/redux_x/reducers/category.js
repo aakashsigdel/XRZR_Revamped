@@ -2,6 +2,7 @@
 
 import {
   ADD_CATEGORY,
+  RELOAD_CATEGORIES,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
 
@@ -20,6 +21,13 @@ const category = (state = defaultState, action) => {
         data: {
           ...state.data,
           ...action.category
+        }
+      }
+    case RELOAD_CATEGORIES:
+      return {
+        ...state,
+        data: {
+          ...action.categories
         }
       }
     case UPDATE_CATEGORY:
