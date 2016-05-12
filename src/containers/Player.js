@@ -111,8 +111,10 @@ class Player extends React.Component {
 
     this.props.lockToPortrait()
 
-    this.pauseTimer()
-    this.props.playerActions.pauseVideo()
+    if (!this.props.player.paused){
+      this.pauseTimer()
+      this.props.playerActions.pauseVideo()
+    }
 
     this.props.navigator.push({
       name: route,
@@ -130,16 +132,12 @@ class Player extends React.Component {
   }
 
   onVideoProgress (data) {
-    //let deltaTime = data.currentTime - this.state.lastKnownTime
-    //
-    //if (deltaTime < 0 || deltaTime > 1) deltaTime = 0
     if (this.props.player.paused) {
       return
     }
     
     this.setState({
-      currentTime: this.state.currentTime + 1,//(deltaTime),
-      //lastKnownTime: data.currentTime
+      currentTime: this.state.currentTime + 1
     })
   }
 
