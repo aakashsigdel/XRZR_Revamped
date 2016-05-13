@@ -57,10 +57,11 @@ class WorkoutIntro extends React.Component {
     let onStartWorkout = () => {
       if (exercises[0]) {
         props.playerActions.loadWorkout(props.player.workoutId)
-        props.navigator.push({
-          name: 'ads',
-          onAdClose: () => onAdClose(exercises[ 0 ].title)
-        })
+        onAdClose(exercises[ 0 ].title)
+        //props.navigator.push({
+        //  name: 'ads',
+        //  onAdClose: () => onAdClose(exercises[ 0 ].title)
+        //})
       }
     }
 
