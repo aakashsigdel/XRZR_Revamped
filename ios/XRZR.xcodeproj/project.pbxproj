@@ -138,6 +138,9 @@
 		CD423D031C895F8B000441B8 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFD1C895F8B000441B8 /* SF-UI-Text-Regular.otf */; };
 		CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD439CFB1CC4F3F500F7D5D9 /* Social.framework */; };
 		CD47B8F01CA4F87300C31F47 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */; };
+		CD69C6441CE5A4EA0075AC86 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C6431CE5A4EA0075AC86 /* Crashlytics.framework */; };
+		CD69C6461CE5A4FD0075AC86 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C6451CE5A4FD0075AC86 /* Fabric.framework */; };
+		CD69C64D1CE5A6600075AC86 /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C64C1CE5A6580075AC86 /* libSMXCrashlytics.a */; };
 		CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD979BF21CE08CF200901EFD /* libicucore.tbd */; };
 		CDE16D011CE083B0007A6C36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE16D001CE083B0007A6C36 /* UIKit.framework */; };
 		CDE16D031CE083D5007A6C36 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE16D021CE083D5007A6C36 /* WatchConnectivity.framework */; };
@@ -298,6 +301,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
+		};
+		CD69C64B1CE5A6580075AC86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
+			remoteInfo = SMXCrashlytics;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -510,6 +520,9 @@
 		CD423CFD1C895F8B000441B8 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Regular.otf"; path = "../assets/fonts/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		CD439CFB1CC4F3F500F7D5D9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		CD47B8DB1CA4F85C00C31F47 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		CD69C6431CE5A4EA0075AC86 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../Fabric/Crashlytics.framework; sourceTree = "<group>"; };
+		CD69C6451CE5A4FD0075AC86 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../Fabric/Fabric.framework; sourceTree = "<group>"; };
+		CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
 		CD979BF21CE08CF200901EFD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		CDE16D001CE083B0007A6C36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDE16D021CE083D5007A6C36 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -537,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD69C64D1CE5A6600075AC86 /* libSMXCrashlytics.a in Frameworks */,
 				CD256EC11CE2F01A003E514A /* libRNMixpanel.a in Frameworks */,
 				CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */,
 				CDE16D0F1CE08458007A6C36 /* QuartzCore.framework in Frameworks */,
@@ -547,10 +561,12 @@
 				CDE16D051CE083EF007A6C36 /* Foundation.framework in Frameworks */,
 				CDE16D031CE083D5007A6C36 /* WatchConnectivity.framework in Frameworks */,
 				CDE16D011CE083B0007A6C36 /* UIKit.framework in Frameworks */,
+				CD69C6441CE5A4EA0075AC86 /* Crashlytics.framework in Frameworks */,
 				CD439CFC1CC4F3F500F7D5D9 /* Social.framework in Frameworks */,
 				308A0E011CA8FD3400264D7C /* libRCTFBSDKCore.a in Frameworks */,
 				308A0E001CA8FD2E00264D7C /* libRCTFBSDKLogin.a in Frameworks */,
 				308A0E4D1CA90A3900264D7C /* FBSDKLoginKit.framework in Frameworks */,
+				CD69C6461CE5A4FD0075AC86 /* Fabric.framework in Frameworks */,
 				CD47B8F01CA4F87300C31F47 /* libRNImagePicker.a in Frameworks */,
 				305FDBA61C92913C00811B83 /* libART.a in Frameworks */,
 				308A0DF31CA8FB1200264D7C /* FBSDKCoreKit.framework in Frameworks */,
@@ -681,6 +697,8 @@
 		308A0DDF1CA8FA2600264D7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD69C6451CE5A4FD0075AC86 /* Fabric.framework */,
+				CD69C6431CE5A4EA0075AC86 /* Crashlytics.framework */,
 				CD979BF21CE08CF200901EFD /* libicucore.tbd */,
 				CDE16D0E1CE08458007A6C36 /* QuartzCore.framework */,
 				CDE16D081CE0843B007A6C36 /* Accelerate.framework */,
@@ -783,6 +801,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */,
 				CD256EBB1CE2F014003E514A /* RNMixpanel.xcodeproj */,
 				30616EAB1CD2E76200CD4780 /* RNDimmer.h */,
 				30616EAC1CD2E76200CD4780 /* RNDimmer.m */,
@@ -1042,6 +1061,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CD69C6481CE5A6580075AC86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD69C64C1CE5A6580075AC86 /* libSMXCrashlytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1071,6 +1098,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				CD69C62E1CE59E960075AC86 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1190,6 +1218,10 @@
 				{
 					ProductGroup = 30C050CF1C87FB9700BBC886 /* Products */;
 					ProjectRef = CFE4FD9E64EE47A9BF0A398F /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = CD69C6481CE5A6580075AC86 /* Products */;
+					ProjectRef = CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1341,6 +1373,13 @@
 			remoteRef = CD47B8ED1CA4F85C00C31F47 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CD69C64C1CE5A6580075AC86 /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = CD69C64B1CE5A6580075AC86 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1406,6 +1445,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+		};
+		CD69C62E1CE59E960075AC86 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "~/Documents/Fabric/Fabric.framework/run 8b86c3094c99ccb35d3aef648324d7b6a2a6c437 7a28ebf06142efcec71a0b5e1a75beb2a7d32ee1b83acd7f5e02253f8a0f34a1";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1573,7 +1625,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "~/Documents/FacebookSDK";
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/Documents/FacebookSDK",
+					"~/Documents/Fabric",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1602,7 +1657,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
+				FRAMEWORK_SEARCH_PATHS = (
+					"~/Documents/FacebookSDK",
+					"~/Documents/Fabric",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

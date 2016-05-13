@@ -1,11 +1,6 @@
 // Mixpanel configs
 
 import Mixpanel from 'react-native-mixpanel'
-
-// changing project token here will not change anything go to appDeligate.m
-const MIXPANEL_PROJECT_TOKEN = '0b2cb44f917f7ae7305b2d1723ec52a9'
-Mixpanel.sharedInstanceWithToken(MIXPANEL_PROJECT_TOKEN)
-
 export default Mixpanel
 
 // Mixpanel Actions

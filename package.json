@@ -14,6 +14,7 @@
     "react-native-blur": "^0.7.10",
     "react-native-circular-progress": "0.0.5",
     "react-native-dimmer": "yadi-social/react-native-dimmer",
+    "react-native-fabric": "^0.2.1",
     "react-native-fbsdkcore": "0.0.8",
     "react-native-fbsdklogin": "0.0.8",
     "react-native-image-picker": "^0.18.3",

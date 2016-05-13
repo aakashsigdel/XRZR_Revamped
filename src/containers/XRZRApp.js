@@ -10,6 +10,7 @@ import React, {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Orientation from 'react-native-orientation'
+import Mixpanel from 'react-native-mixpanel'
 
 import * as workoutActionCreators from '../redux_x/actions/workoutActionCreators'
 import * as exerciseActionCreators from '../redux_x/actions/exerciseActionCreators'
@@ -190,7 +191,7 @@ class XRZRApp extends Component {
 // PropTypes
 // ----
 XRZRApp.propTypes = {
-  state: PropTypes.object,
+  user: PropTypes.object,
   actions: PropTypes.object
 }
 
@@ -216,6 +217,6 @@ const _mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  (state) => ({ state }),
+  (state) => ({ user: state.user.data }),
   _mapDispatchToProps
 )(XRZRApp)

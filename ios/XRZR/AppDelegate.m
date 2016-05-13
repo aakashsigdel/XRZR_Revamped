@@ -16,6 +16,10 @@
 
 #import "Mixpanel.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
+
 @implementation AppDelegate
 
 #define MIXPANEL_TOKEN @"0b2cb44f917f7ae7305b2d1723ec52a9"
@@ -65,6 +69,8 @@
   
 
   [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+  
+  [Fabric with:@[[Crashlytics class]]];
 
   
   return YES;

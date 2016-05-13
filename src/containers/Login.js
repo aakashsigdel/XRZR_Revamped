@@ -54,6 +54,8 @@ class Login extends Component {
   }
 
   _navigateToBrowse () {
+    Mixpanel.identify(this.props.id)
+    Mixpanel.set({'$first_name': this.props.name})
     this.props.navigator.replace({name: 'browse'})
     Mixpanel.track(MixpanelConfig.SIGNIN)
   }
