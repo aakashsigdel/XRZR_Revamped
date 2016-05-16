@@ -51,7 +51,11 @@ const BrowseIndex = (props) => {
         selectedTab={props.selectedTab}
       />
       <Navigator
-        configureScene={() => Navigator.SceneConfigs.FloatFromBottom}
+        configureScene={
+        () => ({
+          ...Navigator.SceneConfigs.FloatFromBottom,
+          gestures: {}
+        })}
         initialRoute={{name: 'browse'}}
         renderScene={_renderScene}
       />

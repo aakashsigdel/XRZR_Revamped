@@ -19,6 +19,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+#import "RCTSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -57,6 +58,8 @@
                                                       moduleName:@"XRZR"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+  
+  [RCTSplashScreen show:rootView];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

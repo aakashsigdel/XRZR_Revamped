@@ -130,6 +130,9 @@
 		CD256FE41CE2F25B003E514A /* UIImage+MPImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CD256F851CE2F25B003E514A /* UIImage+MPImageEffects.m */; };
 		CD256FE51CE2F25B003E514A /* UIView+MPHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = CD256F871CE2F25B003E514A /* UIView+MPHelpers.m */; };
 		CD256FE61CE2F25B003E514A /* UIViewController+AutomaticEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = CD256F891CE2F25B003E514A /* UIViewController+AutomaticEvents.m */; };
+		CD29B8EB1CE99673002B7F65 /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD29B8DF1CE9963C002B7F65 /* libRCTSplashScreen.a */; };
+		CD29B8F41CE99CAD002B7F65 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD29B8F21CE99CAD002B7F65 /* LaunchScreen.xib */; };
+		CD29B8F51CE99CAD002B7F65 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = CD29B8F31CE99CAD002B7F65 /* splash.png */; };
 		CD423CFE1C895F8B000441B8 /* SF-Compact-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CF81C895F8B000441B8 /* SF-Compact-Display-Regular.otf */; };
 		CD423CFF1C895F8B000441B8 /* SF-Compact-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CF91C895F8B000441B8 /* SF-Compact-Text-Regular.otf */; };
 		CD423D001C895F8B000441B8 /* SF-Compact-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD423CFA1C895F8B000441B8 /* SF-Compact-Text-Semibold.otf */; };
@@ -294,6 +297,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = FDC64AF01BF1690D0044C1B4;
 			remoteInfo = RNMixpanel;
+		};
+		CD29B8DE1CE9963C002B7F65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD29B8D01CE9963B002B7F65 /* RCTSplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTSplashScreen;
 		};
 		CD47B8ED1CA4F85C00C31F47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -512,6 +522,9 @@
 		CD256F881CE2F25B003E514A /* UIViewController+AutomaticEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutomaticEvents.h"; sourceTree = "<group>"; };
 		CD256F891CE2F25B003E514A /* UIViewController+AutomaticEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutomaticEvents.m"; sourceTree = "<group>"; };
 		CD256F8A1CE2F25B003E514A /* watchos.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = watchos.modulemap; sourceTree = "<group>"; };
+		CD29B8D01CE9963B002B7F65 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		CD29B8F21CE99CAD002B7F65 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		CD29B8F31CE99CAD002B7F65 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		CD423CF81C895F8B000441B8 /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Regular.otf"; path = "../assets/fonts/SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
 		CD423CF91C895F8B000441B8 /* SF-Compact-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Text-Regular.otf"; path = "../assets/fonts/SF-Compact-Text-Regular.otf"; sourceTree = "<group>"; };
 		CD423CFA1C895F8B000441B8 /* SF-Compact-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Text-Semibold.otf"; path = "../assets/fonts/SF-Compact-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -550,6 +563,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD29B8EB1CE99673002B7F65 /* libRCTSplashScreen.a in Frameworks */,
 				CD69C64D1CE5A6600075AC86 /* libSMXCrashlytics.a in Frameworks */,
 				CD256EC11CE2F01A003E514A /* libRNMixpanel.a in Frameworks */,
 				CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */,
@@ -801,6 +815,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CD29B8D01CE9963B002B7F65 /* RCTSplashScreen.xcodeproj */,
 				CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */,
 				CD256EBB1CE2F014003E514A /* RNMixpanel.xcodeproj */,
 				30616EAB1CD2E76200CD4780 /* RNDimmer.h */,
@@ -839,6 +854,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CD29B8F11CE99CAD002B7F65 /* SplashScreenResource */,
 				308A0DDF1CA8FA2600264D7C /* Frameworks */,
 				CD2445891C9152A4004AF2D3 /* RCTOrientation */,
 				30C0508D1C87F7DA00BBC886 /* Resources */,
@@ -1053,6 +1069,24 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		CD29B8D11CE9963B002B7F65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD29B8DF1CE9963C002B7F65 /* libRCTSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD29B8F11CE99CAD002B7F65 /* SplashScreenResource */ = {
+			isa = PBXGroup;
+			children = (
+				CD29B8F21CE99CAD002B7F65 /* LaunchScreen.xib */,
+				CD29B8F31CE99CAD002B7F65 /* splash.png */,
+			);
+			name = SplashScreenResource;
+			path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen/SplashScreenResource";
+			sourceTree = "<group>";
+		};
 		CD47B8DC1CA4F85C00C31F47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,6 +1212,10 @@
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
+				},
+				{
+					ProductGroup = CD29B8D11CE9963B002B7F65 /* Products */;
+					ProjectRef = CD29B8D01CE9963B002B7F65 /* RCTSplashScreen.xcodeproj */;
 				},
 				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
@@ -1366,6 +1404,13 @@
 			remoteRef = CD256EBF1CE2F014003E514A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CD29B8DF1CE9963C002B7F65 /* libRCTSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTSplashScreen.a;
+			remoteRef = CD29B8DE1CE9963C002B7F65 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CD47B8EE1CA4F85C00C31F47 /* libRNImagePicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1408,6 +1453,7 @@
 				CD256F8C1CE2F25B003E514A /* MPArrowLeft.png in Resources */,
 				CD256F8F1CE2F25B003E514A /* MPArrowRight@2x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				CD29B8F51CE99CAD002B7F65 /* splash.png in Resources */,
 				CD256F961CE2F25B003E514A /* MPDismissKeyboard@2x.png in Resources */,
 				CD256F951CE2F25B003E514A /* MPDismissKeyboard.png in Resources */,
 				CD256FBB1CE2F25B003E514A /* MPNotification~ipad.storyboard in Resources */,
@@ -1425,6 +1471,7 @@
 				CD256FBC1CE2F25B003E514A /* MPNotification~iphonelandscape.storyboard in Resources */,
 				30C0509B1C87F85000BBC886 /* Ionicons.ttf in Resources */,
 				CD423D001C895F8B000441B8 /* SF-Compact-Text-Semibold.otf in Resources */,
+				CD29B8F41CE99CAD002B7F65 /* LaunchScreen.xib in Resources */,
 				30C0509A1C87F85000BBC886 /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1640,6 +1687,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 				);
 				INFOPLIST_FILE = XRZR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1672,6 +1720,7 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 				);
 				INFOPLIST_FILE = XRZR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

@@ -24,7 +24,7 @@ export default class StatusMessage extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.visible) {
+    if (nextProps.visible && !this.props.visible) {
       this.dismisModalAfterTimeout()
     }
   }

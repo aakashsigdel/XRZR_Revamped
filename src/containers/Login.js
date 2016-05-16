@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react-native'
 import { connect } from 'react-redux'
+import SplashScreen from '@remobile/react-native-splashscreen'
 import { postWorkout } from '../redux_x/actions/workoutActionCreators'
 import Loader from '../components/Common/Loader.ios.js'
 import { loginSuccess, validateAccessToken } from '../redux_x/actions/loginActionCreators'
@@ -28,6 +29,7 @@ class Login extends Component {
   }
 
   componentDidMount () {
+    SplashScreen.hide()
     getAccessTokenFromAsyncStorage()
     .then((response) => {
       if(response && JSON.parse(response).access_token) {

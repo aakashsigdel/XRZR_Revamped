@@ -6,15 +6,13 @@ import React, {
   Text,
   View
 } from 'react-native'
-
+import { VIEWPORT } from '../../constants/appConstants'
 import GhostButton from '../Common/GhostButton'
 
 const LoginIndex = (props) => {
   return (
     <Image
-      source={{
-        uri: 'https://aakashsigdel.github.io/XRZR_Files/others/loginImage.png'
-      }}
+      source={require('../../../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen/SplashScreenResource/splash.png')}
       style={styles.container}
     >
       <Text style={styles.text}>
@@ -36,7 +34,8 @@ const LoginIndex = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: VIEWPORT.width,
+    height: VIEWPORT.height,
     justifyContent: 'center',
     alignItems: 'center'
   },
