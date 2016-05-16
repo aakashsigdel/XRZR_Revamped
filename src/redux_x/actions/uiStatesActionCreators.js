@@ -56,6 +56,9 @@ export const setEditWorkoutExercisesOnProgress = (onProgress) => {
 }
 
 export const changeOrientation = (orientation) => {
+  if (orientation === 'PORTRAITUPSIDEDOWN') {
+    return {type: 'BOGUS'}
+  }
   return {
     type: CHANGE_ORIENTATION,
     orientation
