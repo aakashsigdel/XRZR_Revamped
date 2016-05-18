@@ -69,14 +69,16 @@ class FavouriteExercises extends React.Component {
         props.userDispatchers.fetchUser(exercise.created_by)
         return
       }
+
+      let instructorName = exercise.instructor.name || ''
       actionElements.push({
-        name: 'GO TO ' + exercise.instructor.name,
+        name: 'GO TO ' + instructorName.toUpperCase(),
         icon: <FIcon name='angle-right' color='rgba(255, 255, 255, 0.5)' size={30} />,
         action: () => props.navigator.push({name: 'profile', userId: exercise.created_by})
       })
       const actionTitle = {
-        title: exercise.title,
-        subText: exercise.instructor.name,
+        title: exercise.title.toUpperCase(),
+        subText: instructorName.toUpperCase(),
         image: exercise.instructor.image
       }
 
