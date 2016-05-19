@@ -15,11 +15,11 @@ const LoginIndex = (props) => {
       source={require('../../../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen/SplashScreenResource/splash.png')}
       style={styles.container}
     >
-      <Text style={styles.text}>
-        WORKOUTS
+      <Text style={[styles.text, styles.upperText]}>
+        UNLIMITED
       </Text>
       <Text style={styles.text}>
-        FOR EVERYONE
+        WORKOUTS
       </Text>
       <View style={styles.buttonContainer}>
         <GhostButton
@@ -39,11 +39,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  upperText: {
+    paddingTop: 35
+  },
   text: {
     backgroundColor: 'transparent',
     color: 'white',
-    fontSize: 24,
-    fontFamily: 'SFUIDisplay-Regular'
+    fontSize: 30,
+    fontFamily: 'Roboto-Bold'
   },
   buttonContainer: {
     position: 'absolute',

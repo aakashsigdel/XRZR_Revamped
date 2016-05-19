@@ -144,6 +144,7 @@
 		CD69C6441CE5A4EA0075AC86 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C6431CE5A4EA0075AC86 /* Crashlytics.framework */; };
 		CD69C6461CE5A4FD0075AC86 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C6451CE5A4FD0075AC86 /* Fabric.framework */; };
 		CD69C64D1CE5A6600075AC86 /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD69C64C1CE5A6580075AC86 /* libSMXCrashlytics.a */; };
+		CD6CEFAC1CEC39DF00F8DA69 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6CEFAB1CEC39DF00F8DA69 /* Roboto-Bold.ttf */; };
 		CD979BF31CE08CF200901EFD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD979BF21CE08CF200901EFD /* libicucore.tbd */; };
 		CDE16D011CE083B0007A6C36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE16D001CE083B0007A6C36 /* UIKit.framework */; };
 		CDE16D031CE083D5007A6C36 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE16D021CE083D5007A6C36 /* WatchConnectivity.framework */; };
@@ -536,6 +537,7 @@
 		CD69C6431CE5A4EA0075AC86 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../Fabric/Crashlytics.framework; sourceTree = "<group>"; };
 		CD69C6451CE5A4FD0075AC86 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../Fabric/Fabric.framework; sourceTree = "<group>"; };
 		CD69C6471CE5A6580075AC86 /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
+		CD6CEFAB1CEC39DF00F8DA69 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		CD979BF21CE08CF200901EFD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		CDE16D001CE083B0007A6C36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDE16D021CE083D5007A6C36 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -748,6 +750,7 @@
 		30C0508D1C87F7DA00BBC886 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CD6CEFAB1CEC39DF00F8DA69 /* Roboto-Bold.ttf */,
 				CD07C9071C90277F00750CB0 /* SF-UI-Display-Light.otf */,
 				CD07C9051C90236000750CB0 /* SF-Compact-Display-Semibold.otf */,
 				CDE6D7E21C8EB362009EB1B2 /* SF-UI-Display-Medium.otf */,
@@ -1446,6 +1449,7 @@
 				CD256F8D1CE2F25B003E514A /* MPArrowLeft@2x.png in Resources */,
 				CD07C9081C90277F00750CB0 /* SF-UI-Display-Light.otf in Resources */,
 				CD256F941CE2F25B003E514A /* MPCloseButton@3x.png in Resources */,
+				CD6CEFAC1CEC39DF00F8DA69 /* Roboto-Bold.ttf in Resources */,
 				CD423D021C895F8B000441B8 /* SF-UI-Text-Light.otf in Resources */,
 				CD256FCA1CE2F25B003E514A /* MPSurvey.storyboard in Resources */,
 				CD256F981CE2F25B003E514A /* MPLogo@2x.png in Resources */,
