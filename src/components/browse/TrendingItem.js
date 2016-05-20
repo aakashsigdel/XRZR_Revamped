@@ -1,10 +1,11 @@
 import React, {
-  Image,
   PropTypes,
   StyleSheet,
   Text,
   TouchableOpacity
 } from 'react-native'
+
+import Image from '../Common/ImagePlaceholder'
 
 export const TrendingItem = (props) => {
   let titleText = props.title.length > 30 ? props.title.slice(0, 30) + '...' : props.title
