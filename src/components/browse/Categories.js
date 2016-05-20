@@ -1,11 +1,12 @@
 import React, {
   View,
   Text,
-  Image,
   StyleSheet,
   TouchableOpacity,
   PropTypes
 } from 'react-native'
+
+import Image from '../Common/ImagePlaceholder'
 
 import { VIEWPORT } from '../../constants/appConstants'
 

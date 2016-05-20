@@ -1,11 +1,11 @@
 import React, {
-  Image,
   View,
   Text,
   PropTypes,
   StyleSheet,
   TouchableOpacity
 } from 'react-native'
+import Image from '../Common/ImagePlaceholder'
 
 const HeaderElement = (props) => {
   const handleWorkoutSelect = () => props.onWorkoutSelect(props.workout.id, 'featured')
